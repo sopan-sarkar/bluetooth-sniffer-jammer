@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/ubertooth-debug.dir/ubertooth-debug.c.o CMakeFiles/ubertooth-debug.dir/cc2400.c.o CMakeFiles/ubertooth-debug.dir/arglist.c.o  -o ubertooth-debug -Wl,-rpath,/home/lab-pc-1/ubertooth-2018-12-R1/host/build/libubertooth/src:/usr/local/lib: ../../libubertooth/src/libubertooth.so.1.1 -lusb-1.0 /usr/local/lib/libbtbb.so -lbluetooth 
