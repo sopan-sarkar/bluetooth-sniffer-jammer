@@ -1,0 +1,1795 @@
+ARM GAS  /tmp/cc7RHaQe.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"usbstdreq.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.USBFilterOsVendorMessage,"ax",%progbits
+  16              		.align	1
+  17              		.global	USBFilterOsVendorMessage
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	USBFilterOsVendorMessage:
+  24              	.LFB0:
+  25              		.file 1 "../common/lpcusb/target/usbstdreq.c"
+   1:../common/lpcusb/target/usbstdreq.c **** /*
+   2:../common/lpcusb/target/usbstdreq.c **** 	LPCUSB, an USB device driver for LPC microcontrollers	
+   3:../common/lpcusb/target/usbstdreq.c **** 	Copyright (C) 2006 Bertrik Sikken (bertrik@sikken.nl)
+   4:../common/lpcusb/target/usbstdreq.c **** 
+   5:../common/lpcusb/target/usbstdreq.c **** 	Redistribution and use in source and binary forms, with or without
+   6:../common/lpcusb/target/usbstdreq.c **** 	modification, are permitted provided that the following conditions are met:
+   7:../common/lpcusb/target/usbstdreq.c **** 
+   8:../common/lpcusb/target/usbstdreq.c **** 	1. Redistributions of source code must retain the above copyright
+   9:../common/lpcusb/target/usbstdreq.c **** 	   notice, this list of conditions and the following disclaimer.
+  10:../common/lpcusb/target/usbstdreq.c **** 	2. Redistributions in binary form must reproduce the above copyright
+  11:../common/lpcusb/target/usbstdreq.c **** 	   notice, this list of conditions and the following disclaimer in the
+  12:../common/lpcusb/target/usbstdreq.c **** 	   documentation and/or other materials provided with the distribution.
+  13:../common/lpcusb/target/usbstdreq.c **** 	3. The name of the author may not be used to endorse or promote products
+  14:../common/lpcusb/target/usbstdreq.c **** 	   derived from this software without specific prior written permission.
+  15:../common/lpcusb/target/usbstdreq.c **** 
+  16:../common/lpcusb/target/usbstdreq.c **** 	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+  17:../common/lpcusb/target/usbstdreq.c **** 	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+  18:../common/lpcusb/target/usbstdreq.c **** 	OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+  19:../common/lpcusb/target/usbstdreq.c **** 	IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  20:../common/lpcusb/target/usbstdreq.c **** 	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  21:../common/lpcusb/target/usbstdreq.c **** 	NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  22:../common/lpcusb/target/usbstdreq.c **** 	DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  23:../common/lpcusb/target/usbstdreq.c **** 	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  24:../common/lpcusb/target/usbstdreq.c **** 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+  25:../common/lpcusb/target/usbstdreq.c **** 	THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  26:../common/lpcusb/target/usbstdreq.c **** */
+  27:../common/lpcusb/target/usbstdreq.c **** 
+  28:../common/lpcusb/target/usbstdreq.c **** 
+  29:../common/lpcusb/target/usbstdreq.c **** /** @file
+  30:../common/lpcusb/target/usbstdreq.c **** 	Standard request handler.
+  31:../common/lpcusb/target/usbstdreq.c **** 	
+  32:../common/lpcusb/target/usbstdreq.c **** 	This modules handles the 'chapter 9' processing, specifically the
+  33:../common/lpcusb/target/usbstdreq.c **** 	standard device requests in table 9-3 from the universal serial bus
+ARM GAS  /tmp/cc7RHaQe.s 			page 2
+
+
+  34:../common/lpcusb/target/usbstdreq.c **** 	specification revision 2.0
+  35:../common/lpcusb/target/usbstdreq.c **** 	
+  36:../common/lpcusb/target/usbstdreq.c **** 	Specific types of devices may specify additional requests (for example
+  37:../common/lpcusb/target/usbstdreq.c **** 	HID devices add a GET_DESCRIPTOR request for interfaces), but they
+  38:../common/lpcusb/target/usbstdreq.c **** 	will not be part of this module.
+  39:../common/lpcusb/target/usbstdreq.c **** 
+  40:../common/lpcusb/target/usbstdreq.c **** 	@todo some requests have to return a request error if device not configured:
+  41:../common/lpcusb/target/usbstdreq.c **** 	@todo GET_INTERFACE, GET_STATUS, SET_INTERFACE, SYNCH_FRAME
+  42:../common/lpcusb/target/usbstdreq.c **** 	@todo this applies to the following if endpoint != 0:
+  43:../common/lpcusb/target/usbstdreq.c **** 	@todo SET_FEATURE, GET_FEATURE 
+  44:../common/lpcusb/target/usbstdreq.c **** */
+  45:../common/lpcusb/target/usbstdreq.c **** 
+  46:../common/lpcusb/target/usbstdreq.c **** #include "type.h"
+  47:../common/lpcusb/target/usbstdreq.c **** #include "debug.h"
+  48:../common/lpcusb/target/usbstdreq.c **** 
+  49:../common/lpcusb/target/usbstdreq.c **** #include "usbstruct.h"
+  50:../common/lpcusb/target/usbstdreq.c **** #include "usbapi.h"
+  51:../common/lpcusb/target/usbstdreq.c **** #include "usbhw_lpc.h"
+  52:../common/lpcusb/target/usbstdreq.c **** 
+  53:../common/lpcusb/target/usbstdreq.c **** #define MAX_DESC_HANDLERS	4		/**< device, interface, endpoint, other */
+  54:../common/lpcusb/target/usbstdreq.c **** 
+  55:../common/lpcusb/target/usbstdreq.c **** 
+  56:../common/lpcusb/target/usbstdreq.c **** /* general descriptor field offsets */
+  57:../common/lpcusb/target/usbstdreq.c **** #define DESC_bLength					0	/**< length offset */
+  58:../common/lpcusb/target/usbstdreq.c **** #define DESC_bDescriptorType			1	/**< descriptor type offset */	
+  59:../common/lpcusb/target/usbstdreq.c **** 
+  60:../common/lpcusb/target/usbstdreq.c **** /* config descriptor field offsets */
+  61:../common/lpcusb/target/usbstdreq.c **** #define CONF_DESC_wTotalLength			2	/**< total length offset */
+  62:../common/lpcusb/target/usbstdreq.c **** #define CONF_DESC_bConfigurationValue	5	/**< configuration value offset */	
+  63:../common/lpcusb/target/usbstdreq.c **** #define CONF_DESC_bmAttributes			7	/**< configuration characteristics */
+  64:../common/lpcusb/target/usbstdreq.c **** 
+  65:../common/lpcusb/target/usbstdreq.c **** /* interface descriptor field offsets */
+  66:../common/lpcusb/target/usbstdreq.c **** #define INTF_DESC_bAlternateSetting		3	/**< alternate setting offset */
+  67:../common/lpcusb/target/usbstdreq.c **** 
+  68:../common/lpcusb/target/usbstdreq.c **** /* endpoint descriptor field offsets */
+  69:../common/lpcusb/target/usbstdreq.c **** #define ENDP_DESC_bEndpointAddress		2	/**< endpoint address offset */
+  70:../common/lpcusb/target/usbstdreq.c **** #define ENDP_DESC_wMaxPacketSize		4	/**< maximum packet size offset */
+  71:../common/lpcusb/target/usbstdreq.c **** 
+  72:../common/lpcusb/target/usbstdreq.c **** 
+  73:../common/lpcusb/target/usbstdreq.c **** /** Currently selected configuration */
+  74:../common/lpcusb/target/usbstdreq.c **** static U8				bConfiguration = 0;
+  75:../common/lpcusb/target/usbstdreq.c **** /** Installed custom request handler */
+  76:../common/lpcusb/target/usbstdreq.c **** static TFnHandleRequest	*pfnHandleCustomReq = NULL;
+  77:../common/lpcusb/target/usbstdreq.c **** /** Pointer to registered descriptors */
+  78:../common/lpcusb/target/usbstdreq.c **** static const U8			*pabDescrip = NULL;
+  79:../common/lpcusb/target/usbstdreq.c **** 
+  80:../common/lpcusb/target/usbstdreq.c **** 
+  81:../common/lpcusb/target/usbstdreq.c **** /* OS String descriptor code block */
+  82:../common/lpcusb/target/usbstdreq.c **** 
+  83:../common/lpcusb/target/usbstdreq.c **** /** Vendor request index for Microsoft descriptors. 0 is disabled. */
+  84:../common/lpcusb/target/usbstdreq.c **** static U8				bMsVendorIndex = 0;
+  85:../common/lpcusb/target/usbstdreq.c **** 
+  86:../common/lpcusb/target/usbstdreq.c **** /** OS String descriptor, identifies the vendor request to use for Microsoft Descriptor requests. *
+  87:../common/lpcusb/target/usbstdreq.c **** static U8				abOsStringDescriptor[] = {
+  88:../common/lpcusb/target/usbstdreq.c **** 	0x12,
+  89:../common/lpcusb/target/usbstdreq.c **** 	DESC_STRING,
+  90:../common/lpcusb/target/usbstdreq.c **** 	'M', 0, 'S', 0, 'F', 0, 'T', 0, '1', 0, '0', 0, '0', 0, 'A', 0
+ARM GAS  /tmp/cc7RHaQe.s 			page 3
+
+
+  91:../common/lpcusb/target/usbstdreq.c **** };
+  92:../common/lpcusb/target/usbstdreq.c **** 
+  93:../common/lpcusb/target/usbstdreq.c **** /** Extended OS Feature descriptor - Configured to identify device as a WINUSB Class device.  */
+  94:../common/lpcusb/target/usbstdreq.c **** static const U8			abExtendedOsFeatureDescriptor[] = {
+  95:../common/lpcusb/target/usbstdreq.c **** 	0x28, 0x00, 0x00, 0x00, 	// 0x28 bytes
+  96:../common/lpcusb/target/usbstdreq.c **** 	0x00, 0x01, 				// BCD Version ( 0x0100 )
+  97:../common/lpcusb/target/usbstdreq.c **** 	0x04, 0x00, 				// wIndex (Extended compat ID)
+  98:../common/lpcusb/target/usbstdreq.c **** 	0x01,						// count
+  99:../common/lpcusb/target/usbstdreq.c **** 	0,0,0,0,0,0,0, 			// 7x reserved
+ 100:../common/lpcusb/target/usbstdreq.c **** 	// Function section
+ 101:../common/lpcusb/target/usbstdreq.c **** 	0x00,						// Interface number
+ 102:../common/lpcusb/target/usbstdreq.c **** 	0x01,						// Reserved, must be 1
+ 103:../common/lpcusb/target/usbstdreq.c **** 	'W', 'I', 'N', 'U', 'S', 'B', 0, 0, // Compatible ID
+ 104:../common/lpcusb/target/usbstdreq.c **** 	0,0,0,0,0,0,0,0, 			// Secondary ID
+ 105:../common/lpcusb/target/usbstdreq.c **** 	0,0,0,0,0,0 				// 6x Reserved
+ 106:../common/lpcusb/target/usbstdreq.c **** };
+ 107:../common/lpcusb/target/usbstdreq.c **** 
+ 108:../common/lpcusb/target/usbstdreq.c **** /** Extended Properties Feature descriptor - Provides device interface GUID to host.  
+ 109:../common/lpcusb/target/usbstdreq.c **** 		Unfortunate to make this consume ram, but probably not enough to cause problems. (136 bytes)
+ 110:../common/lpcusb/target/usbstdreq.c **** 		Could make it fixed to recover the memory.
+ 111:../common/lpcusb/target/usbstdreq.c **** */
+ 112:../common/lpcusb/target/usbstdreq.c **** static U8				abExtendedPropertiesFeatureDescriptor[] = {
+ 113:../common/lpcusb/target/usbstdreq.c **** 	0x92, 0x00, 0x00, 0x00, 	// Length (136 bytes)
+ 114:../common/lpcusb/target/usbstdreq.c **** 	0x00, 0x01, 				// Version 1.0
+ 115:../common/lpcusb/target/usbstdreq.c **** 	0x05, 0x00, 				// Extended property descriptor index
+ 116:../common/lpcusb/target/usbstdreq.c **** 	0x01, 0x00, 				// Number of sections
+ 117:../common/lpcusb/target/usbstdreq.c **** 	0x88, 0x00, 0x00, 0x00, 	// Length of property #0
+ 118:../common/lpcusb/target/usbstdreq.c **** 	0x07, 0x00, 0x00, 0x00, 	// Data type 7 (REG_MULTI_SZ)
+ 119:../common/lpcusb/target/usbstdreq.c **** 	0x2a, 0x00, 				// Property name length
+ 120:../common/lpcusb/target/usbstdreq.c **** 	'D', 0, 'e', 0, 'v', 0, 'i', 0, 'c', 0, 'e', 0, 'I', 0, 'n', 0, 't', 0, 'e', 0, 'r', 0, 'f', 0, 'a
+ 121:../common/lpcusb/target/usbstdreq.c **** 	'G', 0, 'U', 0, 'I', 0, 'D', 0, 's', 0, 0, 0, // "DeviceInterfaceGUIDs" - Property name
+ 122:../common/lpcusb/target/usbstdreq.c **** 	0x50, 0x00, 0x00, 0x00, 	// Length of property data
+ 123:../common/lpcusb/target/usbstdreq.c **** 	'{', 0, '0', 0, '1', 0, '2', 0, '3', 0, '4', 0, '5', 0, '6', 0, '7', 0, '-', 0, 
+ 124:../common/lpcusb/target/usbstdreq.c **** 	'0', 0, '1', 0, '2', 0, '3', 0, '-', 0, '4', 0, '5', 0, '6', 0, '7', 0, '-', 0, '8', 0, '9', 0, 'a
+ 125:../common/lpcusb/target/usbstdreq.c **** 	'0', 0, '1', 0, '2', 0, '3', 0, '4', 0, '5', 0, '6', 0, '7', 0, '8', 0, '9', 0, 'a', 0, 'b', 0, '}
+ 126:../common/lpcusb/target/usbstdreq.c **** 	//	"{01234567-0123-4567-89ab-0123456789ab}\0\0" - Stand-in REG_MULTI_SZ Guid to be replaced by reg
+ 127:../common/lpcusb/target/usbstdreq.c **** };
+ 128:../common/lpcusb/target/usbstdreq.c **** 
+ 129:../common/lpcusb/target/usbstdreq.c **** /* Offset of the start of the GUID string */
+ 130:../common/lpcusb/target/usbstdreq.c **** #define EXTENDEDPROPERTIESFEATURE_GUIDSTRINGOFFSET 0x42
+ 131:../common/lpcusb/target/usbstdreq.c **** 
+ 132:../common/lpcusb/target/usbstdreq.c **** /**
+ 133:../common/lpcusb/target/usbstdreq.c **** 	Check if the Vendor request is the index we should filter, and respond to it if so.
+ 134:../common/lpcusb/target/usbstdreq.c **** 	This is a basic implementation of OS Descriptors which only associates a WINUSB descriptor 
+ 135:../common/lpcusb/target/usbstdreq.c **** 	with the first interface on the USB device.
+ 136:../common/lpcusb/target/usbstdreq.c **** 		
+ 137:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		*pSetup		Setup packet containing the Vendor request.
+ 138:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*pfSuccess	Status of this filter, FALSE if should stall.
+ 139:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*piLen		Descriptor length
+ 140:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*ppbData	Descriptor data
+ 141:../common/lpcusb/target/usbstdreq.c **** 	
+ 142:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the request was handled by this filter, FALSE otherwise
+ 143:../common/lpcusb/target/usbstdreq.c ****  */
+ 144:../common/lpcusb/target/usbstdreq.c **** BOOL USBFilterOsVendorMessage(TSetupPacket *pSetup, BOOL *pfSuccess, int *piLen, U8 **ppbData)
+ 145:../common/lpcusb/target/usbstdreq.c **** {
+  26              		.loc 1 145 0
+  27              		.cfi_startproc
+ARM GAS  /tmp/cc7RHaQe.s 			page 4
+
+
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 70B5     		push	{r4, r5, r6, lr}
+  32              		.cfi_def_cfa_offset 16
+  33              		.cfi_offset 4, -16
+  34              		.cfi_offset 5, -12
+  35              		.cfi_offset 6, -8
+  36              		.cfi_offset 14, -4
+ 146:../common/lpcusb/target/usbstdreq.c **** 	if(bMsVendorIndex == 0)	{
+  37              		.loc 1 146 0
+  38 0002 164C     		ldr	r4, .L12
+  39 0004 2578     		ldrb	r5, [r4]	@ zero_extendqisi2
+  40 0006 0024     		movs	r4, #0
+  41 0008 25B3     		cbz	r5, .L6
+ 147:../common/lpcusb/target/usbstdreq.c **** 		// Feature is disabled.
+ 148:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 149:../common/lpcusb/target/usbstdreq.c **** 	}
+ 150:../common/lpcusb/target/usbstdreq.c **** 	
+ 151:../common/lpcusb/target/usbstdreq.c **** 	if(pSetup->bRequest == bMsVendorIndex) {
+  42              		.loc 1 151 0
+  43 000a 4678     		ldrb	r6, [r0, #1]	@ zero_extendqisi2
+  44 000c AE42     		cmp	r6, r5
+  45 000e 23D1     		bne	.L7
+  46              	.LBB4:
+ 152:../common/lpcusb/target/usbstdreq.c **** 		// Fail unless we make it to the end.
+ 153:../common/lpcusb/target/usbstdreq.c **** 		*pfSuccess = FALSE;
+  47              		.loc 1 153 0
+  48 0010 0C60     		str	r4, [r1]
+ 154:../common/lpcusb/target/usbstdreq.c **** 	
+ 155:../common/lpcusb/target/usbstdreq.c **** 		int iRequestLength = pSetup->wLength;
+  49              		.loc 1 155 0
+  50 0012 C688     		ldrh	r6, [r0, #6]
+  51              	.LVL1:
+ 156:../common/lpcusb/target/usbstdreq.c **** 		U8 bInterfaceNumber = GET_OS_DESC_INTERFACE(pSetup->wValue);
+  52              		.loc 1 156 0
+  53 0014 4488     		ldrh	r4, [r0, #2]
+  54              	.LVL2:
+ 157:../common/lpcusb/target/usbstdreq.c **** 		U8 bPageNumber = GET_OS_DESC_PAGE(pSetup->wValue);
+ 158:../common/lpcusb/target/usbstdreq.c **** 	
+ 159:../common/lpcusb/target/usbstdreq.c **** 		switch (pSetup->wIndex) {
+  55              		.loc 1 159 0
+  56 0016 8088     		ldrh	r0, [r0, #4]
+  57              	.LVL3:
+  58 0018 0428     		cmp	r0, #4
+  59 001a 03D0     		beq	.L3
+  60 001c 0528     		cmp	r0, #5
+  61 001e 15D0     		beq	.L4
+  62              	.LVL4:
+  63              	.L9:
+ 160:../common/lpcusb/target/usbstdreq.c **** 		case DESC_EXT_OS_FEATURES:
+ 161:../common/lpcusb/target/usbstdreq.c **** 			*ppbData = (U8*)abExtendedOsFeatureDescriptor;
+ 162:../common/lpcusb/target/usbstdreq.c **** 			*piLen = sizeof(abExtendedOsFeatureDescriptor);
+ 163:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 164:../common/lpcusb/target/usbstdreq.c **** 			
+ 165:../common/lpcusb/target/usbstdreq.c **** 		case DESC_EXT_OS_PROPERTIES:
+ 166:../common/lpcusb/target/usbstdreq.c **** 			*ppbData = abExtendedPropertiesFeatureDescriptor;
+ARM GAS  /tmp/cc7RHaQe.s 			page 5
+
+
+ 167:../common/lpcusb/target/usbstdreq.c **** 			*piLen = sizeof(abExtendedPropertiesFeatureDescriptor);			
+ 168:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 169:../common/lpcusb/target/usbstdreq.c **** 
+ 170:../common/lpcusb/target/usbstdreq.c **** 		default:
+ 171:../common/lpcusb/target/usbstdreq.c **** 			return TRUE;
+ 172:../common/lpcusb/target/usbstdreq.c **** 		}
+ 173:../common/lpcusb/target/usbstdreq.c **** 		
+ 174:../common/lpcusb/target/usbstdreq.c **** 		// Decide what portion of the descriptor to return.
+ 175:../common/lpcusb/target/usbstdreq.c **** 		int iPageOffset = bPageNumber*0x10000; // This will probably always be zero...
+ 176:../common/lpcusb/target/usbstdreq.c **** 		if (*piLen < iPageOffset) {
+ 177:../common/lpcusb/target/usbstdreq.c **** 			// Not enough data for the requested offset.
+ 178:../common/lpcusb/target/usbstdreq.c **** 			return TRUE;
+  64              		.loc 1 178 0
+  65 0020 0120     		movs	r0, #1
+  66              	.LBE4:
+ 179:../common/lpcusb/target/usbstdreq.c **** 		}
+ 180:../common/lpcusb/target/usbstdreq.c **** 		*ppbData += iPageOffset;
+ 181:../common/lpcusb/target/usbstdreq.c **** 		*piLen -= iPageOffset;
+ 182:../common/lpcusb/target/usbstdreq.c **** 		
+ 183:../common/lpcusb/target/usbstdreq.c **** 		if (*piLen > iRequestLength) {
+ 184:../common/lpcusb/target/usbstdreq.c **** 			// Clip data longer than the requested length
+ 185:../common/lpcusb/target/usbstdreq.c **** 			*piLen = iRequestLength;
+ 186:../common/lpcusb/target/usbstdreq.c **** 		}
+ 187:../common/lpcusb/target/usbstdreq.c **** 	
+ 188:../common/lpcusb/target/usbstdreq.c **** 		*pfSuccess = TRUE;
+ 189:../common/lpcusb/target/usbstdreq.c **** 		return TRUE;
+ 190:../common/lpcusb/target/usbstdreq.c **** 	}
+ 191:../common/lpcusb/target/usbstdreq.c **** 	
+ 192:../common/lpcusb/target/usbstdreq.c **** 	// These are not the requests you are looking for
+ 193:../common/lpcusb/target/usbstdreq.c **** 	return FALSE;
+ 194:../common/lpcusb/target/usbstdreq.c **** }
+  67              		.loc 1 194 0
+  68 0022 70BD     		pop	{r4, r5, r6, pc}
+  69              	.LVL5:
+  70              	.L3:
+  71              	.LBB5:
+ 161:../common/lpcusb/target/usbstdreq.c **** 			*piLen = sizeof(abExtendedOsFeatureDescriptor);
+  72              		.loc 1 161 0
+  73 0024 0E48     		ldr	r0, .L12+4
+  74 0026 1860     		str	r0, [r3]
+ 162:../common/lpcusb/target/usbstdreq.c **** 			break;
+  75              		.loc 1 162 0
+  76 0028 2820     		movs	r0, #40
+  77              	.L11:
+ 167:../common/lpcusb/target/usbstdreq.c **** 			break;
+  78              		.loc 1 167 0
+  79 002a 1060     		str	r0, [r2]
+ 175:../common/lpcusb/target/usbstdreq.c **** 		if (*piLen < iPageOffset) {
+  80              		.loc 1 175 0
+  81 002c 200A     		lsrs	r0, r4, #8
+ 176:../common/lpcusb/target/usbstdreq.c **** 			// Not enough data for the requested offset.
+  82              		.loc 1 176 0
+  83 002e 1468     		ldr	r4, [r2]
+  84              	.LVL6:
+ 175:../common/lpcusb/target/usbstdreq.c **** 		if (*piLen < iPageOffset) {
+  85              		.loc 1 175 0
+  86 0030 0004     		lsls	r0, r0, #16
+ARM GAS  /tmp/cc7RHaQe.s 			page 6
+
+
+  87              	.LVL7:
+ 176:../common/lpcusb/target/usbstdreq.c **** 			// Not enough data for the requested offset.
+  88              		.loc 1 176 0
+  89 0032 A042     		cmp	r0, r4
+  90 0034 F4DC     		bgt	.L9
+ 180:../common/lpcusb/target/usbstdreq.c **** 		*piLen -= iPageOffset;
+  91              		.loc 1 180 0
+  92 0036 1D68     		ldr	r5, [r3]
+  93 0038 0544     		add	r5, r5, r0
+ 181:../common/lpcusb/target/usbstdreq.c **** 		
+  94              		.loc 1 181 0
+  95 003a 201A     		subs	r0, r4, r0
+  96              	.LVL8:
+ 180:../common/lpcusb/target/usbstdreq.c **** 		*piLen -= iPageOffset;
+  97              		.loc 1 180 0
+  98 003c 1D60     		str	r5, [r3]
+  99 003e B042     		cmp	r0, r6
+ 100 0040 D4BF     		ite	le
+ 101 0042 1060     		strle	r0, [r2]
+ 102 0044 1660     		strgt	r6, [r2]
+ 188:../common/lpcusb/target/usbstdreq.c **** 		return TRUE;
+ 103              		.loc 1 188 0
+ 104 0046 0120     		movs	r0, #1
+ 105 0048 0860     		str	r0, [r1]
+ 189:../common/lpcusb/target/usbstdreq.c **** 	}
+ 106              		.loc 1 189 0
+ 107 004a 70BD     		pop	{r4, r5, r6, pc}
+ 108              	.LVL9:
+ 109              	.L4:
+ 166:../common/lpcusb/target/usbstdreq.c **** 			*piLen = sizeof(abExtendedPropertiesFeatureDescriptor);			
+ 110              		.loc 1 166 0
+ 111 004c 0548     		ldr	r0, .L12+8
+ 112 004e 1860     		str	r0, [r3]
+ 167:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 113              		.loc 1 167 0
+ 114 0050 9220     		movs	r0, #146
+ 115 0052 EAE7     		b	.L11
+ 116              	.LVL10:
+ 117              	.L6:
+ 118              	.LBE5:
+ 148:../common/lpcusb/target/usbstdreq.c **** 	}
+ 119              		.loc 1 148 0
+ 120 0054 2846     		mov	r0, r5
+ 121              	.LVL11:
+ 122 0056 70BD     		pop	{r4, r5, r6, pc}
+ 123              	.LVL12:
+ 124              	.L7:
+ 125 0058 2046     		mov	r0, r4
+ 126              	.LVL13:
+ 127 005a 70BD     		pop	{r4, r5, r6, pc}
+ 128              	.L13:
+ 129              		.align	2
+ 130              	.L12:
+ 131 005c 00000000 		.word	.LANCHOR0
+ 132 0060 00000000 		.word	.LANCHOR1
+ 133 0064 00000000 		.word	.LANCHOR2
+ 134              		.cfi_endproc
+ARM GAS  /tmp/cc7RHaQe.s 			page 7
+
+
+ 135              	.LFE0:
+ 137              		.section	.text.USBRegisterWinusbInterface,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	USBRegisterWinusbInterface
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.fpu softvfp
+ 145              	USBRegisterWinusbInterface:
+ 146              	.LFB1:
+ 195:../common/lpcusb/target/usbstdreq.c **** 
+ 196:../common/lpcusb/target/usbstdreq.c **** 
+ 197:../common/lpcusb/target/usbstdreq.c **** /**
+ 198:../common/lpcusb/target/usbstdreq.c **** 	Enable the handling of OS Descriptor requests, to automatically load Winusb
+ 199:../common/lpcusb/target/usbstdreq.c **** 	on this device in a Windows operating system.
+ 200:../common/lpcusb/target/usbstdreq.c **** 		
+ 201:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		bVendorRequestIndex		Vendor request index to claim
+ 202:../common/lpcusb/target/usbstdreq.c **** 												for OS Descriptor interface
+ 203:../common/lpcusb/target/usbstdreq.c **** 												Zero to disable.
+ 204:../common/lpcusb/target/usbstdreq.c **** 												
+ 205:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		pcInterfaceGuid			ASCII String GUID in curly braces
+ 206:../common/lpcusb/target/usbstdreq.c **** 												Windows will use this as a 
+ 207:../common/lpcusb/target/usbstdreq.c **** 												Device Interface GUID
+ 208:../common/lpcusb/target/usbstdreq.c ****  */
+ 209:../common/lpcusb/target/usbstdreq.c **** void USBRegisterWinusbInterface(U8 bVendorRequestIndex, const char* pcInterfaceGuid)
+ 210:../common/lpcusb/target/usbstdreq.c **** {
+ 147              		.loc 1 210 0
+ 148              		.cfi_startproc
+ 149              		@ args = 0, pretend = 0, frame = 0
+ 150              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151              		@ link register save eliminated.
+ 152              	.LVL14:
+ 211:../common/lpcusb/target/usbstdreq.c **** 	bMsVendorIndex = bVendorRequestIndex;
+ 153              		.loc 1 211 0
+ 154 0000 084B     		ldr	r3, .L25
+ 155 0002 1870     		strb	r0, [r3]
+ 212:../common/lpcusb/target/usbstdreq.c **** 	
+ 213:../common/lpcusb/target/usbstdreq.c **** 	if(!pcInterfaceGuid) {
+ 156              		.loc 1 213 0
+ 157 0004 61B1     		cbz	r1, .L14
+ 158 0006 084B     		ldr	r3, .L25+4
+ 159 0008 4A1E     		subs	r2, r1, #1
+ 160 000a 2531     		adds	r1, r1, #37
+ 161              	.LVL15:
+ 162              	.L17:
+ 163              	.LBB6:
+ 214:../common/lpcusb/target/usbstdreq.c **** 		return; // Trust that caller is actually specifying this with nonzero RequestIndex.
+ 215:../common/lpcusb/target/usbstdreq.c **** 	}
+ 216:../common/lpcusb/target/usbstdreq.c **** 	
+ 217:../common/lpcusb/target/usbstdreq.c **** 	// Copy GUID into Extended Properties feature descriptor.
+ 218:../common/lpcusb/target/usbstdreq.c **** 	// Trust that the caller did the right thing, but ensure double null termination if string termina
+ 219:../common/lpcusb/target/usbstdreq.c **** 	U8* pbWriteCursor = abExtendedPropertiesFeatureDescriptor + EXTENDEDPROPERTIESFEATURE_GUIDSTRINGOF
+ 220:../common/lpcusb/target/usbstdreq.c **** 	const int ciMaxLength = 38;
+ 221:../common/lpcusb/target/usbstdreq.c **** 	
+ 222:../common/lpcusb/target/usbstdreq.c **** 	for(int i = 0; i < ciMaxLength; i++) {
+ 223:../common/lpcusb/target/usbstdreq.c **** 		if(!pcInterfaceGuid[i]) break;
+ 164              		.loc 1 223 0
+ARM GAS  /tmp/cc7RHaQe.s 			page 8
+
+
+ 165 000c 12F8010F 		ldrb	r0, [r2, #1]!	@ zero_extendqisi2
+ 166              	.LVL16:
+ 167 0010 18B1     		cbz	r0, .L16
+ 222:../common/lpcusb/target/usbstdreq.c **** 		if(!pcInterfaceGuid[i]) break;
+ 168              		.loc 1 222 0 discriminator 2
+ 169 0012 8A42     		cmp	r2, r1
+ 224:../common/lpcusb/target/usbstdreq.c **** 		pbWriteCursor[0] = (U8) pcInterfaceGuid[i];
+ 170              		.loc 1 224 0 discriminator 2
+ 171 0014 03F8020B 		strb	r0, [r3], #2
+ 172              	.LVL17:
+ 222:../common/lpcusb/target/usbstdreq.c **** 		if(!pcInterfaceGuid[i]) break;
+ 173              		.loc 1 222 0 discriminator 2
+ 174 0018 F8D1     		bne	.L17
+ 175              	.LVL18:
+ 176              	.L16:
+ 177              	.LBE6:
+ 225:../common/lpcusb/target/usbstdreq.c **** 		pbWriteCursor += 2;
+ 226:../common/lpcusb/target/usbstdreq.c **** 	}
+ 227:../common/lpcusb/target/usbstdreq.c **** 	// Double terminate
+ 228:../common/lpcusb/target/usbstdreq.c **** 	pbWriteCursor[0] = 0;
+ 178              		.loc 1 228 0
+ 179 001a 0022     		movs	r2, #0
+ 180 001c 1A70     		strb	r2, [r3]
+ 229:../common/lpcusb/target/usbstdreq.c **** 	pbWriteCursor[2] = 0;
+ 181              		.loc 1 229 0
+ 182 001e 9A70     		strb	r2, [r3, #2]
+ 183              	.LVL19:
+ 184              	.L14:
+ 185 0020 7047     		bx	lr
+ 186              	.L26:
+ 187 0022 00BF     		.align	2
+ 188              	.L25:
+ 189 0024 00000000 		.word	.LANCHOR0
+ 190 0028 42000000 		.word	.LANCHOR2+66
+ 191              		.cfi_endproc
+ 192              	.LFE1:
+ 194              		.section	.text.USBGetOsStringDescriptor,"ax",%progbits
+ 195              		.align	1
+ 196              		.global	USBGetOsStringDescriptor
+ 197              		.syntax unified
+ 198              		.thumb
+ 199              		.thumb_func
+ 200              		.fpu softvfp
+ 202              	USBGetOsStringDescriptor:
+ 203              	.LFB2:
+ 230:../common/lpcusb/target/usbstdreq.c **** 	
+ 231:../common/lpcusb/target/usbstdreq.c **** }
+ 232:../common/lpcusb/target/usbstdreq.c **** 
+ 233:../common/lpcusb/target/usbstdreq.c **** 
+ 234:../common/lpcusb/target/usbstdreq.c **** /**
+ 235:../common/lpcusb/target/usbstdreq.c **** 	Generate the requested OS String descriptor and return it if enabled.
+ 236:../common/lpcusb/target/usbstdreq.c **** 		
+ 237:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*piLen		Descriptor length
+ 238:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*ppbData	Descriptor data
+ 239:../common/lpcusb/target/usbstdreq.c **** 	
+ 240:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the descriptor was found, FALSE otherwise
+ 241:../common/lpcusb/target/usbstdreq.c ****  */
+ARM GAS  /tmp/cc7RHaQe.s 			page 9
+
+
+ 242:../common/lpcusb/target/usbstdreq.c **** BOOL USBGetOsStringDescriptor(int *piLen, U8 **ppbData)
+ 243:../common/lpcusb/target/usbstdreq.c **** {
+ 204              		.loc 1 243 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 209              	.LVL20:
+ 244:../common/lpcusb/target/usbstdreq.c **** 	// The last character in the OS String descriptor specifies the vendor request index to use.
+ 245:../common/lpcusb/target/usbstdreq.c **** 	abOsStringDescriptor[sizeof(abOsStringDescriptor)-2] = bMsVendorIndex;
+ 210              		.loc 1 245 0
+ 211 0000 044A     		ldr	r2, .L28
+ 212 0002 054B     		ldr	r3, .L28+4
+ 213 0004 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 246:../common/lpcusb/target/usbstdreq.c **** 	
+ 247:../common/lpcusb/target/usbstdreq.c **** 	*ppbData = abOsStringDescriptor;
+ 214              		.loc 1 247 0
+ 215 0006 9233     		adds	r3, r3, #146
+ 245:../common/lpcusb/target/usbstdreq.c **** 	
+ 216              		.loc 1 245 0
+ 217 0008 1A74     		strb	r2, [r3, #16]
+ 218              		.loc 1 247 0
+ 219 000a 0B60     		str	r3, [r1]
+ 248:../common/lpcusb/target/usbstdreq.c **** 	*piLen = sizeof(abOsStringDescriptor);
+ 220              		.loc 1 248 0
+ 221 000c 1223     		movs	r3, #18
+ 222 000e 0360     		str	r3, [r0]
+ 249:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 250:../common/lpcusb/target/usbstdreq.c **** }
+ 223              		.loc 1 250 0
+ 224 0010 0120     		movs	r0, #1
+ 225              	.LVL21:
+ 226 0012 7047     		bx	lr
+ 227              	.L29:
+ 228              		.align	2
+ 229              	.L28:
+ 230 0014 00000000 		.word	.LANCHOR0
+ 231 0018 00000000 		.word	.LANCHOR2
+ 232              		.cfi_endproc
+ 233              	.LFE2:
+ 235              		.section	.text.USBRegisterDescriptors,"ax",%progbits
+ 236              		.align	1
+ 237              		.global	USBRegisterDescriptors
+ 238              		.syntax unified
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.fpu softvfp
+ 243              	USBRegisterDescriptors:
+ 244              	.LFB3:
+ 251:../common/lpcusb/target/usbstdreq.c **** 
+ 252:../common/lpcusb/target/usbstdreq.c **** /**
+ 253:../common/lpcusb/target/usbstdreq.c **** 	Registers a pointer to a descriptor block containing all descriptors
+ 254:../common/lpcusb/target/usbstdreq.c **** 	for the device.
+ 255:../common/lpcusb/target/usbstdreq.c **** 
+ 256:../common/lpcusb/target/usbstdreq.c **** 	@param [in]	pabDescriptors	The descriptor byte array
+ 257:../common/lpcusb/target/usbstdreq.c ****  */
+ 258:../common/lpcusb/target/usbstdreq.c **** void USBRegisterDescriptors(U8 *pabDescriptors)
+ARM GAS  /tmp/cc7RHaQe.s 			page 10
+
+
+ 259:../common/lpcusb/target/usbstdreq.c **** {
+ 245              		.loc 1 259 0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249              		@ link register save eliminated.
+ 250              	.LVL22:
+ 260:../common/lpcusb/target/usbstdreq.c **** 	pabDescrip = pabDescriptors;
+ 251              		.loc 1 260 0
+ 252 0000 014B     		ldr	r3, .L31
+ 253 0002 5860     		str	r0, [r3, #4]
+ 254 0004 7047     		bx	lr
+ 255              	.L32:
+ 256 0006 00BF     		.align	2
+ 257              	.L31:
+ 258 0008 00000000 		.word	.LANCHOR0
+ 259              		.cfi_endproc
+ 260              	.LFE3:
+ 262              		.section	.text.USBGetDescriptor,"ax",%progbits
+ 263              		.align	1
+ 264              		.global	USBGetDescriptor
+ 265              		.syntax unified
+ 266              		.thumb
+ 267              		.thumb_func
+ 268              		.fpu softvfp
+ 270              	USBGetDescriptor:
+ 271              	.LFB4:
+ 261:../common/lpcusb/target/usbstdreq.c **** }
+ 262:../common/lpcusb/target/usbstdreq.c **** 
+ 263:../common/lpcusb/target/usbstdreq.c **** 
+ 264:../common/lpcusb/target/usbstdreq.c **** /**
+ 265:../common/lpcusb/target/usbstdreq.c **** 	Parses the list of installed USB descriptors and attempts to find
+ 266:../common/lpcusb/target/usbstdreq.c **** 	the specified USB descriptor.
+ 267:../common/lpcusb/target/usbstdreq.c **** 		
+ 268:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		wTypeIndex	Type and index of the descriptor
+ 269:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		wLangID		Language ID of the descriptor (currently unused)
+ 270:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*piLen		Descriptor length
+ 271:../common/lpcusb/target/usbstdreq.c **** 	@param [out]	*ppbData	Descriptor data
+ 272:../common/lpcusb/target/usbstdreq.c **** 	
+ 273:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the descriptor was found, FALSE otherwise
+ 274:../common/lpcusb/target/usbstdreq.c ****  */
+ 275:../common/lpcusb/target/usbstdreq.c **** BOOL USBGetDescriptor(U16 wTypeIndex, U16 wLangID, int *piLen, U8 **ppbData)
+ 276:../common/lpcusb/target/usbstdreq.c **** {
+ 272              		.loc 1 276 0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276              	.LVL23:
+ 277 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 278              		.cfi_def_cfa_offset 20
+ 279              		.cfi_offset 4, -20
+ 280              		.cfi_offset 5, -16
+ 281              		.cfi_offset 6, -12
+ 282              		.cfi_offset 7, -8
+ 283              		.cfi_offset 14, -4
+ 277:../common/lpcusb/target/usbstdreq.c **** 	U8	bType, bIndex;
+ 278:../common/lpcusb/target/usbstdreq.c **** 	U8	*pab;
+ARM GAS  /tmp/cc7RHaQe.s 			page 11
+
+
+ 279:../common/lpcusb/target/usbstdreq.c **** 	int iCurIndex;
+ 280:../common/lpcusb/target/usbstdreq.c **** 	
+ 281:../common/lpcusb/target/usbstdreq.c **** 	ASSERT(pabDescrip != NULL);
+ 282:../common/lpcusb/target/usbstdreq.c **** 
+ 283:../common/lpcusb/target/usbstdreq.c **** 	bType = GET_DESC_TYPE(wTypeIndex);
+ 284              		.loc 1 283 0
+ 285 0002 010A     		lsrs	r1, r0, #8
+ 286              	.LVL24:
+ 284:../common/lpcusb/target/usbstdreq.c **** 	bIndex = GET_DESC_INDEX(wTypeIndex);
+ 285:../common/lpcusb/target/usbstdreq.c **** 	
+ 286:../common/lpcusb/target/usbstdreq.c ****     if (bType == DESC_STRING &&
+ 287              		.loc 1 286 0
+ 288 0004 0329     		cmp	r1, #3
+ 284:../common/lpcusb/target/usbstdreq.c **** 	bIndex = GET_DESC_INDEX(wTypeIndex);
+ 289              		.loc 1 284 0
+ 290 0006 C4B2     		uxtb	r4, r0
+ 283:../common/lpcusb/target/usbstdreq.c **** 	bIndex = GET_DESC_INDEX(wTypeIndex);
+ 291              		.loc 1 283 0
+ 292 0008 CEB2     		uxtb	r6, r1
+ 293              	.LVL25:
+ 294 000a 1048     		ldr	r0, .L42
+ 295              	.LVL26:
+ 296              		.loc 1 286 0
+ 297 000c 0AD1     		bne	.L34
+ 298              		.loc 1 286 0 is_stmt 0 discriminator 1
+ 299 000e EE2C     		cmp	r4, #238
+ 300 0010 08D1     		bne	.L34
+ 301              	.LVL27:
+ 302              	.LBB7:
+ 303              	.LBB8:
+ 245:../common/lpcusb/target/usbstdreq.c **** 	
+ 304              		.loc 1 245 0 is_stmt 1
+ 305 0012 0F49     		ldr	r1, .L42+4
+ 306 0014 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
+ 247:../common/lpcusb/target/usbstdreq.c **** 	*piLen = sizeof(abOsStringDescriptor);
+ 307              		.loc 1 247 0
+ 308 0016 9231     		adds	r1, r1, #146
+ 245:../common/lpcusb/target/usbstdreq.c **** 	
+ 309              		.loc 1 245 0
+ 310 0018 0874     		strb	r0, [r1, #16]
+ 247:../common/lpcusb/target/usbstdreq.c **** 	*piLen = sizeof(abOsStringDescriptor);
+ 311              		.loc 1 247 0
+ 312 001a 1960     		str	r1, [r3]
+ 248:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 313              		.loc 1 248 0
+ 314 001c 1223     		movs	r3, #18
+ 315              	.LVL28:
+ 316              	.L41:
+ 317              	.LBE8:
+ 318              	.LBE7:
+ 287:../common/lpcusb/target/usbstdreq.c ****         bIndex == DESC_STRING_OS) {
+ 288:../common/lpcusb/target/usbstdreq.c ****         
+ 289:../common/lpcusb/target/usbstdreq.c ****         if (USBGetOsStringDescriptor(piLen, ppbData)) {
+ 290:../common/lpcusb/target/usbstdreq.c ****             
+ 291:../common/lpcusb/target/usbstdreq.c ****             return TRUE;
+ 292:../common/lpcusb/target/usbstdreq.c ****         }
+ 293:../common/lpcusb/target/usbstdreq.c ****     }
+ARM GAS  /tmp/cc7RHaQe.s 			page 12
+
+
+ 294:../common/lpcusb/target/usbstdreq.c ****     	
+ 295:../common/lpcusb/target/usbstdreq.c **** 	
+ 296:../common/lpcusb/target/usbstdreq.c **** 	pab = (U8 *)pabDescrip;
+ 297:../common/lpcusb/target/usbstdreq.c **** 	iCurIndex = 0;
+ 298:../common/lpcusb/target/usbstdreq.c **** 	
+ 299:../common/lpcusb/target/usbstdreq.c **** 	while (pab[DESC_bLength] != 0) {
+ 300:../common/lpcusb/target/usbstdreq.c **** 		if (pab[DESC_bDescriptorType] == bType) {
+ 301:../common/lpcusb/target/usbstdreq.c **** 			if (iCurIndex == bIndex) {
+ 302:../common/lpcusb/target/usbstdreq.c **** 				// set data pointer
+ 303:../common/lpcusb/target/usbstdreq.c **** 				*ppbData = pab;
+ 304:../common/lpcusb/target/usbstdreq.c **** 				// get length from structure
+ 305:../common/lpcusb/target/usbstdreq.c **** 				if (bType == DESC_CONFIGURATION) {
+ 306:../common/lpcusb/target/usbstdreq.c **** 					// configuration descriptor is an exception, length is at offset 2 and 3
+ 307:../common/lpcusb/target/usbstdreq.c **** 					*piLen =	(pab[CONF_DESC_wTotalLength]) |
+ 308:../common/lpcusb/target/usbstdreq.c **** 								(pab[CONF_DESC_wTotalLength + 1] << 8);
+ 309:../common/lpcusb/target/usbstdreq.c **** 				}
+ 310:../common/lpcusb/target/usbstdreq.c **** 				else {
+ 311:../common/lpcusb/target/usbstdreq.c **** 					// normally length is at offset 0
+ 312:../common/lpcusb/target/usbstdreq.c **** 					*piLen = pab[DESC_bLength];
+ 319              		.loc 1 312 0
+ 320 001e 1360     		str	r3, [r2]
+ 313:../common/lpcusb/target/usbstdreq.c **** 				}
+ 314:../common/lpcusb/target/usbstdreq.c **** 				return TRUE;
+ 321              		.loc 1 314 0
+ 322 0020 0120     		movs	r0, #1
+ 323 0022 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 324              	.LVL29:
+ 325              	.L34:
+ 297:../common/lpcusb/target/usbstdreq.c **** 	
+ 326              		.loc 1 297 0
+ 327 0024 0025     		movs	r5, #0
+ 296:../common/lpcusb/target/usbstdreq.c **** 	iCurIndex = 0;
+ 328              		.loc 1 296 0
+ 329 0026 4168     		ldr	r1, [r0, #4]
+ 330              	.LVL30:
+ 331              	.L36:
+ 299:../common/lpcusb/target/usbstdreq.c **** 		if (pab[DESC_bDescriptorType] == bType) {
+ 332              		.loc 1 299 0
+ 333 0028 0878     		ldrb	r0, [r1]	@ zero_extendqisi2
+ 334 002a 00B9     		cbnz	r0, .L40
+ 315:../common/lpcusb/target/usbstdreq.c **** 			}
+ 316:../common/lpcusb/target/usbstdreq.c **** 			iCurIndex++;
+ 317:../common/lpcusb/target/usbstdreq.c **** 		}
+ 318:../common/lpcusb/target/usbstdreq.c **** 		// skip to next descriptor
+ 319:../common/lpcusb/target/usbstdreq.c **** 		pab += pab[DESC_bLength];
+ 320:../common/lpcusb/target/usbstdreq.c **** 	}
+ 321:../common/lpcusb/target/usbstdreq.c **** 	// nothing found
+ 322:../common/lpcusb/target/usbstdreq.c **** 	DBG("Desc %x not found!\n", wTypeIndex);
+ 323:../common/lpcusb/target/usbstdreq.c **** 	return FALSE;
+ 324:../common/lpcusb/target/usbstdreq.c **** }
+ 335              		.loc 1 324 0
+ 336 002c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 337              	.LVL31:
+ 338              	.L40:
+ 300:../common/lpcusb/target/usbstdreq.c **** 			if (iCurIndex == bIndex) {
+ 339              		.loc 1 300 0
+ 340 002e 4F78     		ldrb	r7, [r1, #1]	@ zero_extendqisi2
+ARM GAS  /tmp/cc7RHaQe.s 			page 13
+
+
+ 341 0030 B742     		cmp	r7, r6
+ 342 0032 08D1     		bne	.L37
+ 301:../common/lpcusb/target/usbstdreq.c **** 				// set data pointer
+ 343              		.loc 1 301 0
+ 344 0034 A542     		cmp	r5, r4
+ 345 0036 05D1     		bne	.L38
+ 303:../common/lpcusb/target/usbstdreq.c **** 				// get length from structure
+ 346              		.loc 1 303 0
+ 347 0038 1960     		str	r1, [r3]
+ 305:../common/lpcusb/target/usbstdreq.c **** 					// configuration descriptor is an exception, length is at offset 2 and 3
+ 348              		.loc 1 305 0
+ 349 003a 022E     		cmp	r6, #2
+ 307:../common/lpcusb/target/usbstdreq.c **** 								(pab[CONF_DESC_wTotalLength + 1] << 8);
+ 350              		.loc 1 307 0
+ 351 003c 0CBF     		ite	eq
+ 352 003e 4B88     		ldrheq	r3, [r1, #2]	@ unaligned
+ 353              	.LVL32:
+ 312:../common/lpcusb/target/usbstdreq.c **** 				}
+ 354              		.loc 1 312 0
+ 355 0040 0B78     		ldrbne	r3, [r1]	@ zero_extendqisi2
+ 356 0042 ECE7     		b	.L41
+ 357              	.LVL33:
+ 358              	.L38:
+ 316:../common/lpcusb/target/usbstdreq.c **** 		}
+ 359              		.loc 1 316 0
+ 360 0044 0135     		adds	r5, r5, #1
+ 361              	.LVL34:
+ 362              	.L37:
+ 319:../common/lpcusb/target/usbstdreq.c **** 	}
+ 363              		.loc 1 319 0
+ 364 0046 0144     		add	r1, r1, r0
+ 365              	.LVL35:
+ 366 0048 EEE7     		b	.L36
+ 367              	.L43:
+ 368 004a 00BF     		.align	2
+ 369              	.L42:
+ 370 004c 00000000 		.word	.LANCHOR0
+ 371 0050 00000000 		.word	.LANCHOR2
+ 372              		.cfi_endproc
+ 373              	.LFE4:
+ 375              		.section	.text.USBHandleStandardRequest,"ax",%progbits
+ 376              		.align	1
+ 377              		.global	USBHandleStandardRequest
+ 378              		.syntax unified
+ 379              		.thumb
+ 380              		.thumb_func
+ 381              		.fpu softvfp
+ 383              	USBHandleStandardRequest:
+ 384              	.LFB9:
+ 325:../common/lpcusb/target/usbstdreq.c **** 
+ 326:../common/lpcusb/target/usbstdreq.c **** 
+ 327:../common/lpcusb/target/usbstdreq.c **** /**
+ 328:../common/lpcusb/target/usbstdreq.c **** 	Configures the device according to the specified configuration index and
+ 329:../common/lpcusb/target/usbstdreq.c **** 	alternate setting by parsing the installed USB descriptor list.
+ 330:../common/lpcusb/target/usbstdreq.c **** 	A configuration index of 0 unconfigures the device.
+ 331:../common/lpcusb/target/usbstdreq.c **** 		
+ 332:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		bConfigIndex	Configuration index
+ARM GAS  /tmp/cc7RHaQe.s 			page 14
+
+
+ 333:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		bAltSetting		Alternate setting number
+ 334:../common/lpcusb/target/usbstdreq.c **** 	
+ 335:../common/lpcusb/target/usbstdreq.c **** 	@todo function always returns TRUE, add stricter checking?
+ 336:../common/lpcusb/target/usbstdreq.c **** 	
+ 337:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if successfully configured, FALSE otherwise
+ 338:../common/lpcusb/target/usbstdreq.c ****  */
+ 339:../common/lpcusb/target/usbstdreq.c **** static BOOL USBSetConfiguration(U8 bConfigIndex, U8 bAltSetting)
+ 340:../common/lpcusb/target/usbstdreq.c **** {
+ 341:../common/lpcusb/target/usbstdreq.c **** 	U8	*pab;
+ 342:../common/lpcusb/target/usbstdreq.c **** 	U8	bCurConfig, bCurAltSetting;
+ 343:../common/lpcusb/target/usbstdreq.c **** 	U8	bEP;
+ 344:../common/lpcusb/target/usbstdreq.c **** 	U16	wMaxPktSize;
+ 345:../common/lpcusb/target/usbstdreq.c **** 	
+ 346:../common/lpcusb/target/usbstdreq.c **** 	ASSERT(pabDescrip != NULL);
+ 347:../common/lpcusb/target/usbstdreq.c **** 
+ 348:../common/lpcusb/target/usbstdreq.c **** 	if (bConfigIndex == 0) {
+ 349:../common/lpcusb/target/usbstdreq.c **** 		// unconfigure device
+ 350:../common/lpcusb/target/usbstdreq.c **** 		USBHwConfigDevice(FALSE);
+ 351:../common/lpcusb/target/usbstdreq.c **** 	}
+ 352:../common/lpcusb/target/usbstdreq.c **** 	else {
+ 353:../common/lpcusb/target/usbstdreq.c **** 		// configure endpoints for this configuration/altsetting
+ 354:../common/lpcusb/target/usbstdreq.c **** 		pab = (U8 *)pabDescrip;
+ 355:../common/lpcusb/target/usbstdreq.c **** 		bCurConfig = 0xFF;
+ 356:../common/lpcusb/target/usbstdreq.c **** 		bCurAltSetting = 0xFF;
+ 357:../common/lpcusb/target/usbstdreq.c **** 
+ 358:../common/lpcusb/target/usbstdreq.c **** 		while (pab[DESC_bLength] != 0) {
+ 359:../common/lpcusb/target/usbstdreq.c **** 
+ 360:../common/lpcusb/target/usbstdreq.c **** 			switch (pab[DESC_bDescriptorType]) {
+ 361:../common/lpcusb/target/usbstdreq.c **** 
+ 362:../common/lpcusb/target/usbstdreq.c **** 			case DESC_CONFIGURATION:
+ 363:../common/lpcusb/target/usbstdreq.c **** 				// remember current configuration index
+ 364:../common/lpcusb/target/usbstdreq.c **** 				bCurConfig = pab[CONF_DESC_bConfigurationValue];
+ 365:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 366:../common/lpcusb/target/usbstdreq.c **** 
+ 367:../common/lpcusb/target/usbstdreq.c **** 			case DESC_INTERFACE:
+ 368:../common/lpcusb/target/usbstdreq.c **** 				// remember current alternate setting
+ 369:../common/lpcusb/target/usbstdreq.c **** 				bCurAltSetting = pab[INTF_DESC_bAlternateSetting];
+ 370:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 371:../common/lpcusb/target/usbstdreq.c **** 
+ 372:../common/lpcusb/target/usbstdreq.c **** 			case DESC_ENDPOINT:
+ 373:../common/lpcusb/target/usbstdreq.c **** 				if ((bCurConfig == bConfigIndex) &&
+ 374:../common/lpcusb/target/usbstdreq.c **** 					(bCurAltSetting == bAltSetting)) {
+ 375:../common/lpcusb/target/usbstdreq.c **** 					// endpoint found for desired config and alternate setting
+ 376:../common/lpcusb/target/usbstdreq.c **** 					bEP = pab[ENDP_DESC_bEndpointAddress];
+ 377:../common/lpcusb/target/usbstdreq.c **** 					wMaxPktSize = 	(pab[ENDP_DESC_wMaxPacketSize]) |
+ 378:../common/lpcusb/target/usbstdreq.c **** 									(pab[ENDP_DESC_wMaxPacketSize + 1] << 8);
+ 379:../common/lpcusb/target/usbstdreq.c **** 					// configure endpoint
+ 380:../common/lpcusb/target/usbstdreq.c **** 					USBHwEPConfig(bEP, wMaxPktSize);
+ 381:../common/lpcusb/target/usbstdreq.c **** 				}
+ 382:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 383:../common/lpcusb/target/usbstdreq.c **** 
+ 384:../common/lpcusb/target/usbstdreq.c **** 			default:
+ 385:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 386:../common/lpcusb/target/usbstdreq.c **** 			}
+ 387:../common/lpcusb/target/usbstdreq.c **** 			// skip to next descriptor
+ 388:../common/lpcusb/target/usbstdreq.c **** 			pab += pab[DESC_bLength];
+ 389:../common/lpcusb/target/usbstdreq.c **** 		}
+ARM GAS  /tmp/cc7RHaQe.s 			page 15
+
+
+ 390:../common/lpcusb/target/usbstdreq.c **** 		
+ 391:../common/lpcusb/target/usbstdreq.c **** 		// configure device
+ 392:../common/lpcusb/target/usbstdreq.c **** 		USBHwConfigDevice(TRUE);
+ 393:../common/lpcusb/target/usbstdreq.c **** 	}
+ 394:../common/lpcusb/target/usbstdreq.c **** 
+ 395:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 396:../common/lpcusb/target/usbstdreq.c **** }
+ 397:../common/lpcusb/target/usbstdreq.c **** 
+ 398:../common/lpcusb/target/usbstdreq.c **** 
+ 399:../common/lpcusb/target/usbstdreq.c **** /**
+ 400:../common/lpcusb/target/usbstdreq.c **** 	Local function to handle a standard device request
+ 401:../common/lpcusb/target/usbstdreq.c **** 		
+ 402:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		pSetup		The setup packet
+ 403:../common/lpcusb/target/usbstdreq.c **** 	@param [in,out]	*piLen		Pointer to data length
+ 404:../common/lpcusb/target/usbstdreq.c **** 	@param [in,out]	ppbData		Data buffer.
+ 405:../common/lpcusb/target/usbstdreq.c **** 
+ 406:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the request was handled successfully
+ 407:../common/lpcusb/target/usbstdreq.c ****  */
+ 408:../common/lpcusb/target/usbstdreq.c **** static BOOL HandleStdDeviceReq(TSetupPacket *pSetup, int *piLen, U8 **ppbData)
+ 409:../common/lpcusb/target/usbstdreq.c **** {
+ 410:../common/lpcusb/target/usbstdreq.c **** 	U8	*pbData = *ppbData;
+ 411:../common/lpcusb/target/usbstdreq.c **** 
+ 412:../common/lpcusb/target/usbstdreq.c **** 	switch (pSetup->bRequest) {
+ 413:../common/lpcusb/target/usbstdreq.c **** 	
+ 414:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_STATUS:
+ 415:../common/lpcusb/target/usbstdreq.c **** 		// bit 0: self-powered
+ 416:../common/lpcusb/target/usbstdreq.c **** 		// bit 1: remote wakeup = not supported
+ 417:../common/lpcusb/target/usbstdreq.c **** 		pbData[0] = 0;
+ 418:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 419:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 420:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 421:../common/lpcusb/target/usbstdreq.c **** 		
+ 422:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_ADDRESS:
+ 423:../common/lpcusb/target/usbstdreq.c **** 		USBHwSetAddress(pSetup->wValue);
+ 424:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 425:../common/lpcusb/target/usbstdreq.c **** 
+ 426:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_DESCRIPTOR:
+ 427:../common/lpcusb/target/usbstdreq.c **** 		DBG("D%x", pSetup->wValue);
+ 428:../common/lpcusb/target/usbstdreq.c **** 		return USBGetDescriptor(pSetup->wValue, pSetup->wIndex, piLen, ppbData);
+ 429:../common/lpcusb/target/usbstdreq.c **** 
+ 430:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_CONFIGURATION:
+ 431:../common/lpcusb/target/usbstdreq.c **** 		// indicate if we are configured
+ 432:../common/lpcusb/target/usbstdreq.c **** 		pbData[0] = bConfiguration;
+ 433:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 1;
+ 434:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 435:../common/lpcusb/target/usbstdreq.c **** 
+ 436:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_CONFIGURATION:
+ 437:../common/lpcusb/target/usbstdreq.c **** 		if (!USBSetConfiguration(pSetup->wValue & 0xFF, 0)) {
+ 438:../common/lpcusb/target/usbstdreq.c **** 			DBG("USBSetConfiguration failed!\n");
+ 439:../common/lpcusb/target/usbstdreq.c **** 			return FALSE;
+ 440:../common/lpcusb/target/usbstdreq.c **** 		}
+ 441:../common/lpcusb/target/usbstdreq.c **** 		// configuration successful, update current configuration
+ 442:../common/lpcusb/target/usbstdreq.c **** 		bConfiguration = pSetup->wValue & 0xFF;	
+ 443:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 444:../common/lpcusb/target/usbstdreq.c **** 
+ 445:../common/lpcusb/target/usbstdreq.c **** 	case REQ_CLEAR_FEATURE:
+ 446:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_FEATURE:
+ARM GAS  /tmp/cc7RHaQe.s 			page 16
+
+
+ 447:../common/lpcusb/target/usbstdreq.c **** 		if (pSetup->wValue == FEA_REMOTE_WAKEUP) {
+ 448:../common/lpcusb/target/usbstdreq.c **** 			// put DEVICE_REMOTE_WAKEUP code here
+ 449:../common/lpcusb/target/usbstdreq.c **** 		}
+ 450:../common/lpcusb/target/usbstdreq.c **** 		if (pSetup->wValue == FEA_TEST_MODE) {
+ 451:../common/lpcusb/target/usbstdreq.c **** 			// put TEST_MODE code here
+ 452:../common/lpcusb/target/usbstdreq.c **** 		}
+ 453:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 454:../common/lpcusb/target/usbstdreq.c **** 
+ 455:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_DESCRIPTOR:
+ 456:../common/lpcusb/target/usbstdreq.c **** 		DBG("Device req %d not implemented\n", pSetup->bRequest);
+ 457:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 458:../common/lpcusb/target/usbstdreq.c **** 
+ 459:../common/lpcusb/target/usbstdreq.c **** 	default:
+ 460:../common/lpcusb/target/usbstdreq.c **** 		DBG("Illegal device req %d\n", pSetup->bRequest);
+ 461:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 462:../common/lpcusb/target/usbstdreq.c **** 	}
+ 463:../common/lpcusb/target/usbstdreq.c **** 	
+ 464:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 465:../common/lpcusb/target/usbstdreq.c **** }
+ 466:../common/lpcusb/target/usbstdreq.c **** 
+ 467:../common/lpcusb/target/usbstdreq.c **** 
+ 468:../common/lpcusb/target/usbstdreq.c **** /**
+ 469:../common/lpcusb/target/usbstdreq.c **** 	Local function to handle a standard interface request
+ 470:../common/lpcusb/target/usbstdreq.c **** 		
+ 471:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		pSetup		The setup packet
+ 472:../common/lpcusb/target/usbstdreq.c **** 	@param [in,out]	*piLen		Pointer to data length
+ 473:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		ppbData		Data buffer.
+ 474:../common/lpcusb/target/usbstdreq.c **** 
+ 475:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the request was handled successfully
+ 476:../common/lpcusb/target/usbstdreq.c ****  */
+ 477:../common/lpcusb/target/usbstdreq.c **** static BOOL HandleStdInterfaceReq(TSetupPacket	*pSetup, int *piLen, U8 **ppbData)
+ 478:../common/lpcusb/target/usbstdreq.c **** {
+ 479:../common/lpcusb/target/usbstdreq.c **** 	U8	*pbData = *ppbData;
+ 480:../common/lpcusb/target/usbstdreq.c **** 
+ 481:../common/lpcusb/target/usbstdreq.c **** 	switch (pSetup->bRequest) {
+ 482:../common/lpcusb/target/usbstdreq.c **** 
+ 483:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_STATUS:
+ 484:../common/lpcusb/target/usbstdreq.c **** 		// no bits specified
+ 485:../common/lpcusb/target/usbstdreq.c **** 		pbData[0] = 0;
+ 486:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 487:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 488:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 489:../common/lpcusb/target/usbstdreq.c **** 
+ 490:../common/lpcusb/target/usbstdreq.c **** 	case REQ_CLEAR_FEATURE:
+ 491:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_FEATURE:
+ 492:../common/lpcusb/target/usbstdreq.c **** 		// not defined for interface
+ 493:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 494:../common/lpcusb/target/usbstdreq.c **** 	
+ 495:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_INTERFACE:	// TODO use bNumInterfaces
+ 496:../common/lpcusb/target/usbstdreq.c ****         // there is only one interface, return n-1 (= 0)
+ 497:../common/lpcusb/target/usbstdreq.c **** 		pbData[0] = 0;
+ 498:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 1;
+ 499:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 500:../common/lpcusb/target/usbstdreq.c **** 	
+ 501:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_INTERFACE:	// TODO use bNumInterfaces
+ 502:../common/lpcusb/target/usbstdreq.c **** 		// there is only one interface (= 0)
+ 503:../common/lpcusb/target/usbstdreq.c **** 		if (pSetup->wValue != 0) {
+ARM GAS  /tmp/cc7RHaQe.s 			page 17
+
+
+ 504:../common/lpcusb/target/usbstdreq.c **** 			return FALSE;
+ 505:../common/lpcusb/target/usbstdreq.c **** 		}
+ 506:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 0;
+ 507:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 508:../common/lpcusb/target/usbstdreq.c **** 
+ 509:../common/lpcusb/target/usbstdreq.c **** 	default:
+ 510:../common/lpcusb/target/usbstdreq.c **** 		DBG("Illegal interface req %d\n", pSetup->bRequest);
+ 511:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 512:../common/lpcusb/target/usbstdreq.c **** 	}
+ 513:../common/lpcusb/target/usbstdreq.c **** 
+ 514:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 515:../common/lpcusb/target/usbstdreq.c **** }
+ 516:../common/lpcusb/target/usbstdreq.c **** 
+ 517:../common/lpcusb/target/usbstdreq.c **** 
+ 518:../common/lpcusb/target/usbstdreq.c **** /**
+ 519:../common/lpcusb/target/usbstdreq.c **** 	Local function to handle a standard endpoint request
+ 520:../common/lpcusb/target/usbstdreq.c **** 		
+ 521:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		pSetup		The setup packet
+ 522:../common/lpcusb/target/usbstdreq.c **** 	@param [in,out]	*piLen		Pointer to data length
+ 523:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		ppbData		Data buffer.
+ 524:../common/lpcusb/target/usbstdreq.c **** 
+ 525:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the request was handled successfully
+ 526:../common/lpcusb/target/usbstdreq.c ****  */
+ 527:../common/lpcusb/target/usbstdreq.c **** static BOOL HandleStdEndPointReq(TSetupPacket	*pSetup, int *piLen, U8 **ppbData)
+ 528:../common/lpcusb/target/usbstdreq.c **** {
+ 529:../common/lpcusb/target/usbstdreq.c **** 	U8	*pbData = *ppbData;
+ 530:../common/lpcusb/target/usbstdreq.c **** 
+ 531:../common/lpcusb/target/usbstdreq.c **** 	switch (pSetup->bRequest) {
+ 532:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_STATUS:
+ 533:../common/lpcusb/target/usbstdreq.c **** 		// bit 0 = endpointed halted or not
+ 534:../common/lpcusb/target/usbstdreq.c **** 		pbData[0] = (USBHwEPGetStatus(pSetup->wIndex) & EP_STATUS_STALLED) ? 1 : 0;
+ 535:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 536:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 537:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 538:../common/lpcusb/target/usbstdreq.c **** 		
+ 539:../common/lpcusb/target/usbstdreq.c **** 	case REQ_CLEAR_FEATURE:
+ 540:../common/lpcusb/target/usbstdreq.c **** 		if (pSetup->wValue == FEA_ENDPOINT_HALT) {
+ 541:../common/lpcusb/target/usbstdreq.c **** 			// clear HALT by unstalling
+ 542:../common/lpcusb/target/usbstdreq.c **** 			USBHwEPStall(pSetup->wIndex, FALSE);
+ 543:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 544:../common/lpcusb/target/usbstdreq.c **** 		}
+ 545:../common/lpcusb/target/usbstdreq.c **** 		// only ENDPOINT_HALT defined for endpoints
+ 546:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 547:../common/lpcusb/target/usbstdreq.c **** 	
+ 548:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SET_FEATURE:
+ 549:../common/lpcusb/target/usbstdreq.c **** 		if (pSetup->wValue == FEA_ENDPOINT_HALT) {
+ 550:../common/lpcusb/target/usbstdreq.c **** 			// set HALT by stalling
+ 551:../common/lpcusb/target/usbstdreq.c **** 			USBHwEPStall(pSetup->wIndex, TRUE);
+ 552:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 553:../common/lpcusb/target/usbstdreq.c **** 		}
+ 554:../common/lpcusb/target/usbstdreq.c **** 		// only ENDPOINT_HALT defined for endpoints
+ 555:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 556:../common/lpcusb/target/usbstdreq.c **** 
+ 557:../common/lpcusb/target/usbstdreq.c **** 	case REQ_SYNCH_FRAME:
+ 558:../common/lpcusb/target/usbstdreq.c **** 		DBG("EP req %d not implemented\n", pSetup->bRequest);
+ 559:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 560:../common/lpcusb/target/usbstdreq.c **** 
+ARM GAS  /tmp/cc7RHaQe.s 			page 18
+
+
+ 561:../common/lpcusb/target/usbstdreq.c **** 	default:
+ 562:../common/lpcusb/target/usbstdreq.c **** 		DBG("Illegal EP req %d\n", pSetup->bRequest);
+ 563:../common/lpcusb/target/usbstdreq.c **** 		return FALSE;
+ 564:../common/lpcusb/target/usbstdreq.c **** 	}
+ 565:../common/lpcusb/target/usbstdreq.c **** 	
+ 566:../common/lpcusb/target/usbstdreq.c **** 	return TRUE;
+ 567:../common/lpcusb/target/usbstdreq.c **** }
+ 568:../common/lpcusb/target/usbstdreq.c **** 
+ 569:../common/lpcusb/target/usbstdreq.c **** 
+ 570:../common/lpcusb/target/usbstdreq.c **** /**
+ 571:../common/lpcusb/target/usbstdreq.c **** 	Default handler for standard ('chapter 9') requests
+ 572:../common/lpcusb/target/usbstdreq.c **** 	
+ 573:../common/lpcusb/target/usbstdreq.c **** 	If a custom request handler was installed, this handler is called first.
+ 574:../common/lpcusb/target/usbstdreq.c **** 		
+ 575:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		pSetup		The setup packet
+ 576:../common/lpcusb/target/usbstdreq.c **** 	@param [in,out]	*piLen		Pointer to data length
+ 577:../common/lpcusb/target/usbstdreq.c **** 	@param [in]		ppbData		Data buffer.
+ 578:../common/lpcusb/target/usbstdreq.c **** 
+ 579:../common/lpcusb/target/usbstdreq.c **** 	@return TRUE if the request was handled successfully
+ 580:../common/lpcusb/target/usbstdreq.c ****  */
+ 581:../common/lpcusb/target/usbstdreq.c **** BOOL USBHandleStandardRequest(TSetupPacket	*pSetup, int *piLen, U8 **ppbData)
+ 582:../common/lpcusb/target/usbstdreq.c **** {
+ 385              		.loc 1 582 0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 0
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+ 389              	.LVL36:
+ 390 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 391              		.cfi_def_cfa_offset 32
+ 392              		.cfi_offset 4, -32
+ 393              		.cfi_offset 5, -28
+ 394              		.cfi_offset 6, -24
+ 395              		.cfi_offset 7, -20
+ 396              		.cfi_offset 8, -16
+ 397              		.cfi_offset 9, -12
+ 398              		.cfi_offset 10, -8
+ 399              		.cfi_offset 14, -4
+ 583:../common/lpcusb/target/usbstdreq.c **** 	// try the custom request handler first
+ 584:../common/lpcusb/target/usbstdreq.c **** 	if ((pfnHandleCustomReq != NULL) && pfnHandleCustomReq(pSetup, piLen, ppbData)) {
+ 400              		.loc 1 584 0
+ 401 0004 554C     		ldr	r4, .L87
+ 582:../common/lpcusb/target/usbstdreq.c **** 	// try the custom request handler first
+ 402              		.loc 1 582 0
+ 403 0006 0546     		mov	r5, r0
+ 404              		.loc 1 584 0
+ 405 0008 A368     		ldr	r3, [r4, #8]
+ 582:../common/lpcusb/target/usbstdreq.c **** 	// try the custom request handler first
+ 406              		.loc 1 582 0
+ 407 000a 0F46     		mov	r7, r1
+ 408 000c 9146     		mov	r9, r2
+ 409 000e A046     		mov	r8, r4
+ 410              		.loc 1 584 0
+ 411 0010 53B9     		cbnz	r3, .L45
+ 412              	.LVL37:
+ 413              	.L50:
+ 585:../common/lpcusb/target/usbstdreq.c **** 		return TRUE;
+ 586:../common/lpcusb/target/usbstdreq.c **** 	}
+ARM GAS  /tmp/cc7RHaQe.s 			page 19
+
+
+ 587:../common/lpcusb/target/usbstdreq.c **** 	
+ 588:../common/lpcusb/target/usbstdreq.c **** 	switch (REQTYPE_GET_RECIP(pSetup->bmRequestType)) {
+ 414              		.loc 1 588 0
+ 415 0012 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 416 0014 00F01F06 		and	r6, r0, #31
+ 417 0018 012E     		cmp	r6, #1
+ 418 001a 6BD0     		beq	.L47
+ 419 001c 0AD3     		bcc	.L48
+ 420 001e 022E     		cmp	r6, #2
+ 421 0020 7CD0     		beq	.L49
+ 422              	.L78:
+ 423              	.LBB17:
+ 424              	.LBB18:
+ 504:../common/lpcusb/target/usbstdreq.c **** 		}
+ 425              		.loc 1 504 0
+ 426 0022 0020     		movs	r0, #0
+ 427              	.LBE18:
+ 428              	.LBE17:
+ 589:../common/lpcusb/target/usbstdreq.c **** 	case REQTYPE_RECIP_DEVICE:		return HandleStdDeviceReq(pSetup, piLen, ppbData);
+ 590:../common/lpcusb/target/usbstdreq.c **** 	case REQTYPE_RECIP_INTERFACE:	return HandleStdInterfaceReq(pSetup, piLen, ppbData);
+ 591:../common/lpcusb/target/usbstdreq.c **** 	case REQTYPE_RECIP_ENDPOINT: 	return HandleStdEndPointReq(pSetup, piLen, ppbData);
+ 592:../common/lpcusb/target/usbstdreq.c **** 	default: 						return FALSE;
+ 593:../common/lpcusb/target/usbstdreq.c **** 	}
+ 594:../common/lpcusb/target/usbstdreq.c **** }
+ 429              		.loc 1 594 0
+ 430 0024 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 431              	.LVL38:
+ 432              	.L45:
+ 584:../common/lpcusb/target/usbstdreq.c **** 		return TRUE;
+ 433              		.loc 1 584 0 discriminator 1
+ 434 0028 9847     		blx	r3
+ 435              	.LVL39:
+ 436 002a 0028     		cmp	r0, #0
+ 437 002c F1D0     		beq	.L50
+ 438              	.LVL40:
+ 439              	.L72:
+ 585:../common/lpcusb/target/usbstdreq.c **** 	}
+ 440              		.loc 1 585 0
+ 441 002e 0120     		movs	r0, #1
+ 442 0030 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 443              	.LVL41:
+ 444              	.L48:
+ 445              	.LBB22:
+ 446              	.LBB23:
+ 412:../common/lpcusb/target/usbstdreq.c **** 	
+ 447              		.loc 1 412 0
+ 448 0034 6A78     		ldrb	r2, [r5, #1]	@ zero_extendqisi2
+ 410:../common/lpcusb/target/usbstdreq.c **** 
+ 449              		.loc 1 410 0
+ 450 0036 D9F80030 		ldr	r3, [r9]
+ 451              	.LVL42:
+ 412:../common/lpcusb/target/usbstdreq.c **** 	
+ 452              		.loc 1 412 0
+ 453 003a 092A     		cmp	r2, #9
+ 454 003c F1D8     		bhi	.L78
+ 455 003e 01A1     		adr	r1, .L52
+ 456 0040 51F822F0 		ldr	pc, [r1, r2, lsl #2]
+ARM GAS  /tmp/cc7RHaQe.s 			page 20
+
+
+ 457              		.p2align 2
+ 458              	.L52:
+ 459 0044 6D000000 		.word	.L51+1
+ 460 0048 23000000 		.word	.L78+1
+ 461 004c 23000000 		.word	.L78+1
+ 462 0050 23000000 		.word	.L78+1
+ 463 0054 23000000 		.word	.L78+1
+ 464 0058 79000000 		.word	.L53+1
+ 465 005c 81000000 		.word	.L54+1
+ 466 0060 23000000 		.word	.L78+1
+ 467 0064 91000000 		.word	.L55+1
+ 468 0068 9F000000 		.word	.L56+1
+ 469              		.p2align 1
+ 470              	.L51:
+ 417:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 471              		.loc 1 417 0
+ 472 006c 0022     		movs	r2, #0
+ 473 006e 1A70     		strb	r2, [r3]
+ 418:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 474              		.loc 1 418 0
+ 475 0070 5A70     		strb	r2, [r3, #1]
+ 476              	.LVL43:
+ 477              	.L86:
+ 478              	.LBE23:
+ 479              	.LBE22:
+ 480              	.LBB30:
+ 481              	.LBB19:
+ 487:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 482              		.loc 1 487 0
+ 483 0072 0223     		movs	r3, #2
+ 484              	.L83:
+ 506:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 485              		.loc 1 506 0
+ 486 0074 3B60     		str	r3, [r7]
+ 487 0076 DAE7     		b	.L72
+ 488              	.LVL44:
+ 489              	.L53:
+ 490              	.LBE19:
+ 491              	.LBE30:
+ 492              	.LBB31:
+ 493              	.LBB28:
+ 423:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 494              		.loc 1 423 0
+ 495 0078 A878     		ldrb	r0, [r5, #2]	@ zero_extendqisi2
+ 496 007a FFF7FEFF 		bl	USBHwSetAddress
+ 497              	.LVL45:
+ 498 007e D6E7     		b	.L72
+ 499              	.LVL46:
+ 500              	.L54:
+ 428:../common/lpcusb/target/usbstdreq.c **** 
+ 501              		.loc 1 428 0
+ 502 0080 4B46     		mov	r3, r9
+ 503              	.LVL47:
+ 504 0082 3A46     		mov	r2, r7
+ 505 0084 A988     		ldrh	r1, [r5, #4]
+ 506 0086 6888     		ldrh	r0, [r5, #2]
+ 507              	.LBE28:
+ARM GAS  /tmp/cc7RHaQe.s 			page 21
+
+
+ 508              	.LBE31:
+ 509              		.loc 1 594 0
+ 510 0088 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 511              		.cfi_remember_state
+ 512              		.cfi_restore 14
+ 513              		.cfi_restore 10
+ 514              		.cfi_restore 9
+ 515              		.cfi_restore 8
+ 516              		.cfi_restore 7
+ 517              		.cfi_restore 6
+ 518              		.cfi_restore 5
+ 519              		.cfi_restore 4
+ 520              		.cfi_def_cfa_offset 0
+ 521              	.LVL48:
+ 522              	.LBB32:
+ 523              	.LBB29:
+ 428:../common/lpcusb/target/usbstdreq.c **** 
+ 524              		.loc 1 428 0
+ 525 008c FFF7FEBF 		b	USBGetDescriptor
+ 526              	.LVL49:
+ 527              	.L55:
+ 528              		.cfi_restore_state
+ 433:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 529              		.loc 1 433 0
+ 530 0090 0120     		movs	r0, #1
+ 432:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 1;
+ 531              		.loc 1 432 0
+ 532 0092 98F80C20 		ldrb	r2, [r8, #12]	@ zero_extendqisi2
+ 533 0096 1A70     		strb	r2, [r3]
+ 433:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 534              		.loc 1 433 0
+ 535 0098 3860     		str	r0, [r7]
+ 536 009a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 537              	.LVL50:
+ 538              	.L56:
+ 437:../common/lpcusb/target/usbstdreq.c **** 			DBG("USBSetConfiguration failed!\n");
+ 539              		.loc 1 437 0
+ 540 009e AE78     		ldrb	r6, [r5, #2]	@ zero_extendqisi2
+ 541              	.LVL51:
+ 542              	.LBB24:
+ 543              	.LBB25:
+ 348:../common/lpcusb/target/usbstdreq.c **** 		// unconfigure device
+ 544              		.loc 1 348 0
+ 545 00a0 36B9     		cbnz	r6, .L57
+ 350:../common/lpcusb/target/usbstdreq.c **** 	}
+ 546              		.loc 1 350 0
+ 547 00a2 3046     		mov	r0, r6
+ 548              	.LVL52:
+ 549              	.L82:
+ 392:../common/lpcusb/target/usbstdreq.c **** 	}
+ 550              		.loc 1 392 0
+ 551 00a4 FFF7FEFF 		bl	USBHwConfigDevice
+ 552              	.LVL53:
+ 553              	.LBE25:
+ 554              	.LBE24:
+ 442:../common/lpcusb/target/usbstdreq.c **** 		break;
+ 555              		.loc 1 442 0
+ARM GAS  /tmp/cc7RHaQe.s 			page 22
+
+
+ 556 00a8 6B88     		ldrh	r3, [r5, #2]
+ 557 00aa 88F80C30 		strb	r3, [r8, #12]
+ 558 00ae BEE7     		b	.L72
+ 559              	.LVL54:
+ 560              	.L57:
+ 561              	.LBB27:
+ 562              	.LBB26:
+ 356:../common/lpcusb/target/usbstdreq.c **** 
+ 563              		.loc 1 356 0
+ 564 00b0 FF27     		movs	r7, #255
+ 565              	.LVL55:
+ 355:../common/lpcusb/target/usbstdreq.c **** 		bCurAltSetting = 0xFF;
+ 566              		.loc 1 355 0
+ 567 00b2 B946     		mov	r9, r7
+ 568              	.LVL56:
+ 354:../common/lpcusb/target/usbstdreq.c **** 		bCurConfig = 0xFF;
+ 569              		.loc 1 354 0
+ 570 00b4 D8F80440 		ldr	r4, [r8, #4]
+ 571              	.LVL57:
+ 572              	.L59:
+ 358:../common/lpcusb/target/usbstdreq.c **** 
+ 573              		.loc 1 358 0
+ 574 00b8 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 575 00ba 0BB9     		cbnz	r3, .L64
+ 392:../common/lpcusb/target/usbstdreq.c **** 	}
+ 576              		.loc 1 392 0
+ 577 00bc 0120     		movs	r0, #1
+ 578 00be F1E7     		b	.L82
+ 579              	.L64:
+ 360:../common/lpcusb/target/usbstdreq.c **** 
+ 580              		.loc 1 360 0
+ 581 00c0 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 582 00c2 042B     		cmp	r3, #4
+ 583 00c4 08D0     		beq	.L61
+ 584 00c6 052B     		cmp	r3, #5
+ 585 00c8 08D0     		beq	.L62
+ 586 00ca 022B     		cmp	r3, #2
+ 587 00cc 01D1     		bne	.L60
+ 364:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 588              		.loc 1 364 0
+ 589 00ce 94F80590 		ldrb	r9, [r4, #5]	@ zero_extendqisi2
+ 590              	.LVL58:
+ 591              	.L60:
+ 388:../common/lpcusb/target/usbstdreq.c **** 		}
+ 592              		.loc 1 388 0
+ 593 00d2 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 594 00d4 1C44     		add	r4, r4, r3
+ 595              	.LVL59:
+ 596 00d6 EFE7     		b	.L59
+ 597              	.L61:
+ 369:../common/lpcusb/target/usbstdreq.c **** 				break;
+ 598              		.loc 1 369 0
+ 599 00d8 E778     		ldrb	r7, [r4, #3]	@ zero_extendqisi2
+ 600              	.LVL60:
+ 601 00da FAE7     		b	.L60
+ 602              	.L62:
+ 373:../common/lpcusb/target/usbstdreq.c **** 					(bCurAltSetting == bAltSetting)) {
+ARM GAS  /tmp/cc7RHaQe.s 			page 23
+
+
+ 603              		.loc 1 373 0
+ 604 00dc 4E45     		cmp	r6, r9
+ 605 00de F8D1     		bne	.L60
+ 606 00e0 002F     		cmp	r7, #0
+ 607 00e2 F6D1     		bne	.L60
+ 608              	.LVL61:
+ 378:../common/lpcusb/target/usbstdreq.c **** 					// configure endpoint
+ 609              		.loc 1 378 0
+ 610 00e4 6179     		ldrb	r1, [r4, #5]	@ zero_extendqisi2
+ 377:../common/lpcusb/target/usbstdreq.c **** 									(pab[ENDP_DESC_wMaxPacketSize + 1] << 8);
+ 611              		.loc 1 377 0
+ 612 00e6 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 380:../common/lpcusb/target/usbstdreq.c **** 				}
+ 613              		.loc 1 380 0
+ 614 00e8 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 615 00ea 43EA0121 		orr	r1, r3, r1, lsl #8
+ 616 00ee FFF7FEFF 		bl	USBHwEPConfig
+ 617              	.LVL62:
+ 618 00f2 EEE7     		b	.L60
+ 619              	.LVL63:
+ 620              	.L47:
+ 621              	.LBE26:
+ 622              	.LBE27:
+ 623              	.LBE29:
+ 624              	.LBE32:
+ 625              	.LBB33:
+ 626              	.LBB20:
+ 481:../common/lpcusb/target/usbstdreq.c **** 
+ 627              		.loc 1 481 0
+ 628 00f4 6B78     		ldrb	r3, [r5, #1]	@ zero_extendqisi2
+ 629 00f6 D9F80020 		ldr	r2, [r9]
+ 630              	.LVL64:
+ 631 00fa 0A2B     		cmp	r3, #10
+ 632 00fc 06D0     		beq	.L65
+ 633 00fe 0B2B     		cmp	r3, #11
+ 634 0100 08D0     		beq	.L66
+ 635 0102 002B     		cmp	r3, #0
+ 636 0104 8DD1     		bne	.L78
+ 485:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 637              		.loc 1 485 0
+ 638 0106 1370     		strb	r3, [r2]
+ 486:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 639              		.loc 1 486 0
+ 640 0108 5370     		strb	r3, [r2, #1]
+ 641 010a B2E7     		b	.L86
+ 642              	.L65:
+ 497:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 1;
+ 643              		.loc 1 497 0
+ 644 010c 0023     		movs	r3, #0
+ 645 010e 1370     		strb	r3, [r2]
+ 646              	.LVL65:
+ 647              	.L85:
+ 648              	.LBE20:
+ 649              	.LBE33:
+ 650              	.LBB34:
+ 651              	.LBB35:
+ 536:../common/lpcusb/target/usbstdreq.c **** 		break;
+ARM GAS  /tmp/cc7RHaQe.s 			page 24
+
+
+ 652              		.loc 1 536 0
+ 653 0110 3E60     		str	r6, [r7]
+ 654 0112 8CE7     		b	.L72
+ 655              	.LVL66:
+ 656              	.L66:
+ 657              	.LBE35:
+ 658              	.LBE34:
+ 659              	.LBB37:
+ 660              	.LBB21:
+ 503:../common/lpcusb/target/usbstdreq.c **** 			return FALSE;
+ 661              		.loc 1 503 0
+ 662 0114 6B88     		ldrh	r3, [r5, #2]
+ 663 0116 002B     		cmp	r3, #0
+ 664 0118 ACD0     		beq	.L83
+ 665 011a 82E7     		b	.L78
+ 666              	.LVL67:
+ 667              	.L49:
+ 668              	.LBE21:
+ 669              	.LBE37:
+ 670              	.LBB38:
+ 671              	.LBB36:
+ 531:../common/lpcusb/target/usbstdreq.c **** 	case REQ_GET_STATUS:
+ 672              		.loc 1 531 0
+ 673 011c 6C78     		ldrb	r4, [r5, #1]	@ zero_extendqisi2
+ 674 011e 012C     		cmp	r4, #1
+ 675 0120 14D0     		beq	.L68
+ 676 0122 08D3     		bcc	.L69
+ 677 0124 032C     		cmp	r4, #3
+ 678 0126 7FF47CAF 		bne	.L78
+ 549:../common/lpcusb/target/usbstdreq.c **** 			// set HALT by stalling
+ 679              		.loc 1 549 0
+ 680 012a 6B88     		ldrh	r3, [r5, #2]
+ 681 012c 002B     		cmp	r3, #0
+ 682 012e 7FF478AF 		bne	.L78
+ 551:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 683              		.loc 1 551 0
+ 684 0132 0121     		movs	r1, #1
+ 685 0134 0EE0     		b	.L84
+ 686              	.L69:
+ 534:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 687              		.loc 1 534 0
+ 688 0136 2879     		ldrb	r0, [r5, #4]	@ zero_extendqisi2
+ 689 0138 D9F80040 		ldr	r4, [r9]
+ 690 013c FFF7FEFF 		bl	USBHwEPGetStatus
+ 691              	.LVL68:
+ 535:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 692              		.loc 1 535 0
+ 693 0140 0023     		movs	r3, #0
+ 534:../common/lpcusb/target/usbstdreq.c **** 		pbData[1] = 0;
+ 694              		.loc 1 534 0
+ 695 0142 C0F34000 		ubfx	r0, r0, #1, #1
+ 696 0146 2070     		strb	r0, [r4]
+ 535:../common/lpcusb/target/usbstdreq.c **** 		*piLen = 2;
+ 697              		.loc 1 535 0
+ 698 0148 6370     		strb	r3, [r4, #1]
+ 699 014a E1E7     		b	.L85
+ 700              	.LVL69:
+ARM GAS  /tmp/cc7RHaQe.s 			page 25
+
+
+ 701              	.L68:
+ 540:../common/lpcusb/target/usbstdreq.c **** 			// clear HALT by unstalling
+ 702              		.loc 1 540 0
+ 703 014c 6988     		ldrh	r1, [r5, #2]
+ 704 014e 0029     		cmp	r1, #0
+ 705 0150 7FF467AF 		bne	.L78
+ 706              	.L84:
+ 551:../common/lpcusb/target/usbstdreq.c **** 			break;
+ 707              		.loc 1 551 0
+ 708 0154 2879     		ldrb	r0, [r5, #4]	@ zero_extendqisi2
+ 709 0156 FFF7FEFF 		bl	USBHwEPStall
+ 710              	.LVL70:
+ 711 015a 68E7     		b	.L72
+ 712              	.L88:
+ 713              		.align	2
+ 714              	.L87:
+ 715 015c 00000000 		.word	.LANCHOR0
+ 716              	.LBE36:
+ 717              	.LBE38:
+ 718              		.cfi_endproc
+ 719              	.LFE9:
+ 721              		.section	.text.USBRegisterCustomReqHandler,"ax",%progbits
+ 722              		.align	1
+ 723              		.global	USBRegisterCustomReqHandler
+ 724              		.syntax unified
+ 725              		.thumb
+ 726              		.thumb_func
+ 727              		.fpu softvfp
+ 729              	USBRegisterCustomReqHandler:
+ 730              	.LFB10:
+ 595:../common/lpcusb/target/usbstdreq.c **** 
+ 596:../common/lpcusb/target/usbstdreq.c **** 
+ 597:../common/lpcusb/target/usbstdreq.c **** /**
+ 598:../common/lpcusb/target/usbstdreq.c **** 	Registers a callback for custom device requests
+ 599:../common/lpcusb/target/usbstdreq.c **** 	
+ 600:../common/lpcusb/target/usbstdreq.c **** 	In USBHandleStandardRequest, the custom request handler gets a first
+ 601:../common/lpcusb/target/usbstdreq.c **** 	chance at handling the request before it is handed over to the 'chapter 9'
+ 602:../common/lpcusb/target/usbstdreq.c **** 	request handler.
+ 603:../common/lpcusb/target/usbstdreq.c **** 	
+ 604:../common/lpcusb/target/usbstdreq.c **** 	This can be used for example in HID devices, where a REQ_GET_DESCRIPTOR
+ 605:../common/lpcusb/target/usbstdreq.c **** 	request is sent to an interface, which is not covered by the 'chapter 9'
+ 606:../common/lpcusb/target/usbstdreq.c **** 	specification.
+ 607:../common/lpcusb/target/usbstdreq.c **** 		
+ 608:../common/lpcusb/target/usbstdreq.c **** 	@param [in]	pfnHandler	Callback function pointer
+ 609:../common/lpcusb/target/usbstdreq.c ****  */
+ 610:../common/lpcusb/target/usbstdreq.c **** void USBRegisterCustomReqHandler(TFnHandleRequest *pfnHandler)
+ 611:../common/lpcusb/target/usbstdreq.c **** {
+ 731              		.loc 1 611 0
+ 732              		.cfi_startproc
+ 733              		@ args = 0, pretend = 0, frame = 0
+ 734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 735              		@ link register save eliminated.
+ 736              	.LVL71:
+ 612:../common/lpcusb/target/usbstdreq.c **** 	pfnHandleCustomReq = pfnHandler;
+ 737              		.loc 1 612 0
+ 738 0000 014B     		ldr	r3, .L90
+ 739 0002 9860     		str	r0, [r3, #8]
+ARM GAS  /tmp/cc7RHaQe.s 			page 26
+
+
+ 740 0004 7047     		bx	lr
+ 741              	.L91:
+ 742 0006 00BF     		.align	2
+ 743              	.L90:
+ 744 0008 00000000 		.word	.LANCHOR0
+ 745              		.cfi_endproc
+ 746              	.LFE10:
+ 748              		.section	.rodata
+ 749              		.set	.LANCHOR1,. + 0
+ 752              	abExtendedOsFeatureDescriptor:
+ 753 0000 28       		.byte	40
+ 754 0001 00       		.byte	0
+ 755 0002 00       		.byte	0
+ 756 0003 00       		.byte	0
+ 757 0004 00       		.byte	0
+ 758 0005 01       		.byte	1
+ 759 0006 04       		.byte	4
+ 760 0007 00       		.byte	0
+ 761 0008 01       		.byte	1
+ 762 0009 00       		.byte	0
+ 763 000a 00       		.byte	0
+ 764 000b 00       		.byte	0
+ 765 000c 00       		.byte	0
+ 766 000d 00       		.byte	0
+ 767 000e 00       		.byte	0
+ 768 000f 00       		.byte	0
+ 769 0010 00       		.byte	0
+ 770 0011 01       		.byte	1
+ 771 0012 57       		.byte	87
+ 772 0013 49       		.byte	73
+ 773 0014 4E       		.byte	78
+ 774 0015 55       		.byte	85
+ 775 0016 53       		.byte	83
+ 776 0017 42       		.byte	66
+ 777 0018 00       		.byte	0
+ 778 0019 00       		.byte	0
+ 779 001a 00       		.byte	0
+ 780 001b 00       		.byte	0
+ 781 001c 00       		.byte	0
+ 782 001d 00       		.byte	0
+ 783 001e 00       		.byte	0
+ 784 001f 00       		.byte	0
+ 785 0020 00       		.byte	0
+ 786 0021 00       		.byte	0
+ 787 0022 00       		.byte	0
+ 788 0023 00       		.byte	0
+ 789 0024 00       		.byte	0
+ 790 0025 00       		.byte	0
+ 791 0026 00       		.byte	0
+ 792 0027 00       		.byte	0
+ 793              		.data
+ 794              		.set	.LANCHOR2,. + 0
+ 797              	abExtendedPropertiesFeatureDescriptor:
+ 798 0000 92       		.byte	-110
+ 799 0001 00       		.byte	0
+ 800 0002 00       		.byte	0
+ 801 0003 00       		.byte	0
+ARM GAS  /tmp/cc7RHaQe.s 			page 27
+
+
+ 802 0004 00       		.byte	0
+ 803 0005 01       		.byte	1
+ 804 0006 05       		.byte	5
+ 805 0007 00       		.byte	0
+ 806 0008 01       		.byte	1
+ 807 0009 00       		.byte	0
+ 808 000a 88       		.byte	-120
+ 809 000b 00       		.byte	0
+ 810 000c 00       		.byte	0
+ 811 000d 00       		.byte	0
+ 812 000e 07       		.byte	7
+ 813 000f 00       		.byte	0
+ 814 0010 00       		.byte	0
+ 815 0011 00       		.byte	0
+ 816 0012 2A       		.byte	42
+ 817 0013 00       		.byte	0
+ 818 0014 44       		.byte	68
+ 819 0015 00       		.byte	0
+ 820 0016 65       		.byte	101
+ 821 0017 00       		.byte	0
+ 822 0018 76       		.byte	118
+ 823 0019 00       		.byte	0
+ 824 001a 69       		.byte	105
+ 825 001b 00       		.byte	0
+ 826 001c 63       		.byte	99
+ 827 001d 00       		.byte	0
+ 828 001e 65       		.byte	101
+ 829 001f 00       		.byte	0
+ 830 0020 49       		.byte	73
+ 831 0021 00       		.byte	0
+ 832 0022 6E       		.byte	110
+ 833 0023 00       		.byte	0
+ 834 0024 74       		.byte	116
+ 835 0025 00       		.byte	0
+ 836 0026 65       		.byte	101
+ 837 0027 00       		.byte	0
+ 838 0028 72       		.byte	114
+ 839 0029 00       		.byte	0
+ 840 002a 66       		.byte	102
+ 841 002b 00       		.byte	0
+ 842 002c 61       		.byte	97
+ 843 002d 00       		.byte	0
+ 844 002e 63       		.byte	99
+ 845 002f 00       		.byte	0
+ 846 0030 65       		.byte	101
+ 847 0031 00       		.byte	0
+ 848 0032 47       		.byte	71
+ 849 0033 00       		.byte	0
+ 850 0034 55       		.byte	85
+ 851 0035 00       		.byte	0
+ 852 0036 49       		.byte	73
+ 853 0037 00       		.byte	0
+ 854 0038 44       		.byte	68
+ 855 0039 00       		.byte	0
+ 856 003a 73       		.byte	115
+ 857 003b 00       		.byte	0
+ 858 003c 00       		.byte	0
+ARM GAS  /tmp/cc7RHaQe.s 			page 28
+
+
+ 859 003d 00       		.byte	0
+ 860 003e 50       		.byte	80
+ 861 003f 00       		.byte	0
+ 862 0040 00       		.byte	0
+ 863 0041 00       		.byte	0
+ 864 0042 7B       		.byte	123
+ 865 0043 00       		.byte	0
+ 866 0044 30       		.byte	48
+ 867 0045 00       		.byte	0
+ 868 0046 31       		.byte	49
+ 869 0047 00       		.byte	0
+ 870 0048 32       		.byte	50
+ 871 0049 00       		.byte	0
+ 872 004a 33       		.byte	51
+ 873 004b 00       		.byte	0
+ 874 004c 34       		.byte	52
+ 875 004d 00       		.byte	0
+ 876 004e 35       		.byte	53
+ 877 004f 00       		.byte	0
+ 878 0050 36       		.byte	54
+ 879 0051 00       		.byte	0
+ 880 0052 37       		.byte	55
+ 881 0053 00       		.byte	0
+ 882 0054 2D       		.byte	45
+ 883 0055 00       		.byte	0
+ 884 0056 30       		.byte	48
+ 885 0057 00       		.byte	0
+ 886 0058 31       		.byte	49
+ 887 0059 00       		.byte	0
+ 888 005a 32       		.byte	50
+ 889 005b 00       		.byte	0
+ 890 005c 33       		.byte	51
+ 891 005d 00       		.byte	0
+ 892 005e 2D       		.byte	45
+ 893 005f 00       		.byte	0
+ 894 0060 34       		.byte	52
+ 895 0061 00       		.byte	0
+ 896 0062 35       		.byte	53
+ 897 0063 00       		.byte	0
+ 898 0064 36       		.byte	54
+ 899 0065 00       		.byte	0
+ 900 0066 37       		.byte	55
+ 901 0067 00       		.byte	0
+ 902 0068 2D       		.byte	45
+ 903 0069 00       		.byte	0
+ 904 006a 38       		.byte	56
+ 905 006b 00       		.byte	0
+ 906 006c 39       		.byte	57
+ 907 006d 00       		.byte	0
+ 908 006e 61       		.byte	97
+ 909 006f 00       		.byte	0
+ 910 0070 62       		.byte	98
+ 911 0071 00       		.byte	0
+ 912 0072 2D       		.byte	45
+ 913 0073 00       		.byte	0
+ 914 0074 30       		.byte	48
+ 915 0075 00       		.byte	0
+ARM GAS  /tmp/cc7RHaQe.s 			page 29
+
+
+ 916 0076 31       		.byte	49
+ 917 0077 00       		.byte	0
+ 918 0078 32       		.byte	50
+ 919 0079 00       		.byte	0
+ 920 007a 33       		.byte	51
+ 921 007b 00       		.byte	0
+ 922 007c 34       		.byte	52
+ 923 007d 00       		.byte	0
+ 924 007e 35       		.byte	53
+ 925 007f 00       		.byte	0
+ 926 0080 36       		.byte	54
+ 927 0081 00       		.byte	0
+ 928 0082 37       		.byte	55
+ 929 0083 00       		.byte	0
+ 930 0084 38       		.byte	56
+ 931 0085 00       		.byte	0
+ 932 0086 39       		.byte	57
+ 933 0087 00       		.byte	0
+ 934 0088 61       		.byte	97
+ 935 0089 00       		.byte	0
+ 936 008a 62       		.byte	98
+ 937 008b 00       		.byte	0
+ 938 008c 7D       		.byte	125
+ 939 008d 00       		.byte	0
+ 940 008e 00       		.byte	0
+ 941 008f 00       		.byte	0
+ 942 0090 00       		.byte	0
+ 943 0091 00       		.byte	0
+ 946              	abOsStringDescriptor:
+ 947 0092 12       		.byte	18
+ 948 0093 03       		.byte	3
+ 949 0094 4D       		.byte	77
+ 950 0095 00       		.byte	0
+ 951 0096 53       		.byte	83
+ 952 0097 00       		.byte	0
+ 953 0098 46       		.byte	70
+ 954 0099 00       		.byte	0
+ 955 009a 54       		.byte	84
+ 956 009b 00       		.byte	0
+ 957 009c 31       		.byte	49
+ 958 009d 00       		.byte	0
+ 959 009e 30       		.byte	48
+ 960 009f 00       		.byte	0
+ 961 00a0 30       		.byte	48
+ 962 00a1 00       		.byte	0
+ 963 00a2 41       		.byte	65
+ 964 00a3 00       		.byte	0
+ 965              		.bss
+ 966              		.align	2
+ 967              		.set	.LANCHOR0,. + 0
+ 970              	bMsVendorIndex:
+ 971 0000 00       		.space	1
+ 972 0001 000000   		.space	3
+ 975              	pabDescrip:
+ 976 0004 00000000 		.space	4
+ 979              	pfnHandleCustomReq:
+ 980 0008 00000000 		.space	4
+ARM GAS  /tmp/cc7RHaQe.s 			page 30
+
+
+ 983              	bConfiguration:
+ 984 000c 00       		.space	1
+ 985              		.text
+ 986              	.Letext0:
+ 987              		.file 2 "../common/lpcusb/target/type.h"
+ 988              		.file 3 "../common/lpcusb/target/usbstruct.h"
+ 989              		.file 4 "../common/lpcusb/target/usbapi.h"
+ 990              		.file 5 "../common/lpcusb/target/usbhw_lpc.h"
+ARM GAS  /tmp/cc7RHaQe.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbstdreq.c
+     /tmp/cc7RHaQe.s:16     .text.USBFilterOsVendorMessage:0000000000000000 $t
+     /tmp/cc7RHaQe.s:23     .text.USBFilterOsVendorMessage:0000000000000000 USBFilterOsVendorMessage
+     /tmp/cc7RHaQe.s:131    .text.USBFilterOsVendorMessage:000000000000005c $d
+     /tmp/cc7RHaQe.s:138    .text.USBRegisterWinusbInterface:0000000000000000 $t
+     /tmp/cc7RHaQe.s:145    .text.USBRegisterWinusbInterface:0000000000000000 USBRegisterWinusbInterface
+     /tmp/cc7RHaQe.s:189    .text.USBRegisterWinusbInterface:0000000000000024 $d
+     /tmp/cc7RHaQe.s:195    .text.USBGetOsStringDescriptor:0000000000000000 $t
+     /tmp/cc7RHaQe.s:202    .text.USBGetOsStringDescriptor:0000000000000000 USBGetOsStringDescriptor
+     /tmp/cc7RHaQe.s:230    .text.USBGetOsStringDescriptor:0000000000000014 $d
+     /tmp/cc7RHaQe.s:236    .text.USBRegisterDescriptors:0000000000000000 $t
+     /tmp/cc7RHaQe.s:243    .text.USBRegisterDescriptors:0000000000000000 USBRegisterDescriptors
+     /tmp/cc7RHaQe.s:258    .text.USBRegisterDescriptors:0000000000000008 $d
+     /tmp/cc7RHaQe.s:263    .text.USBGetDescriptor:0000000000000000 $t
+     /tmp/cc7RHaQe.s:270    .text.USBGetDescriptor:0000000000000000 USBGetDescriptor
+     /tmp/cc7RHaQe.s:370    .text.USBGetDescriptor:000000000000004c $d
+     /tmp/cc7RHaQe.s:376    .text.USBHandleStandardRequest:0000000000000000 $t
+     /tmp/cc7RHaQe.s:383    .text.USBHandleStandardRequest:0000000000000000 USBHandleStandardRequest
+     /tmp/cc7RHaQe.s:459    .text.USBHandleStandardRequest:0000000000000044 $d
+     /tmp/cc7RHaQe.s:469    .text.USBHandleStandardRequest:000000000000006c $t
+     /tmp/cc7RHaQe.s:715    .text.USBHandleStandardRequest:000000000000015c $d
+     /tmp/cc7RHaQe.s:722    .text.USBRegisterCustomReqHandler:0000000000000000 $t
+     /tmp/cc7RHaQe.s:729    .text.USBRegisterCustomReqHandler:0000000000000000 USBRegisterCustomReqHandler
+     /tmp/cc7RHaQe.s:744    .text.USBRegisterCustomReqHandler:0000000000000008 $d
+     /tmp/cc7RHaQe.s:752    .rodata:0000000000000000 abExtendedOsFeatureDescriptor
+     /tmp/cc7RHaQe.s:797    .data:0000000000000000 abExtendedPropertiesFeatureDescriptor
+     /tmp/cc7RHaQe.s:946    .data:0000000000000092 abOsStringDescriptor
+     /tmp/cc7RHaQe.s:966    .bss:0000000000000000 $d
+     /tmp/cc7RHaQe.s:970    .bss:0000000000000000 bMsVendorIndex
+     /tmp/cc7RHaQe.s:975    .bss:0000000000000004 pabDescrip
+     /tmp/cc7RHaQe.s:979    .bss:0000000000000008 pfnHandleCustomReq
+     /tmp/cc7RHaQe.s:983    .bss:000000000000000c bConfiguration
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+USBHwSetAddress
+USBHwConfigDevice
+USBHwEPConfig
+USBHwEPGetStatus
+USBHwEPStall

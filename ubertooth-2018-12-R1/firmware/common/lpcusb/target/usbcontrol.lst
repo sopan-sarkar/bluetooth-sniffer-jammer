@@ -1,0 +1,694 @@
+ARM GAS  /tmp/ccCL8vPf.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"usbcontrol.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.DataIn,"ax",%progbits
+  16              		.align	1
+  17              		.syntax unified
+  18              		.thumb
+  19              		.thumb_func
+  20              		.fpu softvfp
+  22              	DataIn:
+  23              	.LFB2:
+  24              		.file 1 "../common/lpcusb/target/usbcontrol.c"
+   1:../common/lpcusb/target/usbcontrol.c **** /*
+   2:../common/lpcusb/target/usbcontrol.c **** 	LPCUSB, an USB device driver for LPC microcontrollers	
+   3:../common/lpcusb/target/usbcontrol.c **** 	Copyright (C) 2006 Bertrik Sikken (bertrik@sikken.nl)
+   4:../common/lpcusb/target/usbcontrol.c **** 
+   5:../common/lpcusb/target/usbcontrol.c **** 	Redistribution and use in source and binary forms, with or without
+   6:../common/lpcusb/target/usbcontrol.c **** 	modification, are permitted provided that the following conditions are met:
+   7:../common/lpcusb/target/usbcontrol.c **** 
+   8:../common/lpcusb/target/usbcontrol.c **** 	1. Redistributions of source code must retain the above copyright
+   9:../common/lpcusb/target/usbcontrol.c **** 	   notice, this list of conditions and the following disclaimer.
+  10:../common/lpcusb/target/usbcontrol.c **** 	2. Redistributions in binary form must reproduce the above copyright
+  11:../common/lpcusb/target/usbcontrol.c **** 	   notice, this list of conditions and the following disclaimer in the
+  12:../common/lpcusb/target/usbcontrol.c **** 	   documentation and/or other materials provided with the distribution.
+  13:../common/lpcusb/target/usbcontrol.c **** 	3. The name of the author may not be used to endorse or promote products
+  14:../common/lpcusb/target/usbcontrol.c **** 	   derived from this software without specific prior written permission.
+  15:../common/lpcusb/target/usbcontrol.c **** 
+  16:../common/lpcusb/target/usbcontrol.c **** 	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+  17:../common/lpcusb/target/usbcontrol.c **** 	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+  18:../common/lpcusb/target/usbcontrol.c **** 	OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+  19:../common/lpcusb/target/usbcontrol.c **** 	IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  20:../common/lpcusb/target/usbcontrol.c **** 	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  21:../common/lpcusb/target/usbcontrol.c **** 	NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  22:../common/lpcusb/target/usbcontrol.c **** 	DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  23:../common/lpcusb/target/usbcontrol.c **** 	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  24:../common/lpcusb/target/usbcontrol.c **** 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+  25:../common/lpcusb/target/usbcontrol.c **** 	THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  26:../common/lpcusb/target/usbcontrol.c **** */
+  27:../common/lpcusb/target/usbcontrol.c **** 
+  28:../common/lpcusb/target/usbcontrol.c **** 
+  29:../common/lpcusb/target/usbcontrol.c **** /** @file
+  30:../common/lpcusb/target/usbcontrol.c **** 	Control transfer handler.
+  31:../common/lpcusb/target/usbcontrol.c **** 	
+  32:../common/lpcusb/target/usbcontrol.c **** 	This module handles control transfers and is normally installed on the
+  33:../common/lpcusb/target/usbcontrol.c **** 	endpoint 0 callback.
+  34:../common/lpcusb/target/usbcontrol.c **** 	
+ARM GAS  /tmp/ccCL8vPf.s 			page 2
+
+
+  35:../common/lpcusb/target/usbcontrol.c **** 	Control transfers can be of the following type:
+  36:../common/lpcusb/target/usbcontrol.c **** 	0 Standard;
+  37:../common/lpcusb/target/usbcontrol.c **** 	1 Class;
+  38:../common/lpcusb/target/usbcontrol.c **** 	2 Vendor;
+  39:../common/lpcusb/target/usbcontrol.c **** 	3 Reserved.
+  40:../common/lpcusb/target/usbcontrol.c **** 
+  41:../common/lpcusb/target/usbcontrol.c **** 	A callback can be installed for each of these control transfers using
+  42:../common/lpcusb/target/usbcontrol.c **** 	USBRegisterRequestHandler.
+  43:../common/lpcusb/target/usbcontrol.c **** 	When an OUT request arrives, data is collected in the data store provided
+  44:../common/lpcusb/target/usbcontrol.c **** 	with the USBRegisterRequestHandler call. When the transfer is done, the
+  45:../common/lpcusb/target/usbcontrol.c **** 	callback is called.
+  46:../common/lpcusb/target/usbcontrol.c **** 	When an IN request arrives, the callback is called immediately to either
+  47:../common/lpcusb/target/usbcontrol.c **** 	put the control transfer data in the data store, or to get a pointer to
+  48:../common/lpcusb/target/usbcontrol.c **** 	control transfer data. The data is then packetised and sent to the host.
+  49:../common/lpcusb/target/usbcontrol.c **** */
+  50:../common/lpcusb/target/usbcontrol.c **** 
+  51:../common/lpcusb/target/usbcontrol.c **** #include "type.h"
+  52:../common/lpcusb/target/usbcontrol.c **** #include "debug.h"
+  53:../common/lpcusb/target/usbcontrol.c **** 
+  54:../common/lpcusb/target/usbcontrol.c **** #include "usbstruct.h"
+  55:../common/lpcusb/target/usbcontrol.c **** #include "usbapi.h"
+  56:../common/lpcusb/target/usbcontrol.c **** 
+  57:../common/lpcusb/target/usbcontrol.c **** 
+  58:../common/lpcusb/target/usbcontrol.c **** 
+  59:../common/lpcusb/target/usbcontrol.c **** #define	MAX_CONTROL_SIZE	128	/**< maximum total size of control transfer data */
+  60:../common/lpcusb/target/usbcontrol.c **** #define	MAX_REQ_HANDLERS	4	/**< standard, class, vendor, reserved */
+  61:../common/lpcusb/target/usbcontrol.c **** 
+  62:../common/lpcusb/target/usbcontrol.c **** static TSetupPacket		Setup;	/**< setup packet */
+  63:../common/lpcusb/target/usbcontrol.c **** 
+  64:../common/lpcusb/target/usbcontrol.c **** static U8				*pbData;	/**< pointer to data buffer */
+  65:../common/lpcusb/target/usbcontrol.c **** static int				iResidue;	/**< remaining bytes in buffer */
+  66:../common/lpcusb/target/usbcontrol.c **** static int				iLen;		/**< total length of control transfer */
+  67:../common/lpcusb/target/usbcontrol.c **** 
+  68:../common/lpcusb/target/usbcontrol.c **** /** Array of installed request handler callbacks */
+  69:../common/lpcusb/target/usbcontrol.c **** static TFnHandleRequest *apfnReqHandlers[4] = {NULL, NULL, NULL, NULL};
+  70:../common/lpcusb/target/usbcontrol.c **** /** Array of installed request data pointers */
+  71:../common/lpcusb/target/usbcontrol.c **** static U8				*apbDataStore[4] = {NULL, NULL, NULL, NULL};
+  72:../common/lpcusb/target/usbcontrol.c **** 
+  73:../common/lpcusb/target/usbcontrol.c **** 
+  74:../common/lpcusb/target/usbcontrol.c **** /** Internal function filtering Vendor requests to handle OS Descriptors */
+  75:../common/lpcusb/target/usbcontrol.c **** BOOL USBFilterOsVendorMessage(TSetupPacket *pSetup, BOOL *pfSuccess, int *piLen, U8 **ppbData);
+  76:../common/lpcusb/target/usbcontrol.c **** 
+  77:../common/lpcusb/target/usbcontrol.c **** 
+  78:../common/lpcusb/target/usbcontrol.c **** 
+  79:../common/lpcusb/target/usbcontrol.c **** /**
+  80:../common/lpcusb/target/usbcontrol.c **** 	Local function to handle a request by calling one of the installed
+  81:../common/lpcusb/target/usbcontrol.c **** 	request handlers.
+  82:../common/lpcusb/target/usbcontrol.c **** 		
+  83:../common/lpcusb/target/usbcontrol.c **** 	In case of data going from host to device, the data is at *ppbData.
+  84:../common/lpcusb/target/usbcontrol.c **** 	In case of data going from device to host, the handler can either
+  85:../common/lpcusb/target/usbcontrol.c **** 	choose to write its data at *ppbData or update the data pointer.
+  86:../common/lpcusb/target/usbcontrol.c **** 		
+  87:../common/lpcusb/target/usbcontrol.c **** 	@param [in]		pSetup		The setup packet
+  88:../common/lpcusb/target/usbcontrol.c **** 	@param [in,out]	*piLen		Pointer to data length
+  89:../common/lpcusb/target/usbcontrol.c **** 	@param [in,out]	ppbData		Data buffer.
+  90:../common/lpcusb/target/usbcontrol.c **** 
+  91:../common/lpcusb/target/usbcontrol.c **** 	@return TRUE if the request was handles successfully
+ARM GAS  /tmp/ccCL8vPf.s 			page 3
+
+
+  92:../common/lpcusb/target/usbcontrol.c ****  */
+  93:../common/lpcusb/target/usbcontrol.c **** static BOOL _HandleRequest(TSetupPacket *pSetup, int *piLen, U8 **ppbData)
+  94:../common/lpcusb/target/usbcontrol.c **** {
+  95:../common/lpcusb/target/usbcontrol.c **** 	TFnHandleRequest *pfnHandler;
+  96:../common/lpcusb/target/usbcontrol.c **** 	int iType;
+  97:../common/lpcusb/target/usbcontrol.c **** 	
+  98:../common/lpcusb/target/usbcontrol.c **** 	iType = REQTYPE_GET_TYPE(pSetup->bmRequestType);
+  99:../common/lpcusb/target/usbcontrol.c **** 	
+ 100:../common/lpcusb/target/usbcontrol.c **** 	if(iType == REQTYPE_TYPE_VENDOR) {
+ 101:../common/lpcusb/target/usbcontrol.c **** 		BOOL fFilterStatus = FALSE;
+ 102:../common/lpcusb/target/usbcontrol.c **** 		if(USBFilterOsVendorMessage(pSetup, &fFilterStatus, piLen, ppbData)) {
+ 103:../common/lpcusb/target/usbcontrol.c **** 			return fFilterStatus;
+ 104:../common/lpcusb/target/usbcontrol.c **** 		}
+ 105:../common/lpcusb/target/usbcontrol.c **** 	}
+ 106:../common/lpcusb/target/usbcontrol.c **** 	
+ 107:../common/lpcusb/target/usbcontrol.c **** 	pfnHandler = apfnReqHandlers[iType];
+ 108:../common/lpcusb/target/usbcontrol.c **** 	if (pfnHandler == NULL) {
+ 109:../common/lpcusb/target/usbcontrol.c **** 		DBG("No handler for reqtype %d\n", iType);
+ 110:../common/lpcusb/target/usbcontrol.c **** 		return FALSE;
+ 111:../common/lpcusb/target/usbcontrol.c **** 	}
+ 112:../common/lpcusb/target/usbcontrol.c **** 
+ 113:../common/lpcusb/target/usbcontrol.c **** 	return pfnHandler(pSetup, piLen, ppbData);
+ 114:../common/lpcusb/target/usbcontrol.c **** }
+ 115:../common/lpcusb/target/usbcontrol.c **** 
+ 116:../common/lpcusb/target/usbcontrol.c **** 
+ 117:../common/lpcusb/target/usbcontrol.c **** /**
+ 118:../common/lpcusb/target/usbcontrol.c **** 	Local function to stall the control endpoint
+ 119:../common/lpcusb/target/usbcontrol.c **** 	
+ 120:../common/lpcusb/target/usbcontrol.c **** 	@param [in]	bEPStat	Endpoint status
+ 121:../common/lpcusb/target/usbcontrol.c ****  */
+ 122:../common/lpcusb/target/usbcontrol.c **** static void StallControlPipe(U8 bEPStat)
+ 123:../common/lpcusb/target/usbcontrol.c **** {
+ 124:../common/lpcusb/target/usbcontrol.c **** 	U8	*pb;
+ 125:../common/lpcusb/target/usbcontrol.c **** 	int	i;
+ 126:../common/lpcusb/target/usbcontrol.c **** 
+ 127:../common/lpcusb/target/usbcontrol.c **** 	USBHwEPStall(0x80, TRUE);
+ 128:../common/lpcusb/target/usbcontrol.c **** 
+ 129:../common/lpcusb/target/usbcontrol.c **** // dump setup packet
+ 130:../common/lpcusb/target/usbcontrol.c **** 	DBG("STALL on [");
+ 131:../common/lpcusb/target/usbcontrol.c **** 	pb = (U8 *)&Setup;
+ 132:../common/lpcusb/target/usbcontrol.c **** 	for (i = 0; i < 8; i++) {
+ 133:../common/lpcusb/target/usbcontrol.c **** 		DBG(" %02x", *pb++);
+ 134:../common/lpcusb/target/usbcontrol.c **** 	}
+ 135:../common/lpcusb/target/usbcontrol.c **** 	DBG("] stat=%x\n", bEPStat);
+ 136:../common/lpcusb/target/usbcontrol.c **** }
+ 137:../common/lpcusb/target/usbcontrol.c **** 
+ 138:../common/lpcusb/target/usbcontrol.c **** 
+ 139:../common/lpcusb/target/usbcontrol.c **** /**
+ 140:../common/lpcusb/target/usbcontrol.c **** 	Sends next chunk of data (possibly 0 bytes) to host
+ 141:../common/lpcusb/target/usbcontrol.c ****  */
+ 142:../common/lpcusb/target/usbcontrol.c **** static void DataIn(void)
+ 143:../common/lpcusb/target/usbcontrol.c **** {
+  25              		.loc 1 143 0
+  26              		.cfi_startproc
+  27              		@ args = 0, pretend = 0, frame = 0
+  28              		@ frame_needed = 0, uses_anonymous_args = 0
+  29 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  /tmp/ccCL8vPf.s 			page 4
+
+
+  30              		.cfi_def_cfa_offset 16
+  31              		.cfi_offset 3, -16
+  32              		.cfi_offset 4, -12
+  33              		.cfi_offset 5, -8
+  34              		.cfi_offset 14, -4
+ 144:../common/lpcusb/target/usbcontrol.c **** 	int iChunk;
+ 145:../common/lpcusb/target/usbcontrol.c **** 
+ 146:../common/lpcusb/target/usbcontrol.c **** 	iChunk = MIN(MAX_PACKET_SIZE0, iResidue);
+  35              		.loc 1 146 0
+  36 0002 084C     		ldr	r4, .L2
+ 147:../common/lpcusb/target/usbcontrol.c **** 	USBHwEPWrite(0x80, pbData, iChunk);
+  37              		.loc 1 147 0
+  38 0004 8020     		movs	r0, #128
+ 146:../common/lpcusb/target/usbcontrol.c **** 	USBHwEPWrite(0x80, pbData, iChunk);
+  39              		.loc 1 146 0
+  40 0006 2568     		ldr	r5, [r4]
+  41              		.loc 1 147 0
+  42 0008 6168     		ldr	r1, [r4, #4]
+ 146:../common/lpcusb/target/usbcontrol.c **** 	USBHwEPWrite(0x80, pbData, iChunk);
+  43              		.loc 1 146 0
+  44 000a 402D     		cmp	r5, #64
+  45 000c A8BF     		it	ge
+  46 000e 4025     		movge	r5, #64
+  47              	.LVL0:
+  48              		.loc 1 147 0
+  49 0010 2A46     		mov	r2, r5
+  50 0012 FFF7FEFF 		bl	USBHwEPWrite
+  51              	.LVL1:
+ 148:../common/lpcusb/target/usbcontrol.c **** 	pbData += iChunk;
+  52              		.loc 1 148 0
+  53 0016 6368     		ldr	r3, [r4, #4]
+  54 0018 2B44     		add	r3, r3, r5
+  55 001a 6360     		str	r3, [r4, #4]
+ 149:../common/lpcusb/target/usbcontrol.c **** 	iResidue -= iChunk;
+  56              		.loc 1 149 0
+  57 001c 2368     		ldr	r3, [r4]
+  58 001e 5D1B     		subs	r5, r3, r5
+  59              	.LVL2:
+  60 0020 2560     		str	r5, [r4]
+  61 0022 38BD     		pop	{r3, r4, r5, pc}
+  62              	.L3:
+  63              		.align	2
+  64              	.L2:
+  65 0024 00000000 		.word	.LANCHOR0
+  66              		.cfi_endproc
+  67              	.LFE2:
+  69              		.section	.text._HandleRequest.constprop.1,"ax",%progbits
+  70              		.align	1
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  74              		.fpu softvfp
+  76              	_HandleRequest.constprop.1:
+  77              	.LFB6:
+  93:../common/lpcusb/target/usbcontrol.c **** {
+  78              		.loc 1 93 0
+  79              		.cfi_startproc
+ARM GAS  /tmp/ccCL8vPf.s 			page 5
+
+
+  80              		@ args = 0, pretend = 0, frame = 8
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+  83              		.cfi_def_cfa_offset 24
+  84              		.cfi_offset 4, -12
+  85              		.cfi_offset 5, -8
+  86              		.cfi_offset 14, -4
+  87              	.LVL3:
+  98:../common/lpcusb/target/usbcontrol.c **** 	
+  88              		.loc 1 98 0
+  89 0002 1048     		ldr	r0, .L12
+  90 0004 047A     		ldrb	r4, [r0, #8]	@ zero_extendqisi2
+  91 0006 0546     		mov	r5, r0
+  92 0008 C4F34114 		ubfx	r4, r4, #5, #2
+  93              	.LVL4:
+ 100:../common/lpcusb/target/usbcontrol.c **** 		BOOL fFilterStatus = FALSE;
+  94              		.loc 1 100 0
+  95 000c 022C     		cmp	r4, #2
+  96 000e 0DD1     		bne	.L5
+  97              	.LBB3:
+ 101:../common/lpcusb/target/usbcontrol.c **** 		if(USBFilterOsVendorMessage(pSetup, &fFilterStatus, piLen, ppbData)) {
+  98              		.loc 1 101 0
+  99 0010 0023     		movs	r3, #0
+ 100 0012 02A9     		add	r1, sp, #8
+ 101 0014 41F8043D 		str	r3, [r1, #-4]!
+ 102:../common/lpcusb/target/usbcontrol.c **** 			return fFilterStatus;
+ 102              		.loc 1 102 0
+ 103 0018 00F11002 		add	r2, r0, #16
+ 104 001c 031D     		adds	r3, r0, #4
+ 105 001e 0830     		adds	r0, r0, #8
+ 106 0020 FFF7FEFF 		bl	USBFilterOsVendorMessage
+ 107              	.LVL5:
+ 108 0024 10B1     		cbz	r0, .L5
+ 103:../common/lpcusb/target/usbcontrol.c **** 		}
+ 109              		.loc 1 103 0
+ 110 0026 0198     		ldr	r0, [sp, #4]
+ 111              	.LVL6:
+ 112              	.L4:
+ 113              	.LBE3:
+ 114:../common/lpcusb/target/usbcontrol.c **** 
+ 114              		.loc 1 114 0
+ 115 0028 03B0     		add	sp, sp, #12
+ 116              		.cfi_remember_state
+ 117              		.cfi_def_cfa_offset 12
+ 118              		@ sp needed
+ 119 002a 30BD     		pop	{r4, r5, pc}
+ 120              	.LVL7:
+ 121              	.L5:
+ 122              		.cfi_restore_state
+ 107:../common/lpcusb/target/usbcontrol.c **** 	if (pfnHandler == NULL) {
+ 123              		.loc 1 107 0
+ 124 002c 05EB8404 		add	r4, r5, r4, lsl #2
+ 125              	.LVL8:
+ 126 0030 6369     		ldr	r3, [r4, #20]
+ 127              	.LVL9:
+ 108:../common/lpcusb/target/usbcontrol.c **** 		DBG("No handler for reqtype %d\n", iType);
+ 128              		.loc 1 108 0
+ARM GAS  /tmp/ccCL8vPf.s 			page 6
+
+
+ 129 0032 2BB1     		cbz	r3, .L8
+ 113:../common/lpcusb/target/usbcontrol.c **** }
+ 130              		.loc 1 113 0
+ 131 0034 044A     		ldr	r2, .L12+4
+ 132 0036 02F10C01 		add	r1, r2, #12
+ 133 003a 101D     		adds	r0, r2, #4
+ 134 003c 9847     		blx	r3
+ 135              	.LVL10:
+ 136 003e F3E7     		b	.L4
+ 137              	.LVL11:
+ 138              	.L8:
+ 110:../common/lpcusb/target/usbcontrol.c **** 	}
+ 139              		.loc 1 110 0
+ 140 0040 1846     		mov	r0, r3
+ 141 0042 F1E7     		b	.L4
+ 142              	.L13:
+ 143              		.align	2
+ 144              	.L12:
+ 145 0044 00000000 		.word	.LANCHOR0
+ 146 0048 04000000 		.word	.LANCHOR0+4
+ 147              		.cfi_endproc
+ 148              	.LFE6:
+ 150              		.section	.text.USBHandleControlTransfer,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	USBHandleControlTransfer
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.fpu softvfp
+ 158              	USBHandleControlTransfer:
+ 159              	.LFB3:
+ 150:../common/lpcusb/target/usbcontrol.c **** }
+ 151:../common/lpcusb/target/usbcontrol.c **** 
+ 152:../common/lpcusb/target/usbcontrol.c **** 
+ 153:../common/lpcusb/target/usbcontrol.c **** /**
+ 154:../common/lpcusb/target/usbcontrol.c ****  *	Handles IN/OUT transfers on EP0
+ 155:../common/lpcusb/target/usbcontrol.c ****  *
+ 156:../common/lpcusb/target/usbcontrol.c ****  *	@param [in]	bEP		Endpoint address
+ 157:../common/lpcusb/target/usbcontrol.c ****  *	@param [in]	bEPStat	Endpoint status
+ 158:../common/lpcusb/target/usbcontrol.c ****  */
+ 159:../common/lpcusb/target/usbcontrol.c **** void USBHandleControlTransfer(U8 bEP, U8 bEPStat)
+ 160:../common/lpcusb/target/usbcontrol.c **** {
+ 160              		.loc 1 160 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              	.LVL12:
+ 165 0000 10B5     		push	{r4, lr}
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 4, -8
+ 168              		.cfi_offset 14, -4
+ 161:../common/lpcusb/target/usbcontrol.c **** 	int iChunk, iType;
+ 162:../common/lpcusb/target/usbcontrol.c **** 
+ 163:../common/lpcusb/target/usbcontrol.c **** 	if (bEP == 0x00) {
+ 169              		.loc 1 163 0
+ 170 0002 0028     		cmp	r0, #0
+ 171 0004 47D1     		bne	.L15
+ARM GAS  /tmp/ccCL8vPf.s 			page 7
+
+
+ 164:../common/lpcusb/target/usbcontrol.c **** 		// OUT transfer
+ 165:../common/lpcusb/target/usbcontrol.c **** 		if (bEPStat & EP_STATUS_SETUP) {
+ 172              		.loc 1 165 0
+ 173 0006 11F00401 		ands	r1, r1, #4
+ 174              	.LVL13:
+ 175 000a 244C     		ldr	r4, .L33
+ 176 000c 23D0     		beq	.L16
+ 166:../common/lpcusb/target/usbcontrol.c **** 			// setup packet, reset request message state machine
+ 167:../common/lpcusb/target/usbcontrol.c **** 			USBHwEPRead(0x00, (U8 *)&Setup, sizeof(Setup));
+ 177              		.loc 1 167 0
+ 178 000e 0822     		movs	r2, #8
+ 179 0010 A118     		adds	r1, r4, r2
+ 180 0012 FFF7FEFF 		bl	USBHwEPRead
+ 181              	.LVL14:
+ 168:../common/lpcusb/target/usbcontrol.c **** 			DBG("S%x", Setup.bRequest);
+ 169:../common/lpcusb/target/usbcontrol.c **** 
+ 170:../common/lpcusb/target/usbcontrol.c **** 			// defaults for data pointer and residue
+ 171:../common/lpcusb/target/usbcontrol.c **** 			iType = REQTYPE_GET_TYPE(Setup.bmRequestType);
+ 182              		.loc 1 171 0
+ 183 0016 227A     		ldrb	r2, [r4, #8]	@ zero_extendqisi2
+ 184              	.LVL15:
+ 185 0018 C2F34113 		ubfx	r3, r2, #5, #2
+ 172:../common/lpcusb/target/usbcontrol.c **** 			pbData = apbDataStore[iType];
+ 186              		.loc 1 172 0
+ 187 001c 04EB8303 		add	r3, r4, r3, lsl #2
+ 188 0020 5B6A     		ldr	r3, [r3, #36]
+ 189 0022 6360     		str	r3, [r4, #4]
+ 173:../common/lpcusb/target/usbcontrol.c **** 			iResidue = Setup.wLength;
+ 190              		.loc 1 173 0
+ 191 0024 E389     		ldrh	r3, [r4, #14]
+ 192 0026 2360     		str	r3, [r4]
+ 174:../common/lpcusb/target/usbcontrol.c **** 			iLen = Setup.wLength;
+ 193              		.loc 1 174 0
+ 194 0028 2361     		str	r3, [r4, #16]
+ 175:../common/lpcusb/target/usbcontrol.c **** 
+ 176:../common/lpcusb/target/usbcontrol.c **** 			if ((Setup.wLength == 0) ||
+ 195              		.loc 1 176 0
+ 196 002a 0BB1     		cbz	r3, .L17
+ 197              		.loc 1 176 0 is_stmt 0 discriminator 1
+ 198 002c D309     		lsrs	r3, r2, #7
+ 199 002e 34D0     		beq	.L14
+ 200              	.L17:
+ 177:../common/lpcusb/target/usbcontrol.c **** 				(REQTYPE_GET_DIR(Setup.bmRequestType) == REQTYPE_DIR_TO_HOST)) {
+ 178:../common/lpcusb/target/usbcontrol.c **** 				// ask installed handler to process request
+ 179:../common/lpcusb/target/usbcontrol.c **** 				if (!_HandleRequest(&Setup, &iLen, &pbData)) {
+ 201              		.loc 1 179 0 is_stmt 1
+ 202 0030 FFF7FEFF 		bl	_HandleRequest.constprop.1
+ 203              	.LVL16:
+ 204 0034 28B9     		cbnz	r0, .L19
+ 205              	.L21:
+ 206              	.LVL17:
+ 180:../common/lpcusb/target/usbcontrol.c **** 					DBG("_HandleRequest1 failed\n");
+ 181:../common/lpcusb/target/usbcontrol.c **** 					StallControlPipe(bEPStat);
+ 182:../common/lpcusb/target/usbcontrol.c **** 					return;
+ 183:../common/lpcusb/target/usbcontrol.c **** 				}
+ 184:../common/lpcusb/target/usbcontrol.c **** 				// send smallest of requested and offered length
+ 185:../common/lpcusb/target/usbcontrol.c **** 				iResidue = MIN(iLen, Setup.wLength);
+ARM GAS  /tmp/ccCL8vPf.s 			page 8
+
+
+ 186:../common/lpcusb/target/usbcontrol.c **** 				// send first part (possibly a zero-length status message)
+ 187:../common/lpcusb/target/usbcontrol.c **** 				DataIn();
+ 188:../common/lpcusb/target/usbcontrol.c **** 			}
+ 189:../common/lpcusb/target/usbcontrol.c **** 		}
+ 190:../common/lpcusb/target/usbcontrol.c **** 		else {		
+ 191:../common/lpcusb/target/usbcontrol.c **** 			if (iResidue > 0) {
+ 192:../common/lpcusb/target/usbcontrol.c **** 				// store data
+ 193:../common/lpcusb/target/usbcontrol.c **** 				iChunk = USBHwEPRead(0x00, pbData, iResidue);
+ 194:../common/lpcusb/target/usbcontrol.c **** 				if (iChunk < 0) {
+ 195:../common/lpcusb/target/usbcontrol.c **** 					StallControlPipe(bEPStat);
+ 196:../common/lpcusb/target/usbcontrol.c **** 					return;
+ 197:../common/lpcusb/target/usbcontrol.c **** 				}
+ 198:../common/lpcusb/target/usbcontrol.c **** 				pbData += iChunk;
+ 199:../common/lpcusb/target/usbcontrol.c **** 				iResidue -= iChunk;
+ 200:../common/lpcusb/target/usbcontrol.c **** 				if (iResidue == 0) {
+ 201:../common/lpcusb/target/usbcontrol.c **** 					// received all, send data to handler
+ 202:../common/lpcusb/target/usbcontrol.c **** 					iType = REQTYPE_GET_TYPE(Setup.bmRequestType);
+ 203:../common/lpcusb/target/usbcontrol.c **** 					pbData = apbDataStore[iType];
+ 204:../common/lpcusb/target/usbcontrol.c **** 					if (!_HandleRequest(&Setup, &iLen, &pbData)) {
+ 205:../common/lpcusb/target/usbcontrol.c **** 						DBG("_HandleRequest2 failed\n");
+ 206:../common/lpcusb/target/usbcontrol.c **** 						StallControlPipe(bEPStat);
+ 207:../common/lpcusb/target/usbcontrol.c **** 						return;
+ 208:../common/lpcusb/target/usbcontrol.c **** 					}
+ 209:../common/lpcusb/target/usbcontrol.c **** 					// send status to host
+ 210:../common/lpcusb/target/usbcontrol.c **** 					DataIn();
+ 211:../common/lpcusb/target/usbcontrol.c **** 				}
+ 212:../common/lpcusb/target/usbcontrol.c **** 			}
+ 213:../common/lpcusb/target/usbcontrol.c **** 			else {
+ 214:../common/lpcusb/target/usbcontrol.c **** 				// absorb zero-length status message
+ 215:../common/lpcusb/target/usbcontrol.c **** 				iChunk = USBHwEPRead(0x00, NULL, 0);
+ 216:../common/lpcusb/target/usbcontrol.c **** 				DBG(iChunk > 0 ? "?" : "");
+ 217:../common/lpcusb/target/usbcontrol.c **** 			}
+ 218:../common/lpcusb/target/usbcontrol.c **** 		}
+ 219:../common/lpcusb/target/usbcontrol.c **** 	}
+ 220:../common/lpcusb/target/usbcontrol.c **** 	else if (bEP == 0x80) {
+ 221:../common/lpcusb/target/usbcontrol.c **** 		// IN transfer
+ 222:../common/lpcusb/target/usbcontrol.c **** 		// send more data if available (possibly a 0-length packet)
+ 223:../common/lpcusb/target/usbcontrol.c **** 		DataIn();
+ 224:../common/lpcusb/target/usbcontrol.c **** 	}
+ 225:../common/lpcusb/target/usbcontrol.c **** 	else {
+ 226:../common/lpcusb/target/usbcontrol.c **** 		ASSERT(FALSE);
+ 227:../common/lpcusb/target/usbcontrol.c **** 	}
+ 228:../common/lpcusb/target/usbcontrol.c **** }
+ 207              		.loc 1 228 0
+ 208 0036 BDE81040 		pop	{r4, lr}
+ 209              		.cfi_remember_state
+ 210              		.cfi_restore 14
+ 211              		.cfi_restore 4
+ 212              		.cfi_def_cfa_offset 0
+ 213              	.LBB10:
+ 214              	.LBB11:
+ 127:../common/lpcusb/target/usbcontrol.c **** 
+ 215              		.loc 1 127 0
+ 216 003a 0121     		movs	r1, #1
+ 217 003c 8020     		movs	r0, #128
+ 218 003e FFF7FEBF 		b	USBHwEPStall
+ 219              	.LVL18:
+ARM GAS  /tmp/ccCL8vPf.s 			page 9
+
+
+ 220              	.L19:
+ 221              		.cfi_restore_state
+ 222              	.LBE11:
+ 223              	.LBE10:
+ 185:../common/lpcusb/target/usbcontrol.c **** 				// send first part (possibly a zero-length status message)
+ 224              		.loc 1 185 0
+ 225 0042 E289     		ldrh	r2, [r4, #14]
+ 226 0044 2369     		ldr	r3, [r4, #16]
+ 227 0046 9A42     		cmp	r2, r3
+ 228 0048 D4BF     		ite	le
+ 229 004a 2260     		strle	r2, [r4]
+ 230 004c 2360     		strgt	r3, [r4]
+ 231              	.L23:
+ 232              		.loc 1 228 0
+ 233 004e BDE81040 		pop	{r4, lr}
+ 234              		.cfi_remember_state
+ 235              		.cfi_restore 14
+ 236              		.cfi_restore 4
+ 237              		.cfi_def_cfa_offset 0
+ 210:../common/lpcusb/target/usbcontrol.c **** 				}
+ 238              		.loc 1 210 0
+ 239 0052 FFF7FEBF 		b	DataIn
+ 240              	.LVL19:
+ 241              	.L16:
+ 242              		.cfi_restore_state
+ 191:../common/lpcusb/target/usbcontrol.c **** 				// store data
+ 243              		.loc 1 191 0
+ 244 0056 2268     		ldr	r2, [r4]
+ 245 0058 002A     		cmp	r2, #0
+ 246 005a 17DD     		ble	.L20
+ 193:../common/lpcusb/target/usbcontrol.c **** 				if (iChunk < 0) {
+ 247              		.loc 1 193 0
+ 248 005c 6168     		ldr	r1, [r4, #4]
+ 249 005e FFF7FEFF 		bl	USBHwEPRead
+ 250              	.LVL20:
+ 194:../common/lpcusb/target/usbcontrol.c **** 					StallControlPipe(bEPStat);
+ 251              		.loc 1 194 0
+ 252 0062 0028     		cmp	r0, #0
+ 253 0064 E7DB     		blt	.L21
+ 198:../common/lpcusb/target/usbcontrol.c **** 				iResidue -= iChunk;
+ 254              		.loc 1 198 0
+ 255 0066 6368     		ldr	r3, [r4, #4]
+ 256 0068 0344     		add	r3, r3, r0
+ 257 006a 6360     		str	r3, [r4, #4]
+ 199:../common/lpcusb/target/usbcontrol.c **** 				if (iResidue == 0) {
+ 258              		.loc 1 199 0
+ 259 006c 2368     		ldr	r3, [r4]
+ 260 006e 181A     		subs	r0, r3, r0
+ 261              	.LVL21:
+ 262 0070 2060     		str	r0, [r4]
+ 200:../common/lpcusb/target/usbcontrol.c **** 					// received all, send data to handler
+ 263              		.loc 1 200 0
+ 264 0072 90B9     		cbnz	r0, .L14
+ 265              	.LVL22:
+ 202:../common/lpcusb/target/usbcontrol.c **** 					pbData = apbDataStore[iType];
+ 266              		.loc 1 202 0
+ 267 0074 237A     		ldrb	r3, [r4, #8]	@ zero_extendqisi2
+ARM GAS  /tmp/ccCL8vPf.s 			page 10
+
+
+ 268 0076 C3F34113 		ubfx	r3, r3, #5, #2
+ 203:../common/lpcusb/target/usbcontrol.c **** 					if (!_HandleRequest(&Setup, &iLen, &pbData)) {
+ 269              		.loc 1 203 0
+ 270 007a 04EB8303 		add	r3, r4, r3, lsl #2
+ 271 007e 5B6A     		ldr	r3, [r3, #36]
+ 272 0080 6360     		str	r3, [r4, #4]
+ 204:../common/lpcusb/target/usbcontrol.c **** 						DBG("_HandleRequest2 failed\n");
+ 273              		.loc 1 204 0
+ 274 0082 FFF7FEFF 		bl	_HandleRequest.constprop.1
+ 275              	.LVL23:
+ 276 0086 0028     		cmp	r0, #0
+ 277 0088 D5D0     		beq	.L21
+ 278 008a E0E7     		b	.L23
+ 279              	.LVL24:
+ 280              	.L20:
+ 215:../common/lpcusb/target/usbcontrol.c **** 				DBG(iChunk > 0 ? "?" : "");
+ 281              		.loc 1 215 0
+ 282 008c 0A46     		mov	r2, r1
+ 283              		.loc 1 228 0
+ 284 008e BDE81040 		pop	{r4, lr}
+ 285              		.cfi_remember_state
+ 286              		.cfi_restore 14
+ 287              		.cfi_restore 4
+ 288              		.cfi_def_cfa_offset 0
+ 215:../common/lpcusb/target/usbcontrol.c **** 				DBG(iChunk > 0 ? "?" : "");
+ 289              		.loc 1 215 0
+ 290 0092 FFF7FEBF 		b	USBHwEPRead
+ 291              	.LVL25:
+ 292              	.L15:
+ 293              		.cfi_restore_state
+ 220:../common/lpcusb/target/usbcontrol.c **** 		// IN transfer
+ 294              		.loc 1 220 0
+ 295 0096 8028     		cmp	r0, #128
+ 296 0098 D9D0     		beq	.L23
+ 297              	.LVL26:
+ 298              	.L14:
+ 299 009a 10BD     		pop	{r4, pc}
+ 300              	.L34:
+ 301              		.align	2
+ 302              	.L33:
+ 303 009c 00000000 		.word	.LANCHOR0
+ 304              		.cfi_endproc
+ 305              	.LFE3:
+ 307              		.section	.text.USBRegisterRequestHandler,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	USBRegisterRequestHandler
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 313              		.fpu softvfp
+ 315              	USBRegisterRequestHandler:
+ 316              	.LFB4:
+ 229:../common/lpcusb/target/usbcontrol.c **** 
+ 230:../common/lpcusb/target/usbcontrol.c **** 
+ 231:../common/lpcusb/target/usbcontrol.c **** /**
+ 232:../common/lpcusb/target/usbcontrol.c **** 	Registers a callback for handling requests
+ 233:../common/lpcusb/target/usbcontrol.c **** 		
+ARM GAS  /tmp/ccCL8vPf.s 			page 11
+
+
+ 234:../common/lpcusb/target/usbcontrol.c **** 	@param [in]	iType			Type of request, e.g. REQTYPE_TYPE_STANDARD
+ 235:../common/lpcusb/target/usbcontrol.c **** 	@param [in]	*pfnHandler		Callback function pointer
+ 236:../common/lpcusb/target/usbcontrol.c **** 	@param [in]	*pbDataStore	Data storage area for this type of request
+ 237:../common/lpcusb/target/usbcontrol.c ****  */
+ 238:../common/lpcusb/target/usbcontrol.c **** void USBRegisterRequestHandler(int iType, TFnHandleRequest *pfnHandler, U8 *pbDataStore)
+ 239:../common/lpcusb/target/usbcontrol.c **** {
+ 317              		.loc 1 239 0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              		@ link register save eliminated.
+ 322              	.LVL27:
+ 240:../common/lpcusb/target/usbcontrol.c **** 	ASSERT(iType >= 0);
+ 241:../common/lpcusb/target/usbcontrol.c **** 	ASSERT(iType < 4);
+ 242:../common/lpcusb/target/usbcontrol.c **** 	apfnReqHandlers[iType] = pfnHandler;
+ 323              		.loc 1 242 0
+ 324 0000 024B     		ldr	r3, .L36
+ 325 0002 03EB8000 		add	r0, r3, r0, lsl #2
+ 326              	.LVL28:
+ 327 0006 4161     		str	r1, [r0, #20]
+ 243:../common/lpcusb/target/usbcontrol.c **** 	apbDataStore[iType] = pbDataStore;
+ 328              		.loc 1 243 0
+ 329 0008 4262     		str	r2, [r0, #36]
+ 330 000a 7047     		bx	lr
+ 331              	.L37:
+ 332              		.align	2
+ 333              	.L36:
+ 334 000c 00000000 		.word	.LANCHOR0
+ 335              		.cfi_endproc
+ 336              	.LFE4:
+ 338              		.bss
+ 339              		.align	2
+ 340              		.set	.LANCHOR0,. + 0
+ 343              	iResidue:
+ 344 0000 00000000 		.space	4
+ 347              	pbData:
+ 348 0004 00000000 		.space	4
+ 351              	Setup:
+ 352 0008 00000000 		.space	8
+ 352      00000000 
+ 355              	iLen:
+ 356 0010 00000000 		.space	4
+ 359              	apfnReqHandlers:
+ 360 0014 00000000 		.space	16
+ 360      00000000 
+ 360      00000000 
+ 360      00000000 
+ 363              	apbDataStore:
+ 364 0024 00000000 		.space	16
+ 364      00000000 
+ 364      00000000 
+ 364      00000000 
+ 365              		.text
+ 366              	.Letext0:
+ 367              		.file 2 "../common/lpcusb/target/type.h"
+ 368              		.file 3 "../common/lpcusb/target/usbstruct.h"
+ 369              		.file 4 "../common/lpcusb/target/usbapi.h"
+ARM GAS  /tmp/ccCL8vPf.s 			page 12
+
+
+ARM GAS  /tmp/ccCL8vPf.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbcontrol.c
+     /tmp/ccCL8vPf.s:16     .text.DataIn:0000000000000000 $t
+     /tmp/ccCL8vPf.s:22     .text.DataIn:0000000000000000 DataIn
+     /tmp/ccCL8vPf.s:65     .text.DataIn:0000000000000024 $d
+     /tmp/ccCL8vPf.s:70     .text._HandleRequest.constprop.1:0000000000000000 $t
+     /tmp/ccCL8vPf.s:76     .text._HandleRequest.constprop.1:0000000000000000 _HandleRequest.constprop.1
+     /tmp/ccCL8vPf.s:145    .text._HandleRequest.constprop.1:0000000000000044 $d
+     /tmp/ccCL8vPf.s:151    .text.USBHandleControlTransfer:0000000000000000 $t
+     /tmp/ccCL8vPf.s:158    .text.USBHandleControlTransfer:0000000000000000 USBHandleControlTransfer
+     /tmp/ccCL8vPf.s:303    .text.USBHandleControlTransfer:000000000000009c $d
+     /tmp/ccCL8vPf.s:308    .text.USBRegisterRequestHandler:0000000000000000 $t
+     /tmp/ccCL8vPf.s:315    .text.USBRegisterRequestHandler:0000000000000000 USBRegisterRequestHandler
+     /tmp/ccCL8vPf.s:334    .text.USBRegisterRequestHandler:000000000000000c $d
+     /tmp/ccCL8vPf.s:339    .bss:0000000000000000 $d
+     /tmp/ccCL8vPf.s:343    .bss:0000000000000000 iResidue
+     /tmp/ccCL8vPf.s:347    .bss:0000000000000004 pbData
+     /tmp/ccCL8vPf.s:351    .bss:0000000000000008 Setup
+     /tmp/ccCL8vPf.s:355    .bss:0000000000000010 iLen
+     /tmp/ccCL8vPf.s:359    .bss:0000000000000014 apfnReqHandlers
+     /tmp/ccCL8vPf.s:363    .bss:0000000000000024 apbDataStore
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+USBHwEPWrite
+USBFilterOsVendorMessage
+USBHwEPRead
+USBHwEPStall

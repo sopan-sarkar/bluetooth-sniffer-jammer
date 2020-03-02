@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC   -shared -Wl,-soname,libubertooth.so.1 -o libubertooth.so.1.1 CMakeFiles/ubertooth.dir/ubertooth.c.o CMakeFiles/ubertooth.dir/ubertooth_callback.c.o CMakeFiles/ubertooth.dir/ubertooth_control.c.o CMakeFiles/ubertooth.dir/ubertooth_fifo.c.o -Wl,-rpath,/usr/local/lib: -lusb-1.0 /usr/local/lib/libbtbb.so 

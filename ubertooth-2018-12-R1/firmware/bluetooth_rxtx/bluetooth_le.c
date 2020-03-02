@@ -31,6 +31,7 @@ u16 btle_next_hop(le_state_t *le)
 	u16 phys = btle_channel_index_to_phys(le->channel_idx);
 	le->channel_idx = (le->channel_idx + le->channel_increment) % 37;
 	return phys;
+    //return le->channel_idx;
 }
 
 // calculate channel index from physical channel
@@ -205,7 +206,7 @@ void le_dewhiten(uint8_t *data, unsigned size, unsigned channel) {
 /*
  * Parse a channel map and populate the le_channel_remapping_t struct.
  */
-void le_parse_channel_map(uint8_t *channel_map, le_channel_remapping_t *remapping) {
+int le_parse_channel_map(uint8_t *channel_map, le_channel_remapping_t *remapping) {
 	unsigned i, j, byte;
 	unsigned idx = 0;
 
@@ -229,6 +230,7 @@ void le_parse_channel_map(uint8_t *channel_map, le_channel_remapping_t *remappin
 				break;
 		}
 	}
+    return 2;
 }
 
 /*

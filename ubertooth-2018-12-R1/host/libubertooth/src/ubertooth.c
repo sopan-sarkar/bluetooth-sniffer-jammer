@@ -454,7 +454,7 @@ void rx_btle_file(FILE* fp)
 	if (ut == NULL)
 		return;
 
-	stream_rx_file(ut, fp, cb_btle, NULL);
+	//stream_rx_file(ut, fp, cb_btle, NULL); //sopan
 }
 
 void ubertooth_unpack_symbols(const uint8_t* buf, char* unpacked)

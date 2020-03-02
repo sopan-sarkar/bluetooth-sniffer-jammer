@@ -58,7 +58,7 @@ ifneq ($(DIRTY), )
 endif
 
 # automatic git version when working out of git
-GIT_REVISION ?= -D'GIT_REVISION="2018-12-R1"'
+GIT_REVISION ?= -D'GIT_REVISION="git-$(shell git log --pretty=format:'%h' -n 1)$(DIRTY_FLAG)"'
 
 # compile info
 COMPILE_BY ?= -D'COMPILE_BY="$(shell whoami)"'

@@ -1,0 +1,3233 @@
+in do follow modejam mode = 0 value of r= 0The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504319079567 freq=2418 addr=ddb05db4 delta_t=135.994ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - CRC Init: 88e9c1
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504319323959 freq=2418 addr=ddb05db4 delta_t=243.758ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504319324737 freq=2418 addr=ddb05db4 delta_t=0.234ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504320249358 freq=2418 addr=ddb05db4 delta_t=926.049ms rssi=-21
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504320250135 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504320883384 freq=2418 addr=ddb05db4 delta_t=633.546ms rssi=-21
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504321127134 freq=2418 addr=ddb05db4 delta_t=243.758ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504321127864 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504321517385 freq=2418 addr=ddb05db4 delta_t=389.790ms rssi=-20
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504322053705 freq=2418 addr=ddb05db4 delta_t=536.268ms rssi=-63
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504322054474 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504322931159 freq=2418 addr=ddb05db4 delta_t=877.301ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504322931974 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504323320919 freq=2418 addr=ddb05db4 delta_t=389.787ms rssi=-21
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504323321672 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504323857420 freq=2418 addr=ddb05db4 delta_t=536.041ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504324491347 freq=2418 addr=ddb05db4 delta_t=633.808ms rssi=-114
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504324492213 freq=2418 addr=ddb05db4 delta_t=0.194ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504324734453 freq=2418 addr=ddb05db4 delta_t=243.528ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504324735198 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504325125011 freq=2418 addr=ddb05db4 delta_t=389.783ms rssi=-22
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504325125898 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504325661514 freq=2418 addr=ddb05db4 delta_t=536.269ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504326295100 freq=2418 addr=ddb05db4 delta_t=633.542ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504326295950 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504326538601 freq=2418 addr=ddb05db4 delta_t=243.528ms rssi=-23
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504326539488 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504326929119 freq=2418 addr=ddb05db4 delta_t=390.019ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504327464714 freq=2418 addr=ddb05db4 delta_t=536.033ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504327465480 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-36
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328098632 freq=2418 addr=ddb05db4 delta_t=633.546ms rssi=-21
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328099415 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328342562 freq=2418 addr=ddb05db4 delta_t=243.526ms rssi=-20
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328343318 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328732130 freq=2418 addr=ddb05db4 delta_t=389.785ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504328733013 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-36
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504329268725 freq=2418 addr=ddb05db4 delta_t=536.040ms rssi=-21
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504329902342 freq=2418 addr=ddb05db4 delta_t=633.774ms rssi=-22
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504329903267 freq=2418 addr=ddb05db4 delta_t=0.270ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504330146196 freq=2418 addr=ddb05db4 delta_t=243.488ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504330146976 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504330535987 freq=2418 addr=ddb05db4 delta_t=389.786ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504330536817 freq=2418 addr=ddb05db4 delta_t=0.231ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504331072366 freq=2418 addr=ddb05db4 delta_t=536.037ms rssi=-21
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504331073198 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504331706191 freq=2418 addr=ddb05db4 delta_t=633.541ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504332681793 freq=2420 addr=ddb05db4 delta_t=975.297ms rssi=-84
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504332924769 freq=2420 addr=ddb05db4 delta_t=243.494ms rssi=-22
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504333315392 freq=2420 addr=ddb05db4 delta_t=390.014ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504334485085 freq=2420 addr=ddb05db4 delta_t=1170.050ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504335460308 freq=2422 addr=ddb05db4 delta_t=975.034ms rssi=-72
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504335704104 freq=2422 addr=ddb05db4 delta_t=243.758ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504336094149 freq=2422 addr=ddb05db4 delta_t=390.053ms rssi=-91
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337264152 freq=2422 addr=ddb05db4 delta_t=1170.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop interval: 48.75 ms
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop increment: 13
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337509728 freq=2422 addr=ddb05db4 delta_t=243.528ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337556749 freq=2450 addr=ddb05db4 delta_t=48.771ms rssi=-31
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337653854 freq=2428 addr=ddb05db4 delta_t=97.484ms rssi=-25
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337654603 freq=2428 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337702721 freq=2454 addr=ddb05db4 delta_t=48.522ms rssi=-33
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337800181 freq=2432 addr=ddb05db4 delta_t=97.504ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504337800957 freq=2432 addr=ddb05db4 delta_t=0.231ms rssi=-21
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338336424 freq=2420 addr=ddb05db4 delta_t=536.036ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338337202 freq=2420 addr=ddb05db4 delta_t=0.231ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338385410 freq=2448 addr=ddb05db4 delta_t=48.521ms rssi=-88
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338386141 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338434131 freq=2474 addr=ddb05db4 delta_t=48.817ms rssi=-23
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338482521 freq=2424 addr=ddb05db4 delta_t=48.456ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338531969 freq=2452 addr=ddb05db4 delta_t=48.981ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338580456 freq=2478 addr=ddb05db4 delta_t=48.555ms rssi=-85
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338581214 freq=2478 addr=ddb05db4 delta_t=0.198ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338628768 freq=2430 addr=ddb05db4 delta_t=48.523ms rssi=-26
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 12
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338629561 freq=2430 addr=ddb05db4 delta_t=0.231ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 12
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504338677718 freq=2456 addr=ddb05db4 delta_t=48.521ms rssi=-34
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339165420 freq=2418 addr=ddb05db4 delta_t=487.518ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339166170 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339214074 freq=2446 addr=ddb05db4 delta_t=48.522ms rssi=-27
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339214791 freq=2446 addr=ddb05db4 delta_t=0.230ms rssi=-17
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339262664 freq=2472 addr=ddb05db4 delta_t=48.522ms rssi=-33
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339263384 freq=2472 addr=ddb05db4 delta_t=0.230ms rssi=-23
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339311649 freq=2422 addr=ddb05db4 delta_t=48.752ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339360271 freq=2450 addr=ddb05db4 delta_t=48.521ms rssi=-29
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339360997 freq=2450 addr=ddb05db4 delta_t=0.230ms rssi=-26
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339409043 freq=2476 addr=ddb05db4 delta_t=48.752ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339457636 freq=2428 addr=ddb05db4 delta_t=48.522ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339458348 freq=2428 addr=ddb05db4 delta_t=0.230ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339506308 freq=2454 addr=ddb05db4 delta_t=48.522ms rssi=-29
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339507031 freq=2454 addr=ddb05db4 delta_t=0.230ms rssi=-94
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339604002 freq=2432 addr=ddb05db4 delta_t=97.274ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504339604732 freq=2432 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340140177 freq=2420 addr=ddb05db4 delta_t=536.275ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340188743 freq=2448 addr=ddb05db4 delta_t=48.523ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340189553 freq=2448 addr=ddb05db4 delta_t=0.231ms rssi=-108
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340237844 freq=2474 addr=ddb05db4 delta_t=48.522ms rssi=-32
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340238565 freq=2474 addr=ddb05db4 delta_t=0.230ms rssi=-25
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340286599 freq=2424 addr=ddb05db4 delta_t=48.752ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340335279 freq=2452 addr=ddb05db4 delta_t=48.752ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340384190 freq=2478 addr=ddb05db4 delta_t=48.522ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340481722 freq=2456 addr=ddb05db4 delta_t=97.502ms rssi=-32
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340482524 freq=2456 addr=ddb05db4 delta_t=0.230ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340969084 freq=2418 addr=ddb05db4 delta_t=487.295ms rssi=-21
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504340969872 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341018015 freq=2446 addr=ddb05db4 delta_t=48.522ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341018895 freq=2446 addr=ddb05db4 delta_t=0.230ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341066306 freq=2472 addr=ddb05db4 delta_t=48.522ms rssi=-30
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341115345 freq=2422 addr=ddb05db4 delta_t=48.983ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341164125 freq=2450 addr=ddb05db4 delta_t=48.521ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341213006 freq=2476 addr=ddb05db4 delta_t=48.752ms rssi=-71
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341213752 freq=2476 addr=ddb05db4 delta_t=0.230ms rssi=-29
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341261286 freq=2428 addr=ddb05db4 delta_t=48.522ms rssi=-32
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341310363 freq=2454 addr=ddb05db4 delta_t=48.752ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341311109 freq=2454 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341407760 freq=2432 addr=ddb05db4 delta_t=97.274ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341408586 freq=2432 addr=ddb05db4 delta_t=0.230ms rssi=-21
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341456672 freq=2458 addr=ddb05db4 delta_t=48.522ms rssi=-33
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 26
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341457438 freq=2458 addr=ddb05db4 delta_t=0.231ms rssi=-27
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 26
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341944193 freq=2420 addr=ddb05db4 delta_t=487.512ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341992869 freq=2448 addr=ddb05db4 delta_t=48.522ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504341993601 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342041633 freq=2474 addr=ddb05db4 delta_t=48.523ms rssi=-29
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342042360 freq=2474 addr=ddb05db4 delta_t=0.231ms rssi=-25
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342090853 freq=2424 addr=ddb05db4 delta_t=48.791ms rssi=-96
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342139282 freq=2452 addr=ddb05db4 delta_t=48.482ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342140054 freq=2452 addr=ddb05db4 delta_t=0.230ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342187999 freq=2478 addr=ddb05db4 delta_t=48.522ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342285153 freq=2456 addr=ddb05db4 delta_t=97.503ms rssi=-31
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342286005 freq=2456 addr=ddb05db4 delta_t=0.231ms rssi=-44
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342772613 freq=2418 addr=ddb05db4 delta_t=487.285ms rssi=-21
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342773384 freq=2418 addr=ddb05db4 delta_t=0.246ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342821537 freq=2446 addr=ddb05db4 delta_t=48.507ms rssi=-27
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342822307 freq=2446 addr=ddb05db4 delta_t=0.231ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop interval: 48.75 ms
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop increment: 13
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342872049 freq=2472 addr=ddb05db4 delta_t=48.520ms rssi=-31
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342918931 freq=2422 addr=ddb05db4 delta_t=48.752ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342919707 freq=2422 addr=ddb05db4 delta_t=0.236ms rssi=-95
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504342968022 freq=2450 addr=ddb05db4 delta_t=48.516ms rssi=-27
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343016306 freq=2476 addr=ddb05db4 delta_t=48.439ms rssi=-30
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343017090 freq=2476 addr=ddb05db4 delta_t=0.543ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343065405 freq=2428 addr=ddb05db4 delta_t=48.522ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343066148 freq=2428 addr=ddb05db4 delta_t=0.228ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343114448 freq=2454 addr=ddb05db4 delta_t=48.754ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343162729 freq=2418 addr=ddb05db4 delta_t=48.751ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343211632 freq=2432 addr=ddb05db4 delta_t=48.521ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343212508 freq=2432 addr=ddb05db4 delta_t=0.230ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343309273 freq=2422 addr=ddb05db4 delta_t=97.274ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343310025 freq=2422 addr=ddb05db4 delta_t=0.231ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343455500 freq=2428 addr=ddb05db4 delta_t=146.024ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343456351 freq=2428 addr=ddb05db4 delta_t=0.230ms rssi=-21
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343796817 freq=2448 addr=ddb05db4 delta_t=341.031ms rssi=-27
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343845220 freq=2474 addr=ddb05db4 delta_t=48.753ms rssi=-36
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343846055 freq=2474 addr=ddb05db4 delta_t=0.233ms rssi=-23
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343894283 freq=2424 addr=ddb05db4 delta_t=48.749ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343942930 freq=2452 addr=ddb05db4 delta_t=48.521ms rssi=-34
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343943675 freq=2452 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343991826 freq=2478 addr=ddb05db4 delta_t=48.522ms rssi=-87
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504343992573 freq=2478 addr=ddb05db4 delta_t=0.230ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344089305 freq=2456 addr=ddb05db4 delta_t=97.272ms rssi=-33
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344090125 freq=2456 addr=ddb05db4 delta_t=0.231ms rssi=-22
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344576901 freq=2418 addr=ddb05db4 delta_t=487.289ms rssi=-108
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344577661 freq=2418 addr=ddb05db4 delta_t=0.230ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344625292 freq=2446 addr=ddb05db4 delta_t=48.522ms rssi=-27
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344626077 freq=2446 addr=ddb05db4 delta_t=0.263ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344674505 freq=2472 addr=ddb05db4 delta_t=48.522ms rssi=-95
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344722777 freq=2422 addr=ddb05db4 delta_t=48.719ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344723529 freq=2422 addr=ddb05db4 delta_t=0.230ms rssi=-95
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344771907 freq=2450 addr=ddb05db4 delta_t=48.531ms rssi=-93
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344772767 freq=2450 addr=ddb05db4 delta_t=0.222ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344820231 freq=2476 addr=ddb05db4 delta_t=48.522ms rssi=-30
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344821068 freq=2476 addr=ddb05db4 delta_t=0.230ms rssi=-93
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344869398 freq=2428 addr=ddb05db4 delta_t=48.522ms rssi=-71
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504344918456 freq=2454 addr=ddb05db4 delta_t=49.014ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345015573 freq=2432 addr=ddb05db4 delta_t=97.242ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345551461 freq=2420 addr=ddb05db4 delta_t=536.267ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345600237 freq=2448 addr=ddb05db4 delta_t=48.752ms rssi=-27
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345601117 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-50
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345649285 freq=2474 addr=ddb05db4 delta_t=48.522ms rssi=-34
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345650046 freq=2474 addr=ddb05db4 delta_t=0.231ms rssi=-23
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345697813 freq=2424 addr=ddb05db4 delta_t=48.521ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345746473 freq=2452 addr=ddb05db4 delta_t=48.752ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345747245 freq=2452 addr=ddb05db4 delta_t=0.231ms rssi=-51
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345795294 freq=2478 addr=ddb05db4 delta_t=48.521ms rssi=-29
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504345796119 freq=2478 addr=ddb05db4 delta_t=0.249ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346380399 freq=2418 addr=ddb05db4 delta_t=584.771ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346429136 freq=2446 addr=ddb05db4 delta_t=48.751ms rssi=-32
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346429924 freq=2446 addr=ddb05db4 delta_t=0.230ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346477726 freq=2472 addr=ddb05db4 delta_t=48.522ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346478475 freq=2472 addr=ddb05db4 delta_t=0.234ms rssi=-29
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346526850 freq=2422 addr=ddb05db4 delta_t=48.518ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346527613 freq=2422 addr=ddb05db4 delta_t=0.231ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346575584 freq=2450 addr=ddb05db4 delta_t=48.521ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346576326 freq=2450 addr=ddb05db4 delta_t=0.230ms rssi=-26
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346673402 freq=2428 addr=ddb05db4 delta_t=97.502ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346721809 freq=2454 addr=ddb05db4 delta_t=48.521ms rssi=-30
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346819189 freq=2432 addr=ddb05db4 delta_t=97.504ms rssi=-25
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504346819921 freq=2432 addr=ddb05db4 delta_t=0.230ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347355791 freq=2420 addr=ddb05db4 delta_t=536.053ms rssi=-22
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347356605 freq=2420 addr=ddb05db4 delta_t=0.221ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347403926 freq=2448 addr=ddb05db4 delta_t=48.521ms rssi=-27
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347404675 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347453072 freq=2474 addr=ddb05db4 delta_t=48.523ms rssi=-26
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347453899 freq=2474 addr=ddb05db4 delta_t=0.230ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347501493 freq=2424 addr=ddb05db4 delta_t=48.523ms rssi=-32
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347502236 freq=2424 addr=ddb05db4 delta_t=0.235ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347550731 freq=2452 addr=ddb05db4 delta_t=48.519ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347551495 freq=2452 addr=ddb05db4 delta_t=0.229ms rssi=-21
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347599139 freq=2478 addr=ddb05db4 delta_t=48.522ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347599891 freq=2478 addr=ddb05db4 delta_t=0.231ms rssi=-26
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347696483 freq=2456 addr=ddb05db4 delta_t=97.273ms rssi=-35
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504347697242 freq=2456 addr=ddb05db4 delta_t=0.230ms rssi=-98
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 25
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348184543 freq=2418 addr=ddb05db4 delta_t=487.517ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348233109 freq=2446 addr=ddb05db4 delta_t=48.523ms rssi=-27
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348233975 freq=2446 addr=ddb05db4 delta_t=0.230ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348281577 freq=2472 addr=ddb05db4 delta_t=48.523ms rssi=-30
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348282396 freq=2472 addr=ddb05db4 delta_t=0.230ms rssi=-67
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348330755 freq=2422 addr=ddb05db4 delta_t=48.521ms rssi=-110
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348331521 freq=2422 addr=ddb05db4 delta_t=0.231ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348379349 freq=2450 addr=ddb05db4 delta_t=48.522ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348380170 freq=2450 addr=ddb05db4 delta_t=0.231ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348428328 freq=2476 addr=ddb05db4 delta_t=48.520ms rssi=-96
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348429070 freq=2476 addr=ddb05db4 delta_t=0.230ms rssi=-25
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348525506 freq=2454 addr=ddb05db4 delta_t=97.272ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348526333 freq=2454 addr=ddb05db4 delta_t=0.230ms rssi=-27
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348623366 freq=2432 addr=ddb05db4 delta_t=97.285ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop interval: 48.75 ms
+
+The RX buffer is : 5 
+--------------------
+LE Promisc - Hop increment: 13
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348625601 freq=2432 addr=ddb05db4 delta_t=0.219ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348671789 freq=2454 addr=ddb05db4 delta_t=48.753ms rssi=-21
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348720322 freq=2422 addr=ddb05db4 delta_t=48.585ms rssi=-24
+0f 08 01 80 2f f0 01 1e 4e 17 3f 81 80 
+Data / AA ddb05db4 (valid) /  8 bytes
+    Channel Index: 9
+    LLID: 3 / LL Control PDU
+    NESN: 1  SN: 1  MD: 0
+    Opcode: 1 / LL_CHANNEL_MAP_REQ
+
+    Data:  01 80 2f f0 01 1e 4e 17
+    CRC:   3f 81 80
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348769258 freq=2478 addr=ddb05db4 delta_t=48.688ms rssi=-24
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348770061 freq=2478 addr=ddb05db4 delta_t=0.230ms rssi=-25
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348818299 freq=2472 addr=ddb05db4 delta_t=48.752ms rssi=-24
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348866893 freq=2428 addr=ddb05db4 delta_t=48.522ms rssi=-25
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348867625 freq=2428 addr=ddb05db4 delta_t=0.230ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348915392 freq=2420 addr=ddb05db4 delta_t=48.521ms rssi=-23
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348964305 freq=2476 addr=ddb05db4 delta_t=48.752ms rssi=-27
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504348965102 freq=2476 addr=ddb05db4 delta_t=0.230ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349013369 freq=2446 addr=ddb05db4 delta_t=48.522ms rssi=-24
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349014152 freq=2446 addr=ddb05db4 delta_t=0.229ms rssi=-22
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349159089 freq=2420 addr=ddb05db4 delta_t=146.024ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349159856 freq=2420 addr=ddb05db4 delta_t=0.270ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349208165 freq=2448 addr=ddb05db4 delta_t=48.482ms rssi=-25
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349208896 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349256466 freq=2474 addr=ddb05db4 delta_t=48.522ms rssi=-31
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349305481 freq=2424 addr=ddb05db4 delta_t=48.752ms rssi=-25
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349306235 freq=2424 addr=ddb05db4 delta_t=0.231ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 10
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349354221 freq=2452 addr=ddb05db4 delta_t=48.522ms rssi=-25
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349355059 freq=2452 addr=ddb05db4 delta_t=0.231ms rssi=-26
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349402753 freq=2478 addr=ddb05db4 delta_t=48.521ms rssi=-26
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349403597 freq=2478 addr=ddb05db4 delta_t=0.230ms rssi=-25
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349549212 freq=2420 addr=ddb05db4 delta_t=146.026ms rssi=-23
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349550058 freq=2420 addr=ddb05db4 delta_t=0.236ms rssi=-96
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504349987857 freq=2418 addr=ddb05db4 delta_t=438.528ms rssi=-23
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 7
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350037197 freq=2446 addr=ddb05db4 delta_t=48.761ms rssi=-26
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 20
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350085799 freq=2472 addr=ddb05db4 delta_t=48.743ms rssi=-105
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350086547 freq=2472 addr=ddb05db4 delta_t=0.230ms rssi=-25
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 33
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350134250 freq=2422 addr=ddb05db4 delta_t=48.521ms rssi=-25
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350135012 freq=2422 addr=ddb05db4 delta_t=0.231ms rssi=-18
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 9
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350183255 freq=2450 addr=ddb05db4 delta_t=48.521ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350183986 freq=2450 addr=ddb05db4 delta_t=0.231ms rssi=-19
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 22
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350231753 freq=2476 addr=ddb05db4 delta_t=48.522ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 35
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350280751 freq=2428 addr=ddb05db4 delta_t=48.981ms rssi=-18
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 11
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350329022 freq=2454 addr=ddb05db4 delta_t=48.522ms rssi=-36
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 24
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350426917 freq=2432 addr=ddb05db4 delta_t=97.735ms rssi=-19
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 13
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504350963150 freq=2420 addr=ddb05db4 delta_t=536.038ms rssi=-23
+09 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 8
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351011973 freq=2448 addr=ddb05db4 delta_t=48.752ms rssi=-29
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351012719 freq=2448 addr=ddb05db4 delta_t=0.230ms rssi=-20
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 21
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351060296 freq=2474 addr=ddb05db4 delta_t=48.521ms rssi=-28
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 34
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351158152 freq=2452 addr=ddb05db4 delta_t=97.505ms rssi=-30
+0d 00 fa 32 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 1  MD: 0
+
+    Data: 
+    CRC:   fa 32 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351158895 freq=2452 addr=ddb05db4 delta_t=0.230ms rssi=-20
+09 00 29 34 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 23
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 1  MD: 0
+
+    Data: 
+    CRC:   29 34 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351206604 freq=2478 addr=ddb05db4 delta_t=48.522ms rssi=-28
+01 00 8f 39 c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 0  SN: 0  MD: 0
+
+    Data: 
+    CRC:   8f 39 c5
+
+The RX buffer is : 1 
+This has been successfully edited 
+systime=1552504351207340 freq=2478 addr=ddb05db4 delta_t=0.233ms rssi=-24
+05 00 5c 3f c5 
+Data / AA ddb05db4 (valid) /  0 bytes
+    Channel Index: 36
+    LLID: 1 / LL Data PDU / empty or L2CAP continuation
+    NESN: 1  SN: 0  MD: 0
+
+    Data: 
+    CRC:   5c 3f c5
+

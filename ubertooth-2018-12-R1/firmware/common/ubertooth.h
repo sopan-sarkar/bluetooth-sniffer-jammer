@@ -49,6 +49,7 @@ enum operating_modes {
 	MODE_AFH           = 14,
 	MODE_RX_GENERIC    = 15,
 	MODE_TX_GENERIC    = 16,
+	MODE_BT_TRANSMIT_LE= 17,
 };
 
 /* hardware identification number */

@@ -112,6 +112,9 @@ enum ubertooth_usb_commands {
 	UBERTOOTH_FIX_CLOCK_DRIFT    = 69,
 	UBERTOOTH_CANCEL_FOLLOW      = 70,
 	UBERTOOTH_LE_SET_ADV_DATA    = 71,
+	//Sopan Sarkar
+	UBERTOOTH_SET_HOP_INTERVAL   = 72,
+	UBERTOOTH_BTLE_TRANSMIT      = 73,
 };
 
 // maximum adv data len: 32 - (2 + 6 + 3)
@@ -147,6 +150,7 @@ enum hop_mode {
 	HOP_BTLE      = 3,
 	HOP_DIRECT    = 4,
 	HOP_AFH       = 5,
+	HOP_TX_LE     = 6,
 };
 
 enum usb_pkt_status {

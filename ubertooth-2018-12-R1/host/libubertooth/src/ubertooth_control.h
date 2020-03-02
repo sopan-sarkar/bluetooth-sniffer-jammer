@@ -142,5 +142,8 @@ int cmd_ego(struct libusb_device_handle* devh, int mode);
 int cmd_afh(struct libusb_device_handle* devh);
 int cmd_hop(struct libusb_device_handle* devh);
 int cmd_cancel_follow(struct libusb_device_handle* devh);
+//Sopan Sarkar
+int cmd_set_hop_interval(struct libusb_device_handle* devh, uint16_t hop_interval);
+int cmd_btle_transmit(struct libusb_device_handle* devh, uint8_t channel_idx);
 
 #endif /* __UBERTOOTH_CONTROL_H__ */

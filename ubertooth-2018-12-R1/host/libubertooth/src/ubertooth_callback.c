@@ -310,7 +310,7 @@ out:
 /*
  * Sniff Bluetooth Low Energy packets.
  */
-void cb_btle(ubertooth_t* ut, void* args)
+void cb_btle(ubertooth_t* ut,ubertooth_t* ut2,ubertooth_t* ut3, void* args)
 {
 	lell_packet* pkt;
 	btle_options* opts = (btle_options*) args;
@@ -339,9 +339,16 @@ void cb_btle(ubertooth_t* ut, void* args)
 				break;
 			case 2:
 				printf("Hop interval: %g ms\n", *(uint16_t *)val * 1.25);
+				cmd_set_hop_interval(ut2->devh, *(uint16_t *)val);
+				cmd_set_hop_interval(ut3->devh, *(uint16_t *)val);
 				break;
 			case 3:
 				printf("Hop increment: %u\n", *(uint8_t *)val);
+				break;
+			case 4:
+				printf("Next Channel: %u\n", *(uint8_t *)val);
+				cmd_btle_transmit(ut2->devh, *(uint8_t *)val);
+				cmd_btle_transmit(ut3->devh, *(uint8_t *)val);
 				break;
 			default:
 				printf("Unknown %u\n", state);

@@ -1,0 +1,1045 @@
+ARM GAS  /tmp/ccLNoZQe.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"bluetooth.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.precalc,"ax",%progbits
+  16              		.align	1
+  17              		.global	precalc
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	precalc:
+  24              	.LFB1:
+  25              		.file 1 "bluetooth.c"
+   1:bluetooth.c   **** /*
+   2:bluetooth.c   ****  * Copyright 2012 Dominic Spill
+   3:bluetooth.c   ****  *
+   4:bluetooth.c   ****  * This file is part of Project Ubertooth.
+   5:bluetooth.c   ****  *
+   6:bluetooth.c   ****  * This program is free software; you can redistribute it and/or modify
+   7:bluetooth.c   ****  * it under the terms of the GNU General Public License as published by
+   8:bluetooth.c   ****  * the Free Software Foundation; either version 2, or (at your option)
+   9:bluetooth.c   ****  * any later version.
+  10:bluetooth.c   ****  *
+  11:bluetooth.c   ****  * This program is distributed in the hope that it will be useful,
+  12:bluetooth.c   ****  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  13:bluetooth.c   ****  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  14:bluetooth.c   ****  * GNU General Public License for more details.
+  15:bluetooth.c   ****  *
+  16:bluetooth.c   ****  * You should have received a copy of the GNU General Public License
+  17:bluetooth.c   ****  * along with this program; see the file COPYING.  If not, write to
+  18:bluetooth.c   ****  * the Free Software Foundation, Inc., 51 Franklin Street,
+  19:bluetooth.c   ****  * Boston, MA 02110-1301, USA.
+  20:bluetooth.c   ****  */
+  21:bluetooth.c   **** 
+  22:bluetooth.c   **** #include "bluetooth.h"
+  23:bluetooth.c   **** 
+  24:bluetooth.c   **** /* these values for hop() can be precalculated (at leastin part) */
+  25:bluetooth.c   **** u8 a1, b, c1, e;
+  26:bluetooth.c   **** u16 d1;
+  27:bluetooth.c   **** /* frequency register bank */
+  28:bluetooth.c   **** u8 bank[NUM_BREDR_CHANNELS];
+  29:bluetooth.c   **** u8 afh_bank[NUM_BREDR_CHANNELS];
+  30:bluetooth.c   **** 
+  31:bluetooth.c   **** /* count the number of 1 bits in a uint64_t */
+  32:bluetooth.c   **** static uint8_t count_bits(uint64_t n)
+  33:bluetooth.c   **** {
+ARM GAS  /tmp/ccLNoZQe.s 			page 2
+
+
+  34:bluetooth.c   **** 	uint8_t i = 0;
+  35:bluetooth.c   **** 	for (i = 0; n != 0; i++)
+  36:bluetooth.c   **** 		n &= n - 1;
+  37:bluetooth.c   **** 	return i;
+  38:bluetooth.c   **** }
+  39:bluetooth.c   **** 
+  40:bluetooth.c   **** /* do all of the one time precalculation */
+  41:bluetooth.c   **** void precalc(void)
+  42:bluetooth.c   **** {
+  26              		.loc 1 42 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  31              		.cfi_def_cfa_offset 28
+  32              		.cfi_offset 4, -28
+  33              		.cfi_offset 5, -24
+  34              		.cfi_offset 6, -20
+  35              		.cfi_offset 7, -16
+  36              		.cfi_offset 8, -12
+  37              		.cfi_offset 9, -8
+  38              		.cfi_offset 14, -4
+  43:bluetooth.c   **** 	u8 i, j, chan;
+  44:bluetooth.c   **** 	u32 address;
+  45:bluetooth.c   **** 	address = target.address & 0xffffffff;
+  46:bluetooth.c   **** 	syncword = 0;
+  39              		.loc 1 46 0
+  40 0004 0020     		movs	r0, #0
+  41 0006 0021     		movs	r1, #0
+  42 0008 454A     		ldr	r2, .L16
+  47:bluetooth.c   **** 
+  48:bluetooth.c   **** 	/* populate frequency register bank*/
+  49:bluetooth.c   **** 	for (i = 0; i < NUM_BREDR_CHANNELS; i++)
+  50:bluetooth.c   **** 		bank[i] = ((i * 2) % NUM_BREDR_CHANNELS);
+  43              		.loc 1 50 0
+  44 000a 464C     		ldr	r4, .L16+4
+  46:bluetooth.c   **** 
+  45              		.loc 1 46 0
+  46 000c C2E90001 		strd	r0, [r2]
+  47              		.loc 1 50 0
+  48 0010 4F25     		movs	r5, #79
+  46:bluetooth.c   **** 
+  49              		.loc 1 46 0
+  50 0012 0022     		movs	r2, #0
+  51 0014 2046     		mov	r0, r4
+  45:bluetooth.c   **** 	syncword = 0;
+  52              		.loc 1 45 0
+  53 0016 444B     		ldr	r3, .L16+8
+  54 0018 1B68     		ldr	r3, [r3]
+  55              	.LVL0:
+  56              	.L2:
+  57              		.loc 1 50 0 discriminator 3
+  58 001a 5600     		lsls	r6, r2, #1
+  59 001c 96FBF5F1 		sdiv	r1, r6, r5
+  60 0020 05FB1161 		mls	r1, r5, r1, r6
+  61 0024 1155     		strb	r1, [r2, r4]
+  62              	.LVL1:
+ARM GAS  /tmp/ccLNoZQe.s 			page 3
+
+
+  63 0026 0132     		adds	r2, r2, #1
+  64              	.LVL2:
+  49:bluetooth.c   **** 		bank[i] = ((i * 2) % NUM_BREDR_CHANNELS);
+  65              		.loc 1 49 0 discriminator 3
+  66 0028 4F2A     		cmp	r2, #79
+  67 002a F6D1     		bne	.L2
+  51:bluetooth.c   **** 		/* actual frequency is 2402 + bank[i] MHz */
+  52:bluetooth.c   **** 
+  53:bluetooth.c   **** 
+  54:bluetooth.c   **** 	/* precalculate some of next_hop()'s variables */
+  55:bluetooth.c   **** 	a1 = (address >> 23) & 0x1f;
+  68              		.loc 1 55 0
+  69 002c 3F4A     		ldr	r2, .L16+12
+  70 002e C3F3C451 		ubfx	r1, r3, #23, #5
+  71 0032 1170     		strb	r1, [r2]
+  56:bluetooth.c   **** 	b = (address >> 19) & 0x0f;
+  72              		.loc 1 56 0
+  73 0034 3E4A     		ldr	r2, .L16+16
+  74 0036 C3F3C341 		ubfx	r1, r3, #19, #4
+  57:bluetooth.c   **** 	c1 = ((address >> 4) & 0x10) +
+  58:bluetooth.c   **** 		((address >> 3) & 0x08) +
+  59:bluetooth.c   **** 		((address >> 2) & 0x04) +
+  75              		.loc 1 59 0
+  76 003a C3F38707 		ubfx	r7, r3, #2, #8
+  60:bluetooth.c   **** 		((address >> 1) & 0x02) +
+  77              		.loc 1 60 0
+  78 003e C3F34706 		ubfx	r6, r3, #1, #8
+  56:bluetooth.c   **** 	b = (address >> 19) & 0x0f;
+  79              		.loc 1 56 0
+  80 0042 1170     		strb	r1, [r2]
+  57:bluetooth.c   **** 	c1 = ((address >> 4) & 0x10) +
+  81              		.loc 1 57 0
+  82 0044 C3F30715 		ubfx	r5, r3, #4, #8
+  58:bluetooth.c   **** 		((address >> 2) & 0x04) +
+  83              		.loc 1 58 0
+  84 0048 C3F3C701 		ubfx	r1, r3, #3, #8
+  85              		.loc 1 60 0
+  86 004c 06F00202 		and	r2, r6, #2
+  59:bluetooth.c   **** 		((address >> 1) & 0x02) +
+  87              		.loc 1 59 0
+  88 0050 07F00404 		and	r4, r7, #4
+  89              		.loc 1 60 0
+  90 0054 1443     		orrs	r4, r4, r2
+  58:bluetooth.c   **** 		((address >> 2) & 0x04) +
+  91              		.loc 1 58 0
+  92 0056 01F0080E 		and	lr, r1, #8
+  57:bluetooth.c   **** 		((address >> 3) & 0x08) +
+  93              		.loc 1 57 0
+  94 005a 05F01002 		and	r2, r5, #16
+  95 005e 42EA0E02 		orr	r2, r2, lr
+  96              		.loc 1 60 0
+  97 0062 1444     		add	r4, r4, r2
+  61:bluetooth.c   **** 		(address & 0x01);
+  98              		.loc 1 61 0
+  99 0064 03F00102 		and	r2, r3, #1
+  60:bluetooth.c   **** 		(address & 0x01);
+ 100              		.loc 1 60 0
+ARM GAS  /tmp/ccLNoZQe.s 			page 4
+
+
+ 101 0068 1444     		add	r4, r4, r2
+  57:bluetooth.c   **** 		((address >> 3) & 0x08) +
+ 102              		.loc 1 57 0
+ 103 006a 324A     		ldr	r2, .L16+20
+  62:bluetooth.c   **** 	d1 = (address >> 10) & 0x1ff;
+  63:bluetooth.c   **** 	e = ((address >> 7) & 0x40) +
+  64:bluetooth.c   **** 		((address >> 6) & 0x20) +
+  65:bluetooth.c   **** 		((address >> 5) & 0x10) +
+  66:bluetooth.c   **** 		((address >> 4) & 0x08) +
+  67:bluetooth.c   **** 		((address >> 3) & 0x04) +
+ 104              		.loc 1 67 0
+ 105 006c 01F00401 		and	r1, r1, #4
+  57:bluetooth.c   **** 		((address >> 3) & 0x08) +
+ 106              		.loc 1 57 0
+ 107 0070 1470     		strb	r4, [r2]
+  62:bluetooth.c   **** 	d1 = (address >> 10) & 0x1ff;
+ 108              		.loc 1 62 0
+ 109 0072 314A     		ldr	r2, .L16+24
+ 110 0074 C3F38824 		ubfx	r4, r3, #10, #9
+ 111 0078 1480     		strh	r4, [r2]	@ movhi
+  68:bluetooth.c   **** 		((address >> 2) & 0x02) +
+ 112              		.loc 1 68 0
+ 113 007a 07F00207 		and	r7, r7, #2
+  63:bluetooth.c   **** 		((address >> 6) & 0x20) +
+ 114              		.loc 1 63 0
+ 115 007e DA09     		lsrs	r2, r3, #7
+  64:bluetooth.c   **** 		((address >> 5) & 0x10) +
+ 116              		.loc 1 64 0
+ 117 0080 9C09     		lsrs	r4, r3, #6
+  63:bluetooth.c   **** 		((address >> 6) & 0x20) +
+ 118              		.loc 1 63 0
+ 119 0082 02F04002 		and	r2, r2, #64
+  64:bluetooth.c   **** 		((address >> 5) & 0x10) +
+ 120              		.loc 1 64 0
+ 121 0086 04F02004 		and	r4, r4, #32
+ 122              		.loc 1 68 0
+ 123 008a 3943     		orrs	r1, r1, r7
+  69:bluetooth.c   **** 		((address >> 1) & 0x01);
+ 124              		.loc 1 69 0
+ 125 008c 06F00106 		and	r6, r6, #1
+  65:bluetooth.c   **** 		((address >> 4) & 0x08) +
+ 126              		.loc 1 65 0
+ 127 0090 5B09     		lsrs	r3, r3, #5
+ 128              	.LVL3:
+  63:bluetooth.c   **** 		((address >> 6) & 0x20) +
+ 129              		.loc 1 63 0
+ 130 0092 2243     		orrs	r2, r2, r4
+  68:bluetooth.c   **** 		((address >> 1) & 0x01);
+ 131              		.loc 1 68 0
+ 132 0094 3144     		add	r1, r1, r6
+  65:bluetooth.c   **** 		((address >> 4) & 0x08) +
+ 133              		.loc 1 65 0
+ 134 0096 03F01003 		and	r3, r3, #16
+  66:bluetooth.c   **** 		((address >> 3) & 0x04) +
+ 135              		.loc 1 66 0
+ 136 009a 05F00805 		and	r5, r5, #8
+  68:bluetooth.c   **** 		((address >> 1) & 0x01);
+ARM GAS  /tmp/ccLNoZQe.s 			page 5
+
+
+ 137              		.loc 1 68 0
+ 138 009e 0A44     		add	r2, r2, r1
+ 139 00a0 2B43     		orrs	r3, r3, r5
+ 140 00a2 1344     		add	r3, r3, r2
+  63:bluetooth.c   **** 		((address >> 6) & 0x20) +
+ 141              		.loc 1 63 0
+ 142 00a4 254A     		ldr	r2, .L16+28
+ 143 00a6 1370     		strb	r3, [r2]
+  70:bluetooth.c   **** 
+  71:bluetooth.c   **** 	if(afh_enabled) {
+ 144              		.loc 1 71 0
+ 145 00a8 254B     		ldr	r3, .L16+32
+ 146 00aa 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 147 00ac 63B3     		cbz	r3, .L1
+ 148 00ae 0022     		movs	r2, #0
+  72:bluetooth.c   **** 		used_channels = 0;
+  73:bluetooth.c   **** 		for(i = 0; i < 10; i++)
+  74:bluetooth.c   **** 			used_channels += count_bits((uint64_t) afh_map[i]);
+ 149              		.loc 1 74 0
+ 150 00b0 244F     		ldr	r7, .L16+36
+ 151 00b2 1346     		mov	r3, r2
+ 152 00b4 3E46     		mov	r6, r7
+ 153              	.L3:
+ 154              	.LVL4:
+ 155              		.loc 1 74 0 is_stmt 0 discriminator 3
+ 156 00b6 0025     		movs	r5, #0
+ 157 00b8 0021     		movs	r1, #0
+ 158 00ba D45D     		ldrb	r4, [r2, r7]	@ zero_extendqisi2
+ 159              	.LVL5:
+ 160              	.L4:
+ 161              	.LBB4:
+ 162              	.LBB5:
+  35:bluetooth.c   **** 		n &= n - 1;
+ 163              		.loc 1 35 0 is_stmt 1
+ 164 00bc 54EA050C 		orrs	ip, r4, r5
+ 165 00c0 5FFA81FE 		uxtb	lr, r1
+ 166              	.LVL6:
+ 167 00c4 01F10101 		add	r1, r1, #1
+ 168 00c8 20D1     		bne	.L5
+ 169              	.LVL7:
+ 170 00ca 0132     		adds	r2, r2, #1
+ 171              	.LVL8:
+ 172              	.LBE5:
+ 173              	.LBE4:
+ 174              		.loc 1 74 0
+ 175 00cc 7344     		add	r3, r3, lr
+  73:bluetooth.c   **** 			used_channels += count_bits((uint64_t) afh_map[i]);
+ 176              		.loc 1 73 0
+ 177 00ce 0A2A     		cmp	r2, #10
+ 178              		.loc 1 74 0
+ 179 00d0 DBB2     		uxtb	r3, r3
+  73:bluetooth.c   **** 			used_channels += count_bits((uint64_t) afh_map[i]);
+ 180              		.loc 1 73 0
+ 181 00d2 F0D1     		bne	.L3
+ 182 00d4 1C4A     		ldr	r2, .L16+40
+  75:bluetooth.c   **** 		j = 0;
+  76:bluetooth.c   **** 		for (i = 0; i < NUM_BREDR_CHANNELS; i++) {
+ARM GAS  /tmp/ccLNoZQe.s 			page 6
+
+
+  77:bluetooth.c   **** 			chan = (i * 2) % NUM_BREDR_CHANNELS;
+ 183              		.loc 1 77 0
+ 184 00d6 4F25     		movs	r5, #79
+ 185 00d8 1370     		strb	r3, [r2]
+  73:bluetooth.c   **** 			used_channels += count_bits((uint64_t) afh_map[i]);
+ 186              		.loc 1 73 0
+ 187 00da 0023     		movs	r3, #0
+ 188 00dc 1946     		mov	r1, r3
+ 189              	.L7:
+ 190              	.LVL9:
+ 191              		.loc 1 77 0
+ 192 00de 93FBF5F2 		sdiv	r2, r3, r5
+ 193 00e2 05FB1232 		mls	r2, r5, r2, r3
+ 194 00e6 D7B2     		uxtb	r7, r2
+ 195              	.LVL10:
+  78:bluetooth.c   **** 			if(afh_map[chan/8] & (0x1 << (chan % 8)))
+ 196              		.loc 1 78 0
+ 197 00e8 FC08     		lsrs	r4, r7, #3
+ 198 00ea 345D     		ldrb	r4, [r6, r4]	@ zero_extendqisi2
+ 199 00ec 02F00702 		and	r2, r2, #7
+ 200 00f0 44FA02F2 		asr	r2, r4, r2
+ 201 00f4 D207     		lsls	r2, r2, #31
+  79:bluetooth.c   **** 				bank[j++] = chan;
+ 202              		.loc 1 79 0
+ 203 00f6 48BF     		it	mi
+ 204 00f8 4A1C     		addmi	r2, r1, #1
+ 205              	.LVL11:
+ 206 00fa 03F10203 		add	r3, r3, #2
+ 207 00fe 44BF     		itt	mi
+ 208 0100 4754     		strbmi	r7, [r0, r1]
+ 209 0102 D1B2     		uxtbmi	r1, r2
+ 210              	.LVL12:
+  76:bluetooth.c   **** 			chan = (i * 2) % NUM_BREDR_CHANNELS;
+ 211              		.loc 1 76 0
+ 212 0104 9E2B     		cmp	r3, #158
+ 213 0106 EAD1     		bne	.L7
+ 214              	.LVL13:
+ 215              	.L1:
+ 216 0108 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 217              	.LVL14:
+ 218              	.L5:
+ 219              	.LBB7:
+ 220              	.LBB6:
+  36:bluetooth.c   **** 	return i;
+ 221              		.loc 1 36 0
+ 222 010c 14F1FF38 		adds	r8, r4, #-1
+ 223 0110 45F1FF39 		adc	r9, r5, #-1
+ 224 0114 04EA0804 		and	r4, r4, r8
+ 225              	.LVL15:
+ 226 0118 05EA0905 		and	r5, r5, r9
+ 227              	.LVL16:
+ 228 011c CEE7     		b	.L4
+ 229              	.L17:
+ 230 011e 00BF     		.align	2
+ 231              	.L16:
+ 232 0120 00000000 		.word	syncword
+ 233 0124 00000000 		.word	bank
+ARM GAS  /tmp/ccLNoZQe.s 			page 7
+
+
+ 234 0128 00000000 		.word	target
+ 235 012c 00000000 		.word	a1
+ 236 0130 00000000 		.word	b
+ 237 0134 00000000 		.word	c1
+ 238 0138 00000000 		.word	d1
+ 239 013c 00000000 		.word	e
+ 240 0140 00000000 		.word	afh_enabled
+ 241 0144 00000000 		.word	afh_map
+ 242 0148 00000000 		.word	used_channels
+ 243              	.LBE6:
+ 244              	.LBE7:
+ 245              		.cfi_endproc
+ 246              	.LFE1:
+ 248              		.section	.text.next_hop,"ax",%progbits
+ 249              		.align	1
+ 250              		.global	next_hop
+ 251              		.syntax unified
+ 252              		.thumb
+ 253              		.thumb_func
+ 254              		.fpu softvfp
+ 256              	next_hop:
+ 257              	.LFB3:
+  80:bluetooth.c   **** 		}
+  81:bluetooth.c   **** 	}
+  82:bluetooth.c   **** }
+  83:bluetooth.c   **** 
+  84:bluetooth.c   **** /* 5 bit permutation */
+  85:bluetooth.c   **** static u8 perm5(u8 z, u8 p_high, u16 p_low)
+  86:bluetooth.c   **** {
+  87:bluetooth.c   **** 	/* z is constrained to 5 bits, p_high to 5 bits, p_low to 9 bits */
+  88:bluetooth.c   **** 	z &= 0x1f;
+  89:bluetooth.c   **** 	p_high &= 0x1f;
+  90:bluetooth.c   **** 	p_low &= 0x1ff;
+  91:bluetooth.c   **** 
+  92:bluetooth.c   **** 	int i;
+  93:bluetooth.c   **** 	u8 tmp, output, z_bit[5], p[14];
+  94:bluetooth.c   **** 	static const u8 index1[] = {0, 2, 1, 3, 0, 1, 0, 3, 1, 0, 2, 1, 0, 1};
+  95:bluetooth.c   **** 	static const u8 index2[] = {1, 3, 2, 4, 4, 3, 2, 4, 4, 3, 4, 3, 3, 2};
+  96:bluetooth.c   **** 
+  97:bluetooth.c   **** 	/* bits of p_low and p_high are control signals */
+  98:bluetooth.c   **** 	for (i = 0; i < 9; i++)
+  99:bluetooth.c   **** 		p[i] = (p_low >> i) & 0x01;
+ 100:bluetooth.c   **** 	for (i = 0; i < 5; i++)
+ 101:bluetooth.c   **** 		p[i+9] = (p_high >> i) & 0x01;
+ 102:bluetooth.c   **** 
+ 103:bluetooth.c   **** 	/* bit swapping will be easier with an array of bits */
+ 104:bluetooth.c   **** 	for (i = 0; i < 5; i++)
+ 105:bluetooth.c   **** 		z_bit[i] = (z >> i) & 0x01;
+ 106:bluetooth.c   **** 
+ 107:bluetooth.c   **** 	/* butterfly operations */
+ 108:bluetooth.c   **** 	for (i = 13; i >= 0; i--) {
+ 109:bluetooth.c   **** 		/* swap bits according to index arrays if control signal tells us to */
+ 110:bluetooth.c   **** 		if (p[i]) {
+ 111:bluetooth.c   **** 			tmp = z_bit[index1[i]];
+ 112:bluetooth.c   **** 			z_bit[index1[i]] = z_bit[index2[i]];
+ 113:bluetooth.c   **** 			z_bit[index2[i]] = tmp;
+ 114:bluetooth.c   **** 		}
+ARM GAS  /tmp/ccLNoZQe.s 			page 8
+
+
+ 115:bluetooth.c   **** 	}
+ 116:bluetooth.c   **** 
+ 117:bluetooth.c   **** 	/* reconstruct output from rearranged bits */
+ 118:bluetooth.c   **** 	output = 0;
+ 119:bluetooth.c   **** 	for (i = 0; i < 5; i++)
+ 120:bluetooth.c   **** 		output += z_bit[i] << i;
+ 121:bluetooth.c   **** 
+ 122:bluetooth.c   **** 	return output;
+ 123:bluetooth.c   **** }
+ 124:bluetooth.c   **** 
+ 125:bluetooth.c   **** u16 next_hop(u32 clock)
+ 126:bluetooth.c   **** {
+ 258              		.loc 1 126 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 24
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 262              	.LVL17:
+ 263 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 264              		.cfi_def_cfa_offset 24
+ 265              		.cfi_offset 4, -24
+ 266              		.cfi_offset 5, -20
+ 267              		.cfi_offset 6, -16
+ 268              		.cfi_offset 7, -12
+ 269              		.cfi_offset 8, -8
+ 270              		.cfi_offset 14, -4
+ 271 0004 86B0     		sub	sp, sp, #24
+ 272              		.cfi_def_cfa_offset 48
+ 273              	.LVL18:
+ 127:bluetooth.c   **** 	u8 a, c, x, y1, perm, next_channel;
+ 128:bluetooth.c   **** 	u16 d, y2;
+ 129:bluetooth.c   **** 	u32 base_f, f, f_dash;
+ 130:bluetooth.c   **** 
+ 131:bluetooth.c   **** 	clock &= 0xffffffff;
+ 132:bluetooth.c   **** 	/* Variable names used in Vol 2, Part B, Section 2.6 of the spec */
+ 133:bluetooth.c   **** 	x = (clock >> 2) & 0x1f;
+ 134:bluetooth.c   **** 	y1 = (clock >> 1) & 0x01;
+ 135:bluetooth.c   **** 	y2 = y1 << 5;
+ 136:bluetooth.c   **** 	a = (a1 ^ (clock >> 21)) & 0x1f;
+ 137:bluetooth.c   **** 	/* b is already defined */
+ 138:bluetooth.c   **** 	c = (c1 ^ (clock >> 16)) & 0x1f;
+ 139:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
+ 274              		.loc 1 139 0
+ 275 0006 464B     		ldr	r3, .L37
+ 140:bluetooth.c   **** 	/* e is already defined */
+ 141:bluetooth.c   **** 	base_f = (clock >> 3) & 0x1fffff0;
+ 276              		.loc 1 141 0
+ 277 0008 464C     		ldr	r4, .L37+4
+ 139:bluetooth.c   **** 	/* e is already defined */
+ 278              		.loc 1 139 0
+ 279 000a 1E88     		ldrh	r6, [r3]
+ 142:bluetooth.c   **** 	f = base_f % 79;
+ 280              		.loc 1 142 0
+ 281 000c 4F23     		movs	r3, #79
+ 141:bluetooth.c   **** 	f = base_f % 79;
+ 282              		.loc 1 141 0
+ 283 000e 04EAD004 		and	r4, r4, r0, lsr #3
+ 284              		.loc 1 142 0
+ARM GAS  /tmp/ccLNoZQe.s 			page 9
+
+
+ 285 0012 B4FBF3F2 		udiv	r2, r4, r3
+ 286 0016 03FB1241 		mls	r1, r3, r2, r4
+ 138:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
+ 287              		.loc 1 138 0
+ 288 001a 434B     		ldr	r3, .L37+8
+ 134:bluetooth.c   **** 	y2 = y1 << 5;
+ 289              		.loc 1 134 0
+ 290 001c C0F3400E 		ubfx	lr, r0, #1, #1
+ 291              	.LVL19:
+ 138:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
+ 292              		.loc 1 138 0
+ 293 0020 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 136:bluetooth.c   **** 	/* b is already defined */
+ 294              		.loc 1 136 0
+ 295 0022 424B     		ldr	r3, .L37+12
+ 139:bluetooth.c   **** 	/* e is already defined */
+ 296              		.loc 1 139 0
+ 297 0024 86EAD016 		eor	r6, r6, r0, lsr #7
+ 136:bluetooth.c   **** 	/* b is already defined */
+ 298              		.loc 1 136 0
+ 299 0028 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 138:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
+ 300              		.loc 1 138 0
+ 301 002a 82EA1042 		eor	r2, r2, r0, lsr #16
+ 136:bluetooth.c   **** 	/* b is already defined */
+ 302              		.loc 1 136 0
+ 303 002e 83EA5053 		eor	r3, r3, r0, lsr #21
+ 143:bluetooth.c   **** 
+ 144:bluetooth.c   **** 	perm = perm5(
+ 145:bluetooth.c   **** 		((x + a) % 32) ^ b,
+ 304              		.loc 1 145 0
+ 305 0032 03EB9000 		add	r0, r3, r0, lsr #2
+ 306              	.LVL20:
+ 307 0036 3E4B     		ldr	r3, .L37+16
+ 135:bluetooth.c   **** 	a = (a1 ^ (clock >> 21)) & 0x1f;
+ 308              		.loc 1 135 0
+ 309 0038 4FEA4E17 		lsl	r7, lr, #5
+ 310              		.loc 1 145 0
+ 311 003c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 135:bluetooth.c   **** 	a = (a1 ^ (clock >> 21)) & 0x1f;
+ 312              		.loc 1 135 0
+ 313 003e BDB2     		uxth	r5, r7
+ 314              	.LVL21:
+ 315              		.loc 1 145 0
+ 316 0040 5840     		eors	r0, r0, r3
+ 317              	.LBB10:
+ 318              	.LBB11:
+  98:bluetooth.c   **** 		p[i] = (p_low >> i) & 0x01;
+ 319              		.loc 1 98 0
+ 320 0042 0023     		movs	r3, #0
+ 321              	.LBE11:
+ 322              	.LBE10:
+ 146:bluetooth.c   **** 		(y1 * 0x1f) ^ c,
+ 323              		.loc 1 146 0
+ 324 0044 A7EB0E07 		sub	r7, r7, lr
+ 138:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
+ 325              		.loc 1 138 0
+ARM GAS  /tmp/ccLNoZQe.s 			page 10
+
+
+ 326 0048 02F01F02 		and	r2, r2, #31
+ 327              		.loc 1 146 0
+ 328 004c 7A40     		eors	r2, r2, r7
+ 139:bluetooth.c   **** 	/* e is already defined */
+ 329              		.loc 1 139 0
+ 330 004e C6F30806 		ubfx	r6, r6, #0, #9
+ 331              	.LVL22:
+ 332              	.LBB13:
+ 333              	.LBB12:
+  88:bluetooth.c   **** 	p_high &= 0x1f;
+ 334              		.loc 1 88 0
+ 335 0052 00F01F00 		and	r0, r0, #31
+ 336              	.LVL23:
+  99:bluetooth.c   **** 	for (i = 0; i < 5; i++)
+ 337              		.loc 1 99 0
+ 338 0056 02AF     		add	r7, sp, #8
+ 339              	.LVL24:
+ 340              	.L19:
+ 341 0058 46FA03FE 		asr	lr, r6, r3
+ 342 005c 0EF0010E 		and	lr, lr, #1
+ 343 0060 03F807E0 		strb	lr, [r3, r7]
+  98:bluetooth.c   **** 		p[i] = (p_low >> i) & 0x01;
+ 344              		.loc 1 98 0
+ 345 0064 0133     		adds	r3, r3, #1
+ 346              	.LVL25:
+ 347 0066 092B     		cmp	r3, #9
+ 348 0068 F6D1     		bne	.L19
+ 349 006a 0023     		movs	r3, #0
+ 350              	.LVL26:
+ 351              	.L20:
+ 101:bluetooth.c   **** 
+ 352              		.loc 1 101 0
+ 353 006c 07EB030E 		add	lr, r7, r3
+ 354 0070 42FA03F6 		asr	r6, r2, r3
+ 100:bluetooth.c   **** 		p[i+9] = (p_high >> i) & 0x01;
+ 355              		.loc 1 100 0
+ 356 0074 0133     		adds	r3, r3, #1
+ 357              	.LVL27:
+ 101:bluetooth.c   **** 
+ 358              		.loc 1 101 0
+ 359 0076 06F00106 		and	r6, r6, #1
+ 100:bluetooth.c   **** 		p[i+9] = (p_high >> i) & 0x01;
+ 360              		.loc 1 100 0
+ 361 007a 052B     		cmp	r3, #5
+ 101:bluetooth.c   **** 
+ 362              		.loc 1 101 0
+ 363 007c 8EF80960 		strb	r6, [lr, #9]
+ 100:bluetooth.c   **** 		p[i+9] = (p_high >> i) & 0x01;
+ 364              		.loc 1 100 0
+ 365 0080 F4D1     		bne	.L20
+ 366 0082 0022     		movs	r2, #0
+ 367              	.LVL28:
+ 368              	.L21:
+ 105:bluetooth.c   **** 
+ 369              		.loc 1 105 0
+ 370 0084 40FA02F3 		asr	r3, r0, r2
+ 371 0088 03F00103 		and	r3, r3, #1
+ARM GAS  /tmp/ccLNoZQe.s 			page 11
+
+
+ 372 008c 0DF80230 		strb	r3, [sp, r2]
+ 104:bluetooth.c   **** 		z_bit[i] = (z >> i) & 0x01;
+ 373              		.loc 1 104 0
+ 374 0090 0132     		adds	r2, r2, #1
+ 375              	.LVL29:
+ 376 0092 052A     		cmp	r2, #5
+ 377 0094 F6D1     		bne	.L21
+ 378 0096 0D22     		movs	r2, #13
+ 379              	.LVL30:
+ 111:bluetooth.c   **** 			z_bit[index1[i]] = z_bit[index2[i]];
+ 380              		.loc 1 111 0
+ 381 0098 264E     		ldr	r6, .L37+20
+ 112:bluetooth.c   **** 			z_bit[index2[i]] = tmp;
+ 382              		.loc 1 112 0
+ 383 009a 06F10E0E 		add	lr, r6, #14
+ 384              	.LVL31:
+ 385              	.L23:
+ 110:bluetooth.c   **** 			tmp = z_bit[index1[i]];
+ 386              		.loc 1 110 0
+ 387 009e BB5C     		ldrb	r3, [r7, r2]	@ zero_extendqisi2
+ 388 00a0 7BB1     		cbz	r3, .L22
+ 111:bluetooth.c   **** 			z_bit[index1[i]] = z_bit[index2[i]];
+ 389              		.loc 1 111 0
+ 390 00a2 905D     		ldrb	r0, [r2, r6]	@ zero_extendqisi2
+ 391 00a4 06AB     		add	r3, sp, #24
+ 392 00a6 1844     		add	r0, r0, r3
+ 112:bluetooth.c   **** 			z_bit[index2[i]] = tmp;
+ 393              		.loc 1 112 0
+ 394 00a8 12F80E30 		ldrb	r3, [r2, lr]	@ zero_extendqisi2
+ 395 00ac 0DF11808 		add	r8, sp, #24
+ 396 00b0 4344     		add	r3, r3, r8
+ 111:bluetooth.c   **** 			z_bit[index1[i]] = z_bit[index2[i]];
+ 397              		.loc 1 111 0
+ 398 00b2 10F818CC 		ldrb	ip, [r0, #-24]	@ zero_extendqisi2
+ 399              	.LVL32:
+ 112:bluetooth.c   **** 			z_bit[index2[i]] = tmp;
+ 400              		.loc 1 112 0
+ 401 00b6 13F8188C 		ldrb	r8, [r3, #-24]	@ zero_extendqisi2
+ 402 00ba 00F8188C 		strb	r8, [r0, #-24]
+ 113:bluetooth.c   **** 		}
+ 403              		.loc 1 113 0
+ 404 00be 03F818CC 		strb	ip, [r3, #-24]
+ 405              	.LVL33:
+ 406              	.L22:
+ 108:bluetooth.c   **** 		/* swap bits according to index arrays if control signal tells us to */
+ 407              		.loc 1 108 0
+ 408 00c2 12F1FF32 		adds	r2, r2, #-1
+ 409              	.LVL34:
+ 410 00c6 EAD2     		bcs	.L23
+ 411 00c8 0022     		movs	r2, #0
+ 412              	.LVL35:
+ 413 00ca 1046     		mov	r0, r2
+ 414              	.L24:
+ 415              	.LVL36:
+ 120:bluetooth.c   **** 
+ 416              		.loc 1 120 0
+ 417 00cc 1DF80030 		ldrb	r3, [sp, r0]	@ zero_extendqisi2
+ARM GAS  /tmp/ccLNoZQe.s 			page 12
+
+
+ 418 00d0 8340     		lsls	r3, r3, r0
+ 119:bluetooth.c   **** 		output += z_bit[i] << i;
+ 419              		.loc 1 119 0
+ 420 00d2 0130     		adds	r0, r0, #1
+ 421              	.LVL37:
+ 120:bluetooth.c   **** 
+ 422              		.loc 1 120 0
+ 423 00d4 1A44     		add	r2, r2, r3
+ 424              	.LVL38:
+ 119:bluetooth.c   **** 		output += z_bit[i] << i;
+ 425              		.loc 1 119 0
+ 426 00d6 0528     		cmp	r0, #5
+ 120:bluetooth.c   **** 
+ 427              		.loc 1 120 0
+ 428 00d8 D2B2     		uxtb	r2, r2
+ 429              	.LVL39:
+ 119:bluetooth.c   **** 		output += z_bit[i] << i;
+ 430              		.loc 1 119 0
+ 431 00da F7D1     		bne	.L24
+ 432              	.LVL40:
+ 433              	.LBE12:
+ 434              	.LBE13:
+ 147:bluetooth.c   **** 		d);
+ 148:bluetooth.c   **** 	/* hop selection */
+ 149:bluetooth.c   **** 	next_channel = bank[(perm + e + f + y2) % NUM_BREDR_CHANNELS];
+ 435              		.loc 1 149 0
+ 436 00dc 164B     		ldr	r3, .L37+24
+ 437 00de 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 438 00e0 9E18     		adds	r6, r3, r2
+ 439 00e2 4A19     		adds	r2, r1, r5
+ 440 00e4 4F21     		movs	r1, #79
+ 441              	.LVL41:
+ 442 00e6 3244     		add	r2, r2, r6
+ 443 00e8 B2FBF1F3 		udiv	r3, r2, r1
+ 444 00ec 01FB1322 		mls	r2, r1, r3, r2
+ 445 00f0 124B     		ldr	r3, .L37+28
+ 446 00f2 985C     		ldrb	r0, [r3, r2]	@ zero_extendqisi2
+ 447              	.LVL42:
+ 150:bluetooth.c   **** 	if(afh_enabled) {
+ 448              		.loc 1 150 0
+ 449 00f4 124B     		ldr	r3, .L37+32
+ 450 00f6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 451 00f8 6BB1     		cbz	r3, .L25
+ 151:bluetooth.c   **** 		f_dash = base_f % used_channels;
+ 452              		.loc 1 151 0
+ 453 00fa 124B     		ldr	r3, .L37+36
+ 454 00fc 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 455              	.LVL43:
+ 456 00fe B4FBF1F3 		udiv	r3, r4, r1
+ 457 0102 01FB1343 		mls	r3, r1, r3, r4
+ 152:bluetooth.c   **** 		next_channel = afh_bank[(perm + e + f_dash + y2) % used_channels];
+ 458              		.loc 1 152 0
+ 459 0106 2B44     		add	r3, r3, r5
+ 460 0108 3344     		add	r3, r3, r6
+ 461 010a B3FBF1F2 		udiv	r2, r3, r1
+ 462 010e 01FB1233 		mls	r3, r1, r2, r3
+ 463 0112 0D4A     		ldr	r2, .L37+40
+ARM GAS  /tmp/ccLNoZQe.s 			page 13
+
+
+ 464 0114 D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
+ 465              	.LVL44:
+ 466              	.L25:
+ 153:bluetooth.c   **** 	}
+ 154:bluetooth.c   **** 	return (2402 + next_channel);
+ 155:bluetooth.c   **** 
+ 156:bluetooth.c   **** }
+ 467              		.loc 1 156 0
+ 468 0116 00F66210 		addw	r0, r0, #2402
+ 469              	.LVL45:
+ 470 011a 06B0     		add	sp, sp, #24
+ 471              		.cfi_def_cfa_offset 24
+ 472              		@ sp needed
+ 473 011c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 474              	.LVL46:
+ 475              	.L38:
+ 476              		.align	2
+ 477              	.L37:
+ 478 0120 00000000 		.word	d1
+ 479 0124 F0FFFF01 		.word	33554416
+ 480 0128 00000000 		.word	c1
+ 481 012c 00000000 		.word	a1
+ 482 0130 00000000 		.word	b
+ 483 0134 00000000 		.word	.LANCHOR0
+ 484 0138 00000000 		.word	e
+ 485 013c 00000000 		.word	bank
+ 486 0140 00000000 		.word	afh_enabled
+ 487 0144 00000000 		.word	used_channels
+ 488 0148 00000000 		.word	afh_bank
+ 489              		.cfi_endproc
+ 490              	.LFE3:
+ 492              		.section	.text.find_access_code,"ax",%progbits
+ 493              		.align	1
+ 494              		.global	find_access_code
+ 495              		.syntax unified
+ 496              		.thumb
+ 497              		.thumb_func
+ 498              		.fpu softvfp
+ 500              	find_access_code:
+ 501              	.LFB4:
+ 157:bluetooth.c   **** 
+ 158:bluetooth.c   **** int find_access_code(u8 *idle_rxbuf)
+ 159:bluetooth.c   **** {
+ 502              		.loc 1 159 0
+ 503              		.cfi_startproc
+ 504              		@ args = 0, pretend = 0, frame = 0
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506              	.LVL47:
+ 507 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 508              		.cfi_def_cfa_offset 36
+ 509              		.cfi_offset 4, -36
+ 510              		.cfi_offset 5, -32
+ 511              		.cfi_offset 6, -28
+ 512              		.cfi_offset 7, -24
+ 513              		.cfi_offset 8, -20
+ 514              		.cfi_offset 9, -16
+ 515              		.cfi_offset 10, -12
+ARM GAS  /tmp/ccLNoZQe.s 			page 14
+
+
+ 516              		.cfi_offset 11, -8
+ 517              		.cfi_offset 14, -4
+ 518              	.LVL48:
+ 160:bluetooth.c   **** 	/* Looks for an AC in the stream */
+ 161:bluetooth.c   **** 	u8 bit_errors, curr_buf;
+ 162:bluetooth.c   **** 	int i = 0, count = 0;
+ 163:bluetooth.c   **** 
+ 164:bluetooth.c   **** 	if (syncword == 0) {
+ 519              		.loc 1 164 0
+ 520 0004 2B4B     		ldr	r3, .L50
+ 521 0006 D3E90067 		ldrd	r6, [r3]
+ 522 000a 56EA0702 		orrs	r2, r6, r7
+ 523 000e 45D1     		bne	.L47
+ 524 0010 421E     		subs	r2, r0, #1
+ 525 0012 00F1070E 		add	lr, r0, #7
+ 526              	.LVL49:
+ 527              	.L41:
+ 165:bluetooth.c   **** 		for (; i<8; i++) {
+ 166:bluetooth.c   **** 			syncword <<= 8;
+ 167:bluetooth.c   **** 			syncword = (syncword & 0xffffffffffffff00) | idle_rxbuf[i];
+ 528              		.loc 1 167 0 discriminator 2
+ 529 0016 0027     		movs	r7, #0
+ 166:bluetooth.c   **** 			syncword = (syncword & 0xffffffffffffff00) | idle_rxbuf[i];
+ 530              		.loc 1 166 0 discriminator 2
+ 531 0018 93E84200 		ldm	r3, {r1, r6}
+ 532 001c 3502     		lsls	r5, r6, #8
+ 533 001e 45EA1165 		orr	r5, r5, r1, lsr #24
+ 534 0022 0C02     		lsls	r4, r1, #8
+ 535 0024 C3E90045 		strd	r4, [r3]
+ 536              		.loc 1 167 0 discriminator 2
+ 537 0028 12F8016F 		ldrb	r6, [r2, #1]!	@ zero_extendqisi2
+ 538 002c 2F43     		orrs	r7, r7, r5
+ 539 002e 2643     		orrs	r6, r6, r4
+ 165:bluetooth.c   **** 		for (; i<8; i++) {
+ 540              		.loc 1 165 0 discriminator 2
+ 541 0030 7245     		cmp	r2, lr
+ 542              		.loc 1 167 0 discriminator 2
+ 543 0032 C3E90067 		strd	r6, [r3]
+ 165:bluetooth.c   **** 		for (; i<8; i++) {
+ 544              		.loc 1 165 0 discriminator 2
+ 545 0036 EED1     		bne	.L41
+ 168:bluetooth.c   **** 		}
+ 169:bluetooth.c   **** 		count = 64;
+ 546              		.loc 1 169 0
+ 547 0038 4022     		movs	r2, #64
+ 548 003a 4FF0080E 		mov	lr, #8
+ 549              	.L40:
+ 550              	.LVL50:
+ 170:bluetooth.c   **** 	}
+ 171:bluetooth.c   **** 	curr_buf = idle_rxbuf[i];
+ 172:bluetooth.c   **** 
+ 173:bluetooth.c   **** 	// Search until we're 64 symbols from the end of the buffer
+ 174:bluetooth.c   **** 	for(; count < ((8 * DMA_SIZE) - 64); count++)
+ 175:bluetooth.c   **** 	{
+ 176:bluetooth.c   **** 		bit_errors = count_bits(syncword ^ target.syncword);
+ 551              		.loc 1 176 0
+ 552 003e 1E4C     		ldr	r4, .L50+4
+ARM GAS  /tmp/ccLNoZQe.s 			page 15
+
+
+ 171:bluetooth.c   **** 
+ 553              		.loc 1 171 0
+ 554 0040 10F80E10 		ldrb	r1, [r0, lr]	@ zero_extendqisi2
+ 555              	.LVL51:
+ 556              		.loc 1 176 0
+ 557 0044 D4E902AB 		ldrd	r10, [r4, #8]
+ 558              	.L46:
+ 559 0048 4FF0000C 		mov	ip, #0
+ 560 004c D3E90045 		ldrd	r4, [r3]
+ 561 0050 8AEA0406 		eor	r6, r10, r4
+ 562 0054 8BEA0507 		eor	r7, fp, r5
+ 563              	.LVL52:
+ 564              	.L42:
+ 565              	.LBB16:
+ 566              	.LBB17:
+  35:bluetooth.c   **** 		n &= n - 1;
+ 567              		.loc 1 35 0
+ 568 0058 56EA0709 		orrs	r9, r6, r7
+ 569 005c 5FFA8CF8 		uxtb	r8, ip
+ 570              	.LVL53:
+ 571 0060 0CF1010C 		add	ip, ip, #1
+ 572 0064 1DD1     		bne	.L43
+ 573              	.LVL54:
+ 574              	.LBE17:
+ 575              	.LBE16:
+ 177:bluetooth.c   **** 
+ 178:bluetooth.c   **** 		if (bit_errors < MAX_SYNCWORD_ERRS)
+ 576              		.loc 1 178 0
+ 577 0066 B8F1040F 		cmp	r8, #4
+ 578 006a 14D9     		bls	.L39
+ 179:bluetooth.c   **** 			return count;
+ 180:bluetooth.c   **** 
+ 181:bluetooth.c   **** 		if (count%8 == 0)
+ 579              		.loc 1 181 0
+ 580 006c 5607     		lsls	r6, r2, #29
+ 182:bluetooth.c   **** 			curr_buf = idle_rxbuf[++i];
+ 581              		.loc 1 182 0
+ 582 006e 04BF     		itt	eq
+ 583 0070 0EF1010E 		addeq	lr, lr, #1
+ 584              	.LVL55:
+ 585 0074 10F80E10 		ldrbeq	r1, [r0, lr]	@ zero_extendqisi2
+ 586              	.LVL56:
+ 174:bluetooth.c   **** 	{
+ 587              		.loc 1 174 0
+ 588 0078 0132     		adds	r2, r2, #1
+ 589              	.LVL57:
+ 183:bluetooth.c   **** 
+ 184:bluetooth.c   **** 		syncword <<= 1;
+ 590              		.loc 1 184 0
+ 591 007a 2419     		adds	r4, r4, r4
+ 185:bluetooth.c   **** 		syncword = (syncword & 0xfffffffffffffffe) | ((curr_buf & 0x80) >> 7);
+ 592              		.loc 1 185 0
+ 593 007c 4FEAD116 		lsr	r6, r1, #7
+ 184:bluetooth.c   **** 		syncword = (syncword & 0xfffffffffffffffe) | ((curr_buf & 0x80) >> 7);
+ 594              		.loc 1 184 0
+ 595 0080 6D41     		adcs	r5, r5, r5
+ 596              		.loc 1 185 0
+ARM GAS  /tmp/ccLNoZQe.s 			page 16
+
+
+ 597 0082 3443     		orrs	r4, r4, r6
+ 186:bluetooth.c   **** 		curr_buf <<= 1;
+ 598              		.loc 1 186 0
+ 599 0084 4900     		lsls	r1, r1, #1
+ 600              	.LVL58:
+ 174:bluetooth.c   **** 	{
+ 601              		.loc 1 174 0
+ 602 0086 B2F5A87F 		cmp	r2, #336
+ 185:bluetooth.c   **** 		curr_buf <<= 1;
+ 603              		.loc 1 185 0
+ 604 008a C3E90045 		strd	r4, [r3]
+ 605              		.loc 1 186 0
+ 606 008e C9B2     		uxtb	r1, r1
+ 607              	.LVL59:
+ 174:bluetooth.c   **** 	{
+ 608              		.loc 1 174 0
+ 609 0090 DAD1     		bne	.L46
+ 187:bluetooth.c   **** 	}
+ 188:bluetooth.c   **** 	return -1;
+ 610              		.loc 1 188 0
+ 611 0092 4FF0FF32 		mov	r2, #-1
+ 612              	.LVL60:
+ 613              	.L39:
+ 189:bluetooth.c   **** }
+ 614              		.loc 1 189 0
+ 615 0096 1046     		mov	r0, r2
+ 616              	.LVL61:
+ 617 0098 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 618              	.LVL62:
+ 619              	.L47:
+ 162:bluetooth.c   **** 
+ 620              		.loc 1 162 0
+ 621 009c 0022     		movs	r2, #0
+ 622 009e 9646     		mov	lr, r2
+ 623 00a0 CDE7     		b	.L40
+ 624              	.LVL63:
+ 625              	.L43:
+ 626              	.LBB19:
+ 627              	.LBB18:
+  36:bluetooth.c   **** 	return i;
+ 628              		.loc 1 36 0
+ 629 00a2 16F1FF38 		adds	r8, r6, #-1
+ 630              	.LVL64:
+ 631 00a6 47F1FF39 		adc	r9, r7, #-1
+ 632 00aa 06EA0806 		and	r6, r6, r8
+ 633              	.LVL65:
+ 634 00ae 07EA0907 		and	r7, r7, r9
+ 635              	.LVL66:
+ 636 00b2 D1E7     		b	.L42
+ 637              	.L51:
+ 638              		.align	2
+ 639              	.L50:
+ 640 00b4 00000000 		.word	syncword
+ 641 00b8 00000000 		.word	target
+ 642              	.LBE18:
+ 643              	.LBE19:
+ 644              		.cfi_endproc
+ARM GAS  /tmp/ccLNoZQe.s 			page 17
+
+
+ 645              	.LFE4:
+ 647              		.comm	afh_bank,79,1
+ 648              		.comm	bank,79,1
+ 649              		.comm	d1,2,2
+ 650              		.comm	e,1,1
+ 651              		.comm	c1,1,1
+ 652              		.comm	b,1,1
+ 653              		.comm	a1,1,1
+ 654              		.comm	used_channels,1,1
+ 655              		.comm	afh_map,10,1
+ 656              		.comm	afh_enabled,1,1
+ 657              		.comm	syncword,8,8
+ 658              		.comm	target,16,8
+ 659              		.section	.rodata
+ 660              		.set	.LANCHOR0,. + 0
+ 663              	index1.3939:
+ 664 0000 00       		.byte	0
+ 665 0001 02       		.byte	2
+ 666 0002 01       		.byte	1
+ 667 0003 03       		.byte	3
+ 668 0004 00       		.byte	0
+ 669 0005 01       		.byte	1
+ 670 0006 00       		.byte	0
+ 671 0007 03       		.byte	3
+ 672 0008 01       		.byte	1
+ 673 0009 00       		.byte	0
+ 674 000a 02       		.byte	2
+ 675 000b 01       		.byte	1
+ 676 000c 00       		.byte	0
+ 677 000d 01       		.byte	1
+ 680              	index2.3940:
+ 681 000e 01       		.byte	1
+ 682 000f 03       		.byte	3
+ 683 0010 02       		.byte	2
+ 684 0011 04       		.byte	4
+ 685 0012 04       		.byte	4
+ 686 0013 03       		.byte	3
+ 687 0014 02       		.byte	2
+ 688 0015 04       		.byte	4
+ 689 0016 04       		.byte	4
+ 690 0017 03       		.byte	3
+ 691 0018 04       		.byte	4
+ 692 0019 03       		.byte	3
+ 693 001a 03       		.byte	3
+ 694 001b 02       		.byte	2
+ 695              		.text
+ 696              	.Letext0:
+ 697              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
+ 698              		.file 3 "../../host/libubertooth/src/ubertooth_interface.h"
+ 699              		.file 4 "../common/ubertooth.h"
+ 700              		.file 5 "bluetooth.h"
+ARM GAS  /tmp/ccLNoZQe.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 bluetooth.c
+     /tmp/ccLNoZQe.s:16     .text.precalc:0000000000000000 $t
+     /tmp/ccLNoZQe.s:23     .text.precalc:0000000000000000 precalc
+     /tmp/ccLNoZQe.s:232    .text.precalc:0000000000000120 $d
+                            *COM*:0000000000000008 syncword
+                            *COM*:000000000000004f bank
+                            *COM*:0000000000000010 target
+                            *COM*:0000000000000001 a1
+                            *COM*:0000000000000001 b
+                            *COM*:0000000000000001 c1
+                            *COM*:0000000000000002 d1
+                            *COM*:0000000000000001 e
+                            *COM*:0000000000000001 afh_enabled
+                            *COM*:000000000000000a afh_map
+                            *COM*:0000000000000001 used_channels
+     /tmp/ccLNoZQe.s:249    .text.next_hop:0000000000000000 $t
+     /tmp/ccLNoZQe.s:256    .text.next_hop:0000000000000000 next_hop
+     /tmp/ccLNoZQe.s:478    .text.next_hop:0000000000000120 $d
+                            *COM*:000000000000004f afh_bank
+     /tmp/ccLNoZQe.s:493    .text.find_access_code:0000000000000000 $t
+     /tmp/ccLNoZQe.s:500    .text.find_access_code:0000000000000000 find_access_code
+     /tmp/ccLNoZQe.s:640    .text.find_access_code:00000000000000b4 $d
+     /tmp/ccLNoZQe.s:663    .rodata:0000000000000000 index1.3939
+     /tmp/ccLNoZQe.s:680    .rodata:000000000000000e index2.3940
+                     .debug_frame:0000000000000010 $d
+
+NO UNDEFINED SYMBOLS

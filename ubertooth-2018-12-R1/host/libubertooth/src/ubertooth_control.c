@@ -1100,3 +1100,44 @@ int ubertooth_cmd_async(struct libusb_device_handle* devh,
 
 	return r;
 }
+
+
+// Sopan Sarkar
+int cmd_set_hop_interval(struct libusb_device_handle* devh, uint16_t hop_interval)
+{
+	int r;
+	u8 data[2];
+	for(r=0; r < 2; r++)
+		data[r] = (hop_interval >> (8*r)) & 0xff;
+
+	r = libusb_control_transfer(devh, CTRL_OUT, UBERTOOTH_SET_HOP_INTERVAL, 0, 0,
+		data, 2, 1000);
+	if (r < 0) {
+		if (r == LIBUSB_ERROR_PIPE) {
+			fprintf(stderr, "control message unsupported\n");
+		} else {
+			show_libusb_error(r);
+		}
+		return r;
+	}
+	return 0;
+}
+
+int cmd_btle_transmit(struct libusb_device_handle* devh, uint8_t channel_idx)
+{
+	int r;
+	u8 data[1];
+	for(r=0; r < 1; r++)
+		data[r] = (channel_idx >> (8*r)) & 0xff;
+	r = libusb_control_transfer(devh, CTRL_OUT, UBERTOOTH_BTLE_TRANSMIT, 0, 0,
+			data, 1, 1000);
+	if (r < 0) {
+		if (r == LIBUSB_ERROR_PIPE) {
+			fprintf(stderr, "control message unsupported\n");
+		} else {
+			show_libusb_error(r);
+		}
+		return r;
+	}
+	return 0;
+}

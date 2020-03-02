@@ -225,7 +225,7 @@ static void reset_conn_event(void) {
 static void finish_conn_event(void) {
 	uint32_t last_anchor = 0;
 	int last_anchor_set = 0;
-
+    debug_printf("finish_conn_event\n");
 	// two packets -- update anchor
 	if (conn_event.num_packets == 2) {
 		last_anchor = conn_event.anchor;
@@ -296,6 +296,7 @@ static void finish_conn_event(void) {
 // processes received data. at the end of a packet, it enqueues the
 // received packet, fetches a new buffer, and restarts RX.
 void le_DMA_IRQHandler(void) {
+    debug_printf("le_DMA_IRQHandler\n");
 	unsigned pos;
 	int8_t rssi;
 	uint32_t timestamp = NOW; // sampled early for most accurate measurement
@@ -928,7 +929,7 @@ void le_phy_main(void) {
 	le_cc2400_init_rf();
 
 	cancel_follow = 0;
-
+	debug_uart_init(0);
 	while (requested_mode == MODE_BT_FOLLOW_LE) {
 		le_rx_t *packet = NULL;
 		if (queue_remove(&packet_queue, (void **)&packet)) {

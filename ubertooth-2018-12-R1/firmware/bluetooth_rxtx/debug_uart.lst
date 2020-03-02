@@ -1,0 +1,476 @@
+ARM GAS  /tmp/ccrof5ZS.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 4
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"debug_uart.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.debug_uart_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	debug_uart_init
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	debug_uart_init:
+  24              	.LFB1:
+  25              		.file 1 "debug_uart.c"
+   1:debug_uart.c  **** #include <stdarg.h>
+   2:debug_uart.c  **** #include <stdio.h>
+   3:debug_uart.c  **** #include <string.h>
+   4:debug_uart.c  **** 
+   5:debug_uart.c  **** #include "ubertooth.h"
+   6:debug_uart.c  **** #include "tinyprintf.h"
+   7:debug_uart.c  **** 
+   8:debug_uart.c  **** int debug_dma_active = 0;
+   9:debug_uart.c  **** char debug_buffer[256];
+  10:debug_uart.c  **** 
+  11:debug_uart.c  **** void debug_uart_init(int flow_control) {
+  26              		.loc 1 11 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              	.LVL0:
+  12:debug_uart.c  **** 	// power on UART1 peripheral
+  13:debug_uart.c  **** 	PCONP |= PCONP_PCUART1;
+  32              		.loc 1 13 0
+  33 0000 284A     		ldr	r2, .L8
+  14:debug_uart.c  **** 
+  15:debug_uart.c  **** 	// 8N1, enable access to divisor latches
+  16:debug_uart.c  **** 	U1LCR = 0b10000011;
+  17:debug_uart.c  **** 
+  18:debug_uart.c  **** 	// divisor: 11, fractional: 3/13. final baud: 115,411
+  19:debug_uart.c  **** 	U1DLL = 11;
+  34              		.loc 1 19 0
+  35 0002 0B21     		movs	r1, #11
+  13:debug_uart.c  **** 
+  36              		.loc 1 13 0
+  37 0004 1368     		ldr	r3, [r2]
+  38 0006 43F01003 		orr	r3, r3, #16
+ARM GAS  /tmp/ccrof5ZS.s 			page 2
+
+
+  39 000a 1360     		str	r3, [r2]
+  16:debug_uart.c  **** 
+  40              		.loc 1 16 0
+  41 000c 8322     		movs	r2, #131
+  42 000e 264B     		ldr	r3, .L8+4
+  43 0010 1A60     		str	r2, [r3]
+  44              		.loc 1 19 0
+  45 0012 264A     		ldr	r2, .L8+8
+  46 0014 0433     		adds	r3, r3, #4
+  47 0016 1160     		str	r1, [r2]
+  20:debug_uart.c  **** 	U1DLM = 0;
+  48              		.loc 1 20 0
+  49 0018 0021     		movs	r1, #0
+  50 001a 5160     		str	r1, [r2, #4]
+  21:debug_uart.c  **** 	U1FDR = (3 << 0) | (13 << 4);
+  51              		.loc 1 21 0
+  52 001c D321     		movs	r1, #211
+  53 001e 9162     		str	r1, [r2, #40]
+  22:debug_uart.c  **** 
+  23:debug_uart.c  **** 	// block access to divisor latches
+  24:debug_uart.c  **** 	U1LCR &= ~0b10000000;
+  54              		.loc 1 24 0
+  55 0020 53F8042C 		ldr	r2, [r3, #-4]
+  56 0024 22F08002 		bic	r2, r2, #128
+  57 0028 43F8042C 		str	r2, [r3, #-4]
+  25:debug_uart.c  **** 
+  26:debug_uart.c  **** 	// enable auto RTS/CTS
+  27:debug_uart.c  **** 	if (flow_control)
+  58              		.loc 1 27 0
+  59 002c 0028     		cmp	r0, #0
+  60 002e 36D0     		beq	.L2
+  28:debug_uart.c  **** 		U1MCR = 0b11000000;
+  61              		.loc 1 28 0
+  62 0030 C022     		movs	r2, #192
+  63 0032 1A60     		str	r2, [r3]
+  64              	.L3:
+  29:debug_uart.c  **** 	else
+  30:debug_uart.c  **** 		U1MCR = 0;
+  31:debug_uart.c  **** 
+  32:debug_uart.c  **** 	// enable FIFO and DMA
+  33:debug_uart.c  **** 	U1FCR = 0b1001;
+  65              		.loc 1 33 0
+  66 0034 0922     		movs	r2, #9
+  67 0036 1E4B     		ldr	r3, .L8+12
+  68 0038 1A60     		str	r2, [r3]
+  34:debug_uart.c  **** 
+  35:debug_uart.c  **** 	// set P0.15 as TXD1, with pullup
+  36:debug_uart.c  **** 	PINSEL0  = (PINSEL0  & ~(0b11 << 30)) | (0b01 << 30);
+  69              		.loc 1 36 0
+  70 003a 1E4A     		ldr	r2, .L8+16
+  71 003c 1368     		ldr	r3, [r2]
+  37:debug_uart.c  **** 	PINMODE0 = (PINMODE0 & ~(0b11 << 30)) | (0b00 << 30);
+  38:debug_uart.c  **** 
+  39:debug_uart.c  **** 	// set P0.16 as RXD1, with pullup
+  40:debug_uart.c  **** 	PINSEL1  = (PINSEL1  & ~(0b11 <<  0)) | (0b01 <<  0);
+  72              		.loc 1 40 0
+  73 003e 0432     		adds	r2, r2, #4
+ARM GAS  /tmp/ccrof5ZS.s 			page 3
+
+
+  36:debug_uart.c  **** 	PINMODE0 = (PINMODE0 & ~(0b11 << 30)) | (0b00 << 30);
+  74              		.loc 1 36 0
+  75 0040 23F04043 		bic	r3, r3, #-1073741824
+  76 0044 43F08043 		orr	r3, r3, #1073741824
+  77 0048 42F8043C 		str	r3, [r2, #-4]
+  37:debug_uart.c  **** 	PINMODE0 = (PINMODE0 & ~(0b11 << 30)) | (0b00 << 30);
+  78              		.loc 1 37 0
+  79 004c D36B     		ldr	r3, [r2, #60]
+  80 004e 23F04043 		bic	r3, r3, #-1073741824
+  81 0052 D363     		str	r3, [r2, #60]
+  82              		.loc 1 40 0
+  83 0054 1368     		ldr	r3, [r2]
+  84 0056 23F00303 		bic	r3, r3, #3
+  85 005a 43F00103 		orr	r3, r3, #1
+  86 005e 1360     		str	r3, [r2]
+  41:debug_uart.c  **** 	PINMODE1 = (PINMODE1 & ~(0b11 <<  0)) | (0b00 <<  0);
+  87              		.loc 1 41 0
+  88 0060 154B     		ldr	r3, .L8+20
+  89 0062 1968     		ldr	r1, [r3]
+  90 0064 21F00301 		bic	r1, r1, #3
+  91 0068 1960     		str	r1, [r3]
+  42:debug_uart.c  **** 
+  43:debug_uart.c  **** 	if (flow_control) {
+  92              		.loc 1 43 0
+  93 006a B8B1     		cbz	r0, .L1
+  44:debug_uart.c  **** 		// set P0.17 as CTS1, no pullup/down
+  45:debug_uart.c  **** 		PINSEL1  = (PINSEL1  & ~(0b11 <<  2)) | (0b01 <<  2);
+  94              		.loc 1 45 0
+  95 006c 1168     		ldr	r1, [r2]
+  96 006e 21F00C01 		bic	r1, r1, #12
+  97 0072 41F00401 		orr	r1, r1, #4
+  98 0076 1160     		str	r1, [r2]
+  46:debug_uart.c  **** 		PINMODE1 = (PINMODE1 & ~(0b11 <<  2)) | (0b10 <<  2);
+  99              		.loc 1 46 0
+ 100 0078 1968     		ldr	r1, [r3]
+ 101 007a 21F00C01 		bic	r1, r1, #12
+ 102 007e 41F00801 		orr	r1, r1, #8
+ 103 0082 1960     		str	r1, [r3]
+  47:debug_uart.c  **** 
+  48:debug_uart.c  **** 		// set P0.22 as RTS1, no pullup/down
+  49:debug_uart.c  **** 		PINSEL1  = (PINSEL1  & ~(0b11 << 12)) | (0b01 << 12);
+ 104              		.loc 1 49 0
+ 105 0084 1168     		ldr	r1, [r2]
+ 106 0086 21F44051 		bic	r1, r1, #12288
+ 107 008a 41F48051 		orr	r1, r1, #4096
+ 108 008e 1160     		str	r1, [r2]
+  50:debug_uart.c  **** 		PINMODE1 = (PINMODE1 & ~(0b11 << 12)) | (0b10 << 12);
+ 109              		.loc 1 50 0
+ 110 0090 1A68     		ldr	r2, [r3]
+ 111 0092 22F44052 		bic	r2, r2, #12288
+ 112 0096 42F40052 		orr	r2, r2, #8192
+ 113 009a 1A60     		str	r2, [r3]
+ 114              	.L1:
+ 115 009c 7047     		bx	lr
+ 116              	.L2:
+  30:debug_uart.c  **** 
+ 117              		.loc 1 30 0
+ARM GAS  /tmp/ccrof5ZS.s 			page 4
+
+
+ 118 009e 1860     		str	r0, [r3]
+ 119 00a0 C8E7     		b	.L3
+ 120              	.L9:
+ 121 00a2 00BF     		.align	2
+ 122              	.L8:
+ 123 00a4 C4C00F40 		.word	1074774212
+ 124 00a8 0C000140 		.word	1073807372
+ 125 00ac 00000140 		.word	1073807360
+ 126 00b0 08000140 		.word	1073807368
+ 127 00b4 00C00240 		.word	1073922048
+ 128 00b8 44C00240 		.word	1073922116
+ 129              		.cfi_endproc
+ 130              	.LFE1:
+ 132              		.section	.text.debug_write,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	debug_write
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.fpu softvfp
+ 140              	debug_write:
+ 141              	.LFB2:
+  51:debug_uart.c  **** 	}
+  52:debug_uart.c  **** }
+  53:debug_uart.c  **** 
+  54:debug_uart.c  **** // synchronously write a string to debug UART
+  55:debug_uart.c  **** // does not start any DMA
+  56:debug_uart.c  **** void debug_write(const char *str) {
+ 142              		.loc 1 56 0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              	.LVL1:
+ 147 0000 10B5     		push	{r4, lr}
+ 148              		.cfi_def_cfa_offset 8
+ 149              		.cfi_offset 4, -8
+ 150              		.cfi_offset 14, -4
+ 151              	.LVL2:
+  57:debug_uart.c  **** 	unsigned i;
+  58:debug_uart.c  **** 
+  59:debug_uart.c  **** 	for (i = 0; str[i]; ++i) {
+  60:debug_uart.c  **** 		while ((U1LSR & U1LSR_THRE) == 0)
+ 152              		.loc 1 60 0
+ 153 0002 064A     		ldr	r2, .L16
+  61:debug_uart.c  **** 			;
+  62:debug_uart.c  **** 		U1THR = str[i];
+ 154              		.loc 1 62 0
+ 155 0004 0649     		ldr	r1, .L16+4
+ 156 0006 0138     		subs	r0, r0, #1
+ 157              	.LVL3:
+ 158              	.L11:
+  59:debug_uart.c  **** 		while ((U1LSR & U1LSR_THRE) == 0)
+ 159              		.loc 1 59 0 discriminator 1
+ 160 0008 10F8013F 		ldrb	r3, [r0, #1]!	@ zero_extendqisi2
+ 161              	.LVL4:
+ 162 000c 03B9     		cbnz	r3, .L14
+  63:debug_uart.c  **** 	}
+ARM GAS  /tmp/ccrof5ZS.s 			page 5
+
+
+  64:debug_uart.c  **** }
+ 163              		.loc 1 64 0
+ 164 000e 10BD     		pop	{r4, pc}
+ 165              	.L14:
+  60:debug_uart.c  **** 			;
+ 166              		.loc 1 60 0 discriminator 1
+ 167 0010 1468     		ldr	r4, [r2]
+ 168 0012 A406     		lsls	r4, r4, #26
+ 169 0014 FCD5     		bpl	.L14
+  62:debug_uart.c  **** 	}
+ 170              		.loc 1 62 0 discriminator 2
+ 171 0016 0B60     		str	r3, [r1]
+ 172              	.LVL5:
+ 173 0018 F6E7     		b	.L11
+ 174              	.L17:
+ 175 001a 00BF     		.align	2
+ 176              	.L16:
+ 177 001c 14000140 		.word	1073807380
+ 178 0020 00000140 		.word	1073807360
+ 179              		.cfi_endproc
+ 180              	.LFE2:
+ 182              		.section	.text.debug_printf,"ax",%progbits
+ 183              		.align	1
+ 184              		.global	debug_printf
+ 185              		.syntax unified
+ 186              		.thumb
+ 187              		.thumb_func
+ 188              		.fpu softvfp
+ 190              	debug_printf:
+ 191              	.LFB4:
+  65:debug_uart.c  **** 
+  66:debug_uart.c  **** static void debug_send_dma(size_t size) {
+  67:debug_uart.c  **** 	DMACC7SrcAddr = (uint32_t)debug_buffer;
+  68:debug_uart.c  **** 	DMACC7DestAddr = (uint32_t)&U1THR;
+  69:debug_uart.c  **** 	DMACC7LLI = 0;
+  70:debug_uart.c  **** 	DMACC7Control =
+  71:debug_uart.c  **** 			(size & 0xfff)   | // transfer size
+  72:debug_uart.c  **** 			(0b000 << 12)    | // source burst: 1 byte
+  73:debug_uart.c  **** 			(0b000 << 15)    | // dest burst: 1 byte
+  74:debug_uart.c  **** 			DMACCxControl_SI | // source increment
+  75:debug_uart.c  **** 			DMACCxControl_I  ; // terminal count interrupt enable
+  76:debug_uart.c  **** 	DMACC7Config =
+  77:debug_uart.c  **** 			(10 << 6)         | // UART1 TX
+  78:debug_uart.c  **** 			(0b001 << 11)     | // memory to peripheral
+  79:debug_uart.c  **** 			DMACCxConfig_IE   | // allow error interrupts
+  80:debug_uart.c  **** 			DMACCxConfig_ITC  ; // allow terminal count interrupts
+  81:debug_uart.c  **** 
+  82:debug_uart.c  **** 	DMACC7Config |= 1;
+  83:debug_uart.c  **** }
+  84:debug_uart.c  **** 
+  85:debug_uart.c  **** void debug_printf(char *fmt, ...) {
+ 192              		.loc 1 85 0
+ 193              		.cfi_startproc
+ 194              		@ args = 4, pretend = 16, frame = 8
+ 195              		@ frame_needed = 0, uses_anonymous_args = 1
+ 196              	.LVL6:
+ 197 0000 0FB4     		push	{r0, r1, r2, r3}
+ARM GAS  /tmp/ccrof5ZS.s 			page 6
+
+
+ 198              		.cfi_def_cfa_offset 16
+ 199              		.cfi_offset 0, -16
+ 200              		.cfi_offset 1, -12
+ 201              		.cfi_offset 2, -8
+ 202              		.cfi_offset 3, -4
+ 203 0002 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 204              		.cfi_def_cfa_offset 40
+ 205              		.cfi_offset 4, -28
+ 206              		.cfi_offset 5, -24
+ 207              		.cfi_offset 14, -20
+  86:debug_uart.c  **** 	va_list ap;
+  87:debug_uart.c  **** 	void *ret;
+  88:debug_uart.c  **** 
+  89:debug_uart.c  **** 	// TODO warn user?
+  90:debug_uart.c  **** 	if (debug_dma_active)
+ 208              		.loc 1 90 0
+ 209 0004 134B     		ldr	r3, .L21
+ 210 0006 1D68     		ldr	r5, [r3]
+ 211 0008 FDB9     		cbnz	r5, .L18
+  91:debug_uart.c  **** 		return;
+  92:debug_uart.c  **** 	debug_dma_active = 1;
+ 212              		.loc 1 92 0
+ 213 000a 0122     		movs	r2, #1
+  93:debug_uart.c  **** 
+  94:debug_uart.c  **** 	va_start(ap, fmt);
+  95:debug_uart.c  **** 	tfp_vsnprintf(debug_buffer, sizeof(debug_buffer) - 1, fmt, ap);
+ 214              		.loc 1 95 0
+ 215 000c 124C     		ldr	r4, .L21+4
+  92:debug_uart.c  **** 
+ 216              		.loc 1 92 0
+ 217 000e 1A60     		str	r2, [r3]
+ 218              		.loc 1 95 0
+ 219 0010 FF21     		movs	r1, #255
+  94:debug_uart.c  **** 	tfp_vsnprintf(debug_buffer, sizeof(debug_buffer) - 1, fmt, ap);
+ 220              		.loc 1 94 0
+ 221 0012 07AB     		add	r3, sp, #28
+ 222              		.loc 1 95 0
+ 223 0014 069A     		ldr	r2, [sp, #24]
+ 224 0016 2046     		mov	r0, r4
+  94:debug_uart.c  **** 	tfp_vsnprintf(debug_buffer, sizeof(debug_buffer) - 1, fmt, ap);
+ 225              		.loc 1 94 0
+ 226 0018 0193     		str	r3, [sp, #4]
+ 227              		.loc 1 95 0
+ 228 001a FFF7FEFF 		bl	tfp_vsnprintf
+ 229              	.LVL7:
+  96:debug_uart.c  **** 	va_end(ap);
+  97:debug_uart.c  **** 	debug_buffer[sizeof(debug_buffer) - 1] = 0;
+  98:debug_uart.c  **** 
+  99:debug_uart.c  **** 	size_t len = strlen(debug_buffer);
+ 230              		.loc 1 99 0
+ 231 001e 2046     		mov	r0, r4
+  97:debug_uart.c  **** 
+ 232              		.loc 1 97 0
+ 233 0020 84F8FF50 		strb	r5, [r4, #255]
+ 234              		.loc 1 99 0
+ 235 0024 FFF7FEFF 		bl	strlen
+ 236              	.LVL8:
+ARM GAS  /tmp/ccrof5ZS.s 			page 7
+
+
+ 237              	.LBB4:
+ 238              	.LBB5:
+  67:debug_uart.c  **** 	DMACC7DestAddr = (uint32_t)&U1THR;
+ 239              		.loc 1 67 0
+ 240 0028 0C4B     		ldr	r3, .L21+8
+  68:debug_uart.c  **** 	DMACC7LLI = 0;
+ 241              		.loc 1 68 0
+ 242 002a 0D4A     		ldr	r2, .L21+12
+  67:debug_uart.c  **** 	DMACC7DestAddr = (uint32_t)&U1THR;
+ 243              		.loc 1 67 0
+ 244 002c 1C60     		str	r4, [r3]
+  68:debug_uart.c  **** 	DMACC7LLI = 0;
+ 245              		.loc 1 68 0
+ 246 002e 5A60     		str	r2, [r3, #4]
+  76:debug_uart.c  **** 			(10 << 6)         | // UART1 TX
+ 247              		.loc 1 76 0
+ 248 0030 4CF68022 		movw	r2, #51840
+  72:debug_uart.c  **** 			(0b000 << 15)    | // dest burst: 1 byte
+ 249              		.loc 1 72 0
+ 250 0034 C0F30B00 		ubfx	r0, r0, #0, #12
+ 251              	.LVL9:
+  74:debug_uart.c  **** 			DMACCxControl_I  ; // terminal count interrupt enable
+ 252              		.loc 1 74 0
+ 253 0038 40F00440 		orr	r0, r0, #-2080374784
+  69:debug_uart.c  **** 	DMACC7Control =
+ 254              		.loc 1 69 0
+ 255 003c 9D60     		str	r5, [r3, #8]
+  70:debug_uart.c  **** 			(size & 0xfff)   | // transfer size
+ 256              		.loc 1 70 0
+ 257 003e D860     		str	r0, [r3, #12]
+  76:debug_uart.c  **** 			(10 << 6)         | // UART1 TX
+ 258              		.loc 1 76 0
+ 259 0040 1A61     		str	r2, [r3, #16]
+  82:debug_uart.c  **** }
+ 260              		.loc 1 82 0
+ 261 0042 1A69     		ldr	r2, [r3, #16]
+ 262 0044 42F00102 		orr	r2, r2, #1
+ 263 0048 1A61     		str	r2, [r3, #16]
+ 264              	.L18:
+ 265              	.LBE5:
+ 266              	.LBE4:
+ 100:debug_uart.c  **** 	debug_send_dma(len);
+ 101:debug_uart.c  **** }
+ 267              		.loc 1 101 0
+ 268 004a 03B0     		add	sp, sp, #12
+ 269              		.cfi_def_cfa_offset 28
+ 270              		@ sp needed
+ 271 004c BDE83040 		pop	{r4, r5, lr}
+ 272              		.cfi_restore 14
+ 273              		.cfi_restore 5
+ 274              		.cfi_restore 4
+ 275              		.cfi_def_cfa_offset 16
+ 276 0050 04B0     		add	sp, sp, #16
+ 277              		.cfi_restore 3
+ 278              		.cfi_restore 2
+ 279              		.cfi_restore 1
+ 280              		.cfi_restore 0
+ARM GAS  /tmp/ccrof5ZS.s 			page 8
+
+
+ 281              		.cfi_def_cfa_offset 0
+ 282 0052 7047     		bx	lr
+ 283              	.L22:
+ 284              		.align	2
+ 285              	.L21:
+ 286 0054 00000000 		.word	.LANCHOR0
+ 287 0058 00000000 		.word	debug_buffer
+ 288 005c E0410050 		.word	1342194144
+ 289 0060 00000140 		.word	1073807360
+ 290              		.cfi_endproc
+ 291              	.LFE4:
+ 293              		.comm	debug_buffer,256,1
+ 294              		.global	debug_dma_active
+ 295              		.bss
+ 296              		.align	2
+ 297              		.set	.LANCHOR0,. + 0
+ 300              	debug_dma_active:
+ 301 0000 00000000 		.space	4
+ 302              		.text
+ 303              	.Letext0:
+ 304              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdarg.h"
+ 305              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 306              		.file 4 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stddef.h"
+ 307              		.file 5 "/usr/include/newlib/sys/lock.h"
+ 308              		.file 6 "/usr/include/newlib/sys/_types.h"
+ 309              		.file 7 "/usr/include/newlib/sys/reent.h"
+ 310              		.file 8 "<built-in>"
+ 311              		.file 9 "/usr/include/newlib/sys/_stdint.h"
+ 312              		.file 10 "../common/ubertooth.h"
+ 313              		.file 11 "tinyprintf.h"
+ 314              		.file 12 "/usr/include/newlib/string.h"
+ARM GAS  /tmp/ccrof5ZS.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 debug_uart.c
+     /tmp/ccrof5ZS.s:16     .text.debug_uart_init:0000000000000000 $t
+     /tmp/ccrof5ZS.s:23     .text.debug_uart_init:0000000000000000 debug_uart_init
+     /tmp/ccrof5ZS.s:123    .text.debug_uart_init:00000000000000a4 $d
+     /tmp/ccrof5ZS.s:133    .text.debug_write:0000000000000000 $t
+     /tmp/ccrof5ZS.s:140    .text.debug_write:0000000000000000 debug_write
+     /tmp/ccrof5ZS.s:177    .text.debug_write:000000000000001c $d
+     /tmp/ccrof5ZS.s:183    .text.debug_printf:0000000000000000 $t
+     /tmp/ccrof5ZS.s:190    .text.debug_printf:0000000000000000 debug_printf
+     /tmp/ccrof5ZS.s:286    .text.debug_printf:0000000000000054 $d
+                            *COM*:0000000000000100 debug_buffer
+     /tmp/ccrof5ZS.s:300    .bss:0000000000000000 debug_dma_active
+     /tmp/ccrof5ZS.s:296    .bss:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+tfp_vsnprintf
+strlen
