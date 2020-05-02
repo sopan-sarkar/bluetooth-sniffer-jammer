@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccAAPUuI.s 			page 1
+ARM GAS  /tmp/cc7Xah0r.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
   31:cc2400_rangetest.c ****  * takes the first packet to be received correctly and repeats it in a similar
   32:cc2400_rangetest.c ****  * manner.  The result should indicate the lowest successful PA level in each
   33:cc2400_rangetest.c ****  * direction.
-ARM GAS  /tmp/ccAAPUuI.s 			page 2
+ARM GAS  /tmp/cc7Xah0r.s 			page 2
 
 
   34:cc2400_rangetest.c ****  *
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
   63:cc2400_rangetest.c **** 
   64:cc2400_rangetest.c **** 	// read device serial number
   65:cc2400_rangetest.c **** 	command[0] = 58;
-ARM GAS  /tmp/ccAAPUuI.s 			page 3
+ARM GAS  /tmp/cc7Xah0r.s 			page 3
 
 
   51              		.loc 1 65 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
   76 0036 42F62231 		movw	r1, #11042
   69:cc2400_rangetest.c **** 	txbuf[3] = (result[1] >> 16) & 0xFF;
   77              		.loc 1 69 0
-ARM GAS  /tmp/ccAAPUuI.s 			page 4
+ARM GAS  /tmp/cc7Xah0r.s 			page 4
 
 
   78 003a 1A0E     		lsrs	r2, r3, #24
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  116 007c FB6A     		ldr	r3, [r7, #44]
   79:cc2400_rangetest.c **** 	txbuf[13] = result[3] & 0xFF;
  117              		.loc 1 79 0
-ARM GAS  /tmp/ccAAPUuI.s 			page 5
+ARM GAS  /tmp/cc7Xah0r.s 			page 5
 
 
  118 007e 87F83C20 		strb	r2, [r7, #60]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  160 00cc 2D20     		movs	r0, #45
  161 00ce FFF7FEFF 		bl	cc2400_set
  162              	.LVL8:
-ARM GAS  /tmp/ccAAPUuI.s 			page 6
+ARM GAS  /tmp/cc7Xah0r.s 			page 6
 
 
   97:cc2400_rangetest.c **** 	cc2400_set(SYNCL,   0x1584);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  108:cc2400_rangetest.c **** 		cc2400_set(FREND, 8 | pa);
  109:cc2400_rangetest.c **** 		txbuf[18] = pa;
  110:cc2400_rangetest.c **** 		for (i = 0; i < 16; i++) {
-ARM GAS  /tmp/ccAAPUuI.s 			page 7
+ARM GAS  /tmp/cc7Xah0r.s 			page 7
 
 
  111:cc2400_rangetest.c **** 			txbuf[19] = i;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  247              	.LVL24:
  114:cc2400_rangetest.c **** 				cc2400_set8(FIFOREG, txbuf[j]);
  248              		.loc 1 114 0 discriminator 3
-ARM GAS  /tmp/ccAAPUuI.s 			page 8
+ARM GAS  /tmp/cc7Xah0r.s 			page 8
 
 
  249 014e B9F1160F 		cmp	r9, #22
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  291 0188 FBD4     		bmi	.L10
  124:cc2400_rangetest.c **** 	cc2400_set(FSDIV, *chan_ptr - 1);
  292              		.loc 1 124 0
-ARM GAS  /tmp/ccAAPUuI.s 			page 9
+ARM GAS  /tmp/cc7Xah0r.s 			page 9
 
 
  293 018a BAF80010 		ldrh	r1, [r10]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  333              	.LVL38:
  334              	.L14:
  132:cc2400_rangetest.c **** 		USRLED_SET;
-ARM GAS  /tmp/ccAAPUuI.s 			page 10
+ARM GAS  /tmp/cc7Xah0r.s 			page 10
 
 
  335              		.loc 1 132 0 discriminator 1
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  143:cc2400_rangetest.c **** 	cc2400_strobe(SRFOFF);
  377              		.loc 1 143 0
  378 020e 6420     		movs	r0, #100
-ARM GAS  /tmp/ccAAPUuI.s 			page 11
+ARM GAS  /tmp/cc7Xah0r.s 			page 11
 
 
  379 0210 FFF7FEFF 		bl	cc2400_strobe
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  414              		.loc 1 155 0
  415 0244 97F85D10 		ldrb	r1, [r7, #93]	@ zero_extendqisi2
  416 0248 1971     		strb	r1, [r3, #4]
-ARM GAS  /tmp/ccAAPUuI.s 			page 12
+ARM GAS  /tmp/cc7Xah0r.s 			page 12
 
 
  159:cc2400_rangetest.c **** 	for (i = 0; i < 18; i++)
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  462 028c 5CC00920 		.word	537509980
  463 0290 00000000 		.word	rr
  464              		.cfi_endproc
-ARM GAS  /tmp/ccAAPUuI.s 			page 13
+ARM GAS  /tmp/cc7Xah0r.s 			page 13
 
 
  465              	.LFE0:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  497 0006 DFF870A1 		ldr	r10, .L86+8
  169:cc2400_rangetest.c **** #ifdef TX_ENABLE
  498              		.loc 1 169 0
-ARM GAS  /tmp/ccAAPUuI.s 			page 14
+ARM GAS  /tmp/cc7Xah0r.s 			page 14
 
 
  499 000a 8146     		mov	r9, r0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  544 0056 FFF7FEFF 		bl	cc2400_status
  545              	.LVL64:
  546 005a 4106     		lsls	r1, r0, #25
-ARM GAS  /tmp/ccAAPUuI.s 			page 15
+ARM GAS  /tmp/cc7Xah0r.s 			page 15
 
 
  547 005c FBD5     		bpl	.L51
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  588              	.LVL68:
  589              	.L54:
  199:cc2400_rangetest.c **** 			while (!(cc2400_status() & SYNC_RECEIVED));
-ARM GAS  /tmp/ccAAPUuI.s 			page 16
+ARM GAS  /tmp/cc7Xah0r.s 			page 16
 
 
  590              		.loc 1 199 0 discriminator 1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  211:cc2400_rangetest.c **** 		while ((cc2400_status() & FS_LOCK));
  629              		.loc 1 211 0 discriminator 1
  630 00cc FFF7FEFF 		bl	cc2400_status
-ARM GAS  /tmp/ccAAPUuI.s 			page 17
+ARM GAS  /tmp/cc7Xah0r.s 			page 17
 
 
  631              	.LVL76:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  675              		.loc 1 221 0
  676 0118 8DF81470 		strb	r7, [sp, #20]
  677              	.LVL84:
-ARM GAS  /tmp/ccAAPUuI.s 			page 18
+ARM GAS  /tmp/cc7Xah0r.s 			page 18
 
 
  222:cc2400_rangetest.c **** 			for (i = 0; i < 16; i++) {
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  721              		.loc 1 219 0 discriminator 2
  722 0156 082E     		cmp	r6, #8
  723 0158 D8D1     		bne	.L63
-ARM GAS  /tmp/ccAAPUuI.s 			page 19
+ARM GAS  /tmp/cc7Xah0r.s 			page 19
 
 
  228:cc2400_rangetest.c **** 			}
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  768              		.cfi_offset 5, -8
  769              		.cfi_offset 14, -4
  239:cc2400_rangetest.c **** #ifdef TX_ENABLE
-ARM GAS  /tmp/ccAAPUuI.s 			page 20
+ARM GAS  /tmp/cc7Xah0r.s 			page 20
 
 
  240:cc2400_rangetest.c **** 	u16 mdmctrl;
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  809 003a 0320     		movs	r0, #3
  810 003c FFF7FEFF 		bl	cc2400_set
  811              	.LVL104:
-ARM GAS  /tmp/ccAAPUuI.s 			page 21
+ARM GAS  /tmp/cc7Xah0r.s 			page 21
 
 
  812              	.L91:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  856              	.LFE2:
  858              		.comm	rr,5,1
  859              		.text
-ARM GAS  /tmp/ccAAPUuI.s 			page 22
+ARM GAS  /tmp/cc7Xah0r.s 			page 22
 
 
  860              	.Letext0:
@@ -1266,21 +1266,21 @@ ARM GAS  /tmp/ccAAPUuI.s 			page 1
  862              		.file 3 "../../host/libubertooth/src/ubertooth_interface.h"
  863              		.file 4 "../common/ubertooth.h"
  864              		.file 5 "cc2400_rangetest.h"
-ARM GAS  /tmp/ccAAPUuI.s 			page 23
+ARM GAS  /tmp/cc7Xah0r.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 cc2400_rangetest.c
-     /tmp/ccAAPUuI.s:16     .text.cc2400_rangetest:0000000000000000 $t
-     /tmp/ccAAPUuI.s:23     .text.cc2400_rangetest:0000000000000000 cc2400_rangetest
-     /tmp/ccAAPUuI.s:458    .text.cc2400_rangetest:000000000000027c $d
+     /tmp/cc7Xah0r.s:16     .text.cc2400_rangetest:0000000000000000 $t
+     /tmp/cc7Xah0r.s:23     .text.cc2400_rangetest:0000000000000000 cc2400_rangetest
+     /tmp/cc7Xah0r.s:458    .text.cc2400_rangetest:000000000000027c $d
                             *COM*:0000000000000005 rr
-     /tmp/ccAAPUuI.s:468    .text.cc2400_repeater:0000000000000000 $t
-     /tmp/ccAAPUuI.s:475    .text.cc2400_repeater:0000000000000000 cc2400_repeater
-     /tmp/ccAAPUuI.s:743    .text.cc2400_repeater:0000000000000170 $d
-     /tmp/ccAAPUuI.s:750    .text.cc2400_txtest:0000000000000000 $t
-     /tmp/ccAAPUuI.s:757    .text.cc2400_txtest:0000000000000000 cc2400_txtest
-     /tmp/ccAAPUuI.s:853    .text.cc2400_txtest:0000000000000070 $d
+     /tmp/cc7Xah0r.s:468    .text.cc2400_repeater:0000000000000000 $t
+     /tmp/cc7Xah0r.s:475    .text.cc2400_repeater:0000000000000000 cc2400_repeater
+     /tmp/cc7Xah0r.s:743    .text.cc2400_repeater:0000000000000170 $d
+     /tmp/cc7Xah0r.s:750    .text.cc2400_txtest:0000000000000000 $t
+     /tmp/cc7Xah0r.s:757    .text.cc2400_txtest:0000000000000000 cc2400_txtest
+     /tmp/cc7Xah0r.s:853    .text.cc2400_txtest:0000000000000070 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

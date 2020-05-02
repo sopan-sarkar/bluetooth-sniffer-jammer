@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchUh6Yw.s 			page 1
+ARM GAS  /tmp/ccnVYg9l.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
   31:ubertooth_dma.c **** 
   32:ubertooth_dma.c **** dma_lli rx_dma_lli1;
   33:ubertooth_dma.c **** dma_lli rx_dma_lli2;
-ARM GAS  /tmp/cchUh6Yw.s 			page 2
+ARM GAS  /tmp/ccnVYg9l.s 			page 2
 
 
   34:ubertooth_dma.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
   59 002e FF23     		movs	r3, #255
   60 0030 A2F58472 		sub	r2, r2, #264
   61 0034 1360     		str	r3, [r2]
-ARM GAS  /tmp/cchUh6Yw.s 			page 3
+ARM GAS  /tmp/ccnVYg9l.s 			page 3
 
 
   55:ubertooth_dma.c **** 	DMACIntErrClr = 0xFF;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  106              		.loc 1 66 0 discriminator 1
  107 000a 1A68     		ldr	r2, [r3]
  108 000c D207     		lsls	r2, r2, #31
-ARM GAS  /tmp/cchUh6Yw.s 			page 4
+ARM GAS  /tmp/ccnVYg9l.s 			page 4
 
 
  109 000e FCD4     		bmi	.L8
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  156              	.L13:
  157 0010 08400050 		.word	1342193672
  158              		.cfi_endproc
-ARM GAS  /tmp/cchUh6Yw.s 			page 5
+ARM GAS  /tmp/ccnVYg9l.s 			page 5
 
 
  159              	.LFE2:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  201 000c 9360     		str	r3, [r2, #8]
  202              	.LVL3:
  203              	.LBE11:
-ARM GAS  /tmp/cchUh6Yw.s 			page 6
+ARM GAS  /tmp/ccnVYg9l.s 			page 6
 
 
  204              	.LBE13:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
   96:ubertooth_dma.c **** 	rx_dma_lli2.control = (DMA_SIZE) |
  229              		.loc 1 96 0
  230 0026 D860     		str	r0, [r3, #12]
-ARM GAS  /tmp/cchUh6Yw.s 			page 7
+ARM GAS  /tmp/ccnVYg9l.s 			page 7
 
 
  231              		.loc 1 105 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  267 0058 32900088 		.word	-2013229006
  268 005c 08000340 		.word	1073938440
  269 0060 00000000 		.word	rxbuf1
-ARM GAS  /tmp/cchUh6Yw.s 			page 8
+ARM GAS  /tmp/ccnVYg9l.s 			page 8
 
 
  270 0064 00000000 		.word	rx_dma_lli2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
   75:ubertooth_dma.c **** }
  315              		.loc 1 75 0
  316 000a 9360     		str	r3, [r2, #8]
-ARM GAS  /tmp/cchUh6Yw.s 			page 9
+ARM GAS  /tmp/ccnVYg9l.s 			page 9
 
 
  317              	.LVL5:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  143:ubertooth_dma.c **** 	DMACC0SrcAddr = le_dma_lli[0].src;
  351              		.loc 1 143 0
  352 0036 0C4B     		ldr	r3, .L23+20
-ARM GAS  /tmp/cchUh6Yw.s 			page 10
+ARM GAS  /tmp/ccnVYg9l.s 			page 10
 
 
  353 0038 0C4A     		ldr	r2, .L23+24
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  397              		@ frame_needed = 0, uses_anonymous_args = 0
  398              		@ link register save eliminated.
  156:ubertooth_dma.c **** 	/* make sure the (active low) slave select signal is not active */
-ARM GAS  /tmp/cchUh6Yw.s 			page 11
+ARM GAS  /tmp/ccnVYg9l.s 			page 11
 
 
  157:ubertooth_dma.c **** 	DIO_SSEL_SET;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  168:ubertooth_dma.c **** }
  169:ubertooth_dma.c **** 
  170:ubertooth_dma.c **** void dio_ssp_stop()
-ARM GAS  /tmp/cchUh6Yw.s 			page 12
+ARM GAS  /tmp/ccnVYg9l.s 			page 12
 
 
  171:ubertooth_dma.c **** {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  488              		.comm	le_dma_lli,176,4
  489              		.comm	rx_dma_lli2,16,4
  490              		.comm	rx_dma_lli1,16,4
-ARM GAS  /tmp/cchUh6Yw.s 			page 13
+ARM GAS  /tmp/ccnVYg9l.s 			page 13
 
 
  491              		.comm	rx_err,4,4
@@ -732,23 +732,23 @@ ARM GAS  /tmp/cchUh6Yw.s 			page 1
  499              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
  500              		.file 3 "../common/ubertooth.h"
  501              		.file 4 "ubertooth_dma.h"
-ARM GAS  /tmp/cchUh6Yw.s 			page 14
+ARM GAS  /tmp/ccnVYg9l.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ubertooth_dma.c
-     /tmp/cchUh6Yw.s:16     .text.dma_poweron:0000000000000000 $t
-     /tmp/cchUh6Yw.s:23     .text.dma_poweron:0000000000000000 dma_poweron
-     /tmp/cchUh6Yw.s:78     .text.dma_poweron:0000000000000048 $d
-     /tmp/cchUh6Yw.s:86     .text.dma_poweroff:0000000000000000 $t
-     /tmp/cchUh6Yw.s:93     .text.dma_poweroff:0000000000000000 dma_poweroff
-     /tmp/cchUh6Yw.s:123    .text.dma_poweroff:0000000000000024 $d
-     /tmp/cchUh6Yw.s:130    .text.dma_clear_interrupts:0000000000000000 $t
-     /tmp/cchUh6Yw.s:137    .text.dma_clear_interrupts:0000000000000000 dma_clear_interrupts
-     /tmp/cchUh6Yw.s:157    .text.dma_clear_interrupts:0000000000000010 $d
-     /tmp/cchUh6Yw.s:162    .text.dma_init_rx_symbols:0000000000000000 $t
-     /tmp/cchUh6Yw.s:169    .text.dma_init_rx_symbols:0000000000000000 dma_init_rx_symbols
-     /tmp/cchUh6Yw.s:266    .text.dma_init_rx_symbols:0000000000000054 $d
+     /tmp/ccnVYg9l.s:16     .text.dma_poweron:0000000000000000 $t
+     /tmp/ccnVYg9l.s:23     .text.dma_poweron:0000000000000000 dma_poweron
+     /tmp/ccnVYg9l.s:78     .text.dma_poweron:0000000000000048 $d
+     /tmp/ccnVYg9l.s:86     .text.dma_poweroff:0000000000000000 $t
+     /tmp/ccnVYg9l.s:93     .text.dma_poweroff:0000000000000000 dma_poweroff
+     /tmp/ccnVYg9l.s:123    .text.dma_poweroff:0000000000000024 $d
+     /tmp/ccnVYg9l.s:130    .text.dma_clear_interrupts:0000000000000000 $t
+     /tmp/ccnVYg9l.s:137    .text.dma_clear_interrupts:0000000000000000 dma_clear_interrupts
+     /tmp/ccnVYg9l.s:157    .text.dma_clear_interrupts:0000000000000010 $d
+     /tmp/ccnVYg9l.s:162    .text.dma_init_rx_symbols:0000000000000000 $t
+     /tmp/ccnVYg9l.s:169    .text.dma_init_rx_symbols:0000000000000000 dma_init_rx_symbols
+     /tmp/ccnVYg9l.s:266    .text.dma_init_rx_symbols:0000000000000054 $d
                             *COM*:0000000000000032 rxbuf1
                             *COM*:0000000000000010 rx_dma_lli2
                             *COM*:0000000000000010 rx_dma_lli1
@@ -757,16 +757,16 @@ DEFINED SYMBOLS
                             *COM*:0000000000000004 rx_err
                             *COM*:0000000000000004 active_rxbuf
                             *COM*:0000000000000004 idle_rxbuf
-     /tmp/cchUh6Yw.s:283    .text.dma_init_le:0000000000000000 $t
-     /tmp/cchUh6Yw.s:290    .text.dma_init_le:0000000000000000 dma_init_le
-     /tmp/cchUh6Yw.s:373    .text.dma_init_le:0000000000000054 $d
+     /tmp/ccnVYg9l.s:283    .text.dma_init_le:0000000000000000 $t
+     /tmp/ccnVYg9l.s:290    .text.dma_init_le:0000000000000000 dma_init_le
+     /tmp/ccnVYg9l.s:373    .text.dma_init_le:0000000000000054 $d
                             *COM*:00000000000000b0 le_dma_lli
-     /tmp/cchUh6Yw.s:385    .text.dio_ssp_start:0000000000000000 $t
-     /tmp/cchUh6Yw.s:392    .text.dio_ssp_start:0000000000000000 dio_ssp_start
-     /tmp/cchUh6Yw.s:426    .text.dio_ssp_start:0000000000000030 $d
-     /tmp/cchUh6Yw.s:434    .text.dio_ssp_stop:0000000000000000 $t
-     /tmp/cchUh6Yw.s:441    .text.dio_ssp_stop:0000000000000000 dio_ssp_stop
-     /tmp/cchUh6Yw.s:479    .text.dio_ssp_stop:0000000000000030 $d
+     /tmp/ccnVYg9l.s:385    .text.dio_ssp_start:0000000000000000 $t
+     /tmp/ccnVYg9l.s:392    .text.dio_ssp_start:0000000000000000 dio_ssp_start
+     /tmp/ccnVYg9l.s:426    .text.dio_ssp_start:0000000000000030 $d
+     /tmp/ccnVYg9l.s:434    .text.dio_ssp_stop:0000000000000000 $t
+     /tmp/ccnVYg9l.s:441    .text.dio_ssp_stop:0000000000000000 dio_ssp_stop
+     /tmp/ccnVYg9l.s:479    .text.dio_ssp_stop:0000000000000030 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

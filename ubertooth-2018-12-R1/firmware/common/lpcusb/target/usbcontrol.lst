@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCL8vPf.s 			page 1
+ARM GAS  /tmp/ccK0iMdU.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
   32:../common/lpcusb/target/usbcontrol.c **** 	This module handles control transfers and is normally installed on the
   33:../common/lpcusb/target/usbcontrol.c **** 	endpoint 0 callback.
   34:../common/lpcusb/target/usbcontrol.c **** 	
-ARM GAS  /tmp/ccCL8vPf.s 			page 2
+ARM GAS  /tmp/ccK0iMdU.s 			page 2
 
 
   35:../common/lpcusb/target/usbcontrol.c **** 	Control transfers can be of the following type:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
   89:../common/lpcusb/target/usbcontrol.c **** 	@param [in,out]	ppbData		Data buffer.
   90:../common/lpcusb/target/usbcontrol.c **** 
   91:../common/lpcusb/target/usbcontrol.c **** 	@return TRUE if the request was handles successfully
-ARM GAS  /tmp/ccCL8vPf.s 			page 3
+ARM GAS  /tmp/ccK0iMdU.s 			page 3
 
 
   92:../common/lpcusb/target/usbcontrol.c ****  */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
   27              		@ args = 0, pretend = 0, frame = 0
   28              		@ frame_needed = 0, uses_anonymous_args = 0
   29 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  /tmp/ccCL8vPf.s 			page 4
+ARM GAS  /tmp/ccK0iMdU.s 			page 4
 
 
   30              		.cfi_def_cfa_offset 16
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
   93:../common/lpcusb/target/usbcontrol.c **** {
   78              		.loc 1 93 0
   79              		.cfi_startproc
-ARM GAS  /tmp/ccCL8vPf.s 			page 5
+ARM GAS  /tmp/ccK0iMdU.s 			page 5
 
 
   80              		@ args = 0, pretend = 0, frame = 8
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  127              	.LVL9:
  108:../common/lpcusb/target/usbcontrol.c **** 		DBG("No handler for reqtype %d\n", iType);
  128              		.loc 1 108 0
-ARM GAS  /tmp/ccCL8vPf.s 			page 6
+ARM GAS  /tmp/ccK0iMdU.s 			page 6
 
 
  129 0032 2BB1     		cbz	r3, .L8
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  169              		.loc 1 163 0
  170 0002 0028     		cmp	r0, #0
  171 0004 47D1     		bne	.L15
-ARM GAS  /tmp/ccCL8vPf.s 			page 7
+ARM GAS  /tmp/ccK0iMdU.s 			page 7
 
 
  164:../common/lpcusb/target/usbcontrol.c **** 		// OUT transfer
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  183:../common/lpcusb/target/usbcontrol.c **** 				}
  184:../common/lpcusb/target/usbcontrol.c **** 				// send smallest of requested and offered length
  185:../common/lpcusb/target/usbcontrol.c **** 				iResidue = MIN(iLen, Setup.wLength);
-ARM GAS  /tmp/ccCL8vPf.s 			page 8
+ARM GAS  /tmp/ccK0iMdU.s 			page 8
 
 
  186:../common/lpcusb/target/usbcontrol.c **** 				// send first part (possibly a zero-length status message)
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  217 003c 8020     		movs	r0, #128
  218 003e FFF7FEBF 		b	USBHwEPStall
  219              	.LVL18:
-ARM GAS  /tmp/ccCL8vPf.s 			page 9
+ARM GAS  /tmp/ccK0iMdU.s 			page 9
 
 
  220              	.L19:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  202:../common/lpcusb/target/usbcontrol.c **** 					pbData = apbDataStore[iType];
  266              		.loc 1 202 0
  267 0074 237A     		ldrb	r3, [r4, #8]	@ zero_extendqisi2
-ARM GAS  /tmp/ccCL8vPf.s 			page 10
+ARM GAS  /tmp/ccK0iMdU.s 			page 10
 
 
  268 0076 C3F34113 		ubfx	r3, r3, #5, #2
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  231:../common/lpcusb/target/usbcontrol.c **** /**
  232:../common/lpcusb/target/usbcontrol.c **** 	Registers a callback for handling requests
  233:../common/lpcusb/target/usbcontrol.c **** 		
-ARM GAS  /tmp/ccCL8vPf.s 			page 11
+ARM GAS  /tmp/ccK0iMdU.s 			page 11
 
 
  234:../common/lpcusb/target/usbcontrol.c **** 	@param [in]	iType			Type of request, e.g. REQTYPE_TYPE_STANDARD
@@ -658,33 +658,33 @@ ARM GAS  /tmp/ccCL8vPf.s 			page 1
  367              		.file 2 "../common/lpcusb/target/type.h"
  368              		.file 3 "../common/lpcusb/target/usbstruct.h"
  369              		.file 4 "../common/lpcusb/target/usbapi.h"
-ARM GAS  /tmp/ccCL8vPf.s 			page 12
+ARM GAS  /tmp/ccK0iMdU.s 			page 12
 
 
-ARM GAS  /tmp/ccCL8vPf.s 			page 13
+ARM GAS  /tmp/ccK0iMdU.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbcontrol.c
-     /tmp/ccCL8vPf.s:16     .text.DataIn:0000000000000000 $t
-     /tmp/ccCL8vPf.s:22     .text.DataIn:0000000000000000 DataIn
-     /tmp/ccCL8vPf.s:65     .text.DataIn:0000000000000024 $d
-     /tmp/ccCL8vPf.s:70     .text._HandleRequest.constprop.1:0000000000000000 $t
-     /tmp/ccCL8vPf.s:76     .text._HandleRequest.constprop.1:0000000000000000 _HandleRequest.constprop.1
-     /tmp/ccCL8vPf.s:145    .text._HandleRequest.constprop.1:0000000000000044 $d
-     /tmp/ccCL8vPf.s:151    .text.USBHandleControlTransfer:0000000000000000 $t
-     /tmp/ccCL8vPf.s:158    .text.USBHandleControlTransfer:0000000000000000 USBHandleControlTransfer
-     /tmp/ccCL8vPf.s:303    .text.USBHandleControlTransfer:000000000000009c $d
-     /tmp/ccCL8vPf.s:308    .text.USBRegisterRequestHandler:0000000000000000 $t
-     /tmp/ccCL8vPf.s:315    .text.USBRegisterRequestHandler:0000000000000000 USBRegisterRequestHandler
-     /tmp/ccCL8vPf.s:334    .text.USBRegisterRequestHandler:000000000000000c $d
-     /tmp/ccCL8vPf.s:339    .bss:0000000000000000 $d
-     /tmp/ccCL8vPf.s:343    .bss:0000000000000000 iResidue
-     /tmp/ccCL8vPf.s:347    .bss:0000000000000004 pbData
-     /tmp/ccCL8vPf.s:351    .bss:0000000000000008 Setup
-     /tmp/ccCL8vPf.s:355    .bss:0000000000000010 iLen
-     /tmp/ccCL8vPf.s:359    .bss:0000000000000014 apfnReqHandlers
-     /tmp/ccCL8vPf.s:363    .bss:0000000000000024 apbDataStore
+     /tmp/ccK0iMdU.s:16     .text.DataIn:0000000000000000 $t
+     /tmp/ccK0iMdU.s:22     .text.DataIn:0000000000000000 DataIn
+     /tmp/ccK0iMdU.s:65     .text.DataIn:0000000000000024 $d
+     /tmp/ccK0iMdU.s:70     .text._HandleRequest.constprop.1:0000000000000000 $t
+     /tmp/ccK0iMdU.s:76     .text._HandleRequest.constprop.1:0000000000000000 _HandleRequest.constprop.1
+     /tmp/ccK0iMdU.s:145    .text._HandleRequest.constprop.1:0000000000000044 $d
+     /tmp/ccK0iMdU.s:151    .text.USBHandleControlTransfer:0000000000000000 $t
+     /tmp/ccK0iMdU.s:158    .text.USBHandleControlTransfer:0000000000000000 USBHandleControlTransfer
+     /tmp/ccK0iMdU.s:303    .text.USBHandleControlTransfer:000000000000009c $d
+     /tmp/ccK0iMdU.s:308    .text.USBRegisterRequestHandler:0000000000000000 $t
+     /tmp/ccK0iMdU.s:315    .text.USBRegisterRequestHandler:0000000000000000 USBRegisterRequestHandler
+     /tmp/ccK0iMdU.s:334    .text.USBRegisterRequestHandler:000000000000000c $d
+     /tmp/ccK0iMdU.s:339    .bss:0000000000000000 $d
+     /tmp/ccK0iMdU.s:343    .bss:0000000000000000 iResidue
+     /tmp/ccK0iMdU.s:347    .bss:0000000000000004 pbData
+     /tmp/ccK0iMdU.s:351    .bss:0000000000000008 Setup
+     /tmp/ccK0iMdU.s:355    .bss:0000000000000010 iLen
+     /tmp/ccK0iMdU.s:359    .bss:0000000000000014 apfnReqHandlers
+     /tmp/ccK0iMdU.s:363    .bss:0000000000000024 apbDataStore
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

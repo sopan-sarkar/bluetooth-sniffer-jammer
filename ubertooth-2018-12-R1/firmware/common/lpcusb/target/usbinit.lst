@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccfe96Ci.s 			page 1
+ARM GAS  /tmp/ccE6bfPV.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccfe96Ci.s 			page 1
   32:../common/lpcusb/target/usbinit.c **** 
   33:../common/lpcusb/target/usbinit.c **** #include "type.h"
   34:../common/lpcusb/target/usbinit.c **** #include "debug.h"
-ARM GAS  /tmp/ccfe96Ci.s 			page 2
+ARM GAS  /tmp/ccE6bfPV.s 			page 2
 
 
   35:../common/lpcusb/target/usbinit.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccfe96Ci.s 			page 1
   51              		.cfi_def_cfa_offset 8
   52              		.cfi_offset 4, -8
   53              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccfe96Ci.s 			page 3
+ARM GAS  /tmp/ccE6bfPV.s 			page 3
 
 
   65:../common/lpcusb/target/usbinit.c **** 	// init hardware
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccfe96Ci.s 			page 1
   82:../common/lpcusb/target/usbinit.c **** 	return TRUE;
   83:../common/lpcusb/target/usbinit.c **** }
   89              		.loc 1 83 0
-ARM GAS  /tmp/ccfe96Ci.s 			page 4
+ARM GAS  /tmp/ccE6bfPV.s 			page 4
 
 
   90 0038 0120     		movs	r0, #1
@@ -202,18 +202,18 @@ ARM GAS  /tmp/ccfe96Ci.s 			page 1
  110              		.file 2 "../common/lpcusb/target/usbhw_lpc.h"
  111              		.file 3 "../common/lpcusb/target/usbapi.h"
  112              		.file 4 "../common/lpcusb/target/type.h"
-ARM GAS  /tmp/ccfe96Ci.s 			page 5
+ARM GAS  /tmp/ccE6bfPV.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbinit.c
-     /tmp/ccfe96Ci.s:16     .text.HandleUsbReset:0000000000000000 $t
-     /tmp/ccfe96Ci.s:22     .text.HandleUsbReset:0000000000000000 HandleUsbReset
-     /tmp/ccfe96Ci.s:36     .text.USBInit:0000000000000000 $t
-     /tmp/ccfe96Ci.s:43     .text.USBInit:0000000000000000 USBInit
-     /tmp/ccfe96Ci.s:95     .text.USBInit:000000000000003c $d
-     /tmp/ccfe96Ci.s:106    .bss:0000000000000000 abStdReqData
-     /tmp/ccfe96Ci.s:107    .bss:0000000000000000 $d
+     /tmp/ccE6bfPV.s:16     .text.HandleUsbReset:0000000000000000 $t
+     /tmp/ccE6bfPV.s:22     .text.HandleUsbReset:0000000000000000 HandleUsbReset
+     /tmp/ccE6bfPV.s:36     .text.USBInit:0000000000000000 $t
+     /tmp/ccE6bfPV.s:43     .text.USBInit:0000000000000000 USBInit
+     /tmp/ccE6bfPV.s:95     .text.USBInit:000000000000003c $d
+     /tmp/ccE6bfPV.s:106    .bss:0000000000000000 abStdReqData
+     /tmp/ccE6bfPV.s:107    .bss:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

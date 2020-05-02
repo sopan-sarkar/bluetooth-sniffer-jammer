@@ -38,6 +38,22 @@
 #define MIN(x,y)	((x)<(y)?(x):(y))
 #define MAX(x,y)	((x)>(y)?(x):(y))
 
+/**************** Timer 2 stuffs **********************/
+//#define NOW T1TC
+#define USEC(X) ((X)*10)
+#define MSEC(X) ((X)*10000)
+#define SEC(X) ((X)*10000000)
+#define PACKET_DURATION(X) (USEC(40 + (X) * 8))
+// time for the radio to warmup + some timing slack
+#define TX_WARMUP_TIME USEC(66)
+/************ pre-declarations for utility stuff ******/
+static void timer2_start(void);
+static void timer2_stop(void);
+static void timer2_set_match(uint32_t match);
+static void timer2_clear_match(void);
+/**************** Timer 2 stuffs **********************/
+
+
 /* build info */
 const char compile_info[] =
 	"ubertooth " GIT_REVISION " (" COMPILE_BY "@" COMPILE_HOST ") " TIMESTAMP;
@@ -81,18 +97,20 @@ static u8 count1, count2, count3, sync_count = 0; // Some variables used for cou
 u8 idx1 = 0; // channel index to start sniffing to
 u8 idx2 = 1; // channel index to jump next from idx1
 u8 idx3 = 2; // channel index to jump next from idx2
-
-// Used for getting channel map
-//static uint16_t ch_map_hopped[37], remapped_ch[37];
+static uint16_t ch_map_hopped[37], remapped_ch[37];
 static u8 mapped = 0;
-//static u8 total_channel = 0;
+static u8 total_channel = 0;
 static u8 ch_count1 = 0;
-//static u8 hopping_channel, channel_hopped = 0;
-//static u8 do_count = 1;
-//u16 time1, index1 = 0;
-//static u8 remapped = 0;
-volatile uint8_t  do_transmit = 0;
-
+static u8 hopping_channel, channel_hopped = 0;
+static u8 do_count = 1;
+u16 time1, index1 = 0;
+static u8 remapped = 0;
+static u8 do_transmit = 0;
+static u8 send_clock = 0;
+uint32_t tx_anchor = 0;
+uint32_t anchor_timestamp = 0;
+static u8 anchor_set = 0;
+static u32 window_shift = 0;
 
 /* Generic TX stuff */
 generic_tx_packet tx_pkt;
@@ -210,6 +228,18 @@ int enqueue_with_ts(uint8_t type, uint8_t* buf, uint32_t ts)
 	return 1;
 }
 
+static void timer2_set_match(uint32_t match) {
+	T0MR0 = match;
+	T0MCR = TMCR_MR0I;
+	//T0MR1 = match;
+	//T0MCR = TMCR_MR1R | TMCR_MR1I;
+}
+
+static void timer2_clear_match(void) {
+	T0MCR = ~TMCR_MR0I;
+	//T0MCR &= ~TMCR_MR1I;
+}
+
 static int vendor_request_handler(uint8_t request, uint16_t* request_params, uint8_t* data, int* data_len)
 {
 	uint32_t clock;
@@ -268,6 +298,7 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 	case UBERTOOTH_SET_TXLED:
 		if (request_params[0])
 			TXLED_SET;
+
 		else
 			TXLED_CLR;
 		break;
@@ -308,7 +339,6 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 		else
 			PAEN_CLR;
 		break;
-
 	case UBERTOOTH_GET_HGM:
 		data[0] = (HGM) ? 1 : 0;
 		*data_len = 1;
@@ -323,6 +353,8 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 #endif
 
 #ifdef TX_ENABLE
+
+
 	case UBERTOOTH_TX_TEST:
 		requested_mode = MODE_TX_TEST;
 		break;
@@ -396,10 +428,13 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 			channel = requested_channel;
 			requested_channel = 0;
 
+
+
 			/* CS threshold is mode-dependent. Update it after
 			 * possible mode change. TODO - kludgy. */
 			cs_threshold_calc_and_set(channel);
 		}
+
 		break;
 
 	case UBERTOOTH_SET_ISP:
@@ -454,6 +489,8 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 		memcpy(&data[1], compile_info, length);
 		*data_len = 1 + length;
 		break;
+
+
 
 	case UBERTOOTH_GET_BOARD_ID:
 		data[0] = BOARD_ID;
@@ -541,6 +578,8 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 		break;
 
 	case UBERTOOTH_TRIM_CLOCK:
+
+
 		clk100ns_offset = (data[0] << 8) | (data[1] << 0);
 		break;
 
@@ -589,13 +628,6 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 		le.target_set = 1;
 		debug_printf("AA set\n");
 		break;
-// Sopan Sarkar
-	case UBERTOOTH_SET_HOP_INTERVAL:
-		le.conn_interval = (data[0] | data[1] << 8);
-		debug_printf("Hop interval set: %d\n", le.conn_interval);
-		break;
-
-///////////////////////////////////////////
 
 	case UBERTOOTH_DO_SOMETHING:
 		// do something! just don't commit anything here
@@ -677,19 +709,43 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 		break;
 
 	case UBERTOOTH_BTLE_SLAVE:
-		memcpy(slave_mac_address, data, 6);
 		requested_mode = MODE_BT_SLAVE_LE;
 		break;
-// Sopan Sarkar
+///////////////////////////////////////////////////////////////////////////// Sopan Sarkar
 	case UBERTOOTH_BTLE_TRANSMIT:
-		debug_printf("Transmitting on index: %d\n", data[0]);
-		le.channel_idx = data[0];
-		channel = btle_channel_index_to_phys(le.channel_idx);
-		hop_mode = HOP_TX_LE;
-		le.interval_timer = le.conn_interval;
 		requested_mode = MODE_BT_TRANSMIT_LE;
 		break;
-////////////////////////////
+	case UBERTOOTH_SET_HOP_INTERVAL:
+		le.conn_interval = (data[0] | data[1] << 8);
+		window_shift = ((300/1000000)*le.conn_interval*USEC(1250))/2;
+		debug_printf("Hop interval set\n");
+		break;
+	case UBERTOOTH_SET_HOP_INCREMENT:
+		le.channel_increment = data[0];
+		debug_printf("Hop increment set\n");
+		break;
+	case UBERTOOTH_SET_LE_CHANNEL:
+		//debug_printf("Transmitting on index: %d\n", data[0]);
+		le.channel_idx = data[0];
+		channel = btle_next_hop(&le);
+		channel = btle_next_hop(&le);
+		break;
+	case UBERTOOTH_SET_ANCHOR:
+		tx_anchor = data[0] | data[1] << 8 | data[2] << 16 | data[3] << 24;
+		debug_printf("Anchor: %d\n", tx_anchor);
+		u32 now = tx_anchor + (le.conn_interval*USEC(1250)) - TX_WARMUP_TIME - PACKET_DURATION(2) - USEC(50); 
+		if (now > 3276800000)
+			now -= 3276800000;
+		timer2_clear_match();
+		timer2_set_match(now);
+		hop_mode = HOP_TRANSMIT_LE2;
+		anchor_set = 1;
+		break;
+	case UBERTOOTH_SET_CRC_INIT:
+		le.crc_init = data[0] | data[1] << 8 | data[2] << 16 | data[3] << 24;
+		//debug_printf("CRC set\n");
+		break;
+/////////////////////////////////////////////////////////////////////////////
 	case UBERTOOTH_LE_SET_ADV_DATA:
 		// make sure the data fits in our buffer
 		if (data_in_len > LE_ADV_MAX_LEN)
@@ -764,13 +820,47 @@ static int vendor_request_handler(uint8_t request, uint16_t* request_params, uin
 	return 1;
 }
 
+
+/****************** Timer 1 declarations ***************************/
+/*
+static void timer2_start(void) {
+	T0TCR = TCR_Counter_Reset;
+	T0PR = 4; // 100 ns
+	T0TCR = TCR_Counter_Enable;
+
+	// set up interrupt handler
+	ISER0 = ISER0_ISE_TIMER0;
+}
+
+static void timer2_stop(void) {
+	T0TCR = TCR_Counter_Reset;
+
+	// clear interrupt handler
+	ICER0 = ICER0_ICE_TIMER0;
+}
+*/
+
+/*
+void TIMER2_IRQHandler(void) {
+	// MR1: connection events
+	debug_printf("Timer 2\n");
+	if (T0IR & TIR_MR2_Interrupt) {
+		T0IR = TIR_MR1_Interrupt;
+		//T1MCR &= ~TMCR_MR1I;
+		do_transmit = 1;
+		timer2_clear_match();
+		timer2_set_match(le.conn_interval*USEC(1250));
+	}
+}
+*/
+/****************** Timer 1 declarations ***************************/
+
 /* Update CLKN. */
 void TIMER0_IRQHandler()
 {
 	if (T0IR & TIR_MR0_Interrupt) {
-
-		clkn += clkn_offset + 1;
-		clkn_offset = 0;
+		//clkn += clkn_offset + 1;
+		//clkn_offset = 0;
 
 		uint32_t le_clk = (clkn - le.conn_epoch) & 0x03;
 
@@ -800,26 +890,33 @@ void TIMER0_IRQHandler()
 				}
 			}
 		}
-//////////////////////////////////// Sopan Sarkar
-		else if (hop_mode == HOP_TX_LE) {
+		else if (hop_mode == HOP_TRANSMIT_LE) {
+			//debug_printf("I 1\n");
 			// Only hop if connected
-			if (le_clk == 0) {
+			if(le_clk == 0){
 				--le.interval_timer;
 				if (le.interval_timer == 0) {
+					do_hop = 1;
+					++le.conn_count;
 					le.interval_timer = le.conn_interval;
-					do_transmit = 1;
 				} else {
 					TXLED_CLR; // hack!
 				}
 			}
 		}
-////////////////////////////////////////////////
+		else if (hop_mode == HOP_TRANSMIT_LE2 && anchor_set == 1) {
+			u32 now = CLK100NS;
+			do_transmit = 1;
+			timer2_clear_match();
+			timer2_set_match(now + le.conn_interval*USEC(1250) - window_shift -USEC(15));
+			//debug_printf("do_transmit = %d\n",do_transmit);
+		}
 		else if (hop_mode == HOP_AFH) {
 			if( (last_hop + hop_timeout) == clkn ) {
 				do_hop = 1;
 			}
-		}
-
+	}
+/*
 		// Fix linear clock drift deviation
 		if(clkn_next_drift_fix != 0 && clk100ns_offset == 0) {
 			if(clkn >= clkn_next_drift_fix) {
@@ -841,13 +938,22 @@ void TIMER0_IRQHandler()
 		// Negative clock correction
 		if(clk100ns_offset > 3124)
 			clkn += 2;
-
-		T0MR0 = 3124 + clk100ns_offset;
+		
 		clk100ns_offset = 0;
-
+*/
 		/* Ack interrupt */
 		T0IR = TIR_MR0_Interrupt;
 	}
+/*
+	// MR1: connection events
+	if (T0IR & TIR_MR1_Interrupt) {
+		//debug_printf("I 2\n");
+		T0IR = TIR_MR1_Interrupt;
+		do_transmit = 1;
+		//timer2_clear_match();
+		timer2_set_match(le.conn_interval*USEC(1250));
+	}
+*/
 }
 
 /* EINT3 handler is also defined in ubertooth.c for TC13BADGE. */
@@ -915,6 +1021,7 @@ void legacy_DMA_IRQHandler()
 	   || mode == MODE_SPECAN
 	   || mode == MODE_BT_FOLLOW_LE
 	   || mode == MODE_BT_PROMISC_LE
+	   || mode == MODE_BT_TRANSMIT_LE
 	   || mode == MODE_BT_SLAVE_LE
 	   || mode == MODE_RX_GENERIC)
 	{
@@ -1121,7 +1228,7 @@ static void cc2400_tx_sync(uint32_t sync)
 	cc2400_set(GRMDM,   0x0c01);
 	// 0 00 01 1 000 00 0 00 0 1
 	//      |  | |   |  +--------> CRC off
-	//      |  | |   +-----------> sync word: 1582310468 8 MSB bits of SYNC_WORD
+	//      |  | |   +-----------> sync word: 8 MSB bits of SYNC_WORD
 	//      |  | +---------------> 0 preamble bytes of 01010101
 	//      |  +-----------------> packet mode
 	//      +--------------------> buffered mode
@@ -1171,13 +1278,13 @@ void le_transmit(u32 aa, u8 len, u8 *data)
 {
 	unsigned i, j;
 	int bit;
-	u8 txbuf[32];
+	u8 txbuf[40];//32
 	u8 byte;
 	uint32_t sync = rbit(aa);
 
 	// lol
-	if (len > 32)
-		len = 32;
+	if (len > 40)//32
+		len = 40;//32
 
 	// whiten the data and copy it into the txbuf
 	int idx = whitening_index[btle_channel_index(channel)];
@@ -1272,6 +1379,7 @@ void le_jam(void) {
 
 /* TODO - return whether hop happened, or should caller have to keep
  * track of this? */
+
 void hop(void)
 {   
     //static count = 0;
@@ -1293,7 +1401,6 @@ void hop(void)
 				channel -= 79;
 		} while ( used_channels != 0 && afh_enabled && !( afh_map[(channel-2402)/8] & 0x1<<((channel-2402)%8) ) );
 	}
-
 	/* AFH detection
 	 * only hop to currently unused channesl
 	 */
@@ -1309,19 +1416,53 @@ void hop(void)
 		channel = next_hop(clkn);
 	}
 	//Sopan Sarkar
+	else if (hop_mode == HOP_TRANSMIT_LE || hop_mode == HOP_TRANSMIT_LE2){
+		channel = btle_next_hop(&le);
+		//do_transmit = 1;
+		//debug_printf("channel: %d,	%d\n", channel,CLK100NS);
+	}
 	else if (hop_mode == HOP_BTLE) {
-		if(mapped == 1){
-			le.channel_idx = le_map_channel(le.channel_idx, &remapping);
-			//debug_printf("Current index: %d\n", le.channel_idx);
-			channel = btle_next_hop(&le);
-			u8 nxt_idx = le_map_channel(le.channel_idx, &remapping);
-			debug_printf("Next index: %d\n", nxt_idx);
-			le_promisc_state(4, &nxt_idx, 1);
-		}
-		else{
-			channel = btle_next_hop(&le);
-		}
-
+		channel = btle_next_hop(&le);
+		//debug_printf("channel: %d,	%d\n", channel,CLK100NS);
+        //u8 index = btle_channel_index(channel);
+/*
+        if(mapped == 1){
+            if(ch_map_hopped[index] != 1){
+                u8 index2 = index % total_channel;
+                channel = remapped_ch[index2];
+				remapped = 1;
+            }
+			else {
+				remapped = 0;		
+			}
+            hopping_channel++; 
+///////////////////////////////////////////////// added
+			if(channel_hopped > 0){
+			    if(abs(hopping_channel - channel_hopped) > 3 && remapped == 0){
+			        debug_printf("recalculating ch map %d\n",abs(hopping_channel - channel_hopped));
+			        mapped = 0;
+			        ch_count1 = 0;
+			        total_channel = 0;
+			        hopping_channel = 0;
+			        channel_hopped = 0;
+			        do_count = 1;
+			        memset(ch_map_hopped, 0, sizeof ch_map_hopped);
+			    }
+			    hopping_channel = 0;
+			    channel_hopped = 0;
+			}
+////////////////////////////////////////////////// added
+            if(hopping_channel> 37){
+               hopping_channel = 0;
+               channel_hopped = 0;             
+            }    */ 
+        //}
+        // debug_printf("Channel: %d Mapped: %d\n", btle_channel_index(channel), mapped);
+        /*HOP_BTLE
+        else if(mapped == 2){
+            index = le_map_channel(index, &remapping);
+            channel = btle_channel_index_to_phys(index);  
+        }*/
 	}
 
 	else if (hop_mode == HOP_DIRECT) {
@@ -1457,7 +1598,6 @@ static uint8_t reverse8(uint8_t data)
 	{
 		reversed |= ((data >> i) & 0x01) << (7-i);
 	}
-
 	return reversed;
 }
 
@@ -1730,7 +1870,7 @@ void bt_generic_le(u8 active_mode)
 	// disable USB interrupts
 	ICER0 = ICER0_ICE_USB;
 
-	// reset the radio completely
+	// reset the radio completelywww.trainingwithprecision.com
 	cc2400_idle();
 	dio_ssp_stop();
 	cs_trigger_disable();
@@ -1740,6 +1880,7 @@ void bt_generic_le(u8 active_mode)
 
 void bt_le_sync(u8 active_mode)
 {
+
 	int i;
 	int8_t rssi;
 	static int restart_jamming = 0;
@@ -1806,11 +1947,20 @@ void bt_le_sync(u8 active_mode)
 
 		/////////////////////
 		// process the packet
-
+		
 		uint32_t packet[48/4+1] = { 0, };
 		u8 *p = (u8 *)packet;
 		packet[0] = le.access_address;
 
+		if(send_clock){
+			anchor_timestamp = CLK100NS;
+			if (anchor_timestamp < le.last_packet)
+				anchor_timestamp += 3276800000; // handle rollover
+			le_promisc_state(5, &anchor_timestamp, 4);
+			send_clock = 0;
+			//debug_printf("anchor %d\n",anchor_timestamp);
+		}
+		debug_printf("channel_a: %d,	%d\n", channel,CLK100NS);
 		const uint32_t *whit = whitening_word[btle_channel_index(channel)];
 		for (i = 0; i < 4; i+= 4) {
 			uint32_t v = rxbuf1[i+0] << 24
@@ -1860,11 +2010,11 @@ void bt_le_sync(u8 active_mode)
 
 		RXLED_SET;
 		packet_cb((uint8_t *)packet);
-        if(btle_channel_index(channel) == idx3){
-            count3++;  
-            if(count3 > count2-1){
-                count3 = 0;
-            }      
+        	if(btle_channel_index(channel) == idx3){
+            		count3++;  
+            	if(count3 > count2-1){
+                	count3 = 0;
+            	}      
         }
 		// disable USB interrupts while we tpacketouch USB data structures
 		ICER0 = ICER0_ICE_USB;
@@ -1963,6 +2113,7 @@ cleanup:
 /* low energy connection following
  * follows a known AA around */
 int cb_follow_le() {
+	debug_printf("I am in cb\n");
 	int i, j, k;
 	int idx = whitening_index[btle_channel_index(channel)];
 
@@ -1976,6 +2127,7 @@ int cb_follow_le() {
 		access_address >>= 1;
 		access_address |= (unpacked[i] << 31);
 		if (access_address == le.access_address) {
+
 			for (j = 0; j < 46; ++j) {
 				u8 byte = 0;
 				for (k = 0; k < 8; k++) {
@@ -2015,14 +2167,13 @@ int cb_follow_le() {
 	return 1;
 }
 //sopan
-
-void rearrange_channel(uint8_t array[]){
+u8 rearrange_channel(uint16_t array[]){
     
     static u8 m, n = 0;
-    static u8 a = 0;
+    static u16 a = 0;
 
-    for(m=0; m<remapping.total_channels; ++m){
-        for(n=m+1; n<remapping.total_channels; ++n){
+    for(m=0; m< total_channel; ++m){
+        for(n=m+1; n<total_channel; ++n){
             if(array[m] > array[n]){
                 a = array[m];
                 array[m] = array[n];
@@ -2030,11 +2181,10 @@ void rearrange_channel(uint8_t array[]){
             }            
         }
     }
-    //hopping_channel = 0;
-    //channel_hopped = 0;
-    //return 1;
+    hopping_channel = 0;
+    channel_hopped = 0;
+    return 1;
 }
-
 /**
  * Called when we receive a packet in connection following mode.
  */
@@ -2042,29 +2192,27 @@ void rearrange_channel(uint8_t array[]){
 #define DIVIDE_ROUND(N, D) ((N) + (D)/2) / (D)
 
 void connection_follow_cb(u8 *packet) {
-
-    u8 idx = btle_channel_index(channel);
-    //debug_printf("idx: %d val: %d\n",idx,remapping.channel_in_use[idx]);
-    if(ch_count1 < 36 && remapping.channel_in_use[idx] != 1){
-        remapping.channel_in_use[idx] = 1;
-        remapping.remapping_index[remapping.total_channels] = idx;
-	debug_printf("idx: %d cnt: %d \n",idx,ch_count1);
-        ++remapping.total_channels;
-	ch_count1++;
-    }
-    else if(ch_count1 == 36){
-        //debug_printf("matching\n");
-        //le_promisc_state(2, &le.conn_interval, 2);
-        //le_promisc_state(3, &le.channel_increment, 1);
-	rearrange_channel(remapping.remapping_index);
-        ch_count1++;
-        //do_count = 0;
-        mapped = 1;
-	//debug_printf("Mapped\n");
-        //hopping_channel = 0;
-        //channel_hopped = 0;
-    }
+    
 /*
+    u8 index = btle_channel_index(channel);
+
+    if(ch_count1 < 74 && ch_map_hopped[index] != 1){
+        ch_map_hopped[index] = 1;
+        remapped_ch[total_channel] = channel;
+        //debug_printf("%d,", index);
+        total_channel++;
+    }
+    else if(ch_count1 == 74){
+        ch_count1++;
+        do_count = 0;
+        mapped = rearrange_channel(remapped_ch);
+        hopping_channel = 0;
+        channel_hopped = 0;
+
+	//for transmitting
+	
+    }
+
     else if(mapped == 1){
             channel_hopped++;
             if(abs(hopping_channel - channel_hopped) > 3 && remapped == 0){
@@ -2081,7 +2229,6 @@ void connection_follow_cb(u8 *packet) {
             channel_hopped = 0;
      }
 
-
     else if(mapped == 1){
             channel_hopped++;
      }
@@ -2091,12 +2238,12 @@ void connection_follow_cb(u8 *packet) {
     }
 */
 }
-
+/* 
 void le_phy_main(void);
 void bt_follow_le() {
 	le_phy_main();
 }
-
+*/
 // issue state change message
 void le_promisc_state(u8 type, void *data, unsigned len) {
 	u8 buf[50] = { 0, };
@@ -2113,29 +2260,27 @@ void le_promisc_state(u8 type, void *data, unsigned len) {
 
 //sopan
 void promisc_recover_hop_interval(u8 *packet) {
-    
-    // for hop interval
-	static u32 prev_clk = 0;
+
+    	// for hop interval
+    	static u32 prev_clk = 0;
     	static u32 seq[18];
 	static uint16_t count, sindex = 0;
 	static uint8_t calc = 1;
 	static int interval = 0;
     	static uint8_t step, match = 0;
 
-    // for hop increment
+    	// for hop increment
     	static u32 first_ts = 0;
     	u8 hops = 0;
     	u32 diff = 0;
     	u32 channels_hopped = 0;
     	time_array1[0] = 0;
 
-
-
     // for increment
     
     if(count > 8){
-	count = 0;
-	memset(seq, 0, sizeof seq);    
+        count = 0;
+        memset(seq, 0, sizeof seq);    
     }
 
 	u32 cur_clk = CLK100NS;
@@ -2144,21 +2289,19 @@ void promisc_recover_hop_interval(u8 *packet) {
 	u32 clk_diff = cur_clk - prev_clk;
 
 	static u16 obsv_hop_interval; // observed hop interval
-    	u16 hop_diff;
+    u16 hop_diff;
 
-	// probably consecutive data packets on the same channel
+
 	if (clk_diff < 6 * LE_BASECLK)
 		return;
 	
     if(match == 0){
 	    seq[count] = (clk_diff/10000);
     }
-    //debug_printf("s = %d\n",seq[count]);
 	if(calc == 0){
 		++sindex;
         hop_diff = abs(seq[sindex] - (clk_diff/10000));
         interval += (clk_diff/10000);
-        //debug_printf("sn=%d c=%d si =%d ei=%d cnt=%d interval=%d step=%d\n",seq[sindex],(clk_diff/10000),sindex,eindex,count,interval,step);
 		if(hop_diff <= 10){		
             if(step < 1){
                 time_array1[sindex] = interval;
@@ -2201,44 +2344,44 @@ void promisc_recover_hop_interval(u8 *packet) {
                 step = step + 1;
 			}
             time_array1[sindex] = interval;
-            //debug_printf("s1=%d c=%d si =%d ei=%d cnt=%d interval=%d step=%d\n",seq[1],(clk_diff/10000),sindex,eindex,count, interval, step);
+
 		}
 	}
 
     if(calc == 2){
-	uint16_t val = DIVIDE_ROUND(interval,step);
-	obsv_hop_interval = DIVIDE_ROUND(val, 37);
-	debug_printf("Hop interval: %d\n",obsv_hop_interval);
-	le.conn_interval = DIVIDE_ROUND(obsv_hop_interval, 1.25);
-	first_ts = CLK100NS; 
-	hop_direct_channel = btle_channel_index_to_phys(idx2);
-	hop_mode = HOP_DIRECT;
-	do_hop = 1;
-	calc = 3;
+        uint16_t val = DIVIDE_ROUND(interval,step);
+        obsv_hop_interval = DIVIDE_ROUND(val, 37);
+        //debug_printf("Hop interval: %d\n",obsv_hop_interval);
+        le.conn_interval = DIVIDE_ROUND(obsv_hop_interval, 1.25);
+        first_ts = CLK100NS; 
+        hop_direct_channel = btle_channel_index_to_phys(idx2);
+		hop_mode = HOP_DIRECT;
+	    do_hop = 1;
+        calc = 3;
     }
 
     // for increment
 
     else if (channel == btle_channel_index_to_phys(idx2) && calc == 3) {
 		u32 second_ts = CLK100NS;
-	if (second_ts < first_ts){
-		second_ts += 3276800000;
+		if (second_ts < first_ts){
+			second_ts += 3276800000;
         }
 
         diff = (second_ts - first_ts);
         time_array2[count1] = diff/10000;//
 		channels_hopped = DIVIDE_ROUND(diff,le.conn_interval * LE_BASECLK);
 
-	if (channels_hopped > 37) {
-            	first_ts = CLK100NS; 
-            	hop_direct_channel = btle_channel_index_to_phys(idx3);
-		hop_mode = HOP_DIRECT;
-	    	do_hop = 1;
-            	calc = 4;
-	}
-	do_hop = 1;
-	//debug_printf("Count1 %d ch %d diff %d int %d arr %d\n", count1, channels_hopped, diff, le.conn_interval, time_array2[count1]);
-	++count1;
+		if (channels_hopped > 37) {
+            first_ts = CLK100NS; 
+            hop_direct_channel = btle_channel_index_to_phys(idx3);
+		    hop_mode = HOP_DIRECT;
+	        do_hop = 1;
+            calc = 4;
+		}
+		do_hop = 1;
+
+        ++count1;
 	}
     
     else if(channel == btle_channel_index_to_phys(idx3) && calc == 4){
@@ -2252,10 +2395,10 @@ void promisc_recover_hop_interval(u8 *packet) {
 		channels_hopped = DIVIDE_ROUND(diff,le.conn_interval * LE_BASECLK);
 
 		if (channels_hopped > 37) {
-            		calc = 5;
+            calc = 5;
 		}
 		do_hop = 1;
-        //debug_printf("Count2 %d ch %d diff %d int %d arr %d\n", count2, channels_hopped, diff, le.conn_interval, time_array3[count2]);
+
         ++count2;
     }
 
@@ -2316,30 +2459,7 @@ void promisc_recover_hop_interval(u8 *packet) {
                 }
             }
         }
-/*      
-        for( ta1 = 0; ta1 < count1 - 1; ta1++){
-            for( ta2 = 0; ta2 < count2 - 1; ta2++){
-                if(time_array2[ta1] > time_array3[ta2]){
-                    diff = (le.conn_interval*1.25*37) - time_array2[ta1] + time_array3[ta2];
-                }
-                else {
-                    diff = time_array3[ta2] - time_array2[ta1];
-                }
 
-                u8 channels_hopped = DIVIDE_ROUND(diff,le.conn_interval*1.25);
-                if((idx3 - idx2) > 0){
-                    hops = ((idx3 - idx2)*hop_interval_lut[channels_hopped])%37;
-                }
-                else{
-                    hops = ((37 + idx3 - idx2)*hop_interval_lut[channels_hopped])%37;
-                }
-                if ((hops > 4) && (hops < 17)){
-                      ch_hop[index] = hops;
-                      index += 1;
-                }
-            }
-        }
-*/
         for( j = 0; j< index; j++){
             val = ch_hop[j];
             for( i = j; i < index; i++){
@@ -2354,36 +2474,25 @@ void promisc_recover_hop_interval(u8 *packet) {
             curr_count = 0;
         }
         le.channel_increment = max_val;
-        debug_printf("Increment: %d Interval: %d %d out of %d\n",le.channel_increment,le.conn_interval,max_count,index);
+        //debug_printf("Increment: %d Interval: %d %d out of %d\n",le.channel_increment,le.conn_interval,max_count,index);
         calc = 6;
     
-        /*le.channel_increment = max_val;
-        debug_printf("Increment: %d Interval: %d %d out of %d\n",le.channel_increment,le.conn_interval,max_count,index);
-        le.interval_timer = le.conn_interval / 2;
-        le.conn_count = 0;
-        le.conn_epoch = 0;
-        le.channel_idx = (idx3 + le.channel_increment) % 37;
-        le.link_state = LINK_CONNECTED;
-        le.crc_verify = 0;
-        hop_mode = HOP_BTLE;
-        packet_cb = connection_follow_cb;
-        le_promisc_state(2, &le.conn_interval, 2);
-        le_promisc_state(3, &le.channel_increment, 1);    
-        return;*/
     }
     else if(calc == 6){
         //debug_printf("c3: %d c2: %d syc: %d\n",count3, count2-1, sync_count);
         if(count3  == sync_count){
+
             le.interval_timer = le.conn_interval / 2;
             le.conn_count = 0;
             le.conn_epoch = 0;
+	    le_promisc_state(3, &le.channel_increment, 1);    
             le.channel_idx = (idx3 + le.channel_increment) % 37;
             le.link_state = LINK_CONNECTED;
             le.crc_verify = 0;
             hop_mode = HOP_BTLE;
+	    send_clock = 1;
             packet_cb = connection_follow_cb;
             le_promisc_state(2, &le.conn_interval, 2);
-            le_promisc_state(3, &le.channel_increment, 1); 
 	    le_promisc_state(4, &le.channel_idx, 1);    
             return;
         }
@@ -2393,12 +2502,13 @@ void promisc_recover_hop_interval(u8 *packet) {
 	
 	++count;
 	prev_clk = cur_clk;
+
 }
 
 
 //sopan
 void promisc_follow_cb(u8 *packet) {
-    debug_printf("promisc_follow_cb\n");
+    //debug_printf("promisc_follow_cb\n");
 	int i;
 
 	// get the CRCInit
@@ -2409,7 +2519,6 @@ void promisc_follow_cb(u8 *packet) {
 		le.crc_init_reversed = 0;
 		for (i = 0; i < 24; ++i)
 			le.crc_init_reversed |= ((le.crc_init >> i) & 1) << (23 - i);
-
 		le.crc_verify = 1;
 		packet_cb = promisc_recover_hop_interval;
 		le_promisc_state(1, &le.crc_init, 3);
@@ -2442,7 +2551,6 @@ int cb_le_promisc(char *unpacked) {
     
 	int i, j, k;
 	int idx;
-
 	// empty data PDU: 01 00
 	char desired[4][16] = {
 		{ 1, 0, 0, 0, 0, 0, 0, 0,
@@ -2535,22 +2643,17 @@ int cb_le_promisc(char *unpacked) {
 }
 
 void bt_promisc_le() {
-    //static inc = 0;
-    //u8 channel_37[37] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,242,5,26,27,28,29,30,31,32,33,34,35,36};
 
 	while (requested_mode == MODE_BT_PROMISC_LE) {
-        //if(check_channel == 0 && channel_37[inc] != idx2 && channel_37[inc] != idx3){
-		    reset_le_promisc();
-            //idx1 = channel_37[inc];
-		    // jump to a random data channel and turn up the squelch
-		    if ((channel & 1) == 1){
-			    channel = btle_channel_index_to_phys(idx1);// sopan
-                debug_printf("Channel: %d\n", channel);
-            }
-        //}
-		// if the PC hasn't given us AA, determine by listening
+		reset_le_promisc();
+		// jump to a random data channel and turn up the squelch
+		if ((channel & 1) == 1){
+			le.crc_init_reversed = 0xa71541;
+			channel = btle_channel_index_to_phys(idx1);// sopan
+               		//debug_printf("Channel: %d\n", channel);
+            	}
+
 		if (!le.target_set) {
-			// cs_threshold_req = -80;
 			cs_threshold_calc_and_set(channel);
 			data_cb = cb_le_promisc;
 			bt_generic_le(MODE_BT_PROMISC_LE);
@@ -2559,25 +2662,109 @@ void bt_promisc_le() {
 		// could have got mode change in middle of above
 		if (requested_mode != MODE_BT_PROMISC_LE)
 			break;
-
 		le_promisc_state(0, &le.access_address, 4);
 		packet_cb = promisc_follow_cb;
 		le.crc_verify = 0;
 		bt_le_sync(MODE_BT_PROMISC_LE);
-        
-        /*if(inc >= 36){
-            inc = 0;
-        }
-        inc++;*/
 	}
 }
 
+void bt_transmit_le(){
+	
+	clkn_start();
+
+	uint8_t data[2] = {0x00,0x00};
+	uint8_t len = 2;
+
+	unsigned i, j;
+	int bit;
+	u8 txbuf[2];
+	u8 byte;
+	uint32_t sync = rbit(le.access_address);
+
+	ISER0 = ISER0_ISE_USB;
+	while (requested_mode == MODE_BT_TRANSMIT_LE) {
+		if (do_hop)
+			hop();
+		
+		if(do_transmit){
+			//do_transmit = 0;
+			//debug_printf("do_transmit = %d\n", do_transmit);
+			int idx = whitening_index[btle_channel_index(channel)];
+			for (i = 0; i < len; ++i) {
+				byte = data[i];
+				txbuf[i] = 0;
+				for (j = 0; j < 8; ++j) {
+					bit = (byte & 1) ^ whitening[idx];
+					idx = (idx + 1) % sizeof(whitening);
+					byte >>= 1;
+					txbuf[i] |= bit << (7 - j);
+				}
+			}
+
+			
+			// Bluetooth-like modulation
+			cc2400_set(MANAND,  0x7fff);
+			cc2400_set(LMTST,   0x2b22);    // LNA and receive mixers test register
+			cc2400_set(MDMTST0, 0x134b);    // no PRNG
+
+			cc2400_set(GRMDM,   0x0ce1);
+			// 0 00 01 1 001 11 0 00 0 1
+			//      |  | |   |  +--------> CRC off
+			//      |  | |   +-----------> sync word: all 32 bits of SYNC_WORD
+			//      |  | +---------------> 1 preamble byte of 01010101
+			//      |  +-----------------> packet mode
+			//      +--------------------> buffered mode
+
+			cc2400_set(FSDIV,   channel);
+			cc2400_set(FREND,   0b1011);    // amplifier level (-7 dBm, picked from hat)
+			cc2400_set(MDMCTRL, 0x0040);    // 250 kHz frequency deviation
+			cc2400_set(INT,     0x0014);    // FIFO_THRESHOLD: 20 bytes
+
+			// set sync word to bit-reversed AA
+
+			cc2400_set(SYNCL,   sync & 0xffff);
+			cc2400_set(SYNCH,   (sync >> 16) & 0xffff);
+
+			// turn on the radio
+			while (!(cc2400_status() & XOSC16M_STABLE));
+			cc2400_strobe(SFSON);
+			while (!(cc2400_status() & FS_LOCK));
+			TXLED_SET;
+		#ifdef UBERTOOTH_ONE
+			PAEN_SET;
+		#endif
+			while ((cc2400_get(FSMSTATE) & 0x1f) != STATE_STROBE_FS_ON);
+			debug_printf("channel: %d	%d\n", channel, CLK100NS);
+			// copy the packet to the FIFO and strobe STX
+			cc2400_fifo_write(len, txbuf);
+			cc2400_strobe(STX);
+
+			while ((cc2400_get(FSMSTATE) & 0x1f) != STATE_STROBE_FS_ON);
+			TXLED_CLR;
+
+			cc2400_strobe(SRFOFF);
+			while ((cc2400_status() & FS_LOCK));
+
+		#ifdef UBERTOOTH_ONE
+			PAEN_CLR;
+			#endif
+			do_transmit = 0;
+			do_hop = 1;
+		}
+	}
+	// disable USB interrupts
+	ICER0 = ICER0_ICE_USB;
+}
+
 void bt_slave_le() {
+	//debug_printf("Le adv\n");
+	channel = btle_channel_index_to_phys(37);// for test
 	u32 calc_crc;
 	int i;
-	uint8_t adv_ind[32] = { 0x00, };
-	uint8_t adv_ind_len;
-
+	uint8_t adv_ind[26] = {0x00,0x15,0x31,0x56,0xAF,0x50,0xA0,0x00,0x02,0x01,0x06,0x07,0x09,0x63,0x61,0x70,0x6C,0x65,0x64,0x03,0x03,0x00,0x80,0x11,0xC0,0xCB};
+	uint8_t adv_ind_len = 26;
+/*
 	if (le_adv_len > LE_ADV_MAX_LEN) {
 		requested_mode = MODE_IDLE;
 		return;
@@ -2600,7 +2787,7 @@ void bt_slave_le() {
 	adv_ind[adv_ind_len + 0] = (calc_crc >>  0) & 0xff;
 	adv_ind[adv_ind_len + 1] = (calc_crc >>  8) & 0xff;
 	adv_ind[adv_ind_len + 2] = (calc_crc >> 16) & 0xff;
-
+*/
 	clkn_start();
 
 	// enable USB interrupts due to busy waits
@@ -2608,32 +2795,13 @@ void bt_slave_le() {
 
 	// spam advertising packets
 	while (requested_mode == MODE_BT_SLAVE_LE) {
-		le_transmit(0x8e89bed6, adv_ind_len+3, adv_ind);
+		le_transmit(0x8e89bed6, adv_ind_len, adv_ind);
 		msleep(100);
 	}
 
 	// disable USB interrupts
 	ICER0 = ICER0_ICE_USB;
 }
-
-// Sopan Sarkar
-void bt_transmit_le(){
-	uint8_t pdu_data[2] = {0x50,0x00};
-	uint8_t pdu_data_len = 2;
-
-	clkn_start();
-
-	// enable USB interrupts due to busy waits
-	ISER0 = ISER0_ISE_USB;
-
-	// spam data packets
-	while (requested_mode == MODE_BT_TRANSMIT_LE && do_transmit == 1) {
-		le_transmit(le.access_address, pdu_data_len, pdu_data);
-	}
-	// disable USB interrupts
-	ICER0 = ICER0_ICE_USB;
-}
-///////////////////////////////
 
 void rx_generic_sync(void) {
 	u8 len = 32;
@@ -2885,8 +3053,8 @@ int main()
 					bt_stream_rx();
 					break;
 				case MODE_BT_FOLLOW_LE:
-					mode = MODE_BT_FOLLOW_LE;
-					bt_follow_le();
+					//mode = MODE_BT_FOLLOW_LE;
+					//bt_follow_le();
 					break;
 				case MODE_BT_PROMISC_LE:
 					bt_promisc_le();

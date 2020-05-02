@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc1fZed6.s 			page 1
+ARM GAS  /tmp/ccFMhgwK.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc1fZed6.s 			page 1
   31:../common/serial_fifo.c **** void fifo_init(fifo_t *fifo, U8 *buf)
   32:../common/serial_fifo.c **** {
   26              		.loc 1 32 0
-ARM GAS  /tmp/cc1fZed6.s 			page 2
+ARM GAS  /tmp/ccFMhgwK.s 			page 2
 
 
   27              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc1fZed6.s 			page 1
   69 000c 03F07F03 		and	r3, r3, #127
   70 0010 58BF     		it	pl
   71 0012 5342     		rsbpl	r3, r2, #0
-ARM GAS  /tmp/cc1fZed6.s 			page 3
+ARM GAS  /tmp/ccFMhgwK.s 			page 3
 
 
   72              	.LVL2:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc1fZed6.s 			page 1
  109              		.loc 1 62 0
  110 0000 90E80C00 		ldm	r0, {r2, r3}
  111 0004 9A42     		cmp	r2, r3
-ARM GAS  /tmp/cc1fZed6.s 			page 4
+ARM GAS  /tmp/ccFMhgwK.s 			page 4
 
 
  112 0006 0DD0     		beq	.L7
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc1fZed6.s 			page 1
  155              	.LFB3:
   73:../common/serial_fifo.c **** 
   74:../common/serial_fifo.c **** 
-ARM GAS  /tmp/cc1fZed6.s 			page 5
+ARM GAS  /tmp/ccFMhgwK.s 			page 5
 
 
   75:../common/serial_fifo.c **** int fifo_avail(fifo_t *fifo)
@@ -298,28 +298,28 @@ ARM GAS  /tmp/cc1fZed6.s 			page 1
  202 000a 08BD     		pop	{r3, pc}
  203              		.cfi_endproc
  204              	.LFE4:
-ARM GAS  /tmp/cc1fZed6.s 			page 6
+ARM GAS  /tmp/ccFMhgwK.s 			page 6
 
 
  206              		.text
  207              	.Letext0:
  208              		.file 2 "../common/serial_fifo.h"
  209              		.file 3 "../common/lpcusb/target/type.h"
-ARM GAS  /tmp/cc1fZed6.s 			page 7
+ARM GAS  /tmp/ccFMhgwK.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 serial_fifo.c
-     /tmp/cc1fZed6.s:16     .text.fifo_init:0000000000000000 $t
-     /tmp/cc1fZed6.s:23     .text.fifo_init:0000000000000000 fifo_init
-     /tmp/cc1fZed6.s:46     .text.fifo_put:0000000000000000 $t
-     /tmp/cc1fZed6.s:53     .text.fifo_put:0000000000000000 fifo_put
-     /tmp/cc1fZed6.s:94     .text.fifo_get:0000000000000000 $t
-     /tmp/cc1fZed6.s:101    .text.fifo_get:0000000000000000 fifo_get
-     /tmp/cc1fZed6.s:147    .text.fifo_avail:0000000000000000 $t
-     /tmp/cc1fZed6.s:154    .text.fifo_avail:0000000000000000 fifo_avail
-     /tmp/cc1fZed6.s:179    .text.fifo_free:0000000000000000 $t
-     /tmp/cc1fZed6.s:186    .text.fifo_free:0000000000000000 fifo_free
+     /tmp/ccFMhgwK.s:16     .text.fifo_init:0000000000000000 $t
+     /tmp/ccFMhgwK.s:23     .text.fifo_init:0000000000000000 fifo_init
+     /tmp/ccFMhgwK.s:46     .text.fifo_put:0000000000000000 $t
+     /tmp/ccFMhgwK.s:53     .text.fifo_put:0000000000000000 fifo_put
+     /tmp/ccFMhgwK.s:94     .text.fifo_get:0000000000000000 $t
+     /tmp/ccFMhgwK.s:101    .text.fifo_get:0000000000000000 fifo_get
+     /tmp/ccFMhgwK.s:147    .text.fifo_avail:0000000000000000 $t
+     /tmp/ccFMhgwK.s:154    .text.fifo_avail:0000000000000000 fifo_avail
+     /tmp/ccFMhgwK.s:179    .text.fifo_free:0000000000000000 $t
+     /tmp/ccFMhgwK.s:186    .text.fifo_free:0000000000000000 fifo_free
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

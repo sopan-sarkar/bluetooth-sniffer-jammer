@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccwQfsPq.s 			page 1
+ARM GAS  /tmp/cc3obZyk.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
   31:ubertooth_cs.c **** } cs_samples_t;
   32:ubertooth_cs.c **** 
   33:ubertooth_cs.c **** #define CS_THRESHOLD_DEFAULT (int8_t)(-120)
-ARM GAS  /tmp/ccwQfsPq.s 			page 2
+ARM GAS  /tmp/cc3obZyk.s 			page 2
 
 
   34:ubertooth_cs.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
   54              	.LBB6:
   55              	.LBB7:
   43:ubertooth_cs.c **** 	cc2400_set(RSSI, (uint8_t)((level + 56) & (0x3f << 2)) | ((uint8_t)samples&3));
-ARM GAS  /tmp/ccwQfsPq.s 			page 3
+ARM GAS  /tmp/cc3obZyk.s 			page 3
 
 
   56              		.loc 1 43 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
  106              		.fpu softvfp
  108              	cs_trigger_enable:
  109              	.LFB2:
-ARM GAS  /tmp/ccwQfsPq.s 			page 4
+ARM GAS  /tmp/cc3obZyk.s 			page 4
 
 
   60:ubertooth_cs.c **** 	} else {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
  149              		.fpu softvfp
  151              	cs_trigger_disable:
  152              	.LFB3:
-ARM GAS  /tmp/ccwQfsPq.s 			page 5
+ARM GAS  /tmp/cc3obZyk.s 			page 5
 
 
   76:ubertooth_cs.c **** }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
  197              		.cfi_startproc
  198              		@ args = 0, pretend = 0, frame = 0
  199              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccwQfsPq.s 			page 6
+ARM GAS  /tmp/cc3obZyk.s 			page 6
 
 
  200 0000 08B5     		push	{r3, lr}
@@ -346,27 +346,27 @@ ARM GAS  /tmp/ccwQfsPq.s 			page 1
  238              		.file 3 "ubertooth_cs.h"
  239              		.file 4 "../common/ubertooth.h"
  240              		.file 5 "ubertooth_rssi.h"
-ARM GAS  /tmp/ccwQfsPq.s 			page 7
+ARM GAS  /tmp/cc3obZyk.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ubertooth_cs.c
-     /tmp/ccwQfsPq.s:16     .text.cs_threshold_calc_and_set:0000000000000000 $t
-     /tmp/ccwQfsPq.s:23     .text.cs_threshold_calc_and_set:0000000000000000 cs_threshold_calc_and_set
-     /tmp/ccwQfsPq.s:92     .text.cs_threshold_calc_and_set:0000000000000050 $d
+     /tmp/cc3obZyk.s:16     .text.cs_threshold_calc_and_set:0000000000000000 $t
+     /tmp/cc3obZyk.s:23     .text.cs_threshold_calc_and_set:0000000000000000 cs_threshold_calc_and_set
+     /tmp/cc3obZyk.s:92     .text.cs_threshold_calc_and_set:0000000000000050 $d
                             *COM*:0000000000000001 cs_threshold_req
                             *COM*:0000000000000001 cs_threshold_cur
                             *COM*:0000000000000001 cs_no_squelch
-     /tmp/ccwQfsPq.s:101    .text.cs_trigger_enable:0000000000000000 $t
-     /tmp/ccwQfsPq.s:108    .text.cs_trigger_enable:0000000000000000 cs_trigger_enable
-     /tmp/ccwQfsPq.s:136    .text.cs_trigger_enable:0000000000000020 $d
+     /tmp/cc3obZyk.s:101    .text.cs_trigger_enable:0000000000000000 $t
+     /tmp/cc3obZyk.s:108    .text.cs_trigger_enable:0000000000000000 cs_trigger_enable
+     /tmp/cc3obZyk.s:136    .text.cs_trigger_enable:0000000000000020 $d
                             *COM*:0000000000000001 cs_trigger
-     /tmp/ccwQfsPq.s:144    .text.cs_trigger_disable:0000000000000000 $t
-     /tmp/ccwQfsPq.s:151    .text.cs_trigger_disable:0000000000000000 cs_trigger_disable
-     /tmp/ccwQfsPq.s:179    .text.cs_trigger_disable:0000000000000020 $d
-     /tmp/ccwQfsPq.s:187    .text.cs_reset:0000000000000000 $t
-     /tmp/ccwQfsPq.s:194    .text.cs_reset:0000000000000000 cs_reset
-     /tmp/ccwQfsPq.s:222    .text.cs_reset:0000000000000018 $d
+     /tmp/cc3obZyk.s:144    .text.cs_trigger_disable:0000000000000000 $t
+     /tmp/cc3obZyk.s:151    .text.cs_trigger_disable:0000000000000000 cs_trigger_disable
+     /tmp/cc3obZyk.s:179    .text.cs_trigger_disable:0000000000000020 $d
+     /tmp/cc3obZyk.s:187    .text.cs_reset:0000000000000000 $t
+     /tmp/cc3obZyk.s:194    .text.cs_reset:0000000000000000 cs_reset
+     /tmp/cc3obZyk.s:222    .text.cs_reset:0000000000000018 $d
                             *COM*:0000000000000001 rssi_count
                             *COM*:0000000000000001 rssi_min
                             *COM*:0000000000000001 rssi_max

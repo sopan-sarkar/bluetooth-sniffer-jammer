@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cctUXaZk.s 			page 1
+ARM GAS  /tmp/ccCTVX39.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
   31:bluetooth_le.c **** 	u16 phys = btle_channel_index_to_phys(le->channel_idx);
   32:bluetooth_le.c **** 	le->channel_idx = (le->channel_idx + le->channel_increment) % 37;
   33:bluetooth_le.c **** 	return phys;
-ARM GAS  /tmp/cctUXaZk.s 			page 2
+ARM GAS  /tmp/ccCTVX39.s 			page 2
 
 
   34:bluetooth_le.c ****     //return le->channel_idx;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
   62              	.L4:
   43:bluetooth_le.c **** 	else if (channel < 12)
   63              		.loc 1 43 0
-ARM GAS  /tmp/cctUXaZk.s 			page 3
+ARM GAS  /tmp/ccCTVX39.s 			page 3
 
 
   64 0024 2520     		movs	r0, #37
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
   60:bluetooth_le.c **** 		phys = 2428 + 2 * (idx - 11);
  109              		.loc 1 60 0
  110 0010 4000     		lsls	r0, r0, #1
-ARM GAS  /tmp/cctUXaZk.s 			page 4
+ARM GAS  /tmp/ccCTVX39.s 			page 4
 
 
  111              	.LVL10:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  157 0000 10B5     		push	{r4, lr}
  158              		.cfi_def_cfa_offset 8
  159              		.cfi_offset 4, -8
-ARM GAS  /tmp/cctUXaZk.s 			page 5
+ARM GAS  /tmp/ccCTVX39.s 			page 5
 
 
  160              		.cfi_offset 14, -4
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  199              		.cfi_offset 4, -20
  200              		.cfi_offset 5, -16
  201              		.cfi_offset 6, -12
-ARM GAS  /tmp/cctUXaZk.s 			page 6
+ARM GAS  /tmp/ccCTVX39.s 			page 6
 
 
  202              		.cfi_offset 7, -8
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  232              		.loc 1 91 0
  233 001c 16F0010F 		tst	r6, #1
  234 0020 4FEA5000 		lsr	r0, r0, #1
-ARM GAS  /tmp/cctUXaZk.s 			page 7
+ARM GAS  /tmp/ccCTVX39.s 			page 7
 
 
  235              	.LVL22:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  280              		.cfi_offset 14, -4
  281              		.loc 1 106 0
  282 0002 0346     		mov	r3, r0
-ARM GAS  /tmp/cctUXaZk.s 			page 8
+ARM GAS  /tmp/ccCTVX39.s 			page 8
 
 
  283              	.LVL26:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  314 0022 40EA0100 		orr	r0, r0, r1
  315              	.LVL31:
  124:bluetooth_le.c **** 		ret |= ((state >> i) & 1) << (23 - i);
-ARM GAS  /tmp/cctUXaZk.s 			page 9
+ARM GAS  /tmp/ccCTVX39.s 			page 9
 
 
  316              		.loc 1 124 0 discriminator 3
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  357              		.loc 1 112 0 discriminator 2
  358 004c 013A     		subs	r2, r2, #1
  359              	.LVL40:
-ARM GAS  /tmp/cctUXaZk.s 			page 10
+ARM GAS  /tmp/ccCTVX39.s 			page 10
 
 
  360 004e DBE7     		b	.L27
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  167:bluetooth_le.c ****  * Michael Ossmann for writing and optimizing this.
  168:bluetooth_le.c ****  *
  169:bluetooth_le.c ****  * Arguments: CRCInit, pointer to start of packet, length of packet in
-ARM GAS  /tmp/cctUXaZk.s 			page 11
+ARM GAS  /tmp/ccCTVX39.s 			page 11
 
 
  170:bluetooth_le.c ****  * bytes
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  414 0022 F2E7     		b	.L40
  415              	.L43:
  416              		.align	2
-ARM GAS  /tmp/cctUXaZk.s 			page 12
+ARM GAS  /tmp/ccCTVX39.s 			page 12
 
 
  417              	.L42:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  192:bluetooth_le.c **** 
  457              		.loc 1 192 0
  458 0010 325C     		ldrb	r2, [r6, r0]	@ zero_extendqisi2
-ARM GAS  /tmp/cctUXaZk.s 			page 13
+ARM GAS  /tmp/ccCTVX39.s 			page 13
 
 
  459              	.LVL50:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  503 004c A2EB0502 		sub	r2, r2, r5
  504              	.LVL58:
  505              		.loc 1 200 0 discriminator 3
-ARM GAS  /tmp/cctUXaZk.s 			page 14
+ARM GAS  /tmp/ccCTVX39.s 			page 14
 
 
  506 0050 5FFA83FC 		uxtb	ip, r3
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  210:bluetooth_le.c **** 	unsigned i, j, byte;
  211:bluetooth_le.c **** 	unsigned idx = 0;
  212:bluetooth_le.c **** 
-ARM GAS  /tmp/cctUXaZk.s 			page 15
+ARM GAS  /tmp/ccCTVX39.s 			page 15
 
 
  213:bluetooth_le.c **** 	memset(remapping, 0, sizeof(*remapping));
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  225:bluetooth_le.c **** 
  226:bluetooth_le.c **** 			byte >>= 1;
  227:bluetooth_le.c **** 
-ARM GAS  /tmp/cctUXaZk.s 			page 16
+ARM GAS  /tmp/ccCTVX39.s 			page 16
 
 
  228:bluetooth_le.c **** 			++idx;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  629              		@ args = 0, pretend = 0, frame = 0
  630              		@ frame_needed = 0, uses_anonymous_args = 0
  631              		@ link register save eliminated.
-ARM GAS  /tmp/cctUXaZk.s 			page 17
+ARM GAS  /tmp/ccCTVX39.s 			page 17
 
 
  632              	.LVL74:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  684 001c 56       		.byte	86
  685 001d 31       		.byte	49
  686 001e 34       		.byte	52
-ARM GAS  /tmp/cctUXaZk.s 			page 18
+ARM GAS  /tmp/ccCTVX39.s 			page 18
 
 
  687 001f 14       		.byte	20
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  743 0054 00       		.byte	0
  744 0055 01       		.byte	1
  745 0056 01       		.byte	1
-ARM GAS  /tmp/cctUXaZk.s 			page 19
+ARM GAS  /tmp/ccCTVX39.s 			page 19
 
 
  746 0057 00       		.byte	0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  800 008d 01       		.byte	1
  801 008e 01       		.byte	1
  802 008f 01       		.byte	1
-ARM GAS  /tmp/cctUXaZk.s 			page 20
+ARM GAS  /tmp/ccCTVX39.s 			page 20
 
 
  803 0090 01       		.byte	1
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  859 006c 40371400 		.word	1324864
  860 0070 00391000 		.word	1063168
  861 0074 C08D1100 		.word	1150400
-ARM GAS  /tmp/cctUXaZk.s 			page 21
+ARM GAS  /tmp/ccCTVX39.s 			page 21
 
 
  862 0078 80501300 		.word	1265792
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  916 0150 00AF7000 		.word	7384832
  917 0154 C01B7100 		.word	7412672
  918 0158 80C67300 		.word	7587456
-ARM GAS  /tmp/cctUXaZk.s 			page 22
+ARM GAS  /tmp/ccCTVX39.s 			page 22
 
 
  919 015c 40727200 		.word	7500352
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  973 0234 C0A1D000 		.word	13672896
  974 0238 807CD200 		.word	13794432
  975 023c 40C8D300 		.word	13879360
-ARM GAS  /tmp/cctUXaZk.s 			page 23
+ARM GAS  /tmp/ccCTVX39.s 			page 23
 
 
  976 0240 002CC100 		.word	12659712
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  1030 0318 80EAB200 		.word	11725440
  1031 031c 405EB300 		.word	11755072
  1032 0320 00F6BA00 		.word	12252672
-ARM GAS  /tmp/cctUXaZk.s 			page 24
+ARM GAS  /tmp/ccCTVX39.s 			page 24
 
 
  1033 0324 C042BB00 		.word	12272320
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  1087 03fc 402C9300 		.word	9645120
  1088              		.text
  1089              	.Letext0:
-ARM GAS  /tmp/cctUXaZk.s 			page 25
+ARM GAS  /tmp/ccCTVX39.s 			page 25
 
 
  1090              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
@@ -1449,37 +1449,37 @@ ARM GAS  /tmp/cctUXaZk.s 			page 1
  1095              		.file 7 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stddef.h"
  1096              		.file 8 "/usr/include/newlib/sys/reent.h"
  1097              		.file 9 "/usr/include/newlib/string.h"
-ARM GAS  /tmp/cctUXaZk.s 			page 26
+ARM GAS  /tmp/ccCTVX39.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 bluetooth_le.c
-     /tmp/cctUXaZk.s:16     .text.btle_channel_index:0000000000000000 $t
-     /tmp/cctUXaZk.s:23     .text.btle_channel_index:0000000000000000 btle_channel_index
-     /tmp/cctUXaZk.s:80     .text.btle_channel_index_to_phys:0000000000000000 $t
-     /tmp/cctUXaZk.s:87     .text.btle_channel_index_to_phys:0000000000000000 btle_channel_index_to_phys
-     /tmp/cctUXaZk.s:143    .text.btle_next_hop:0000000000000000 $t
-     /tmp/cctUXaZk.s:150    .text.btle_next_hop:0000000000000000 btle_next_hop
-     /tmp/cctUXaZk.s:183    .text.btle_calc_crc:0000000000000000 $t
-     /tmp/cctUXaZk.s:190    .text.btle_calc_crc:0000000000000000 btle_calc_crc
-     /tmp/cctUXaZk.s:254    .text.btle_calc_crc:0000000000000034 $d
-     /tmp/cctUXaZk.s:260    .text.btle_reverse_crc:0000000000000000 $t
-     /tmp/cctUXaZk.s:267    .text.btle_reverse_crc:0000000000000000 btle_reverse_crc
-     /tmp/cctUXaZk.s:364    .text.btle_reverse_crc:0000000000000050 $d
-     /tmp/cctUXaZk.s:369    .text.btle_crcgen_lut:0000000000000000 $t
-     /tmp/cctUXaZk.s:376    .text.btle_crcgen_lut:0000000000000000 btle_crcgen_lut
-     /tmp/cctUXaZk.s:418    .text.btle_crcgen_lut:0000000000000024 $d
-     /tmp/cctUXaZk.s:423    .text.le_dewhiten:0000000000000000 $t
-     /tmp/cctUXaZk.s:430    .text.le_dewhiten:0000000000000000 le_dewhiten
-     /tmp/cctUXaZk.s:520    .text.le_dewhiten:0000000000000060 $d
-     /tmp/cctUXaZk.s:526    .text.le_parse_channel_map:0000000000000000 $t
-     /tmp/cctUXaZk.s:533    .text.le_parse_channel_map:0000000000000000 le_parse_channel_map
-     /tmp/cctUXaZk.s:618    .text.le_map_channel:0000000000000000 $t
-     /tmp/cctUXaZk.s:625    .text.le_map_channel:0000000000000000 le_map_channel
-     /tmp/cctUXaZk.s:831    .data:0000000000000000 btle_crc_lut
-     /tmp/cctUXaZk.s:655    .rodata:0000000000000000 whitening_index
-     /tmp/cctUXaZk.s:698    .rodata:0000000000000028 whitening
-     /tmp/cctUXaZk.s:827    .data:0000000000000000 $d
+     /tmp/ccCTVX39.s:16     .text.btle_channel_index:0000000000000000 $t
+     /tmp/ccCTVX39.s:23     .text.btle_channel_index:0000000000000000 btle_channel_index
+     /tmp/ccCTVX39.s:80     .text.btle_channel_index_to_phys:0000000000000000 $t
+     /tmp/ccCTVX39.s:87     .text.btle_channel_index_to_phys:0000000000000000 btle_channel_index_to_phys
+     /tmp/ccCTVX39.s:143    .text.btle_next_hop:0000000000000000 $t
+     /tmp/ccCTVX39.s:150    .text.btle_next_hop:0000000000000000 btle_next_hop
+     /tmp/ccCTVX39.s:183    .text.btle_calc_crc:0000000000000000 $t
+     /tmp/ccCTVX39.s:190    .text.btle_calc_crc:0000000000000000 btle_calc_crc
+     /tmp/ccCTVX39.s:254    .text.btle_calc_crc:0000000000000034 $d
+     /tmp/ccCTVX39.s:260    .text.btle_reverse_crc:0000000000000000 $t
+     /tmp/ccCTVX39.s:267    .text.btle_reverse_crc:0000000000000000 btle_reverse_crc
+     /tmp/ccCTVX39.s:364    .text.btle_reverse_crc:0000000000000050 $d
+     /tmp/ccCTVX39.s:369    .text.btle_crcgen_lut:0000000000000000 $t
+     /tmp/ccCTVX39.s:376    .text.btle_crcgen_lut:0000000000000000 btle_crcgen_lut
+     /tmp/ccCTVX39.s:418    .text.btle_crcgen_lut:0000000000000024 $d
+     /tmp/ccCTVX39.s:423    .text.le_dewhiten:0000000000000000 $t
+     /tmp/ccCTVX39.s:430    .text.le_dewhiten:0000000000000000 le_dewhiten
+     /tmp/ccCTVX39.s:520    .text.le_dewhiten:0000000000000060 $d
+     /tmp/ccCTVX39.s:526    .text.le_parse_channel_map:0000000000000000 $t
+     /tmp/ccCTVX39.s:533    .text.le_parse_channel_map:0000000000000000 le_parse_channel_map
+     /tmp/ccCTVX39.s:618    .text.le_map_channel:0000000000000000 $t
+     /tmp/ccCTVX39.s:625    .text.le_map_channel:0000000000000000 le_map_channel
+     /tmp/ccCTVX39.s:831    .data:0000000000000000 btle_crc_lut
+     /tmp/ccCTVX39.s:655    .rodata:0000000000000000 whitening_index
+     /tmp/ccCTVX39.s:698    .rodata:0000000000000028 whitening
+     /tmp/ccCTVX39.s:827    .data:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

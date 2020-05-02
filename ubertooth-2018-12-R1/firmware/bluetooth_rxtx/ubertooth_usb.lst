@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccE04E1l.s 			page 1
+ARM GAS  /tmp/ccVdeLMf.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
   31:ubertooth_usb.c **** 	   notice, this list of conditions and the following disclaimer.
   32:ubertooth_usb.c **** 	2. Redistributions in binary form must reproduce the above copyright
   33:ubertooth_usb.c **** 	   notice, this list of conditions and the following disclaimer in the
-ARM GAS  /tmp/ccE04E1l.s 			page 2
+ARM GAS  /tmp/ccVdeLMf.s 			page 2
 
 
   34:ubertooth_usb.c **** 	   documentation and/or other materials provided with the distribution.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
   88:ubertooth_usb.c **** 	0xFF,              		// bDeviceClass
   89:ubertooth_usb.c **** 	0x00,              		// bDeviceSubClass
   90:ubertooth_usb.c **** 	0x00,              		// bDeviceProtocol
-ARM GAS  /tmp/ccE04E1l.s 			page 3
+ARM GAS  /tmp/ccVdeLMf.s 			page 3
 
 
   91:ubertooth_usb.c **** 	MAX_PACKET_SIZE0,  		// bMaxPacketSize
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  145:ubertooth_usb.c **** 	'G', 0x00,
  146:ubertooth_usb.c **** 	'r', 0x00,
  147:ubertooth_usb.c **** 	'e', 0x00,
-ARM GAS  /tmp/ccE04E1l.s 			page 4
+ARM GAS  /tmp/ccVdeLMf.s 			page 4
 
 
  148:ubertooth_usb.c **** 	'a', 0x00,
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  202:ubertooth_usb.c **** 		dequeue_send();
  203:ubertooth_usb.c **** }
  204:ubertooth_usb.c **** 
-ARM GAS  /tmp/ccE04E1l.s 			page 5
+ARM GAS  /tmp/ccVdeLMf.s 			page 5
 
 
  205:ubertooth_usb.c **** void usb_bulk_out_handler(u8 bEP, u8 bEPStatus)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
   64              		.cfi_def_cfa_offset 8
   65              		@ sp needed
   66 002a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccE04E1l.s 			page 6
+ARM GAS  /tmp/ccVdeLMf.s 			page 6
 
 
   67              	.L3:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  229:ubertooth_usb.c **** 			desc[i * 4] = (nibble > 9) ? ('a' + nibble - 10) : ('0' + nibble);
  230:ubertooth_usb.c **** 			desc[1+ i * 4] = 0;
  112              		.loc 1 230 0
-ARM GAS  /tmp/ccE04E1l.s 			page 7
+ARM GAS  /tmp/ccVdeLMf.s 			page 7
 
 
  113 0018 1E46     		mov	r6, r3
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  236:ubertooth_usb.c **** }
  155              		.loc 1 236 0
  156 004e 06B0     		add	sp, sp, #24
-ARM GAS  /tmp/ccE04E1l.s 			page 8
+ARM GAS  /tmp/ccVdeLMf.s 			page 8
 
 
  157              		.cfi_def_cfa_offset 16
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  199              		.loc 1 249 0
  200 0016 094B     		ldr	r3, .L14+4
  250:ubertooth_usb.c **** 
-ARM GAS  /tmp/ccE04E1l.s 			page 9
+ARM GAS  /tmp/ccVdeLMf.s 			page 9
 
 
  251:ubertooth_usb.c **** 	// override standard request handler
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  237              		.syntax unified
  238              		.thumb
  239              		.thumb_func
-ARM GAS  /tmp/ccE04E1l.s 			page 10
+ARM GAS  /tmp/ccVdeLMf.s 			page 10
 
 
  240              		.fpu softvfp
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  280              		.loc 1 283 0
  281              		.cfi_startproc
  282              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccE04E1l.s 			page 11
+ARM GAS  /tmp/ccVdeLMf.s 			page 11
 
 
  283              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  319 002a 10BD     		pop	{r4, pc}
  320              	.LVL28:
  321              	.L23:
-ARM GAS  /tmp/ccE04E1l.s 			page 12
+ARM GAS  /tmp/ccVdeLMf.s 			page 12
 
 
  322              		.align	2
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  363              		.loc 1 309 0
  364 0018 00EB8310 		addne	r0, r0, r3, lsl #6
  308:ubertooth_usb.c **** 	return &fifo[h];
-ARM GAS  /tmp/ccE04E1l.s 			page 13
+ARM GAS  /tmp/ccVdeLMf.s 			page 13
 
 
  365              		.loc 1 308 0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  409              		.loc 1 320 0
  410 000e 0146     		mov	r1, r0
  411 0010 4022     		movs	r2, #64
-ARM GAS  /tmp/ccE04E1l.s 			page 14
+ARM GAS  /tmp/ccVdeLMf.s 			page 14
 
 
  412 0012 8220     		movs	r0, #130
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  326:ubertooth_usb.c **** 		}
  451              		.loc 1 326 0
  452 0038 FFF7FEFF 		bl	USBHwEPWrite
-ARM GAS  /tmp/ccE04E1l.s 			page 15
+ARM GAS  /tmp/ccVdeLMf.s 			page 15
 
 
  453              	.LVL38:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  499              		.loc 1 337 0
  500 000c 0546     		mov	r5, r0
  501              	.LVL42:
-ARM GAS  /tmp/ccE04E1l.s 			page 16
+ARM GAS  /tmp/ccVdeLMf.s 			page 16
 
 
  502              		.loc 1 338 0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  549 0006 00       		.byte	0
  550 0007 40       		.byte	64
  551 0008 50       		.byte	80
-ARM GAS  /tmp/ccE04E1l.s 			page 17
+ARM GAS  /tmp/ccVdeLMf.s 			page 17
 
 
  552 0009 1D       		.byte	29
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  606 003f 00       		.byte	0
  607 0040 74       		.byte	116
  608 0041 00       		.byte	0
-ARM GAS  /tmp/ccE04E1l.s 			page 18
+ARM GAS  /tmp/ccVdeLMf.s 			page 18
 
 
  609 0042 20       		.byte	32
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  663 0078 65       		.byte	101
  664 0079 00       		.byte	0
  665 007a 42       		.byte	66
-ARM GAS  /tmp/ccE04E1l.s 			page 19
+ARM GAS  /tmp/ccVdeLMf.s 			page 19
 
 
  666 007b 03       		.byte	3
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  720 00b1 00       		.byte	0
  721 00b2 30       		.byte	48
  722 00b3 00       		.byte	0
-ARM GAS  /tmp/ccE04E1l.s 			page 20
+ARM GAS  /tmp/ccVdeLMf.s 			page 20
 
 
  723 00b4 30       		.byte	48
@@ -1181,41 +1181,41 @@ ARM GAS  /tmp/ccE04E1l.s 			page 1
  762              		.file 12 "../common/lpcusb/target/usbhw_lpc.h"
  763              		.file 13 "../common/lpcusb/target/usbapi.h"
  764              		.file 14 "/usr/include/newlib/string.h"
-ARM GAS  /tmp/ccE04E1l.s 			page 21
+ARM GAS  /tmp/ccVdeLMf.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ubertooth_usb.c
-     /tmp/ccE04E1l.s:16     .text.usb_vendor_request_handler:0000000000000000 $t
-     /tmp/ccE04E1l.s:23     .text.usb_vendor_request_handler:0000000000000000 usb_vendor_request_handler
-     /tmp/ccE04E1l.s:70     .text.usb_vendor_request_handler:000000000000002c $d
+     /tmp/ccVdeLMf.s:16     .text.usb_vendor_request_handler:0000000000000000 $t
+     /tmp/ccVdeLMf.s:23     .text.usb_vendor_request_handler:0000000000000000 usb_vendor_request_handler
+     /tmp/ccVdeLMf.s:70     .text.usb_vendor_request_handler:000000000000002c $d
                             *COM*:0000000000000004 v_req_handler
-     /tmp/ccE04E1l.s:75     .text.set_serial_descriptor:0000000000000000 $t
-     /tmp/ccE04E1l.s:82     .text.set_serial_descriptor:0000000000000000 set_serial_descriptor
-     /tmp/ccE04E1l.s:164    .text.ubertooth_usb_init:0000000000000000 $t
-     /tmp/ccE04E1l.s:171    .text.ubertooth_usb_init:0000000000000000 ubertooth_usb_init
-     /tmp/ccE04E1l.s:226    .text.ubertooth_usb_init:0000000000000038 $d
+     /tmp/ccVdeLMf.s:75     .text.set_serial_descriptor:0000000000000000 $t
+     /tmp/ccVdeLMf.s:82     .text.set_serial_descriptor:0000000000000000 set_serial_descriptor
+     /tmp/ccVdeLMf.s:164    .text.ubertooth_usb_init:0000000000000000 $t
+     /tmp/ccVdeLMf.s:171    .text.ubertooth_usb_init:0000000000000000 ubertooth_usb_init
+     /tmp/ccVdeLMf.s:226    .text.ubertooth_usb_init:0000000000000038 $d
                             *COM*:0000000000000102 abVendorReqData
-     /tmp/ccE04E1l.s:235    .text.usb_queue_init:0000000000000000 $t
-     /tmp/ccE04E1l.s:242    .text.usb_queue_init:0000000000000000 usb_queue_init
-     /tmp/ccE04E1l.s:265    .text.usb_queue_init:0000000000000014 $d
+     /tmp/ccVdeLMf.s:235    .text.usb_queue_init:0000000000000000 $t
+     /tmp/ccVdeLMf.s:242    .text.usb_queue_init:0000000000000000 usb_queue_init
+     /tmp/ccVdeLMf.s:265    .text.usb_queue_init:0000000000000014 $d
                             *COM*:0000000000002000 fifo
-     /tmp/ccE04E1l.s:271    .text.usb_enqueue:0000000000000000 $t
-     /tmp/ccE04E1l.s:278    .text.usb_enqueue:0000000000000000 usb_enqueue
-     /tmp/ccE04E1l.s:324    .text.usb_enqueue:000000000000002c $d
-     /tmp/ccE04E1l.s:330    .text.dequeue:0000000000000000 $t
-     /tmp/ccE04E1l.s:337    .text.dequeue:0000000000000000 dequeue
-     /tmp/ccE04E1l.s:375    .text.dequeue:0000000000000024 $d
-     /tmp/ccE04E1l.s:381    .text.dequeue_send:0000000000000000 $t
-     /tmp/ccE04E1l.s:388    .text.dequeue_send:0000000000000000 dequeue_send
-     /tmp/ccE04E1l.s:464    .text.dequeue_send:0000000000000040 $d
-     /tmp/ccE04E1l.s:470    .text.handle_usb:0000000000000000 $t
-     /tmp/ccE04E1l.s:477    .text.handle_usb:0000000000000000 handle_usb
-     /tmp/ccE04E1l.s:745    .bss:0000000000000008 last_usb_pkt
-     /tmp/ccE04E1l.s:741    .bss:0000000000000004 tail
-     /tmp/ccE04E1l.s:737    .bss:0000000000000000 head
-     /tmp/ccE04E1l.s:542    .data:0000000000000000 abDescriptors
-     /tmp/ccE04E1l.s:733    .bss:0000000000000000 $d
+     /tmp/ccVdeLMf.s:271    .text.usb_enqueue:0000000000000000 $t
+     /tmp/ccVdeLMf.s:278    .text.usb_enqueue:0000000000000000 usb_enqueue
+     /tmp/ccVdeLMf.s:324    .text.usb_enqueue:000000000000002c $d
+     /tmp/ccVdeLMf.s:330    .text.dequeue:0000000000000000 $t
+     /tmp/ccVdeLMf.s:337    .text.dequeue:0000000000000000 dequeue
+     /tmp/ccVdeLMf.s:375    .text.dequeue:0000000000000024 $d
+     /tmp/ccVdeLMf.s:381    .text.dequeue_send:0000000000000000 $t
+     /tmp/ccVdeLMf.s:388    .text.dequeue_send:0000000000000000 dequeue_send
+     /tmp/ccVdeLMf.s:464    .text.dequeue_send:0000000000000040 $d
+     /tmp/ccVdeLMf.s:470    .text.handle_usb:0000000000000000 $t
+     /tmp/ccVdeLMf.s:477    .text.handle_usb:0000000000000000 handle_usb
+     /tmp/ccVdeLMf.s:745    .bss:0000000000000008 last_usb_pkt
+     /tmp/ccVdeLMf.s:741    .bss:0000000000000004 tail
+     /tmp/ccVdeLMf.s:737    .bss:0000000000000000 head
+     /tmp/ccVdeLMf.s:542    .data:0000000000000000 abDescriptors
+     /tmp/ccVdeLMf.s:733    .bss:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

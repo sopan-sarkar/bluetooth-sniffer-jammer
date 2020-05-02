@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc5Cv7M4.s 			page 1
+ARM GAS  /tmp/ccEPsjNN.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc5Cv7M4.s 			page 1
   31:../common/LPC17xx_Startup.c ****   copies and that both that the copyright notice and this
   32:../common/LPC17xx_Startup.c ****   permission notice and warranty disclaimer appear in supporting
   33:../common/LPC17xx_Startup.c ****   documentation, and that the name of the author not be used in
-ARM GAS  /tmp/cc5Cv7M4.s 			page 2
+ARM GAS  /tmp/ccEPsjNN.s 			page 2
 
 
   34:../common/LPC17xx_Startup.c ****   advertising or publicity pertaining to distribution of the
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc5Cv7M4.s 			page 1
   70:../common/LPC17xx_Startup.c **** 	}
   71:../common/LPC17xx_Startup.c **** 
   72:../common/LPC17xx_Startup.c **** 	// Initialize the .bss segment of memory to zeros
-ARM GAS  /tmp/cc5Cv7M4.s 			page 3
+ARM GAS  /tmp/ccEPsjNN.s 			page 3
 
 
   73:../common/LPC17xx_Startup.c **** 	src = &_bss;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc5Cv7M4.s 			page 1
   83 003c 00000000 		.word	_data
   84 0040 00000000 		.word	_edata
   85 0044 00000000 		.word	_bss
-ARM GAS  /tmp/cc5Cv7M4.s 			page 4
+ARM GAS  /tmp/ccEPsjNN.s 			page 4
 
 
   86 0048 00000000 		.word	_ebss
@@ -189,14 +189,14 @@ ARM GAS  /tmp/cc5Cv7M4.s 			page 1
   92              		.text
   93              	.Letext0:
   94              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
-ARM GAS  /tmp/cc5Cv7M4.s 			page 5
+ARM GAS  /tmp/ccEPsjNN.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 LPC17xx_Startup.c
-     /tmp/cc5Cv7M4.s:16     .text.Reset_Handler:0000000000000000 $t
-     /tmp/cc5Cv7M4.s:23     .text.Reset_Handler:0000000000000000 Reset_Handler
-     /tmp/cc5Cv7M4.s:82     .text.Reset_Handler:0000000000000038 $d
+     /tmp/ccEPsjNN.s:16     .text.Reset_Handler:0000000000000000 $t
+     /tmp/ccEPsjNN.s:23     .text.Reset_Handler:0000000000000000 Reset_Handler
+     /tmp/ccEPsjNN.s:82     .text.Reset_Handler:0000000000000038 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

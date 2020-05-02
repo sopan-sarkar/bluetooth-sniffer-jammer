@@ -310,7 +310,8 @@ out:
 /*
  * Sniff Bluetooth Low Energy packets.
  */
-void cb_btle(ubertooth_t* ut,ubertooth_t* ut2,ubertooth_t* ut3, void* args)
+//void cb_btle(ubertooth_t* ut, void* args)
+void cb_btle(ubertooth_t* ut,ubertooth_t* ut2, void* args)
 {
 	lell_packet* pkt;
 	btle_options* opts = (btle_options*) args;
@@ -322,6 +323,7 @@ void cb_btle(ubertooth_t* ut,ubertooth_t* ut2,ubertooth_t* ut3, void* args)
 	static u32 prev_ts = 0;
 	uint32_t refAA;
 	int8_t sig, noise;
+//	uint32_t clock_1,clock_2, clock_diff;
 
 	// display LE promiscuous mode state changes
 	if (rx->pkt_type == LE_PROMISC) {
@@ -336,19 +338,23 @@ void cb_btle(ubertooth_t* ut,ubertooth_t* ut2,ubertooth_t* ut3, void* args)
 				break;
 			case 1:
 				printf("CRC Init: %06x\n", *(uint32_t *)val);
+				cmd_set_crc_init(ut2->devh, *(uint32_t *)val);
 				break;
 			case 2:
 				printf("Hop interval: %g ms\n", *(uint16_t *)val * 1.25);
 				cmd_set_hop_interval(ut2->devh, *(uint16_t *)val);
-				cmd_set_hop_interval(ut3->devh, *(uint16_t *)val);
 				break;
 			case 3:
 				printf("Hop increment: %u\n", *(uint8_t *)val);
+				cmd_set_hop_increment(ut2->devh, *(uint8_t *)val);
 				break;
 			case 4:
 				printf("Next Channel: %u\n", *(uint8_t *)val);
-				cmd_btle_transmit(ut2->devh, *(uint8_t *)val);
-				cmd_btle_transmit(ut3->devh, *(uint8_t *)val);
+				cmd_set_le_channel(ut2->devh, *(uint8_t *)val);
+				break;
+			case 5:
+				printf("Anchor clock: %u\n", *(uint32_t *)val);
+				cmd_set_anchor(ut2->devh, *(uint32_t *)val);
 				break;
 			default:
 				printf("Unknown %u\n", state);
@@ -358,7 +364,12 @@ void cb_btle(ubertooth_t* ut,ubertooth_t* ut2,ubertooth_t* ut3, void* args)
 
 		return;
 	}
-
+/*
+	clock_1 = cmd_get_clock(ut->devh);
+	clock_2 = cmd_get_clock(ut2->devh);
+	clock_diff = clock_1-clock_2;
+	printf("clock diff: %d\n",clock_diff);
+*/
 	uint64_t nowns = now_ns_from_clk100ns( ut, rx );
 
 	/* Sanity check */

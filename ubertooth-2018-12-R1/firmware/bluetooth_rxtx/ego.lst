@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccYdyq1O.s 			page 1
+ARM GAS  /tmp/cc7thdow.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
   32:ego.c         **** 
   33:ego.c         **** int enqueue_with_ts(u8 type, u8 *buf, u32 ts);
   34:ego.c         **** #define CLK100NS (3125*(clkn & 0xfffff) + T0TC)
-ARM GAS  /tmp/ccYdyq1O.s 			page 2
+ARM GAS  /tmp/cc7thdow.s 			page 2
 
 
   35:ego.c         **** extern volatile u32 clkn; // TODO: replace with timer1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
   30              		.loc 1 83 0
   31 0000 4FF08052 		mov	r2, #268435456
   32 0004 034B     		ldr	r3, .L2
-ARM GAS  /tmp/ccYdyq1O.s 			page 3
+ARM GAS  /tmp/cc7thdow.s 			page 3
 
 
   33 0006 1A60     		str	r2, [r3]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  116:ego.c         **** 
  117:ego.c         ****     // 630f9ffe86
  118:ego.c         **** 	cc2400_set(SYNCH,   0x630f);
-ARM GAS  /tmp/ccYdyq1O.s 			page 4
+ARM GAS  /tmp/cc7thdow.s 			page 4
 
 
  119:ego.c         **** 	cc2400_set(SYNCL,   0x9ffe);
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
   88              	.L11:
   89              		.align	2
   90              	.L10:
-ARM GAS  /tmp/ccYdyq1O.s 			page 5
+ARM GAS  /tmp/cc7thdow.s 			page 5
 
 
   91 001c 0C000340 		.word	1073938444
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  139              		.syntax unified
  140              		.thumb
  141              		.thumb_func
-ARM GAS  /tmp/ccYdyq1O.s 			page 6
+ARM GAS  /tmp/cc7thdow.s 			page 6
 
 
  142              		.fpu softvfp
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  181 002c 0120     		movcs	r0, #1
  182 002e 7047     		bx	lr
  183              	.L18:
-ARM GAS  /tmp/ccYdyq1O.s 			page 7
+ARM GAS  /tmp/cc7thdow.s 			page 7
 
 
  184              		.align	2
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  229 0002 40F66812 		movw	r2, #2408
  174:ego.c         **** 	state->channel_index = 0;
  230              		.loc 1 174 0
-ARM GAS  /tmp/ccYdyq1O.s 			page 8
+ARM GAS  /tmp/cc7thdow.s 			page 8
 
 
  231 0006 4360     		str	r3, [r0, #4]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  208:ego.c         **** 		state->timer_active = 1;
  209:ego.c         **** 	}
  210:ego.c         **** }
-ARM GAS  /tmp/ccYdyq1O.s 			page 9
+ARM GAS  /tmp/cc7thdow.s 			page 9
 
 
  211:ego.c         **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  184:ego.c         **** 	ego_packet_t packet = {
  291              		.loc 1 184 0
  292 0006 0446     		mov	r4, r0
-ARM GAS  /tmp/ccYdyq1O.s 			page 10
+ARM GAS  /tmp/cc7thdow.s 			page 10
 
 
  185:ego.c         **** 		.rxtime = CLK100NS,
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  196:ego.c         **** 		enqueue_with_ts(EGO_PACKET, packet.rxbuf, packet.rxtime);
  337              		.loc 1 196 0
  338 0046 6846     		mov	r0, sp
-ARM GAS  /tmp/ccYdyq1O.s 			page 11
+ARM GAS  /tmp/cc7thdow.s 			page 11
 
 
  195:ego.c         **** 		do_rx(&packet);
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  380 007c 0BB0     		add	sp, sp, #44
  381              		.cfi_def_cfa_offset 12
  382              		@ sp needed
-ARM GAS  /tmp/ccYdyq1O.s 			page 12
+ARM GAS  /tmp/cc7thdow.s 			page 12
 
 
  383 007e 30BD     		pop	{r4, r5, pc}
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  433              		.loc 1 105 0
  434 0018 41F24B31 		movw	r1, #4939
  435 001c 1420     		movs	r0, #20
-ARM GAS  /tmp/ccYdyq1O.s 			page 13
+ARM GAS  /tmp/cc7thdow.s 			page 13
 
 
  436 001e FFF7FEFF 		bl	cc2400_set
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
   75:ego.c         **** 
  482              		.loc 1 75 0
  483 006c 0F49     		ldr	r1, .L49+8
-ARM GAS  /tmp/ccYdyq1O.s 			page 14
+ARM GAS  /tmp/cc7thdow.s 			page 14
 
 
   72:ego.c         **** 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  528 00a2 10BD     		pop	{r4, pc}
  529              	.LVL43:
  530              	.L50:
-ARM GAS  /tmp/ccYdyq1O.s 			page 15
+ARM GAS  /tmp/cc7thdow.s 			page 15
 
 
  531              		.align	2
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  267:ego.c         **** 	}
  268:ego.c         **** }
  269:ego.c         **** 
-ARM GAS  /tmp/ccYdyq1O.s 			page 16
+ARM GAS  /tmp/cc7thdow.s 			page 16
 
 
  270:ego.c         **** static void start_jamming_state(ego_fsm_state_t *state) {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  588              	.LVL50:
  284:ego.c         **** 	cc2400_set(MDMCTRL, 0x0026); // 150 kHz frequency deviation
  589              		.loc 1 284 0
-ARM GAS  /tmp/ccYdyq1O.s 			page 17
+ARM GAS  /tmp/cc7thdow.s 			page 17
 
 
  590 0038 2621     		movs	r1, #38
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  298:ego.c         **** 	cc2400_strobe(STX);
  631              		.loc 1 298 0
  632 0078 6320     		movs	r0, #99
-ARM GAS  /tmp/ccYdyq1O.s 			page 18
+ARM GAS  /tmp/cc7thdow.s 			page 18
 
 
  295:ego.c         **** #endif
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  681              	.LVL62:
  682 0000 10B5     		push	{r4, lr}
  683              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccYdyq1O.s 			page 19
+ARM GAS  /tmp/cc7thdow.s 			page 19
 
 
  684              		.cfi_offset 4, -8
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  725              	.LVL66:
  726              	.L63:
  727 0036 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccYdyq1O.s 			page 20
+ARM GAS  /tmp/cc7thdow.s 			page 20
 
 
  728              	.LVL67:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  762 0008 30B1     		cbz	r0, .L70
  763              	.LVL70:
  764              	.LBB38:
-ARM GAS  /tmp/ccYdyq1O.s 			page 21
+ARM GAS  /tmp/cc7thdow.s 			page 21
 
 
  765              	.LBB39:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  815 0002 0446     		mov	r4, r0
  307:ego.c         **** 		cc2400_strobe(SRFOFF);
  816              		.loc 1 307 0
-ARM GAS  /tmp/ccYdyq1O.s 			page 22
+ARM GAS  /tmp/cc7thdow.s 			page 22
 
 
  817 0004 FFF7FEFF 		bl	sleep_elapsed
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  861 0048 E360     		str	r3, [r4, #12]
  862              	.LVL79:
  863              	.L77:
-ARM GAS  /tmp/ccYdyq1O.s 			page 23
+ARM GAS  /tmp/cc7thdow.s 			page 23
 
 
  864 004a 10BD     		pop	{r4, pc}
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  255:ego.c         **** 	}
  914              		.loc 1 255 0
  915 0012 40F63541 		movw	r1, #3125
-ARM GAS  /tmp/ccYdyq1O.s 			page 24
+ARM GAS  /tmp/cc7thdow.s 			page 24
 
 
  254:ego.c         **** 		state->anchor = CLK100NS;
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  959              	.LVL86:
  960              	.LBE57:
  961              	.LBE56:
-ARM GAS  /tmp/ccYdyq1O.s 			page 25
+ARM GAS  /tmp/cc7thdow.s 			page 25
 
 
  268:ego.c         **** 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1014              	.LVL92:
  233:ego.c         **** 	};
  1015              		.loc 1 233 0
-ARM GAS  /tmp/ccYdyq1O.s 			page 26
+ARM GAS  /tmp/cc7thdow.s 			page 26
 
 
  1016 000e 40F63541 		movw	r1, #3125
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1058 0048 FFF7FEFF 		bl	cc2400_strobe
  1059              	.LVL96:
  1060              	.L100:
-ARM GAS  /tmp/ccYdyq1O.s 			page 27
+ARM GAS  /tmp/cc7thdow.s 			page 27
 
 
  244:ego.c         **** 		while ((cc2400_get(FSMSTATE) & 0x1f) != STATE_STROBE_FS_ON);
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1108              		.loc 1 331 0
  1109              		.cfi_startproc
  1110              		@ args = 0, pretend = 0, frame = 32
-ARM GAS  /tmp/ccYdyq1O.s 			page 28
+ARM GAS  /tmp/cc7thdow.s 			page 28
 
 
  1111              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  368:ego.c         **** 	};
  369:ego.c         **** 
  370:ego.c         **** 	switch (mode) {
-ARM GAS  /tmp/ccYdyq1O.s 			page 29
+ARM GAS  /tmp/cc7thdow.s 			page 29
 
 
  1129              		.loc 1 370 0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1155 0026 4FF08072 		mov	r2, #16777216
  1156 002a 104B     		ldr	r3, .L121+8
  1157 002c 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccYdyq1O.s 			page 30
+ARM GAS  /tmp/cc7thdow.s 			page 30
 
 
   93:ego.c         **** }
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1203              	.L122:
  1204 0062 00BF     		.align	2
  1205              	.L121:
-ARM GAS  /tmp/ccYdyq1O.s 			page 31
+ARM GAS  /tmp/cc7thdow.s 			page 31
 
 
  1206 0064 00000000 		.word	requested_mode
@@ -1817,7 +1817,7 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1222 0002 7209     		.short	2418
  1223 0004 7709     		.short	2423
  1224 0006 A509     		.short	2469
- 1227              	follow_handler.4030:
+ 1227              	follow_handler.4035:
  1228 0008 00000000 		.word	init_state
  1229 000c 00000000 		.word	start_rf_state
  1230 0010 00000000 		.word	cap_state
@@ -1825,14 +1825,14 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1232 0018 00000000 		.word	nop_state
  1233 001c 00000000 		.word	nop_state
  1234 0020 00000000 		.word	nop_state
- 1237              	continuous_rx_handler.4031:
+ 1237              	continuous_rx_handler.4036:
  1238 0024 00000000 		.word	continuous_init_state
  1239 0028 00000000 		.word	start_rf_state
  1240 002c 00000000 		.word	continuous_cap_state
  1241 0030 00000000 		.word	nop_state
  1242 0034 00000000 		.word	nop_state
  1243 0038 00000000 		.word	nop_state
- 1246              	jam_handler.4032:
+ 1246              	jam_handler.4037:
  1247 003c 00000000 		.word	init_state
  1248 0040 00000000 		.word	start_rf_state
  1249 0044 00000000 		.word	jam_cap_state
@@ -1845,67 +1845,67 @@ ARM GAS  /tmp/ccYdyq1O.s 			page 1
  1256              		.file 3 "../common/ubertooth.h"
  1257              		.file 4 "../../host/libubertooth/src/ubertooth_interface.h"
  1258              		.file 5 "ego.h"
-ARM GAS  /tmp/ccYdyq1O.s 			page 32
+ARM GAS  /tmp/cc7thdow.s 			page 32
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ego.c
-     /tmp/ccYdyq1O.s:16     .text.ssp_stop:0000000000000000 $t
-     /tmp/ccYdyq1O.s:22     .text.ssp_stop:0000000000000000 ssp_stop
-     /tmp/ccYdyq1O.s:43     .text.ssp_stop:0000000000000014 $d
-     /tmp/ccYdyq1O.s:49     .text.do_rx:0000000000000000 $t
-     /tmp/ccYdyq1O.s:55     .text.do_rx:0000000000000000 do_rx
-     /tmp/ccYdyq1O.s:91     .text.do_rx:000000000000001c $d
-     /tmp/ccYdyq1O.s:97     .text.sleep_ms:0000000000000000 $t
-     /tmp/ccYdyq1O.s:103    .text.sleep_ms:0000000000000000 sleep_ms
-     /tmp/ccYdyq1O.s:132    .text.sleep_ms:0000000000000024 $d
-     /tmp/ccYdyq1O.s:138    .text.sleep_elapsed:0000000000000000 $t
-     /tmp/ccYdyq1O.s:144    .text.sleep_elapsed:0000000000000000 sleep_elapsed
-     /tmp/ccYdyq1O.s:186    .text.sleep_elapsed:0000000000000030 $d
-     /tmp/ccYdyq1O.s:192    .text.nop_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:198    .text.nop_state:0000000000000000 nop_state
-     /tmp/ccYdyq1O.s:211    .text.init_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:217    .text.init_state:0000000000000000 init_state
-     /tmp/ccYdyq1O.s:242    .text.init_state:0000000000000014 $d
-     /tmp/ccYdyq1O.s:247    .text.continuous_init_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:253    .text.continuous_init_state:0000000000000000 continuous_init_state
-     /tmp/ccYdyq1O.s:269    .text.cap_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:275    .text.cap_state:0000000000000000 cap_state
-     /tmp/ccYdyq1O.s:388    .text.cap_state:0000000000000080 $d
-     /tmp/ccYdyq1O.s:396    .text.start_rf_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:402    .text.start_rf_state:0000000000000000 start_rf_state
-     /tmp/ccYdyq1O.s:533    .text.start_rf_state:00000000000000a4 $d
-     /tmp/ccYdyq1O.s:541    .text.start_jamming_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:547    .text.start_jamming_state:0000000000000000 start_jamming_state
-     /tmp/ccYdyq1O.s:660    .text.start_jamming_state:0000000000000098 $d
-     /tmp/ccYdyq1O.s:669    .text.sleep_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:675    .text.sleep_state:0000000000000000 sleep_state
-     /tmp/ccYdyq1O.s:732    .text.sleep_state:0000000000000038 $d
-     /tmp/ccYdyq1O.s:740    .text.jam_sleep_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:746    .text.jam_sleep_state:0000000000000000 jam_sleep_state
-     /tmp/ccYdyq1O.s:787    .text.jam_sleep_state:000000000000001c $d
-     /tmp/ccYdyq1O.s:796    .text.jamming_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:803    .text.jamming_state:0000000000000000 jamming_state
-     /tmp/ccYdyq1O.s:869    .text.jamming_state:000000000000004c $d
-     /tmp/ccYdyq1O.s:880    .text.jam_cap_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:886    .text.jam_cap_state:0000000000000000 jam_cap_state
-     /tmp/ccYdyq1O.s:981    .text.jam_cap_state:000000000000005c $d
-     /tmp/ccYdyq1O.s:989    .text.continuous_cap_state:0000000000000000 $t
-     /tmp/ccYdyq1O.s:995    .text.continuous_cap_state:0000000000000000 continuous_cap_state
-     /tmp/ccYdyq1O.s:1091   .text.continuous_cap_state:000000000000006c $d
-     /tmp/ccYdyq1O.s:1099   .text.ego_main:0000000000000000 $t
-     /tmp/ccYdyq1O.s:1106   .text.ego_main:0000000000000000 ego_main
-     /tmp/ccYdyq1O.s:1206   .text.ego_main:0000000000000064 $d
-     /tmp/ccYdyq1O.s:1216   .rodata:0000000000000000 $d
-     /tmp/ccYdyq1O.s:1220   .rodata:0000000000000000 channels
-     /tmp/ccYdyq1O.s:1227   .rodata:0000000000000008 follow_handler.4030
-     /tmp/ccYdyq1O.s:1237   .rodata:0000000000000024 continuous_rx_handler.4031
-     /tmp/ccYdyq1O.s:1246   .rodata:000000000000003c jam_handler.4032
+     /tmp/cc7thdow.s:16     .text.ssp_stop:0000000000000000 $t
+     /tmp/cc7thdow.s:22     .text.ssp_stop:0000000000000000 ssp_stop
+     /tmp/cc7thdow.s:43     .text.ssp_stop:0000000000000014 $d
+     /tmp/cc7thdow.s:49     .text.do_rx:0000000000000000 $t
+     /tmp/cc7thdow.s:55     .text.do_rx:0000000000000000 do_rx
+     /tmp/cc7thdow.s:91     .text.do_rx:000000000000001c $d
+     /tmp/cc7thdow.s:97     .text.sleep_ms:0000000000000000 $t
+     /tmp/cc7thdow.s:103    .text.sleep_ms:0000000000000000 sleep_ms
+     /tmp/cc7thdow.s:132    .text.sleep_ms:0000000000000024 $d
+     /tmp/cc7thdow.s:138    .text.sleep_elapsed:0000000000000000 $t
+     /tmp/cc7thdow.s:144    .text.sleep_elapsed:0000000000000000 sleep_elapsed
+     /tmp/cc7thdow.s:186    .text.sleep_elapsed:0000000000000030 $d
+     /tmp/cc7thdow.s:192    .text.nop_state:0000000000000000 $t
+     /tmp/cc7thdow.s:198    .text.nop_state:0000000000000000 nop_state
+     /tmp/cc7thdow.s:211    .text.init_state:0000000000000000 $t
+     /tmp/cc7thdow.s:217    .text.init_state:0000000000000000 init_state
+     /tmp/cc7thdow.s:242    .text.init_state:0000000000000014 $d
+     /tmp/cc7thdow.s:247    .text.continuous_init_state:0000000000000000 $t
+     /tmp/cc7thdow.s:253    .text.continuous_init_state:0000000000000000 continuous_init_state
+     /tmp/cc7thdow.s:269    .text.cap_state:0000000000000000 $t
+     /tmp/cc7thdow.s:275    .text.cap_state:0000000000000000 cap_state
+     /tmp/cc7thdow.s:388    .text.cap_state:0000000000000080 $d
+     /tmp/cc7thdow.s:396    .text.start_rf_state:0000000000000000 $t
+     /tmp/cc7thdow.s:402    .text.start_rf_state:0000000000000000 start_rf_state
+     /tmp/cc7thdow.s:533    .text.start_rf_state:00000000000000a4 $d
+     /tmp/cc7thdow.s:541    .text.start_jamming_state:0000000000000000 $t
+     /tmp/cc7thdow.s:547    .text.start_jamming_state:0000000000000000 start_jamming_state
+     /tmp/cc7thdow.s:660    .text.start_jamming_state:0000000000000098 $d
+     /tmp/cc7thdow.s:669    .text.sleep_state:0000000000000000 $t
+     /tmp/cc7thdow.s:675    .text.sleep_state:0000000000000000 sleep_state
+     /tmp/cc7thdow.s:732    .text.sleep_state:0000000000000038 $d
+     /tmp/cc7thdow.s:740    .text.jam_sleep_state:0000000000000000 $t
+     /tmp/cc7thdow.s:746    .text.jam_sleep_state:0000000000000000 jam_sleep_state
+     /tmp/cc7thdow.s:787    .text.jam_sleep_state:000000000000001c $d
+     /tmp/cc7thdow.s:796    .text.jamming_state:0000000000000000 $t
+     /tmp/cc7thdow.s:803    .text.jamming_state:0000000000000000 jamming_state
+     /tmp/cc7thdow.s:869    .text.jamming_state:000000000000004c $d
+     /tmp/cc7thdow.s:880    .text.jam_cap_state:0000000000000000 $t
+     /tmp/cc7thdow.s:886    .text.jam_cap_state:0000000000000000 jam_cap_state
+     /tmp/cc7thdow.s:981    .text.jam_cap_state:000000000000005c $d
+     /tmp/cc7thdow.s:989    .text.continuous_cap_state:0000000000000000 $t
+     /tmp/cc7thdow.s:995    .text.continuous_cap_state:0000000000000000 continuous_cap_state
+     /tmp/cc7thdow.s:1091   .text.continuous_cap_state:000000000000006c $d
+     /tmp/cc7thdow.s:1099   .text.ego_main:0000000000000000 $t
+     /tmp/cc7thdow.s:1106   .text.ego_main:0000000000000000 ego_main
+     /tmp/cc7thdow.s:1206   .text.ego_main:0000000000000064 $d
+     /tmp/cc7thdow.s:1216   .rodata:0000000000000000 $d
+     /tmp/cc7thdow.s:1220   .rodata:0000000000000000 channels
+     /tmp/cc7thdow.s:1227   .rodata:0000000000000008 follow_handler.4035
+     /tmp/cc7thdow.s:1237   .rodata:0000000000000024 continuous_rx_handler.4036
+     /tmp/cc7thdow.s:1246   .rodata:000000000000003c jam_handler.4037
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 clkn
-ARM GAS  /tmp/ccYdyq1O.s 			page 33
+ARM GAS  /tmp/cc7thdow.s 			page 33
 
 
 channel

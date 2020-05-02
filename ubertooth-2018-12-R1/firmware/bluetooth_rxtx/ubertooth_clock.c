@@ -71,7 +71,7 @@ void clkn_init()
 #endif
 	/* 3125 * 100 ns = 312.5 us, the Bluetooth clock (CLKN). */
 	T0MR0 = 3124;
-	T0MCR = TMCR_MR0R | TMCR_MR0I;
+	T0MCR = TMCR_MR0I;
 	ISER0 = ISER0_ISE_TIMER0;
 }
 

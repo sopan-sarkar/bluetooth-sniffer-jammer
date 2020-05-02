@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGWTpja.s 			page 1
+ARM GAS  /tmp/cc2HRYqZ.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
   32:../common/lpcusb/target/usbhw_lpc.c **** 
   33:../common/lpcusb/target/usbhw_lpc.c **** #include "type.h"
   34:../common/lpcusb/target/usbhw_lpc.c **** #include "debug.h"
-ARM GAS  /tmp/ccGWTpja.s 			page 2
+ARM GAS  /tmp/cc2HRYqZ.s 			page 2
 
 
   35:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
   89:../common/lpcusb/target/usbhw_lpc.c ****     Local function to wait for a device interrupt (and clear it)
   90:../common/lpcusb/target/usbhw_lpc.c ****         
   91:../common/lpcusb/target/usbhw_lpc.c ****     @param [in] dwIntr      Bitmask of interrupts to wait for   
-ARM GAS  /tmp/ccGWTpja.s 			page 3
+ARM GAS  /tmp/cc2HRYqZ.s 			page 3
 
 
   92:../common/lpcusb/target/usbhw_lpc.c ****  */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
   64              	.LVL1:
  109:../common/lpcusb/target/usbhw_lpc.c ****     // clear CDFULL/CCEMTY
  110:../common/lpcusb/target/usbhw_lpc.c ****     USBDevIntClr = CDFULL | CCEMTY;
-ARM GAS  /tmp/ccGWTpja.s 			page 4
+ARM GAS  /tmp/cc2HRYqZ.s 			page 4
 
 
   65              		.loc 1 110 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  126:../common/lpcusb/target/usbhw_lpc.c ****     USBHwCmd(bCmd);
  105              		.loc 1 126 0
  106 0002 FFF7FEFF 		bl	USBHwCmd
-ARM GAS  /tmp/ccGWTpja.s 			page 5
+ARM GAS  /tmp/cc2HRYqZ.s 			page 5
 
 
  107              	.LVL5:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  148:../common/lpcusb/target/usbhw_lpc.c ****     Wait4DevInt(CDFULL);
  149:../common/lpcusb/target/usbhw_lpc.c ****     return USBCmdData;
  150:../common/lpcusb/target/usbhw_lpc.c **** }
-ARM GAS  /tmp/ccGWTpja.s 			page 6
+ARM GAS  /tmp/cc2HRYqZ.s 			page 6
 
 
  151:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  149              		.cfi_offset 14, -4
  150              	.LBB6:
  151              	.LBB7:
-ARM GAS  /tmp/ccGWTpja.s 			page 7
+ARM GAS  /tmp/cc2HRYqZ.s 			page 7
 
 
  166:../common/lpcusb/target/usbhw_lpc.c **** #ifdef LPC17xx
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  204:../common/lpcusb/target/usbhw_lpc.c ****     // enable EP
  205:../common/lpcusb/target/usbhw_lpc.c ****     USBHwEPEnable(idx, TRUE);
  206:../common/lpcusb/target/usbhw_lpc.c **** }
-ARM GAS  /tmp/ccGWTpja.s 			page 8
+ARM GAS  /tmp/cc2HRYqZ.s 			page 8
 
 
  191              		.loc 1 206 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  221:../common/lpcusb/target/usbhw_lpc.c ****     ASSERT(idx<32);
  222:../common/lpcusb/target/usbhw_lpc.c **** 
  223:../common/lpcusb/target/usbhw_lpc.c ****     /* add handler to list of EP handlers */
-ARM GAS  /tmp/ccGWTpja.s 			page 9
+ARM GAS  /tmp/cc2HRYqZ.s 			page 9
 
 
  224:../common/lpcusb/target/usbhw_lpc.c ****     _apfnEPIntHandlers[idx / 2] = pfnHandler;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  271              		.cfi_startproc
  272              		@ args = 0, pretend = 0, frame = 0
  273              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccGWTpja.s 			page 10
+ARM GAS  /tmp/cc2HRYqZ.s 			page 10
 
 
  274              		@ link register save eliminated.
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  312 0000 034B     		ldr	r3, .L22
  258:../common/lpcusb/target/usbhw_lpc.c ****     
  259:../common/lpcusb/target/usbhw_lpc.c ****     // enable device interrupt
-ARM GAS  /tmp/ccGWTpja.s 			page 11
+ARM GAS  /tmp/cc2HRYqZ.s 			page 11
 
 
  260:../common/lpcusb/target/usbhw_lpc.c ****     USBDevIntEn |= FRAME;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  355              		.section	.text.USBHwConnect,"ax",%progbits
  356              		.align	1
  357              		.global	USBHwConnect
-ARM GAS  /tmp/ccGWTpja.s 			page 12
+ARM GAS  /tmp/cc2HRYqZ.s 			page 12
 
 
  358              		.syntax unified
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  391              	.LFB12:
  298:../common/lpcusb/target/usbhw_lpc.c **** }
  299:../common/lpcusb/target/usbhw_lpc.c **** 
-ARM GAS  /tmp/ccGWTpja.s 			page 13
+ARM GAS  /tmp/cc2HRYqZ.s 			page 13
 
 
  300:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  420              		@ frame_needed = 0, uses_anonymous_args = 0
  421              	.LVL32:
  422 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/ccGWTpja.s 			page 14
+ARM GAS  /tmp/cc2HRYqZ.s 			page 14
 
 
  423              		.cfi_def_cfa_offset 8
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  470              		.fpu softvfp
  472              	USBHwEPStall:
  473              	.LFB14:
-ARM GAS  /tmp/ccGWTpja.s 			page 15
+ARM GAS  /tmp/cc2HRYqZ.s 			page 15
 
 
  332:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  355:../common/lpcusb/target/usbhw_lpc.c ****     @return number of bytes written into the endpoint buffer
  356:../common/lpcusb/target/usbhw_lpc.c **** */
  357:../common/lpcusb/target/usbhw_lpc.c **** int USBHwEPWrite(U8 bEP, U8 *pbBuf, U32 iLen)
-ARM GAS  /tmp/ccGWTpja.s 			page 16
+ARM GAS  /tmp/cc2HRYqZ.s 			page 16
 
 
  358:../common/lpcusb/target/usbhw_lpc.c **** {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  545 0028 14F00204 		ands	r4, r4, #2
  546 002c 07D1     		bne	.L33
  372:../common/lpcusb/target/usbhw_lpc.c ****         pbBuf += 4;
-ARM GAS  /tmp/ccGWTpja.s 			page 17
+ARM GAS  /tmp/cc2HRYqZ.s 			page 17
 
 
  373:../common/lpcusb/target/usbhw_lpc.c ****     }
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  389:../common/lpcusb/target/usbhw_lpc.c ****     @param [in] pbBuf   Endpoint data
  390:../common/lpcusb/target/usbhw_lpc.c ****     @param [in] iMaxLen Maximum number of bytes to read
  391:../common/lpcusb/target/usbhw_lpc.c ****             
-ARM GAS  /tmp/ccGWTpja.s 			page 18
+ARM GAS  /tmp/cc2HRYqZ.s 			page 18
 
 
  392:../common/lpcusb/target/usbhw_lpc.c ****     @return the number of bytes available in the EP (possibly more than iMaxLen),
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  622 0022 FCD5     		bpl	.L37
  409:../common/lpcusb/target/usbhw_lpc.c ****     
  410:../common/lpcusb/target/usbhw_lpc.c ****     // packet valid?
-ARM GAS  /tmp/ccGWTpja.s 			page 19
+ARM GAS  /tmp/cc2HRYqZ.s 			page 19
 
 
  411:../common/lpcusb/target/usbhw_lpc.c ****     if ((dwLen & DV) == 0) {
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  436:../common/lpcusb/target/usbhw_lpc.c ****     
  437:../common/lpcusb/target/usbhw_lpc.c ****     return dwLen;
  650              		.loc 1 437 0
-ARM GAS  /tmp/ccGWTpja.s 			page 20
+ARM GAS  /tmp/cc2HRYqZ.s 			page 20
 
 
  651 0044 2046     		mov	r0, r4
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  697              		.thumb
  698              		.thumb_func
  699              		.fpu softvfp
-ARM GAS  /tmp/ccGWTpja.s 			page 21
+ARM GAS  /tmp/cc2HRYqZ.s 			page 21
 
 
  701              	USBHwISOCEPRead:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  732              		.syntax unified
  733              	@ 442 "../common/lpcusb/target/usbhw_lpc.c" 1
  734 001c 00BF     		nop
-ARM GAS  /tmp/ccGWTpja.s 			page 22
+ARM GAS  /tmp/cc2HRYqZ.s 			page 22
 
 
  735              	
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  481:../common/lpcusb/target/usbhw_lpc.c **** 
  482:../common/lpcusb/target/usbhw_lpc.c ****     // get data
  483:../common/lpcusb/target/usbhw_lpc.c ****     dwData = 0;
-ARM GAS  /tmp/ccGWTpja.s 			page 23
+ARM GAS  /tmp/cc2HRYqZ.s 			page 23
 
 
  484:../common/lpcusb/target/usbhw_lpc.c ****     for (i = 0; i < dwLen; i++) {
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  794              		.loc 1 498 0
  795 0056 FFF7FEFF 		bl	USBHwCmd
  796              	.LVL77:
-ARM GAS  /tmp/ccGWTpja.s 			page 24
+ARM GAS  /tmp/cc2HRYqZ.s 			page 24
 
 
  499:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  844              	USBHwConfigDevice:
  845              	.LFB19:
  503:../common/lpcusb/target/usbhw_lpc.c **** 
-ARM GAS  /tmp/ccGWTpja.s 			page 25
+ARM GAS  /tmp/cc2HRYqZ.s 			page 25
 
 
  504:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  877 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
  878              		.cfi_def_cfa_offset 24
  879              		.cfi_offset 3, -24
-ARM GAS  /tmp/ccGWTpja.s 			page 26
+ARM GAS  /tmp/cc2HRYqZ.s 			page 26
 
 
  880              		.cfi_offset 4, -20
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  912 0020 1A60     		str	r2, [r3]
  148:../common/lpcusb/target/usbhw_lpc.c ****     return USBCmdData;
  913              		.loc 1 148 0
-ARM GAS  /tmp/ccGWTpja.s 			page 27
+ARM GAS  /tmp/cc2HRYqZ.s 			page 27
 
 
  914 0022 FFF7FEFF 		bl	Wait4DevInt
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  951 0042 2020     		movs	r0, #32
  147:../common/lpcusb/target/usbhw_lpc.c ****     Wait4DevInt(CDFULL);
  952              		.loc 1 147 0
-ARM GAS  /tmp/ccGWTpja.s 			page 28
+ARM GAS  /tmp/cc2HRYqZ.s 			page 28
 
 
  953 0044 1A60     		str	r2, [r3]
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  575:../common/lpcusb/target/usbhw_lpc.c ****     if (dwStatus & EP_SLOW) {
  986              		.loc 1 575 0
  987 006a 6307     		lsls	r3, r4, #29
-ARM GAS  /tmp/ccGWTpja.s 			page 29
+ARM GAS  /tmp/cc2HRYqZ.s 			page 29
 
 
  988 006c 22D5     		bpl	.L68
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  588:../common/lpcusb/target/usbhw_lpc.c ****                         ((bEPStat & EPSTAT_ST) ? EP_STATUS_STALLED : 0) |
  589:../common/lpcusb/target/usbhw_lpc.c ****                         ((bEPStat & EPSTAT_STP) ? EP_STATUS_SETUP : 0) |
  590:../common/lpcusb/target/usbhw_lpc.c ****                         ((bEPStat & EPSTAT_EPN) ? EP_STATUS_NACKED : 0) |
-ARM GAS  /tmp/ccGWTpja.s 			page 30
+ARM GAS  /tmp/cc2HRYqZ.s 			page 30
 
 
  591:../common/lpcusb/target/usbhw_lpc.c ****                         ((bEPStat & EPSTAT_PO) ? EP_STATUS_ERROR : 0);
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1066 00d4 30C20050 		.word	1342226992
  1067 00d8 38C20050 		.word	1342227000
  1068              		.cfi_endproc
-ARM GAS  /tmp/ccGWTpja.s 			page 31
+ARM GAS  /tmp/cc2HRYqZ.s 			page 31
 
 
  1069              	.LFE20:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  626:../common/lpcusb/target/usbhw_lpc.c **** 	// P1.18 is USB_UP_LED
  627:../common/lpcusb/target/usbhw_lpc.c ****     PINSEL3 = (PINSEL3 & ~(3 << 4)) | (1 << 4);
  1095              		.loc 1 627 0
-ARM GAS  /tmp/ccGWTpja.s 			page 32
+ARM GAS  /tmp/cc2HRYqZ.s 			page 32
 
 
  1096 0010 52F8043C 		ldr	r3, [r2, #-4]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1134              	.L101:
  644:../common/lpcusb/target/usbhw_lpc.c ****     while (!(USBClkSt & USBClkSt_AHB_CLK_ON));
  1135              		.loc 1 644 0 is_stmt 1 discriminator 1
-ARM GAS  /tmp/ccGWTpja.s 			page 33
+ARM GAS  /tmp/cc2HRYqZ.s 			page 33
 
 
  1136 0072 1368     		ldr	r3, [r2]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  696:../common/lpcusb/target/usbhw_lpc.c **** 
  697:../common/lpcusb/target/usbhw_lpc.c ****   /* The LPC23xx uses a single PLL, and has multiple clock dividers for each
  698:../common/lpcusb/target/usbhw_lpc.c ****    * peripheral. These settings assume a PLL frequency of 288 MHz */
-ARM GAS  /tmp/ccGWTpja.s 			page 34
+ARM GAS  /tmp/cc2HRYqZ.s 			page 34
 
 
  699:../common/lpcusb/target/usbhw_lpc.c **** 
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  730:../common/lpcusb/target/usbhw_lpc.c ****     return TRUE;
  731:../common/lpcusb/target/usbhw_lpc.c **** }
  1161              		.loc 1 731 0
-ARM GAS  /tmp/ccGWTpja.s 			page 35
+ARM GAS  /tmp/cc2HRYqZ.s 			page 35
 
 
  1162 0094 0120     		movs	r0, #1
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1186              		.loc 1 763 0
  1187              		.cfi_startproc
  1188              		@ args = 12, pretend = 0, frame = 0
-ARM GAS  /tmp/ccGWTpja.s 			page 36
+ARM GAS  /tmp/cc2HRYqZ.s 			page 36
 
 
  1189              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1231              		.loc 1 772 0
  1232 0032 4368     		ldr	r3, [r0, #4]
  1233 0034 43F00403 		orr	r3, r3, #4
-ARM GAS  /tmp/ccGWTpja.s 			page 37
+ARM GAS  /tmp/cc2HRYqZ.s 			page 37
 
 
  1234 0038 4360     		str	r3, [r0, #4]
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  785:../common/lpcusb/target/usbhw_lpc.c ****     @param [in] bEndpointNumber the endpoint number to be disabled.
  786:../common/lpcusb/target/usbhw_lpc.c **** 
  787:../common/lpcusb/target/usbhw_lpc.c ****     @return   void
-ARM GAS  /tmp/ccGWTpja.s 			page 38
+ARM GAS  /tmp/cc2HRYqZ.s 			page 38
 
 
  788:../common/lpcusb/target/usbhw_lpc.c ****  */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  802:../common/lpcusb/target/usbhw_lpc.c **** 	int idx = EP2IDX(bEndpointNumber);
  1317              		.loc 1 802 0
  1318 0000 4300     		lsls	r3, r0, #1
-ARM GAS  /tmp/ccGWTpja.s 			page 39
+ARM GAS  /tmp/cc2HRYqZ.s 			page 39
 
 
  1319 0002 03F01E03 		and	r3, r3, #30
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1357              		.loc 1 820 0
  1358 0002 0025     		movs	r5, #0
  821:../common/lpcusb/target/usbhw_lpc.c **** 		isocFrameArr[i] = (frameNumber<<16) | (1<<15) | (defaultFrameLength & 0x3FF);
-ARM GAS  /tmp/ccGWTpja.s 			page 40
+ARM GAS  /tmp/cc2HRYqZ.s 			page 40
 
 
  1359              		.loc 1 821 0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1399              		@ args = 0, pretend = 0, frame = 0
  1400              		@ frame_needed = 0, uses_anonymous_args = 0
  1401              		@ link register save eliminated.
-ARM GAS  /tmp/ccGWTpja.s 			page 41
+ARM GAS  /tmp/cc2HRYqZ.s 			page 41
 
 
  1402              	.LVL130:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  852:../common/lpcusb/target/usbhw_lpc.c **** 	USBUDCAH = (U32) udcaHeadArray;
  1441              		.loc 1 852 0
  1442 0010 014B     		ldr	r3, .L132
-ARM GAS  /tmp/ccGWTpja.s 			page 42
+ARM GAS  /tmp/cc2HRYqZ.s 			page 42
 
 
  1443 0012 1860     		str	r0, [r3]
@@ -2487,82 +2487,82 @@ ARM GAS  /tmp/ccGWTpja.s 			page 1
  1469              		.file 2 "../common/lpcusb/target/type.h"
  1470              		.file 3 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
  1471              		.file 4 "../common/lpcusb/target/usbapi.h"
-ARM GAS  /tmp/ccGWTpja.s 			page 43
+ARM GAS  /tmp/cc2HRYqZ.s 			page 43
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbhw_lpc.c
-     /tmp/ccGWTpja.s:16     .text.Wait4DevInt:0000000000000000 $t
-     /tmp/ccGWTpja.s:22     .text.Wait4DevInt:0000000000000000 Wait4DevInt
-     /tmp/ccGWTpja.s:45     .text.Wait4DevInt:0000000000000010 $d
-     /tmp/ccGWTpja.s:51     .text.USBHwCmd:0000000000000000 $t
-     /tmp/ccGWTpja.s:57     .text.USBHwCmd:0000000000000000 USBHwCmd
-     /tmp/ccGWTpja.s:83     .text.USBHwCmd:0000000000000014 $d
-     /tmp/ccGWTpja.s:88     .text.USBHwCmdWrite:0000000000000000 $t
-     /tmp/ccGWTpja.s:94     .text.USBHwCmdWrite:0000000000000000 USBHwCmdWrite
-     /tmp/ccGWTpja.s:127    .text.USBHwCmdWrite:000000000000001c $d
-     /tmp/ccGWTpja.s:132    .text.USBHwEPConfig:0000000000000000 $t
-     /tmp/ccGWTpja.s:139    .text.USBHwEPConfig:0000000000000000 USBHwEPConfig
-     /tmp/ccGWTpja.s:205    .text.USBHwEPConfig:0000000000000034 $d
-     /tmp/ccGWTpja.s:213    .text.USBHwRegisterEPIntHandler:0000000000000000 $t
-     /tmp/ccGWTpja.s:220    .text.USBHwRegisterEPIntHandler:0000000000000000 USBHwRegisterEPIntHandler
-     /tmp/ccGWTpja.s:255    .text.USBHwRegisterEPIntHandler:000000000000002c $d
-     /tmp/ccGWTpja.s:261    .text.USBHwRegisterDevIntHandler:0000000000000000 $t
-     /tmp/ccGWTpja.s:268    .text.USBHwRegisterDevIntHandler:0000000000000000 USBHwRegisterDevIntHandler
-     /tmp/ccGWTpja.s:290    .text.USBHwRegisterDevIntHandler:0000000000000010 $d
-     /tmp/ccGWTpja.s:296    .text.USBHwRegisterFrameHandler:0000000000000000 $t
-     /tmp/ccGWTpja.s:303    .text.USBHwRegisterFrameHandler:0000000000000000 USBHwRegisterFrameHandler
-     /tmp/ccGWTpja.s:325    .text.USBHwRegisterFrameHandler:0000000000000010 $d
-     /tmp/ccGWTpja.s:331    .text.USBHwSetAddress:0000000000000000 $t
-     /tmp/ccGWTpja.s:338    .text.USBHwSetAddress:0000000000000000 USBHwSetAddress
-     /tmp/ccGWTpja.s:356    .text.USBHwConnect:0000000000000000 $t
-     /tmp/ccGWTpja.s:363    .text.USBHwConnect:0000000000000000 USBHwConnect
-     /tmp/ccGWTpja.s:383    .text.USBHwNakIntEnable:0000000000000000 $t
-     /tmp/ccGWTpja.s:390    .text.USBHwNakIntEnable:0000000000000000 USBHwNakIntEnable
-     /tmp/ccGWTpja.s:408    .text.USBHwEPGetStatus:0000000000000000 $t
-     /tmp/ccGWTpja.s:415    .text.USBHwEPGetStatus:0000000000000000 USBHwEPGetStatus
-     /tmp/ccGWTpja.s:459    .text.USBHwEPGetStatus:000000000000002c $d
-     /tmp/ccGWTpja.s:465    .text.USBHwEPStall:0000000000000000 $t
-     /tmp/ccGWTpja.s:472    .text.USBHwEPStall:0000000000000000 USBHwEPStall
-     /tmp/ccGWTpja.s:498    .text.USBHwEPWrite:0000000000000000 $t
-     /tmp/ccGWTpja.s:505    .text.USBHwEPWrite:0000000000000000 USBHwEPWrite
-     /tmp/ccGWTpja.s:570    .text.USBHwEPWrite:0000000000000048 $d
-     /tmp/ccGWTpja.s:577    .text.USBHwEPRead:0000000000000000 $t
-     /tmp/ccGWTpja.s:584    .text.USBHwEPRead:0000000000000000 USBHwEPRead
-     /tmp/ccGWTpja.s:687    .text.USBHwEPRead:0000000000000064 $d
-     /tmp/ccGWTpja.s:694    .text.USBHwISOCEPRead:0000000000000000 $t
-     /tmp/ccGWTpja.s:701    .text.USBHwISOCEPRead:0000000000000000 USBHwISOCEPRead
-     /tmp/ccGWTpja.s:830    .text.USBHwISOCEPRead:000000000000007c $d
-     /tmp/ccGWTpja.s:837    .text.USBHwConfigDevice:0000000000000000 $t
-     /tmp/ccGWTpja.s:844    .text.USBHwConfigDevice:0000000000000000 USBHwConfigDevice
-     /tmp/ccGWTpja.s:864    .text.USBHwISR:0000000000000000 $t
-     /tmp/ccGWTpja.s:871    .text.USBHwISR:0000000000000000 USBHwISR
-     /tmp/ccGWTpja.s:1059   .text.USBHwISR:00000000000000b8 $d
-     /tmp/ccGWTpja.s:1072   .text.USBHwInit:0000000000000000 $t
-     /tmp/ccGWTpja.s:1079   .text.USBHwInit:0000000000000000 USBHwInit
-     /tmp/ccGWTpja.s:1167   .text.USBHwInit:0000000000000098 $d
-     /tmp/ccGWTpja.s:1177   .text.USBSetupDMADescriptor:0000000000000000 $t
-     /tmp/ccGWTpja.s:1184   .text.USBSetupDMADescriptor:0000000000000000 USBSetupDMADescriptor
-     /tmp/ccGWTpja.s:1266   .text.USBDisableDMAForEndpoint:0000000000000000 $t
-     /tmp/ccGWTpja.s:1273   .text.USBDisableDMAForEndpoint:0000000000000000 USBDisableDMAForEndpoint
-     /tmp/ccGWTpja.s:1296   .text.USBDisableDMAForEndpoint:0000000000000018 $d
-     /tmp/ccGWTpja.s:1301   .text.USBEnableDMAForEndpoint:0000000000000000 $t
-ARM GAS  /tmp/ccGWTpja.s 			page 44
+     /tmp/cc2HRYqZ.s:16     .text.Wait4DevInt:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:22     .text.Wait4DevInt:0000000000000000 Wait4DevInt
+     /tmp/cc2HRYqZ.s:45     .text.Wait4DevInt:0000000000000010 $d
+     /tmp/cc2HRYqZ.s:51     .text.USBHwCmd:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:57     .text.USBHwCmd:0000000000000000 USBHwCmd
+     /tmp/cc2HRYqZ.s:83     .text.USBHwCmd:0000000000000014 $d
+     /tmp/cc2HRYqZ.s:88     .text.USBHwCmdWrite:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:94     .text.USBHwCmdWrite:0000000000000000 USBHwCmdWrite
+     /tmp/cc2HRYqZ.s:127    .text.USBHwCmdWrite:000000000000001c $d
+     /tmp/cc2HRYqZ.s:132    .text.USBHwEPConfig:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:139    .text.USBHwEPConfig:0000000000000000 USBHwEPConfig
+     /tmp/cc2HRYqZ.s:205    .text.USBHwEPConfig:0000000000000034 $d
+     /tmp/cc2HRYqZ.s:213    .text.USBHwRegisterEPIntHandler:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:220    .text.USBHwRegisterEPIntHandler:0000000000000000 USBHwRegisterEPIntHandler
+     /tmp/cc2HRYqZ.s:255    .text.USBHwRegisterEPIntHandler:000000000000002c $d
+     /tmp/cc2HRYqZ.s:261    .text.USBHwRegisterDevIntHandler:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:268    .text.USBHwRegisterDevIntHandler:0000000000000000 USBHwRegisterDevIntHandler
+     /tmp/cc2HRYqZ.s:290    .text.USBHwRegisterDevIntHandler:0000000000000010 $d
+     /tmp/cc2HRYqZ.s:296    .text.USBHwRegisterFrameHandler:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:303    .text.USBHwRegisterFrameHandler:0000000000000000 USBHwRegisterFrameHandler
+     /tmp/cc2HRYqZ.s:325    .text.USBHwRegisterFrameHandler:0000000000000010 $d
+     /tmp/cc2HRYqZ.s:331    .text.USBHwSetAddress:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:338    .text.USBHwSetAddress:0000000000000000 USBHwSetAddress
+     /tmp/cc2HRYqZ.s:356    .text.USBHwConnect:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:363    .text.USBHwConnect:0000000000000000 USBHwConnect
+     /tmp/cc2HRYqZ.s:383    .text.USBHwNakIntEnable:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:390    .text.USBHwNakIntEnable:0000000000000000 USBHwNakIntEnable
+     /tmp/cc2HRYqZ.s:408    .text.USBHwEPGetStatus:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:415    .text.USBHwEPGetStatus:0000000000000000 USBHwEPGetStatus
+     /tmp/cc2HRYqZ.s:459    .text.USBHwEPGetStatus:000000000000002c $d
+     /tmp/cc2HRYqZ.s:465    .text.USBHwEPStall:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:472    .text.USBHwEPStall:0000000000000000 USBHwEPStall
+     /tmp/cc2HRYqZ.s:498    .text.USBHwEPWrite:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:505    .text.USBHwEPWrite:0000000000000000 USBHwEPWrite
+     /tmp/cc2HRYqZ.s:570    .text.USBHwEPWrite:0000000000000048 $d
+     /tmp/cc2HRYqZ.s:577    .text.USBHwEPRead:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:584    .text.USBHwEPRead:0000000000000000 USBHwEPRead
+     /tmp/cc2HRYqZ.s:687    .text.USBHwEPRead:0000000000000064 $d
+     /tmp/cc2HRYqZ.s:694    .text.USBHwISOCEPRead:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:701    .text.USBHwISOCEPRead:0000000000000000 USBHwISOCEPRead
+     /tmp/cc2HRYqZ.s:830    .text.USBHwISOCEPRead:000000000000007c $d
+     /tmp/cc2HRYqZ.s:837    .text.USBHwConfigDevice:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:844    .text.USBHwConfigDevice:0000000000000000 USBHwConfigDevice
+     /tmp/cc2HRYqZ.s:864    .text.USBHwISR:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:871    .text.USBHwISR:0000000000000000 USBHwISR
+     /tmp/cc2HRYqZ.s:1059   .text.USBHwISR:00000000000000b8 $d
+     /tmp/cc2HRYqZ.s:1072   .text.USBHwInit:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1079   .text.USBHwInit:0000000000000000 USBHwInit
+     /tmp/cc2HRYqZ.s:1167   .text.USBHwInit:0000000000000098 $d
+     /tmp/cc2HRYqZ.s:1177   .text.USBSetupDMADescriptor:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1184   .text.USBSetupDMADescriptor:0000000000000000 USBSetupDMADescriptor
+     /tmp/cc2HRYqZ.s:1266   .text.USBDisableDMAForEndpoint:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1273   .text.USBDisableDMAForEndpoint:0000000000000000 USBDisableDMAForEndpoint
+     /tmp/cc2HRYqZ.s:1296   .text.USBDisableDMAForEndpoint:0000000000000018 $d
+     /tmp/cc2HRYqZ.s:1301   .text.USBEnableDMAForEndpoint:0000000000000000 $t
+ARM GAS  /tmp/cc2HRYqZ.s 			page 44
 
 
-     /tmp/ccGWTpja.s:1308   .text.USBEnableDMAForEndpoint:0000000000000000 USBEnableDMAForEndpoint
-     /tmp/ccGWTpja.s:1331   .text.USBEnableDMAForEndpoint:0000000000000018 $d
-     /tmp/ccGWTpja.s:1336   .text.USBInitializeISOCFrameArray:0000000000000000 $t
-     /tmp/ccGWTpja.s:1343   .text.USBInitializeISOCFrameArray:0000000000000000 USBInitializeISOCFrameArray
-     /tmp/ccGWTpja.s:1388   .text.USBSetHeadDDForDMA:0000000000000000 $t
-     /tmp/ccGWTpja.s:1395   .text.USBSetHeadDDForDMA:0000000000000000 USBSetHeadDDForDMA
-     /tmp/ccGWTpja.s:1414   .text.USBInitializeUSBDMA:0000000000000000 $t
-     /tmp/ccGWTpja.s:1421   .text.USBInitializeUSBDMA:0000000000000000 USBInitializeUSBDMA
-     /tmp/ccGWTpja.s:1448   .text.USBInitializeUSBDMA:0000000000000018 $d
-     /tmp/ccGWTpja.s:1453   .bss:0000000000000000 $d
-     /tmp/ccGWTpja.s:1457   .bss:0000000000000000 _apfnEPIntHandlers
-     /tmp/ccGWTpja.s:1461   .bss:0000000000000040 _pfnDevIntHandler
-     /tmp/ccGWTpja.s:1465   .bss:0000000000000044 _pfnFrameHandler
+     /tmp/cc2HRYqZ.s:1308   .text.USBEnableDMAForEndpoint:0000000000000000 USBEnableDMAForEndpoint
+     /tmp/cc2HRYqZ.s:1331   .text.USBEnableDMAForEndpoint:0000000000000018 $d
+     /tmp/cc2HRYqZ.s:1336   .text.USBInitializeISOCFrameArray:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1343   .text.USBInitializeISOCFrameArray:0000000000000000 USBInitializeISOCFrameArray
+     /tmp/cc2HRYqZ.s:1388   .text.USBSetHeadDDForDMA:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1395   .text.USBSetHeadDDForDMA:0000000000000000 USBSetHeadDDForDMA
+     /tmp/cc2HRYqZ.s:1414   .text.USBInitializeUSBDMA:0000000000000000 $t
+     /tmp/cc2HRYqZ.s:1421   .text.USBInitializeUSBDMA:0000000000000000 USBInitializeUSBDMA
+     /tmp/cc2HRYqZ.s:1448   .text.USBInitializeUSBDMA:0000000000000018 $d
+     /tmp/cc2HRYqZ.s:1453   .bss:0000000000000000 $d
+     /tmp/cc2HRYqZ.s:1457   .bss:0000000000000000 _apfnEPIntHandlers
+     /tmp/cc2HRYqZ.s:1461   .bss:0000000000000040 _pfnDevIntHandler
+     /tmp/cc2HRYqZ.s:1465   .bss:0000000000000044 _pfnFrameHandler
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

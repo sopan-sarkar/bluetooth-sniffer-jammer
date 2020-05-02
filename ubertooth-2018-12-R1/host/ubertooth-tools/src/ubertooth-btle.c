@@ -142,7 +142,7 @@ static void usage(void)
 int main(int argc, char *argv[])
 {
 	int opt;
-	int do_follow, do_no_follow, do_promisc;
+	int do_follow, do_no_follow, do_promisc, do_reset;
 	int do_get_aa, do_set_aa;
 	int do_crc;
 	int do_adv_index;
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 	//ubertooth_t* ut = ubertooth_init();
 	ubertooth_t* ut = ubertooth_init(); //sopan: added
 	ubertooth_t* ut2 = ubertooth_init(); //sopan: added
-	ubertooth_t* ut3 = ubertooth_init(); //sopan: added
+	//ubertooth_t* ut3 = ubertooth_init(); //sopan: added
 
 	btle_options cb_opts = { .allowed_access_address_errors = 32 };
 
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 	uint8_t mac_address[6] = { 0, };
 	uint8_t mac_mask = 0;
 
-	do_follow = do_no_follow = do_promisc = 0;
+	do_follow = do_no_follow = do_promisc = do_reset = 0;
 	do_get_aa = do_set_aa = 0;
 	do_crc = -1; // 0 and 1 mean set, 2 means get
 	do_adv_index = 37;
@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
 			//ubertooth_device = atoi(optarg);
 			ubertooth_device[0] = 0; // sopan
 			ubertooth_device[1] = 1; // sopan
-			ubertooth_device[2] = 2; // sopan
+			//ubertooth_device[2] = 2; // sopan
 			break;
 		case 'r':
 			if (!ut->h_pcapng_le) {
@@ -271,6 +271,8 @@ int main(int argc, char *argv[])
 			jam_mode = JAM_CONTINUOUS;
 			break;
 		case 'h':
+			do_reset = 1;
+			break;
 		default:
 			usage();
 			return 1;
@@ -280,18 +282,18 @@ int main(int argc, char *argv[])
 
 	r = ubertooth_connect(ut, ubertooth_device[0]);
 	t = ubertooth_connect(ut2, ubertooth_device[1]);
-	o = ubertooth_connect(ut3, ubertooth_device[2]);
+	//o = ubertooth_connect(ut3, ubertooth_device[2]);
 
-	if (r < 0 && t < 0 && o < 0) {
+	if (r < 0 & t < 0) {
 		usage();
 		return 1;
 	}
 
 	r = ubertooth_check_api(ut);
 	t = ubertooth_check_api(ut2);
-	o = ubertooth_check_api(ut3);
+	//o = ubertooth_check_api(ut3);
 
-	if (r < 0 && t < 0 && o < 0)
+	if (r < 0 & t < 0)
 		return 1;
 
 	// quit on ctrl-C
@@ -329,11 +331,16 @@ int main(int argc, char *argv[])
 		printf("Access address: %08x\n", access_address);
 		return 0;
 	}
+	if (do_reset) {
+		cmd_reset(ut->devh);
+		cmd_reset(ut2->devh);
+		printf("Reset done!");
+	}
 
 	if (do_set_aa) {
 		cmd_set_access_address(ut->devh, access_address);
 		cmd_set_access_address(ut2->devh, access_address);
-		cmd_set_access_address(ut3->devh, access_address);
+		//cmd_set_access_address(ut3->devh, access_address);
 		printf("access address set to: %08x\n", access_address);
 	}
 
@@ -346,8 +353,8 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 		cmd_set_modulation(ut->devh, MOD_BT_LOW_ENERGY);
-		cmd_set_modulation(ut2->devh, MOD_BT_LOW_ENERGY);
-		cmd_set_modulation(ut3->devh, MOD_BT_LOW_ENERGY);
+		//cmd_set_modulation(ut2->devh, MOD_BT_LOW_ENERGY);
+		//cmd_set_modulation(ut3->devh, MOD_BT_LOW_ENERGY);
 
 		if (do_follow || do_no_follow) {
 			u16 channel;
@@ -361,6 +368,7 @@ int main(int argc, char *argv[])
 			cmd_btle_sniffing(ut->devh, do_follow);
 		} else {
 			cmd_btle_promisc(ut->devh);
+			cmd_btle_transmit(ut2->devh);
 		}
 
 		// running can be changed by signal handler
@@ -376,7 +384,7 @@ int main(int argc, char *argv[])
 			}
 			if (r == sizeof(usb_pkt_rx)) {
 				fifo_push(ut->fifo, &rx);
-				cb_btle(ut, ut2, ut3, &cb_opts);
+				cb_btle(ut, ut2, &cb_opts);
 			}
 			usleep(500);
 		}

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccLNoZQe.s 			page 1
+ARM GAS  /tmp/cclFi5x8.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
   31:bluetooth.c   **** /* count the number of 1 bits in a uint64_t */
   32:bluetooth.c   **** static uint8_t count_bits(uint64_t n)
   33:bluetooth.c   **** {
-ARM GAS  /tmp/ccLNoZQe.s 			page 2
+ARM GAS  /tmp/cclFi5x8.s 			page 2
 
 
   34:bluetooth.c   **** 	uint8_t i = 0;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
   60 0020 05FB1161 		mls	r1, r5, r1, r6
   61 0024 1155     		strb	r1, [r2, r4]
   62              	.LVL1:
-ARM GAS  /tmp/ccLNoZQe.s 			page 3
+ARM GAS  /tmp/cclFi5x8.s 			page 3
 
 
   63 0026 0132     		adds	r2, r2, #1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
   99 0064 03F00102 		and	r2, r3, #1
   60:bluetooth.c   **** 		(address & 0x01);
  100              		.loc 1 60 0
-ARM GAS  /tmp/ccLNoZQe.s 			page 4
+ARM GAS  /tmp/cclFi5x8.s 			page 4
 
 
  101 0068 1444     		add	r4, r4, r2
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  135              		.loc 1 66 0
  136 009a 05F00805 		and	r5, r5, #8
   68:bluetooth.c   **** 		((address >> 1) & 0x01);
-ARM GAS  /tmp/ccLNoZQe.s 			page 5
+ARM GAS  /tmp/cclFi5x8.s 			page 5
 
 
  137              		.loc 1 68 0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  182 00d4 1C4A     		ldr	r2, .L16+40
   75:bluetooth.c   **** 		j = 0;
   76:bluetooth.c   **** 		for (i = 0; i < NUM_BREDR_CHANNELS; i++) {
-ARM GAS  /tmp/ccLNoZQe.s 			page 6
+ARM GAS  /tmp/cclFi5x8.s 			page 6
 
 
   77:bluetooth.c   **** 			chan = (i * 2) % NUM_BREDR_CHANNELS;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  231              	.L16:
  232 0120 00000000 		.word	syncword
  233 0124 00000000 		.word	bank
-ARM GAS  /tmp/ccLNoZQe.s 			page 7
+ARM GAS  /tmp/cclFi5x8.s 			page 7
 
 
  234 0128 00000000 		.word	target
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  112:bluetooth.c   **** 			z_bit[index1[i]] = z_bit[index2[i]];
  113:bluetooth.c   **** 			z_bit[index2[i]] = tmp;
  114:bluetooth.c   **** 		}
-ARM GAS  /tmp/ccLNoZQe.s 			page 8
+ARM GAS  /tmp/cclFi5x8.s 			page 8
 
 
  115:bluetooth.c   **** 	}
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  282              		.loc 1 141 0
  283 000e 04EAD004 		and	r4, r4, r0, lsr #3
  284              		.loc 1 142 0
-ARM GAS  /tmp/ccLNoZQe.s 			page 9
+ARM GAS  /tmp/cclFi5x8.s 			page 9
 
 
  285 0012 B4FBF3F2 		udiv	r2, r4, r3
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  324 0044 A7EB0E07 		sub	r7, r7, lr
  138:bluetooth.c   **** 	d = (d1 ^ (clock >> 7)) & 0x1ff;
  325              		.loc 1 138 0
-ARM GAS  /tmp/ccLNoZQe.s 			page 10
+ARM GAS  /tmp/cclFi5x8.s 			page 10
 
 
  326 0048 02F01F02 		and	r2, r2, #31
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  369              		.loc 1 105 0
  370 0084 40FA02F3 		asr	r3, r0, r2
  371 0088 03F00103 		and	r3, r3, #1
-ARM GAS  /tmp/ccLNoZQe.s 			page 11
+ARM GAS  /tmp/cclFi5x8.s 			page 11
 
 
  372 008c 0DF80230 		strb	r3, [sp, r2]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  120:bluetooth.c   **** 
  416              		.loc 1 120 0
  417 00cc 1DF80030 		ldrb	r3, [sp, r0]	@ zero_extendqisi2
-ARM GAS  /tmp/ccLNoZQe.s 			page 12
+ARM GAS  /tmp/cclFi5x8.s 			page 12
 
 
  418 00d0 8340     		lsls	r3, r3, r0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  461 010a B3FBF1F2 		udiv	r2, r3, r1
  462 010e 01FB1233 		mls	r3, r1, r2, r3
  463 0112 0D4A     		ldr	r2, .L37+40
-ARM GAS  /tmp/ccLNoZQe.s 			page 13
+ARM GAS  /tmp/cclFi5x8.s 			page 13
 
 
  464 0114 D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  513              		.cfi_offset 8, -20
  514              		.cfi_offset 9, -16
  515              		.cfi_offset 10, -12
-ARM GAS  /tmp/ccLNoZQe.s 			page 14
+ARM GAS  /tmp/cclFi5x8.s 			page 14
 
 
  516              		.cfi_offset 11, -8
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  176:bluetooth.c   **** 		bit_errors = count_bits(syncword ^ target.syncword);
  551              		.loc 1 176 0
  552 003e 1E4C     		ldr	r4, .L50+4
-ARM GAS  /tmp/ccLNoZQe.s 			page 15
+ARM GAS  /tmp/cclFi5x8.s 			page 15
 
 
  171:bluetooth.c   **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  594              		.loc 1 184 0
  595 0080 6D41     		adcs	r5, r5, r5
  596              		.loc 1 185 0
-ARM GAS  /tmp/ccLNoZQe.s 			page 16
+ARM GAS  /tmp/cclFi5x8.s 			page 16
 
 
  597 0082 3443     		orrs	r4, r4, r6
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  642              	.LBE18:
  643              	.LBE19:
  644              		.cfi_endproc
-ARM GAS  /tmp/ccLNoZQe.s 			page 17
+ARM GAS  /tmp/cclFi5x8.s 			page 17
 
 
  645              	.LFE4:
@@ -976,7 +976,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  658              		.comm	target,16,8
  659              		.section	.rodata
  660              		.set	.LANCHOR0,. + 0
- 663              	index1.3939:
+ 663              	index1.3944:
  664 0000 00       		.byte	0
  665 0001 02       		.byte	2
  666 0002 01       		.byte	1
@@ -991,7 +991,7 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  675 000b 01       		.byte	1
  676 000c 00       		.byte	0
  677 000d 01       		.byte	1
- 680              	index2.3940:
+ 680              	index2.3945:
  681 000e 01       		.byte	1
  682 000f 03       		.byte	3
  683 0010 02       		.byte	2
@@ -1012,14 +1012,14 @@ ARM GAS  /tmp/ccLNoZQe.s 			page 1
  698              		.file 3 "../../host/libubertooth/src/ubertooth_interface.h"
  699              		.file 4 "../common/ubertooth.h"
  700              		.file 5 "bluetooth.h"
-ARM GAS  /tmp/ccLNoZQe.s 			page 18
+ARM GAS  /tmp/cclFi5x8.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 bluetooth.c
-     /tmp/ccLNoZQe.s:16     .text.precalc:0000000000000000 $t
-     /tmp/ccLNoZQe.s:23     .text.precalc:0000000000000000 precalc
-     /tmp/ccLNoZQe.s:232    .text.precalc:0000000000000120 $d
+     /tmp/cclFi5x8.s:16     .text.precalc:0000000000000000 $t
+     /tmp/cclFi5x8.s:23     .text.precalc:0000000000000000 precalc
+     /tmp/cclFi5x8.s:232    .text.precalc:0000000000000120 $d
                             *COM*:0000000000000008 syncword
                             *COM*:000000000000004f bank
                             *COM*:0000000000000010 target
@@ -1031,15 +1031,15 @@ DEFINED SYMBOLS
                             *COM*:0000000000000001 afh_enabled
                             *COM*:000000000000000a afh_map
                             *COM*:0000000000000001 used_channels
-     /tmp/ccLNoZQe.s:249    .text.next_hop:0000000000000000 $t
-     /tmp/ccLNoZQe.s:256    .text.next_hop:0000000000000000 next_hop
-     /tmp/ccLNoZQe.s:478    .text.next_hop:0000000000000120 $d
+     /tmp/cclFi5x8.s:249    .text.next_hop:0000000000000000 $t
+     /tmp/cclFi5x8.s:256    .text.next_hop:0000000000000000 next_hop
+     /tmp/cclFi5x8.s:478    .text.next_hop:0000000000000120 $d
                             *COM*:000000000000004f afh_bank
-     /tmp/ccLNoZQe.s:493    .text.find_access_code:0000000000000000 $t
-     /tmp/ccLNoZQe.s:500    .text.find_access_code:0000000000000000 find_access_code
-     /tmp/ccLNoZQe.s:640    .text.find_access_code:00000000000000b4 $d
-     /tmp/ccLNoZQe.s:663    .rodata:0000000000000000 index1.3939
-     /tmp/ccLNoZQe.s:680    .rodata:000000000000000e index2.3940
+     /tmp/cclFi5x8.s:493    .text.find_access_code:0000000000000000 $t
+     /tmp/cclFi5x8.s:500    .text.find_access_code:0000000000000000 find_access_code
+     /tmp/cclFi5x8.s:640    .text.find_access_code:00000000000000b4 $d
+     /tmp/cclFi5x8.s:663    .rodata:0000000000000000 index1.3944
+     /tmp/cclFi5x8.s:680    .rodata:000000000000000e index2.3945
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

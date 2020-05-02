@@ -225,7 +225,6 @@ static void reset_conn_event(void) {
 static void finish_conn_event(void) {
 	uint32_t last_anchor = 0;
 	int last_anchor_set = 0;
-    debug_printf("finish_conn_event\n");
 	// two packets -- update anchor
 	if (conn_event.num_packets == 2) {
 		last_anchor = conn_event.anchor;

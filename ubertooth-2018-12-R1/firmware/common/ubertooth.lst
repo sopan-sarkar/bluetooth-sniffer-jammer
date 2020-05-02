@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIPmfAa.s 			page 1
+ARM GAS  /tmp/cc6cmqUO.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
   32:../common/ubertooth.c **** 
   33:../common/ubertooth.c **** /* delay a number of milliseconds while on internal oscillator (4 MHz) */
   34:../common/ubertooth.c **** void wait_ms(u32 ms)
-ARM GAS  /tmp/ccIPmfAa.s 			page 2
+ARM GAS  /tmp/cc6cmqUO.s 			page 2
 
 
   35:../common/ubertooth.c **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
   89:../common/ubertooth.c **** #endif
   90:../common/ubertooth.c **** #ifdef TC13BADGE
   91:../common/ubertooth.c **** 	/*
-ARM GAS  /tmp/ccIPmfAa.s 			page 3
+ARM GAS  /tmp/cc6cmqUO.s 			page 3
 
 
   92:../common/ubertooth.c **** 	 * Leave all the CC2400 pins configured as inputs until cc2400_init() is
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  146:../common/ubertooth.c **** 	FIO2PIN = 0;
  147:../common/ubertooth.c **** 	FIO3PIN = 0;
  148:../common/ubertooth.c **** 	FIO4PIN = 0;
-ARM GAS  /tmp/ccIPmfAa.s 			page 4
+ARM GAS  /tmp/cc6cmqUO.s 			page 4
 
 
  149:../common/ubertooth.c **** }
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  203:../common/ubertooth.c **** 	DIO_SSP_CR0 = (0x7 /* 8 bit transfer */ | SSPCR0_CPOL | SSPCR0_CPHA);
  204:../common/ubertooth.c **** 	DIO_SSP_CR1 = (SSPCR1_MS | SSPCR1_SOD);
  205:../common/ubertooth.c **** }
-ARM GAS  /tmp/ccIPmfAa.s 			page 5
+ARM GAS  /tmp/cc6cmqUO.s 			page 5
 
 
  206:../common/ubertooth.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  260:../common/ubertooth.c ****  * This is a single SPI transaction of variable length, usually 8 or 24 bits.
  261:../common/ubertooth.c ****  * The CC2400 also supports longer transactions (e.g. for the FIFO), but we
  262:../common/ubertooth.c ****  * haven't implemented anything longer than 32 bits.
-ARM GAS  /tmp/ccIPmfAa.s 			page 6
+ARM GAS  /tmp/cc6cmqUO.s 			page 6
 
 
  263:../common/ubertooth.c ****  *
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  317:../common/ubertooth.c **** u8 cc2400_get8(u8 reg)
  318:../common/ubertooth.c **** {
  319:../common/ubertooth.c **** 	u16 in;
-ARM GAS  /tmp/ccIPmfAa.s 			page 7
+ARM GAS  /tmp/cc6cmqUO.s 			page 7
 
 
  320:../common/ubertooth.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
   62              		@ args = 0, pretend = 0, frame = 0
   63              		@ frame_needed = 0, uses_anonymous_args = 0
   64              		@ link register save eliminated.
-ARM GAS  /tmp/ccIPmfAa.s 			page 8
+ARM GAS  /tmp/cc6cmqUO.s 			page 8
 
 
   65              	.LVL0:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  114              		.loc 1 58 0
  115 0024 7047     		bx	lr
  116              	.L11:
-ARM GAS  /tmp/ccIPmfAa.s 			page 9
+ARM GAS  /tmp/cc6cmqUO.s 			page 9
 
 
  117 0026 00BF     		.align	2
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  171              	.LVL9:
  172 0006 FFF7FEBF 		b	wait_us
  173              	.LVL10:
-ARM GAS  /tmp/ccIPmfAa.s 			page 10
+ARM GAS  /tmp/cc6cmqUO.s 			page 10
 
 
  174              		.cfi_endproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  217              		.loc 1 131 0
  218 001c 1366     		str	r3, [r2, #96]
  132:../common/ubertooth.c **** 
-ARM GAS  /tmp/ccIPmfAa.s 			page 11
+ARM GAS  /tmp/cc6cmqUO.s 			page 11
 
 
  219              		.loc 1 132 0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  262              		.thumb
  263              		.thumb_func
  264              		.fpu softvfp
-ARM GAS  /tmp/ccIPmfAa.s 			page 12
+ARM GAS  /tmp/cc6cmqUO.s 			page 12
 
 
  266              	gpio_init:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  305              		.loc 1 107 0
  306 002a C2F89430 		str	r3, [r2, #148]
  307 002e 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccIPmfAa.s 			page 13
+ARM GAS  /tmp/cc6cmqUO.s 			page 13
 
 
  308              	.L21:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  357 003c 044B     		ldr	r3, .L23+8
  358 003e 1A60     		str	r2, [r3]
  204:../common/ubertooth.c **** }
-ARM GAS  /tmp/ccIPmfAa.s 			page 14
+ARM GAS  /tmp/cc6cmqUO.s 			page 14
 
 
  359              		.loc 1 204 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  410 0028 04C00240 		.word	1073922052
  411 002c 00C00920 		.word	537509888
  412 0030 44C00240 		.word	1073922116
-ARM GAS  /tmp/ccIPmfAa.s 			page 15
+ARM GAS  /tmp/cc6cmqUO.s 			page 15
 
 
  413              		.cfi_endproc
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  459 0018 0138     		subs	r0, r0, #1
  460              	.LVL14:
  461 001a C0B2     		uxtb	r0, r0
-ARM GAS  /tmp/ccIPmfAa.s 			page 16
+ARM GAS  /tmp/cc6cmqUO.s 			page 16
 
 
  462              	.LVL15:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  503 004c 54C00920 		.word	537509972
  504 0050 58C00920 		.word	537509976
  505              		.cfi_endproc
-ARM GAS  /tmp/ccIPmfAa.s 			page 17
+ARM GAS  /tmp/cc6cmqUO.s 			page 17
 
 
  506              	.LFE10:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  552 0020 0B60     		str	r3, [r1]
  553              	.LVL22:
  554              	.LBB16:
-ARM GAS  /tmp/ccIPmfAa.s 			page 18
+ARM GAS  /tmp/cc6cmqUO.s 			page 18
 
 
  555              	.LBB14:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  605 0008 1820     		movs	r0, #24
  606              	.LVL26:
  607 000a FFF7FEFF 		bl	cc2400_spi
-ARM GAS  /tmp/ccIPmfAa.s 			page 19
+ARM GAS  /tmp/cc6cmqUO.s 			page 19
 
 
  608              	.LVL27:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  662              	.LVL35:
  321:../common/ubertooth.c **** 	in = cc2400_spi(16, out);
  663              		.loc 1 321 0
-ARM GAS  /tmp/ccIPmfAa.s 			page 20
+ARM GAS  /tmp/cc6cmqUO.s 			page 20
 
 
  664 0002 40F08001 		orr	r1, r0, #128
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  341:../common/ubertooth.c **** void cc2400_fifo_write(u8 len, u8 *data) {
  715              		.loc 1 341 0
  716              		.cfi_startproc
-ARM GAS  /tmp/ccIPmfAa.s 			page 21
+ARM GAS  /tmp/cc6cmqUO.s 			page 21
 
 
  717              		@ args = 0, pretend = 0, frame = 0
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  354:../common/ubertooth.c **** 		SCLK_SET;
  753              		.loc 1 354 0
  754 0020 6D00     		lsls	r5, r5, #1
-ARM GAS  /tmp/ccIPmfAa.s 			page 22
+ARM GAS  /tmp/cc6cmqUO.s 			page 22
 
 
  755              	.LVL49:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  785              		.loc 1 373 0 discriminator 3
  786 0044 12F0FF02 		ands	r2, r2, #255
  787              		.loc 1 374 0 discriminator 3
-ARM GAS  /tmp/ccIPmfAa.s 			page 23
+ARM GAS  /tmp/cc6cmqUO.s 			page 23
 
 
  788 0048 2160     		str	r1, [r4]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  826              		.loc 1 368 0
  827 0078 C3F800E0 		str	lr, [r3]
  361:../common/ubertooth.c **** 			if (temp & msb)
-ARM GAS  /tmp/ccIPmfAa.s 			page 24
+ARM GAS  /tmp/cc6cmqUO.s 			page 24
 
 
  828              		.loc 1 361 0
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  872              	.LVL62:
  873 000c 0126     		movs	r6, #1
  874 000e 0823     		movs	r3, #8
-ARM GAS  /tmp/ccIPmfAa.s 			page 25
+ARM GAS  /tmp/cc6cmqUO.s 			page 25
 
 
  392:../common/ubertooth.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  407:../common/ubertooth.c **** 			SCLK_SET;
  907              		.loc 1 407 0
  908 0038 1021     		movs	r1, #16
-ARM GAS  /tmp/ccIPmfAa.s 			page 26
+ARM GAS  /tmp/cc6cmqUO.s 			page 26
 
 
  909              	.LVL68:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  944              	.LVL75:
  410:../common/ubertooth.c **** 			spi_delay();
  945              		.loc 1 410 0
-ARM GAS  /tmp/ccIPmfAa.s 			page 27
+ARM GAS  /tmp/cc6cmqUO.s 			page 27
 
 
  946 0062 48BF     		it	mi
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  991              		.loc 1 425 0
  992 0002 0021     		movs	r1, #0
  993 0004 0820     		movs	r0, #8
-ARM GAS  /tmp/ccIPmfAa.s 			page 28
+ARM GAS  /tmp/cc6cmqUO.s 			page 28
 
 
  994 0006 FFF7FEFF 		bl	cc2400_spi
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  435:../common/ubertooth.c ****  * Warning: This should only be called when running on the internal oscillator.
  436:../common/ubertooth.c ****  * Otherwise use clock_start().
  437:../common/ubertooth.c ****  */
-ARM GAS  /tmp/ccIPmfAa.s 			page 29
+ARM GAS  /tmp/cc6cmqUO.s 			page 29
 
 
  438:../common/ubertooth.c **** void cc2400_reset()
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1088              	.LFE20:
  1090              		.section	.text.clock_start,"ax",%progbits
  1091              		.align	1
-ARM GAS  /tmp/ccIPmfAa.s 			page 30
+ARM GAS  /tmp/cc6cmqUO.s 			page 30
 
 
  1092              		.global	clock_start
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1131 001c 2B60     		str	r3, [r5]
  1132              		.loc 1 457 0
  1133 001e AA23     		movs	r3, #170
-ARM GAS  /tmp/ccIPmfAa.s 			page 31
+ARM GAS  /tmp/cc6cmqUO.s 			page 31
 
 
  1134 0020 2360     		str	r3, [r4]
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  471:../common/ubertooth.c **** 	cc2400_strobe(SXOSCON);
  1174              		.loc 1 471 0
  1175 005c 6020     		movs	r0, #96
-ARM GAS  /tmp/ccIPmfAa.s 			page 32
+ARM GAS  /tmp/cc6cmqUO.s 			page 32
 
 
  1176 005e FFF7FEFF 		bl	cc2400_strobe
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1204 0082 0123     		movs	r3, #1
  493:../common/ubertooth.c **** 	PLL0FEED_SEQUENCE;
  1205              		.loc 1 493 0
-ARM GAS  /tmp/ccIPmfAa.s 			page 33
+ARM GAS  /tmp/cc6cmqUO.s 			page 33
 
 
  1206 0084 284A     		ldr	r2, .L110+32
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  508:../common/ubertooth.c **** 
  509:../common/ubertooth.c **** 	/* configure PLL1 */
  510:../common/ubertooth.c **** 	PLL1CFG = (MSEL1 << 0) | (PSEL1 << 5);
-ARM GAS  /tmp/ccIPmfAa.s 			page 34
+ARM GAS  /tmp/cc6cmqUO.s 			page 34
 
 
  1245              		.loc 1 510 0
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1285 00f6 AA22     		movs	r2, #170
  1286 00f8 1A60     		str	r2, [r3]
  1287 00fa 5522     		movs	r2, #85
-ARM GAS  /tmp/ccIPmfAa.s 			page 35
+ARM GAS  /tmp/cc6cmqUO.s 			page 35
 
 
  1288 00fc 1A60     		str	r2, [r3]
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1339              	.LVL95:
  160:../common/ubertooth.c **** 
  1340              		.loc 1 160 0
-ARM GAS  /tmp/ccIPmfAa.s 			page 36
+ARM GAS  /tmp/cc6cmqUO.s 			page 36
 
 
  1341 000a BDE80840 		pop	{r3, lr}
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1386 0014 43F00303 		orr	r3, r3, #3
  1387 0018 1360     		str	r3, [r2]
  533:../common/ubertooth.c **** 	WDFEED_SEQUENCE;
-ARM GAS  /tmp/ccIPmfAa.s 			page 37
+ARM GAS  /tmp/cc6cmqUO.s 			page 37
 
 
  1388              		.loc 1 533 0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  551:../common/ubertooth.c **** 		IO2IntEnF |= (0x1 << 8);
  552:../common/ubertooth.c **** 		ISER0 |= ISER0_ISE_EINT3;
  553:../common/ubertooth.c **** 
-ARM GAS  /tmp/ccIPmfAa.s 			page 38
+ARM GAS  /tmp/cc6cmqUO.s 			page 38
 
 
  554:../common/ubertooth.c **** 		/* go into power-down mode and wait for interrupt */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1446              		.thumb
  1447              		.thumb_func
  1448              		.fpu softvfp
-ARM GAS  /tmp/ccIPmfAa.s 			page 39
+ARM GAS  /tmp/cc6cmqUO.s 			page 39
 
 
  1450              	cc2400_tune_tx:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1480              		@ frame_needed = 0, uses_anonymous_args = 0
  1481              	.LVL106:
  1482 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccIPmfAa.s 			page 40
+ARM GAS  /tmp/cc6cmqUO.s 			page 40
 
 
  1483              		.cfi_def_cfa_offset 8
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1528              	.LVL114:
  1529              		.cfi_endproc
  1530              	.LFE26:
-ARM GAS  /tmp/ccIPmfAa.s 			page 41
+ARM GAS  /tmp/cc6cmqUO.s 			page 41
 
 
  1532              		.section	.text.cc2400_hop_rx,"ax",%progbits
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1581 000c 05A9     		add	r1, sp, #20
  1582              	.LVL116:
  1583 000e 6846     		mov	r0, sp
-ARM GAS  /tmp/ccIPmfAa.s 			page 42
+ARM GAS  /tmp/cc6cmqUO.s 			page 42
 
 
  1584              	.LVL117:
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1629              		.fpu softvfp
  1631              	get_device_serial:
  1632              	.LFB28:
-ARM GAS  /tmp/ccIPmfAa.s 			page 43
+ARM GAS  /tmp/cc6cmqUO.s 			page 43
 
 
  638:../common/ubertooth.c **** 
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1673              		.loc 1 649 0
  1674 0022 1B0E     		lsrs	r3, r3, #24
  1675 0024 2371     		strb	r3, [r4, #4]
-ARM GAS  /tmp/ccIPmfAa.s 			page 44
+ARM GAS  /tmp/cc6cmqUO.s 			page 44
 
 
  650:../common/ubertooth.c **** 	buffer[5] = result[2] & 0xFF;
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1714              		.loc 1 659 0
  1715 004e A273     		strb	r2, [r4, #14]
  660:../common/ubertooth.c **** 	buffer[15] = (result[4] >> 16) & 0xFF;
-ARM GAS  /tmp/ccIPmfAa.s 			page 45
+ARM GAS  /tmp/cc6cmqUO.s 			page 45
 
 
  1716              		.loc 1 660 0
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1761              		.loc 1 670 0
  1762 0006 05A9     		add	r1, sp, #20
  669:../common/ubertooth.c **** 	iap_entry(command, result);
-ARM GAS  /tmp/ccIPmfAa.s 			page 46
+ARM GAS  /tmp/cc6cmqUO.s 			page 46
 
 
  1763              		.loc 1 669 0
@@ -2736,95 +2736,95 @@ ARM GAS  /tmp/ccIPmfAa.s 			page 1
  1801              	.Letext0:
  1802              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
  1803              		.file 3 "../common/ubertooth.h"
-ARM GAS  /tmp/ccIPmfAa.s 			page 47
+ARM GAS  /tmp/cc6cmqUO.s 			page 47
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ubertooth.c
-     /tmp/ccIPmfAa.s:16     .text.spi_delay:0000000000000000 $t
-     /tmp/ccIPmfAa.s:22     .text.spi_delay:0000000000000000 spi_delay
-     /tmp/ccIPmfAa.s:46     .text.spi_delay:0000000000000014 $d
-     /tmp/ccIPmfAa.s:51     .text.rbit:0000000000000000 $t
-     /tmp/ccIPmfAa.s:58     .text.rbit:0000000000000000 rbit
-     /tmp/ccIPmfAa.s:81     .text.wait_us:0000000000000000 $t
-     /tmp/ccIPmfAa.s:88     .text.wait_us:0000000000000000 wait_us
-     /tmp/ccIPmfAa.s:119    .text.wait_us:0000000000000028 $d
-     /tmp/ccIPmfAa.s:124    .text.wait:0000000000000000 $t
-     /tmp/ccIPmfAa.s:131    .text.wait:0000000000000000 wait
-     /tmp/ccIPmfAa.s:148    .text.wait:0000000000000008 $d
-     /tmp/ccIPmfAa.s:153    .text.wait_ms:0000000000000000 $t
-     /tmp/ccIPmfAa.s:160    .text.wait_ms:0000000000000000 wait_ms
-     /tmp/ccIPmfAa.s:178    .text.all_pins_off:0000000000000000 $t
-     /tmp/ccIPmfAa.s:185    .text.all_pins_off:0000000000000000 all_pins_off
-     /tmp/ccIPmfAa.s:251    .text.all_pins_off:0000000000000044 $d
-     /tmp/ccIPmfAa.s:259    .text.gpio_init:0000000000000000 $t
-     /tmp/ccIPmfAa.s:266    .text.gpio_init:0000000000000000 gpio_init
-     /tmp/ccIPmfAa.s:311    .text.gpio_init:0000000000000030 $d
-     /tmp/ccIPmfAa.s:316    .text.dio_ssp_init:0000000000000000 $t
-     /tmp/ccIPmfAa.s:323    .text.dio_ssp_init:0000000000000000 dio_ssp_init
-     /tmp/ccIPmfAa.s:366    .text.dio_ssp_init:0000000000000048 $d
-     /tmp/ccIPmfAa.s:373    .text.atest_init:0000000000000000 $t
-     /tmp/ccIPmfAa.s:380    .text.atest_init:0000000000000000 atest_init
-     /tmp/ccIPmfAa.s:410    .text.atest_init:0000000000000028 $d
-     /tmp/ccIPmfAa.s:417    .text.cc2400_spi:0000000000000000 $t
-     /tmp/ccIPmfAa.s:424    .text.cc2400_spi:0000000000000000 cc2400_spi
-     /tmp/ccIPmfAa.s:502    .text.cc2400_spi:0000000000000048 $d
-     /tmp/ccIPmfAa.s:509    .text.cc2400_init:0000000000000000 $t
-     /tmp/ccIPmfAa.s:516    .text.cc2400_init:0000000000000000 cc2400_init
-     /tmp/ccIPmfAa.s:573    .text.cc2400_init:000000000000002c $d
-     /tmp/ccIPmfAa.s:582    .text.cc2400_get:0000000000000000 $t
-     /tmp/ccIPmfAa.s:589    .text.cc2400_get:0000000000000000 cc2400_get
-     /tmp/ccIPmfAa.s:617    .text.cc2400_set:0000000000000000 $t
-     /tmp/ccIPmfAa.s:624    .text.cc2400_set:0000000000000000 cc2400_set
-     /tmp/ccIPmfAa.s:644    .text.cc2400_get8:0000000000000000 $t
-     /tmp/ccIPmfAa.s:651    .text.cc2400_get8:0000000000000000 cc2400_get8
-     /tmp/ccIPmfAa.s:679    .text.cc2400_set8:0000000000000000 $t
-     /tmp/ccIPmfAa.s:686    .text.cc2400_set8:0000000000000000 cc2400_set8
-     /tmp/ccIPmfAa.s:706    .text.cc2400_fifo_write:0000000000000000 $t
-     /tmp/ccIPmfAa.s:713    .text.cc2400_fifo_write:0000000000000000 cc2400_fifo_write
-     /tmp/ccIPmfAa.s:834    .text.cc2400_fifo_write:0000000000000080 $d
-     /tmp/ccIPmfAa.s:840    .text.cc2400_fifo_read:0000000000000000 $t
-     /tmp/ccIPmfAa.s:847    .text.cc2400_fifo_read:0000000000000000 cc2400_fifo_read
-     /tmp/ccIPmfAa.s:967    .text.cc2400_fifo_read:000000000000007c $d
-     /tmp/ccIPmfAa.s:974    .text.cc2400_status:0000000000000000 $t
-     /tmp/ccIPmfAa.s:981    .text.cc2400_status:0000000000000000 cc2400_status
-     /tmp/ccIPmfAa.s:1003   .text.cc2400_strobe:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1010   .text.cc2400_strobe:0000000000000000 cc2400_strobe
-     /tmp/ccIPmfAa.s:1034   .text.cc2400_reset:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1041   .text.cc2400_reset:0000000000000000 cc2400_reset
-     /tmp/ccIPmfAa.s:1091   .text.clock_start:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1098   .text.clock_start:0000000000000000 clock_start
-     /tmp/ccIPmfAa.s:1299   .text.clock_start:0000000000000108 $d
-     /tmp/ccIPmfAa.s:1317   .text.ubertooth_init:0000000000000000 $t
-ARM GAS  /tmp/ccIPmfAa.s 			page 48
+     /tmp/cc6cmqUO.s:16     .text.spi_delay:0000000000000000 $t
+     /tmp/cc6cmqUO.s:22     .text.spi_delay:0000000000000000 spi_delay
+     /tmp/cc6cmqUO.s:46     .text.spi_delay:0000000000000014 $d
+     /tmp/cc6cmqUO.s:51     .text.rbit:0000000000000000 $t
+     /tmp/cc6cmqUO.s:58     .text.rbit:0000000000000000 rbit
+     /tmp/cc6cmqUO.s:81     .text.wait_us:0000000000000000 $t
+     /tmp/cc6cmqUO.s:88     .text.wait_us:0000000000000000 wait_us
+     /tmp/cc6cmqUO.s:119    .text.wait_us:0000000000000028 $d
+     /tmp/cc6cmqUO.s:124    .text.wait:0000000000000000 $t
+     /tmp/cc6cmqUO.s:131    .text.wait:0000000000000000 wait
+     /tmp/cc6cmqUO.s:148    .text.wait:0000000000000008 $d
+     /tmp/cc6cmqUO.s:153    .text.wait_ms:0000000000000000 $t
+     /tmp/cc6cmqUO.s:160    .text.wait_ms:0000000000000000 wait_ms
+     /tmp/cc6cmqUO.s:178    .text.all_pins_off:0000000000000000 $t
+     /tmp/cc6cmqUO.s:185    .text.all_pins_off:0000000000000000 all_pins_off
+     /tmp/cc6cmqUO.s:251    .text.all_pins_off:0000000000000044 $d
+     /tmp/cc6cmqUO.s:259    .text.gpio_init:0000000000000000 $t
+     /tmp/cc6cmqUO.s:266    .text.gpio_init:0000000000000000 gpio_init
+     /tmp/cc6cmqUO.s:311    .text.gpio_init:0000000000000030 $d
+     /tmp/cc6cmqUO.s:316    .text.dio_ssp_init:0000000000000000 $t
+     /tmp/cc6cmqUO.s:323    .text.dio_ssp_init:0000000000000000 dio_ssp_init
+     /tmp/cc6cmqUO.s:366    .text.dio_ssp_init:0000000000000048 $d
+     /tmp/cc6cmqUO.s:373    .text.atest_init:0000000000000000 $t
+     /tmp/cc6cmqUO.s:380    .text.atest_init:0000000000000000 atest_init
+     /tmp/cc6cmqUO.s:410    .text.atest_init:0000000000000028 $d
+     /tmp/cc6cmqUO.s:417    .text.cc2400_spi:0000000000000000 $t
+     /tmp/cc6cmqUO.s:424    .text.cc2400_spi:0000000000000000 cc2400_spi
+     /tmp/cc6cmqUO.s:502    .text.cc2400_spi:0000000000000048 $d
+     /tmp/cc6cmqUO.s:509    .text.cc2400_init:0000000000000000 $t
+     /tmp/cc6cmqUO.s:516    .text.cc2400_init:0000000000000000 cc2400_init
+     /tmp/cc6cmqUO.s:573    .text.cc2400_init:000000000000002c $d
+     /tmp/cc6cmqUO.s:582    .text.cc2400_get:0000000000000000 $t
+     /tmp/cc6cmqUO.s:589    .text.cc2400_get:0000000000000000 cc2400_get
+     /tmp/cc6cmqUO.s:617    .text.cc2400_set:0000000000000000 $t
+     /tmp/cc6cmqUO.s:624    .text.cc2400_set:0000000000000000 cc2400_set
+     /tmp/cc6cmqUO.s:644    .text.cc2400_get8:0000000000000000 $t
+     /tmp/cc6cmqUO.s:651    .text.cc2400_get8:0000000000000000 cc2400_get8
+     /tmp/cc6cmqUO.s:679    .text.cc2400_set8:0000000000000000 $t
+     /tmp/cc6cmqUO.s:686    .text.cc2400_set8:0000000000000000 cc2400_set8
+     /tmp/cc6cmqUO.s:706    .text.cc2400_fifo_write:0000000000000000 $t
+     /tmp/cc6cmqUO.s:713    .text.cc2400_fifo_write:0000000000000000 cc2400_fifo_write
+     /tmp/cc6cmqUO.s:834    .text.cc2400_fifo_write:0000000000000080 $d
+     /tmp/cc6cmqUO.s:840    .text.cc2400_fifo_read:0000000000000000 $t
+     /tmp/cc6cmqUO.s:847    .text.cc2400_fifo_read:0000000000000000 cc2400_fifo_read
+     /tmp/cc6cmqUO.s:967    .text.cc2400_fifo_read:000000000000007c $d
+     /tmp/cc6cmqUO.s:974    .text.cc2400_status:0000000000000000 $t
+     /tmp/cc6cmqUO.s:981    .text.cc2400_status:0000000000000000 cc2400_status
+     /tmp/cc6cmqUO.s:1003   .text.cc2400_strobe:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1010   .text.cc2400_strobe:0000000000000000 cc2400_strobe
+     /tmp/cc6cmqUO.s:1034   .text.cc2400_reset:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1041   .text.cc2400_reset:0000000000000000 cc2400_reset
+     /tmp/cc6cmqUO.s:1091   .text.clock_start:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1098   .text.clock_start:0000000000000000 clock_start
+     /tmp/cc6cmqUO.s:1299   .text.clock_start:0000000000000108 $d
+     /tmp/cc6cmqUO.s:1317   .text.ubertooth_init:0000000000000000 $t
+ARM GAS  /tmp/cc6cmqUO.s 			page 48
 
 
-     /tmp/ccIPmfAa.s:1324   .text.ubertooth_init:0000000000000000 ubertooth_init
-     /tmp/ccIPmfAa.s:1352   .text.reset:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1359   .text.reset:0000000000000000 reset
-     /tmp/ccIPmfAa.s:1408   .text.reset:000000000000002c $d
-     /tmp/ccIPmfAa.s:1417   .text.cc2400_tune_rx:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1424   .text.cc2400_tune_rx:0000000000000000 cc2400_tune_rx
-     /tmp/ccIPmfAa.s:1443   .text.cc2400_tune_tx:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1450   .text.cc2400_tune_tx:0000000000000000 cc2400_tune_tx
-     /tmp/ccIPmfAa.s:1468   .text.cc2400_hop_tx:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1475   .text.cc2400_hop_tx:0000000000000000 cc2400_hop_tx
-     /tmp/ccIPmfAa.s:1533   .text.cc2400_hop_rx:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1540   .text.cc2400_hop_rx:0000000000000000 cc2400_hop_rx
-     /tmp/ccIPmfAa.s:1551   .text.get_part_num:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1558   .text.get_part_num:0000000000000000 get_part_num
-     /tmp/ccIPmfAa.s:1619   .text.get_part_num:0000000000000030 $d
-     /tmp/ccIPmfAa.s:1624   .text.get_device_serial:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1631   .text.get_device_serial:0000000000000000 get_device_serial
-     /tmp/ccIPmfAa.s:1736   .text.get_device_serial:0000000000000060 $d
-     /tmp/ccIPmfAa.s:1741   .text.set_isp:0000000000000000 $t
-     /tmp/ccIPmfAa.s:1748   .text.set_isp:0000000000000000 set_isp
-     /tmp/ccIPmfAa.s:1778   .text.set_isp:0000000000000018 $d
-     /tmp/ccIPmfAa.s:1787   .rodata:0000000000000000 iap_entry
-     /tmp/ccIPmfAa.s:1784   .rodata:0000000000000000 $d
-     /tmp/ccIPmfAa.s:1790   .bss:0000000000000000 $d
-     /tmp/ccIPmfAa.s:1794   .bss:0000000000000000 delay_counter
-     /tmp/ccIPmfAa.s:1798   .bss:0000000000000004 wait_us_counter
+     /tmp/cc6cmqUO.s:1324   .text.ubertooth_init:0000000000000000 ubertooth_init
+     /tmp/cc6cmqUO.s:1352   .text.reset:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1359   .text.reset:0000000000000000 reset
+     /tmp/cc6cmqUO.s:1408   .text.reset:000000000000002c $d
+     /tmp/cc6cmqUO.s:1417   .text.cc2400_tune_rx:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1424   .text.cc2400_tune_rx:0000000000000000 cc2400_tune_rx
+     /tmp/cc6cmqUO.s:1443   .text.cc2400_tune_tx:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1450   .text.cc2400_tune_tx:0000000000000000 cc2400_tune_tx
+     /tmp/cc6cmqUO.s:1468   .text.cc2400_hop_tx:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1475   .text.cc2400_hop_tx:0000000000000000 cc2400_hop_tx
+     /tmp/cc6cmqUO.s:1533   .text.cc2400_hop_rx:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1540   .text.cc2400_hop_rx:0000000000000000 cc2400_hop_rx
+     /tmp/cc6cmqUO.s:1551   .text.get_part_num:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1558   .text.get_part_num:0000000000000000 get_part_num
+     /tmp/cc6cmqUO.s:1619   .text.get_part_num:0000000000000030 $d
+     /tmp/cc6cmqUO.s:1624   .text.get_device_serial:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1631   .text.get_device_serial:0000000000000000 get_device_serial
+     /tmp/cc6cmqUO.s:1736   .text.get_device_serial:0000000000000060 $d
+     /tmp/cc6cmqUO.s:1741   .text.set_isp:0000000000000000 $t
+     /tmp/cc6cmqUO.s:1748   .text.set_isp:0000000000000000 set_isp
+     /tmp/cc6cmqUO.s:1778   .text.set_isp:0000000000000018 $d
+     /tmp/cc6cmqUO.s:1787   .rodata:0000000000000000 iap_entry
+     /tmp/cc6cmqUO.s:1784   .rodata:0000000000000000 $d
+     /tmp/cc6cmqUO.s:1790   .bss:0000000000000000 $d
+     /tmp/cc6cmqUO.s:1794   .bss:0000000000000000 delay_counter
+     /tmp/cc6cmqUO.s:1798   .bss:0000000000000004 wait_us_counter
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

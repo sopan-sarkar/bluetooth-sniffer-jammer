@@ -144,6 +144,11 @@ int cmd_hop(struct libusb_device_handle* devh);
 int cmd_cancel_follow(struct libusb_device_handle* devh);
 //Sopan Sarkar
 int cmd_set_hop_interval(struct libusb_device_handle* devh, uint16_t hop_interval);
-int cmd_btle_transmit(struct libusb_device_handle* devh, uint8_t channel_idx);
+int cmd_set_hop_increment(struct libusb_device_handle* devh, uint8_t hop_increment);
+//int cmd_btle_transmit(struct libusb_device_handle* devh, uint8_t channel_idx);
+int cmd_btle_transmit(struct libusb_device_handle* devh);
+int cmd_set_le_channel(struct libusb_device_handle* devh, uint8_t channel_idx);
+int cmd_set_anchor(struct libusb_device_handle* devh, u32 clkn);
+int cmd_set_crc_init(struct libusb_device_handle* devh, u32 crc_init);
 
 #endif /* __UBERTOOTH_CONTROL_H__ */

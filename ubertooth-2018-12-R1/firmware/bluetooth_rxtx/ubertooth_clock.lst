@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZBLQ0u.s 			page 1
+ARM GAS  /tmp/ccaXyJZj.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
   30              		@ link register save eliminated.
   27:ubertooth_clock.c **** 	/* stop and reset the timer to zero */
   28:ubertooth_clock.c **** 	T0TCR = TCR_Counter_Reset;
-ARM GAS  /tmp/ccZBLQ0u.s 			page 2
+ARM GAS  /tmp/ccaXyJZj.s 			page 2
 
 
   31              		.loc 1 28 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
   73              		.cfi_endproc
   74              	.LFE0:
   76              		.section	.text.clkn_start,"ax",%progbits
-ARM GAS  /tmp/ccZBLQ0u.s 			page 3
+ARM GAS  /tmp/ccaXyJZj.s 			page 3
 
 
   77              		.align	1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
   54:ubertooth_clock.c **** 	 * clock_start().
   55:ubertooth_clock.c **** 	 */
   56:ubertooth_clock.c **** 
-ARM GAS  /tmp/ccZBLQ0u.s 			page 4
+ARM GAS  /tmp/ccaXyJZj.s 			page 4
 
 
   57:ubertooth_clock.c **** 	clkn_stop();
@@ -208,9 +208,9 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
  128              		.loc 1 73 0
  129 000c 40F63442 		movw	r2, #3124
  130 0010 DA60     		str	r2, [r3, #12]
-  74:ubertooth_clock.c **** 	T0MCR = TMCR_MR0R | TMCR_MR0I;
+  74:ubertooth_clock.c **** 	T0MCR = TMCR_MR0I;
  131              		.loc 1 74 0
- 132 0012 0322     		movs	r2, #3
+ 132 0012 0122     		movs	r2, #1
  133 0014 9A60     		str	r2, [r3, #8]
   75:ubertooth_clock.c **** 	ISER0 = ISER0_ISE_TIMER0;
  134              		.loc 1 75 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
   77:ubertooth_clock.c **** 
   78:ubertooth_clock.c **** // totally disable clkn and timer0
   79:ubertooth_clock.c **** void clkn_disable(void) {
-ARM GAS  /tmp/ccZBLQ0u.s 			page 5
+ARM GAS  /tmp/ccaXyJZj.s 			page 5
 
 
  157              		.loc 1 79 0
@@ -278,14 +278,14 @@ ARM GAS  /tmp/ccZBLQ0u.s 			page 1
  190              		.file 2 "/usr/lib/gcc/arm-none-eabi/6.3.1/include/stdint-gcc.h"
  191              		.file 3 "ubertooth_clock.h"
  192              		.file 4 "../common/ubertooth.h"
-ARM GAS  /tmp/ccZBLQ0u.s 			page 6
+ARM GAS  /tmp/ccaXyJZj.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ubertooth_clock.c
-     /tmp/ccZBLQ0u.s:16     .text.clkn_stop:0000000000000000 $t
-     /tmp/ccZBLQ0u.s:23     .text.clkn_stop:0000000000000000 clkn_stop
-     /tmp/ccZBLQ0u.s:64     .text.clkn_stop:000000000000002c $d
+     /tmp/ccaXyJZj.s:16     .text.clkn_stop:0000000000000000 $t
+     /tmp/ccaXyJZj.s:23     .text.clkn_stop:0000000000000000 clkn_stop
+     /tmp/ccaXyJZj.s:64     .text.clkn_stop:000000000000002c $d
                             *COM*:0000000000000004 clkn
                             *COM*:0000000000000004 last_hop
                             *COM*:0000000000000004 clkn_offset
@@ -294,15 +294,15 @@ DEFINED SYMBOLS
                             *COM*:0000000000000002 clk_drift_correction
                             *COM*:0000000000000004 clkn_last_drift_fix
                             *COM*:0000000000000004 clkn_next_drift_fix
-     /tmp/ccZBLQ0u.s:77     .text.clkn_start:0000000000000000 $t
-     /tmp/ccZBLQ0u.s:84     .text.clkn_start:0000000000000000 clkn_start
-     /tmp/ccZBLQ0u.s:99     .text.clkn_start:0000000000000008 $d
-     /tmp/ccZBLQ0u.s:104    .text.clkn_init:0000000000000000 $t
-     /tmp/ccZBLQ0u.s:111    .text.clkn_init:0000000000000000 clkn_init
-     /tmp/ccZBLQ0u.s:142    .text.clkn_init:0000000000000020 $d
-     /tmp/ccZBLQ0u.s:148    .text.clkn_disable:0000000000000000 $t
-     /tmp/ccZBLQ0u.s:155    .text.clkn_disable:0000000000000000 clkn_disable
-     /tmp/ccZBLQ0u.s:176    .text.clkn_disable:0000000000000010 $d
+     /tmp/ccaXyJZj.s:77     .text.clkn_start:0000000000000000 $t
+     /tmp/ccaXyJZj.s:84     .text.clkn_start:0000000000000000 clkn_start
+     /tmp/ccaXyJZj.s:99     .text.clkn_start:0000000000000008 $d
+     /tmp/ccaXyJZj.s:104    .text.clkn_init:0000000000000000 $t
+     /tmp/ccaXyJZj.s:111    .text.clkn_init:0000000000000000 clkn_init
+     /tmp/ccaXyJZj.s:142    .text.clkn_init:0000000000000020 $d
+     /tmp/ccaXyJZj.s:148    .text.clkn_disable:0000000000000000 $t
+     /tmp/ccaXyJZj.s:155    .text.clkn_disable:0000000000000000 clkn_disable
+     /tmp/ccaXyJZj.s:176    .text.clkn_disable:0000000000000010 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

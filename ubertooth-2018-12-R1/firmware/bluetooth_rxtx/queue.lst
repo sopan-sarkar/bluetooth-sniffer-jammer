@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHnYXeG.s 			page 1
+ARM GAS  /tmp/ccx53AkA.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccHnYXeG.s 			page 1
   42              		.align	1
   43              		.global	queue_insert
   44              		.syntax unified
-ARM GAS  /tmp/ccHnYXeG.s 			page 2
+ARM GAS  /tmp/ccx53AkA.s 			page 2
 
 
   45              		.thumb
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccHnYXeG.s 			page 1
   28:queue.c       **** 
   79              		.loc 1 28 0
   80 0018 0020     		moveq	r0, #0
-ARM GAS  /tmp/ccHnYXeG.s 			page 3
+ARM GAS  /tmp/ccx53AkA.s 			page 3
 
 
   35:queue.c       **** }
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccHnYXeG.s 			page 1
  121 0018 0120     		movs	r0, #1
  122              	.LVL8:
  123 001a 7047     		bx	lr
-ARM GAS  /tmp/ccHnYXeG.s 			page 4
+ARM GAS  /tmp/ccx53AkA.s 			page 4
 
 
  124              	.LVL9:
@@ -195,17 +195,17 @@ ARM GAS  /tmp/ccHnYXeG.s 			page 1
  134              		.text
  135              	.Letext0:
  136              		.file 2 "queue.h"
-ARM GAS  /tmp/ccHnYXeG.s 			page 5
+ARM GAS  /tmp/ccx53AkA.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 queue.c
-     /tmp/ccHnYXeG.s:16     .text.queue_init:0000000000000000 $t
-     /tmp/ccHnYXeG.s:23     .text.queue_init:0000000000000000 queue_init
-     /tmp/ccHnYXeG.s:42     .text.queue_insert:0000000000000000 $t
-     /tmp/ccHnYXeG.s:49     .text.queue_insert:0000000000000000 queue_insert
-     /tmp/ccHnYXeG.s:87     .text.queue_remove:0000000000000000 $t
-     /tmp/ccHnYXeG.s:94     .text.queue_remove:0000000000000000 queue_remove
+     /tmp/ccx53AkA.s:16     .text.queue_init:0000000000000000 $t
+     /tmp/ccx53AkA.s:23     .text.queue_init:0000000000000000 queue_init
+     /tmp/ccx53AkA.s:42     .text.queue_insert:0000000000000000 $t
+     /tmp/ccx53AkA.s:49     .text.queue_insert:0000000000000000 queue_insert
+     /tmp/ccx53AkA.s:87     .text.queue_remove:0000000000000000 $t
+     /tmp/ccx53AkA.s:94     .text.queue_remove:0000000000000000 queue_remove
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

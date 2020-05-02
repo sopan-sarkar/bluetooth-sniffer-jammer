@@ -142,6 +142,7 @@ static struct libusb_device_handle* find_ubertooth_device(int ubertooth_device)
 
 	usb_devs = libusb_get_device_list(ctx, &usb_list);
 	ubertooth_devs = calloc(usb_devs, sizeof(int));
+
 	for(i = 0 ; i < usb_devs ; ++i) {
 		r = libusb_get_device_descriptor(usb_list[i], &desc);
 		if(r < 0)
@@ -454,7 +455,7 @@ void rx_btle_file(FILE* fp)
 	if (ut == NULL)
 		return;
 
-	//stream_rx_file(ut, fp, cb_btle, NULL); //sopan
+	stream_rx_file(ut, fp, cb_btle, NULL);
 }
 
 void ubertooth_unpack_symbols(const uint8_t* buf, char* unpacked)
